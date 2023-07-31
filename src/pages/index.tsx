@@ -35,7 +35,19 @@ type CharacterStats = {
   id: string;
   characterId: string;
   level: number;
-
+  charClass: string;
+  charRace: string;
+  totalSessions: number;
+  totalTime: number;
+  dmgDealt: number;
+  dmgTaken: number;
+  critHits: number;
+  totalKills: number;
+  spellsCast: number;
+  totalHealingOthers: number;
+  totalHealingSelf: number;
+  totalDeaths: number;
+  turnsNoDmg: number;
 };
 
 const Content: React.FC = () => {
@@ -113,15 +125,6 @@ const Content: React.FC = () => {
         </ul>
       </div>
       <div className="col-span-3">
-        <CharacterEditor 
-          onSave={({ title, stats }) => {
-            void createCharacter.mutate({
-              title,
-              campaignId: selectedCampaign?.id ?? "",
-              stats,
-            })
-          }}
-        />
 
         {characters?.map((character) => (
           <div key={character.id} className="">
@@ -131,6 +134,16 @@ const Content: React.FC = () => {
             />
           </div>
         ))}
+
+        <CharacterEditor 
+          onSave={({ title, stats }) => {
+            void createCharacter.mutate({
+              title,
+              campaignId: selectedCampaign?.id ?? "",
+              stats
+            })
+          }}
+        />
 
       </div>
     </div>

@@ -12,7 +12,8 @@ export const characterRouter = createTRPCRouter({
             campaignId: z.string(),
             stats: z.object({
                 level: z.number(),
-                class: z.string(),
+                charClass: z.string(),
+                charRace: z.string(),
                 totalSessions: z.number(),
                 totalTime: z.number(),
                 dmgDealt: z.number(),
@@ -35,7 +36,8 @@ export const characterRouter = createTRPCRouter({
                 stats: {
                     create: {
                         level: input.stats.level,
-                        class: input.stats.class,
+                        charClass: input.stats.charClass,
+                        charRace: input.stats.charRace,
                         totalSessions: input.stats.totalSessions,
                         totalTime: input.stats.totalTime,
                         dmgDealt: input.stats.dmgDealt,
