@@ -95,6 +95,20 @@ model CharacterStats {
     character           Character           @relation(fields: [characterId], references: [id], onDelete: Cascade)
     characterId         String              // Foreign key to associate CharacterStats with Character
     level               Int                 @default(0)
+    class               String
+    totalSessions       Int                 @default(0)
+    totalTime           Int                 @default(0)
+    dmgDealt            Int                 @default(0)
+    dmgTaken            Int                 @default(0)
+    critHits            Int                 @default(0)
+    totalKills          Int                 @default(0)
+    spellsCast          Int                 @default(0)
+    totalHealingOthers  Int                 @default(0)
+    totalHealingSelf    Int                 @default(0)
+
+    totalDeaths         Int                 @default(0)
+    turnsNoDmg          Int                 @default(0)
+    
 }
 
 

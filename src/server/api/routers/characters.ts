@@ -12,6 +12,18 @@ export const characterRouter = createTRPCRouter({
             campaignId: z.string(),
             stats: z.object({
                 level: z.number(),
+                class: z.string(),
+                totalSessions: z.number(),
+                totalTime: z.number(),
+                dmgDealt: z.number(),
+                dmgTaken: z.number(),
+                critHits: z.number(),
+                totalKills: z.number(),
+                spellsCast: z.number(),
+                totalHealingOthers: z.number(),
+                totalHealingSelf: z.number(),
+                totalDeaths: z.number(),
+                turnsNoDmg: z.number(),
             })
         }),
     )
@@ -23,6 +35,18 @@ export const characterRouter = createTRPCRouter({
                 stats: {
                     create: {
                         level: input.stats.level,
+                        class: input.stats.class,
+                        totalSessions: input.stats.totalSessions,
+                        totalTime: input.stats.totalTime,
+                        dmgDealt: input.stats.dmgDealt,
+                        dmgTaken: input.stats.dmgTaken,
+                        critHits: input.stats.critHits,
+                        totalKills: input.stats.totalKills,
+                        spellsCast: input.stats.spellsCast,
+                        totalHealingOthers: input.stats.totalHealingOthers,
+                        totalHealingSelf: input.stats.totalHealingSelf,
+                        totalDeaths: input.stats.totalDeaths,
+                        turnsNoDmg: input.stats.turnsNoDmg,
                     },
                 },
             },
