@@ -56,7 +56,7 @@ model User {
     accounts      Account[]
     sessions      Session[]
     ownedCamp     Campaign[]    @relation("CampaignOwner")
-    joinedCamp    Campaign[]    @relation("CampaignMember")
+    // joinedCamp    Campaign[]    @relation("CampaignMember")
 }
 
 model VerificationToken {
@@ -70,15 +70,21 @@ model VerificationToken {
 
 model Campaign {
     id                  String              @id @default(cuid())
+    createdAt           DateTime            @default(now())
+    updatedAt           DateTime            @updatedAt
+    title               String
     characters          Character[]         // One to many
     owner               User                @relation("CampaignOwner", fields: [ownerId], references: [id])
     ownerId             String              // Foreign key to associate Campaign with Owner
-    joined              User                @relation("CampaignMember", fields: [joinedId], references: [id])
-    joinedId            String              // Foreign key to associate Campaign with Joined players
+    // joined              User                @relation("CampaignMember", fields: [joinedId], references: [id])
+    // joinedId            String              // Foreign key to associate Campaign with Joined players
 }
 
 model Character {
     id                  String              @id @default(cuid())
+    createdAt           DateTime            @default(now())
+    updatedAt           DateTime            @updatedAt
+    title               String
     campaign            Campaign?           @relation(fields: [campaignId], references: [id])
     campaignId          String?             // Foreign key to associate Character with Campaign
     stats               CharacterStats[]    // One to many

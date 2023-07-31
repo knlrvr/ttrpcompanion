@@ -1,5 +1,6 @@
 import { createTRPCRouter } from "@/server/api/trpc";
 import { exampleRouter } from "@/server/api/routers/example";
+import { campaignRouter } from "./routers/campaign";
 
 
 /**
@@ -9,6 +10,7 @@ import { exampleRouter } from "@/server/api/routers/example";
  */
 export const appRouter = createTRPCRouter({
     example: exampleRouter,
+    campaign: campaignRouter,
 
 });
 
