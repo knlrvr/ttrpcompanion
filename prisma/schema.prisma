@@ -88,6 +88,7 @@ model CharacterStats {
     id                  String              @id @default(cuid())
     character           Character           @relation(fields: [characterId], references: [id])
     characterId         String              // Foreign key to associate CharacterStats with Character
+    level               Int                 @default(0)
 }
 
 
