@@ -1,8 +1,14 @@
 import { signIn, signOut, useSession } from "next-auth/react";
+import { useState } from "react";
+
 import Head from "next/head";
 import Link from "next/link";
-import { api } from "@/utils/api";
+import { api, type RouterOutputs } from "@/utils/api";
+
 import { Header } from "@/components/Header";
+import { CharacterEditor } from "@/components/CharacterEditor";
+import { CharacterCard } from "@/components/CharacterCard";
+
 
 export default function Home() {
 
@@ -15,11 +21,122 @@ export default function Home() {
       </Head>
       <main className="">
         <Header />
+        <Content />
         <AuthShowcase />
       </main>
     </> 
   );
 }
+
+type Campaign = RouterOutputs["campaign"]["getAll"][0];
+type CharacterWithStats = RouterOutputs["character"]["getAll"][0] & {characterStats: CharacterStats[] };
+
+type CharacterStats = {
+  id: string;
+  characterId: string;
+  level: number;
+
+};
+
+const Content: React.FC = () => {
+  const { data: sessionData } = useSession();
+
+  const [selectedCampaign, setSelectedCampaign] = useState<Campaign | null>(null);
+
+  const { data: campaigns, refetch: refetchCampaigns } = api.campaign.getAll.useQuery(
+    undefined, // no input
+    {
+      enabled: sessionData?.user !== undefined,
+      onSuccess: (data) => {
+        setSelectedCampaign(selectedCampaign ?? data[0] ?? null);
+      }
+    }
+  );
+
+  const createCampaign = api.campaign.create.useMutation({
+    onSuccess: () => {
+      void refetchCampaigns();
+    }
+  });
+
+  const { data: characters, refetch: refetchCharacters } = api.character.getAll.useQuery(
+    {
+      campaignId: selectedCampaign?.id ?? "",
+    },
+    {
+      enabled: sessionData?.user !== undefined && selectedCampaign !== null,
+    }
+  );
+
+  const createCharacter = api.character.create.useMutation({
+    onSuccess: () => {
+      void refetchCharacters();
+    },
+  });
+
+  const deleteCharacter = api.character.delete.useMutation({
+    onSuccess: () => {
+      void refetchCharacters();
+    },
+  });
+
+  return (
+    <div className="p-4 grid grid-cols-4 gap-4">
+      <div className="">
+        <input 
+          type="text"
+          placeholder="New Campaign"
+          className="border rounded-full px-3 py-1"
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              createCampaign.mutate({
+                title: e.currentTarget.value,
+              });
+              e.currentTarget.value = "";
+            }
+          }}
+        />
+        <ul className="pt-8 px-3">
+          {campaigns?.map((campaign) => (
+            <li key={campaign.id}>
+              <Link   
+                href="#"
+                onClick={(evt) => {
+                  evt.preventDefault();
+                  setSelectedCampaign(campaign); 
+                }}
+              >
+                {campaign.title}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="col-span-3">
+        <CharacterEditor 
+          onSave={({ title, stats }) => {
+            void createCharacter.mutate({
+              title,
+              campaignId: selectedCampaign?.id ?? "",
+              stats,
+            })
+          }}
+        />
+
+        {characters?.map((character) => (
+          <div key={character.id} className="">
+            <CharacterCard
+              character={character}
+              onDelete={() => void deleteCharacter.mutate({ id: character.id})}
+            />
+          </div>
+        ))}
+
+      </div>
+    </div>
+  );
+
+};
 
 
 
