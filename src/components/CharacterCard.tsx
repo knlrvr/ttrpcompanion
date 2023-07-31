@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+import { BsTrash } from 'react-icons/bs'
+
 import { type RouterOutputs } from '@/utils/api'
 type Character = RouterOutputs["character"]["getAll"][0];
 
@@ -13,7 +15,7 @@ export const CharacterCard = ({
     const [isExpanded, setIsExpanded] = useState<boolean>(true);
 
     return (
-        <div className="">
+        <div className="pt-8">
             <div className="">
                 <div 
                     className=""
@@ -27,6 +29,11 @@ export const CharacterCard = ({
                             </div>
                         ))}
                     </div>
+
+                    <button 
+                        className=""
+                        onClick={onDelete}
+                    > <BsTrash /> </button>
                 </div>
             </div>
         </div>
