@@ -29,7 +29,7 @@ const getBorderColorRace = (race:string): string => {
         Giantkin: "border-orange-400",
         Mech: "border-[#222]",
         Mundane: "border-blue-400",
-        Planar: "border-teal-500",
+        Planar: "border-blue-500",
     };
     const raceToGroupMap: Record<string, RaceGroup> = {
         'Aarakocra': "Beastfolk",
@@ -106,15 +106,15 @@ const getBorderColorClass = (charClass: string): string => {
     const classBorderColors: Record<ClassType, string> = {
         'Artificer': "border-amber-400",
         'Barbarian': "border-red-500",
-        'Bard': "border-purple-400",
+        'Bard': "border-purple-500",
         'Blood Hunter': "border-red-800",
-        'Cleric': "border-gray-700",
+        'Cleric': "border-gray-500",
         'Druid': "border-emerald-500",
-        'Fighter': "border-orange-600",
+        'Fighter': "border-orange-500",
         'Monk': "border-blue-500",
-        'Paladin': "border-yellow-500",
+        'Paladin': "border-yellow-400",
         'Ranger': "border-green-700",
-        'Rogue': "border-stone-500",
+        'Rogue': "border-stone-400",
         'Sorcerer': "border-red-600",
         'Warlock': "border-purple-700",
         "Wizard": "border-blue-800"

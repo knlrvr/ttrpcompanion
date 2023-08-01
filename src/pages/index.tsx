@@ -167,7 +167,7 @@ const Content: React.FC = () => {
         <div className="flex justify-end w-full mt-4">
           <button 
             className="bg-red-500 text-white px-2 py-1 rounded-md text-xs uppercase"
-            onClick={() => void deleteCampaign.mutate({ id: selectedCampaign?.id || ""})}
+            onClick={() => selectedCampaign && void deleteCampaign.mutate({ id: selectedCampaign?.id })}
           > delete campaign</button>
         </div>
       </div>
