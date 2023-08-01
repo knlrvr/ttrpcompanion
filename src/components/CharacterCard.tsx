@@ -15,7 +15,7 @@ export const CharacterCard = ({
     const [isExpanded, setIsExpanded] = useState<boolean>(true);
 
     return (
-        <div className="border bg-gray-100 rounded-xl shadow-md p-4">
+        <div className="bg-gray-100 rounded-xl shadow-lg p-4 mb-4">
             <div className="">
                 <div 
                     className=""
@@ -42,53 +42,53 @@ export const CharacterCard = ({
                                 </div>
 
                                 {/* time & deaths */}
-                                <div className="border border-gray-400 rounded-md p-4 flex flex-col space-y-4">
+                                <div className="border border-gray-400 rounded-md p-4 flex flex-col space-y-2">
                                     <p className="text-xs font-light">Total Time Played</p>
-                                    <span className="font-semibold text-right">{stat.totalTime} hrs.</span>
+                                    <span className="font-semibold text-right text-xl">{stat.totalTime} hrs</span>
                                 </div>
-                                <div className="border border-gray-400 rounded-md p-4 flex flex-col space-y-4">
+                                <div className="border border-gray-400 rounded-md p-4 flex flex-col space-y-2">
                                     <p className="text-xs font-light">Total Sessions</p>
-                                    <span className="font-semibold text-right">{stat.totalSessions}</span>
+                                    <span className="font-semibold text-right text-xl">{stat.totalSessions}</span>
                                 </div>
-                                <div className="border border-gray-400 rounded-md p-4 flex flex-col space-y-4">
+                                <div className="border border-gray-400 rounded-md p-4 flex flex-col space-y-2">
                                     <p className="text-xs font-light">Deaths</p>
-                                    <span className="font-semibold text-right">{stat.totalDeaths}</span>
+                                    <span className="font-semibold text-right text-xl">{stat.totalDeaths}</span>
                                 </div>
 
                                 {/* stats */}
-                                <div className="border border-gray-400 rounded-md p-4 flex flex-col space-y-4">
+                                <div className="border border-gray-400 rounded-md p-4 flex flex-col space-y-2">
                                     <p className="text-xs font-light">Damage Taken</p>
-                                    <span className="font-semibold text-right">{stat.dmgTaken}</span>
+                                    <span className="font-semibold text-right text-xl">{stat.dmgTaken}</span>
                                 </div>
-                                <div className="border border-gray-400 rounded-md p-4 flex flex-col space-y-4">
+                                <div className="border border-gray-400 rounded-md p-4 flex flex-col space-y-2">
                                     <p className="text-xs font-light">Damage Dealt</p>
-                                    <span className="font-semibold text-right">{stat.dmgDealt}</span>
+                                    <span className="font-semibold text-right text-xl">{stat.dmgDealt}</span>
                                 </div>
-                                <div className="border border-gray-400 rounded-md p-4 flex flex-col space-y-4">
+                                <div className="border border-gray-400 rounded-md p-4 flex flex-col space-y-2">
                                     <p className="text-xs font-light">Total Kills</p>
-                                    <span className="font-semibold text-right">{stat.totalKills}</span>
+                                    <span className="font-semibold text-right text-xl">{stat.totalKills}</span>
                                 </div>
 
-                                <div className="border border-gray-400 rounded-md p-4 flex flex-col space-y-4">
+                                <div className="border border-gray-400 rounded-md p-4 flex flex-col space-y-2">
                                     <p className="text-xs font-light">Critical Hits</p>
-                                    <span className="font-semibold text-right">{stat.critHits}</span>
+                                    <span className="font-semibold text-right text-xl">{stat.critHits}</span>
                                 </div>
-                                <div className="border border-gray-400 rounded-md p-4 flex flex-col space-y-4">
+                                <div className="border border-gray-400 rounded-md p-4 flex flex-col space-y-2">
                                     <p className="text-xs font-light">Spells Cast</p>
-                                    <span className="font-semibold text-right">{stat.spellsCast}</span>
+                                    <span className="font-semibold text-right text-xl">{stat.spellsCast}</span>
                                 </div>
-                                <div className="border border-gray-400 rounded-md p-4 flex flex-col space-y-4">
+                                <div className="border border-gray-400 rounded-md p-4 flex flex-col space-y-2">
                                     <p className="text-xs font-light">Turns Without Damage</p>
-                                    <span className="font-semibold text-right">{stat.turnsNoDmg}</span>
+                                    <span className="font-semibold text-right text-xl">{stat.turnsNoDmg}</span>
                                 </div>
 
-                                <div className="border border-gray-400 rounded-md p-4 flex flex-col space-y-4">
+                                <div className="border border-gray-400 rounded-md p-4 flex flex-col space-y-2">
                                     <p className="text-xs font-light">Total HP Healed (others)</p>
-                                    <span className="font-semibold text-right">{stat.totalHealingOthers}</span>
+                                    <span className="font-semibold text-right text-xl">{stat.totalHealingOthers}</span>
                                 </div>
-                                <div className="border border-gray-400 rounded-md p-4 flex flex-col space-y-4">
+                                <div className="border border-gray-400 rounded-md p-4 flex flex-col space-y-2">
                                     <p className="text-xs font-light">Total HP Healed (self)</p>
-                                    <span className="font-semibold text-right">{stat.totalHealingSelf}</span>
+                                    <span className="font-semibold text-right text-xl">{stat.totalHealingSelf}</span>
                                 </div>
                             </div>
                         ))}
