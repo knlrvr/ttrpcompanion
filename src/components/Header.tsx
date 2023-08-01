@@ -30,8 +30,12 @@ export const Header = () => {
                         </label>
                     </div>
                 ) : (
-                    <>
-                    </>
+                <button
+                className="rounded-full font-semibold text-sm"
+                onClick={() => void signIn()}
+                    >
+                    Sign In
+                  </button>
                 )}
             </div>
         </div>

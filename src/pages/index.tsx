@@ -9,6 +9,8 @@ import { Header } from "@/components/Header";
 import { CharacterEditor } from "@/components/CharacterEditor";
 import { CharacterCard } from "@/components/CharacterCard";
 
+import Modal from 'react-modal'
+
 
 export default function Home() {
 
@@ -22,7 +24,6 @@ export default function Home() {
       <main className="">
         <Header />
         <Content />
-        <AuthShowcase />
       </main>
     </> 
   );
@@ -72,11 +73,25 @@ const Content: React.FC = () => {
     }
   });
 
+  // to delete campaign
+  const [isDelCampModalOpen, setDelCampModalOpen] = useState(false);
+  const openDelCampModal = () => {
+    setDelCampModalOpen(true);
+  };
+  const closeDelCampModal = () => {
+    setDelCampModalOpen(false);
+  };
   const deleteCampaign = api.campaign.delete.useMutation({
     onSuccess: () => {
+      closeDelCampModal();
       void refetchCampaigns();
-    }
+    },
   });
+  const handleDeleteCampaign = () => {
+    if (selectedCampaign) {
+      openDelCampModal();
+    }
+  };
 
   const { data: characters, refetch: refetchCharacters } = api.character.getAll.useQuery(
     {
@@ -104,46 +119,49 @@ const Content: React.FC = () => {
   }
   
   return (
-    <div className="p-4 grid grid-cols-1 md:grid-cols-4 gap-y-4 md:gap-x-4 max-w-7xl mx-auto">
-      <div className="h-fit w-full border rounded-lg flex flex-col py-12 px-2">
-        <input 
-          type="text"
-          placeholder="New Campaign"
-          className="border rounded-full px-3 py-[0.1rem] flex justify-center"
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              createCampaign.mutate({
-                title: e.currentTarget.value,
-              });
-              e.currentTarget.value = "";
-            }
-          }}
-        />
+    <> 
+    {sessionData?.user && (
+    <div className="p-4 grid grid-cols-1 md:grid-cols-4 max-w-7xl mx-auto">
+      <div className="h-full w-full rounded-l-lg flex flex-col py-2 pl-2 bg-[#111]">
+        <div className="h-fit w-full border-l border-t border-b p-4 rounded-l-md bg-white">
+          <input 
+            type="text"
+            placeholder="New Campaign"
+            className="border rounded-full px-3 py-[0.1rem] flex justify-center"
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                createCampaign.mutate({
+                  title: e.currentTarget.value,
+                });
+                e.currentTarget.value = "";
+              }
+            }}
+          />
 
-        <ul className="pt-4">
-          {campaigns?.map((campaign) => (
-            <li key={campaign.id}
-              className={`mb-2 py-1 px-3 rounded-md
-                ${isCampaignSelected(campaign.id, selectedCampaign) ? "bg-gray-100 font-semibold" : "tracking-wide"}`}>
-              <Link   
-                href="#"
-                className=""
-                onClick={(evt) => {
-                  evt.preventDefault();
-                  setSelectedCampaign(campaign); 
-                }}
-              >
-                <span className="">
-                  {campaign.title}
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-
+          <ul className="pt-4">
+            {campaigns?.map((campaign) => (
+              <li key={campaign.id}
+                className={`mb-2 py-1 px-3 rounded-md
+                  ${isCampaignSelected(campaign.id, selectedCampaign) ? "bg-blue-400 text-white font-semibold" : "tracking-wide"}`}>
+                <Link   
+                  href="#"
+                  className=""
+                  onClick={(evt) => {
+                    evt.preventDefault();
+                    setSelectedCampaign(campaign); 
+                  }}
+                >
+                  <span className="">
+                    {campaign.title}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
-      <div className="col-span-3">
 
+      <div className="col-span-3 min-h-screen rounded-r-lg p-6 bg-[#111]">
         {characters?.map((character) => (
           <div key={character.id} className="pb-4">
             <CharacterCard
@@ -163,43 +181,47 @@ const Content: React.FC = () => {
           }}
         />
 
-
         <div className="flex justify-end w-full mt-4">
           <button 
             className="bg-red-500 text-white px-2 py-1 rounded-md text-xs uppercase"
-            onClick={() => selectedCampaign && void deleteCampaign.mutate({ id: selectedCampaign?.id })}
+            onClick={handleDeleteCampaign}
           > delete campaign</button>
         </div>
       </div>
     </div>
-  );
+    )}
 
+
+    {/* Modal for delete confirmation */}
+    <Modal
+      isOpen={isDelCampModalOpen}
+      onRequestClose={closeDelCampModal}
+      contentLabel="Confirm Delete"
+      overlayClassName="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center px-4"
+      className="flex justify-center items-center bg-white p-16 py-24 rounded-lg"
+    >
+      <div className="text-center">
+        <p className="font-bold uppercase text-sm">Are you sure you want to delete this campaign?</p>
+          <div className="mt-6 flex justify-center space-x-12">
+            <button
+              className="bg-blue-500 text-white px-4 py-2 rounded-md text-xs uppercase"
+              onClick={closeDelCampModal}
+            >
+              Cancel
+            </button>
+            <button
+              className="bg-red-500 text-white px-4 py-2 rounded-md text-xs uppercase"
+              onClick={() => {
+                if (selectedCampaign) {
+                  deleteCampaign.mutate({ id: selectedCampaign.id });
+                }
+              }}
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      </Modal>
+    </>
+  );
 };
-
-
-
-
-// just to show info for now
-function AuthShowcase() {
-  const { data: sessionData } = useSession();
-
-  const { data: secretMessage } = api.example.getSecretMessage.useQuery(
-    undefined, // no input
-    { enabled: sessionData?.user !== undefined }
-  );
-
-  return (
-    <div className="h-screen flex flex-col items-center justify-center gap-4">
-      <p className="text-center text-xs">
-        {sessionData && <span>Logged in as {sessionData.user?.name}</span>}
-        {secretMessage && <span> - {secretMessage}</span>}
-      </p>
-      <button
-        className="rounded-full bg-white/10 px-10 py-3 font-semibold no-underline transition hover:bg-white/20 text-sm"
-        onClick={sessionData ? () => void signOut() : () => void signIn()}
-      >
-        {sessionData ? "Sign out" : "Sign in"}
-      </button>
-    </div>
-  );
-}

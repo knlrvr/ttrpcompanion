@@ -56,7 +56,6 @@ export const characterRouter = createTRPCRouter({
             },
         });
     }),
-
     delete: protectedProcedure 
     .input(z.object({ id: z.string() }))
     .mutation(async ({ ctx, input }) => {

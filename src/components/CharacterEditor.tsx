@@ -416,7 +416,7 @@ export const CharacterEditor = ({
                         setTotalDeaths(0);
                         setTurnsNoDmg(0);
                     }}
-                    className="mt-4 rounded-full py-1 px-3 bg-green-400 text-green-950"
+                    className="mt-4 rounded-md py-1 px-3 bg-green-500 text-white"
                 >
                     Save
                 </button>
