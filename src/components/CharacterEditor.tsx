@@ -58,66 +58,66 @@ export const CharacterEditor = ({
     ]
 
     const charRaceOptions = [
-        'Aarakocra',
-        'Aasimar',
-        'Air Genasi',
-        'Astral Elf',
-        'Autognome',
-        'Bugbear',
-        'Centaur',
-        'Changeling',
-        'Deep Gnome',
-        'Dragonborn',
-        'Duergar',
-        'Dwarf',
-        'Earth Genasi',
-        'Eladrin',
-        'Elf',
-        'Fairy',
-        'Feral Tiefling',
-        'Firbolg',
-        'Fire Genasi',
-        'Giff',
-        'Githyanki',
-        'Githzerai',
-        'Gnome',
-        'Goblin',
-        'Goliath',
-        'Grung',
-        'Hadozee',
-        'Half-Elf',
-        'Halfling',
-        'Half-Orc',
-        'Harengon',
-        'Hobgoblin',
-        'Human',
-        'Kalashtar',
-        'Kender',
-        'Kenku',
-        'Kobold',
-        'Leonin',
-        'Lizardfolk',
-        'Locathah',
-        'Loxodon',
-        'Minotaur',
-        'Orc',
-        'Owlin',
-        'Plasmoid',
-        'Satyr',
-        'Sea Elf',
-        'Shadar-kai',
-        'Shifter',
-        'Simic Hybrid',
-        'Tabaxi',
-        'Tiefling',
-        'Thri-kreen',
-        'Tortle',
-        'Triton',
-        'Vedalken',
-        'Verdan',
-        'Warforged',
-        'Water Genasi',
-        'Yuan-ti'
+        'Aarakocra',            // beastfolk
+        'Aasimar',              // planar
+        'Air Genasi',           // planar
+        'Astral Elf',           // fae
+        'Autognome',            // mech
+        'Bugbear',              // fae
+        'Centaur',              // beastfolk
+        'Changeling',           // fae
+        'Deep Gnome',           // giantkin
+        'Dragonborn',           // draconian
+        'Duergar',              // giantkin
+        'Dwarf',                // giantkin
+        'Earth Genasi',         // planar
+        'Eladrin',              // fae
+        'Elf',                  // fae
+        'Fairy',                // fae
+        'Feral Tiefling',       // planar
+        'Firbolg',              // fae
+        'Fire Genasi',          // planar
+        'Giff',                 // beastfolk
+        'Githyanki',            // planar
+        'Githzerai',            // planar
+        'Gnome',                // giantkin
+        'Goblin',               // fae
+        'Goliath',              // giantkin
+        'Grung',                // beastfolk
+        'Hadozee',              // planar
+        'Half-Elf',             // fae
+        'Halfling',             // fae
+        'Half-Orc',             // giantkin
+        'Harengon',             // beastfolk
+        'Hobgoblin',            // fae
+        'Human',                // mundane
+        'Kalashtar',            // planar
+        'Kender',               // fae
+        'Kenku',                // beastfolk
+        'Kobold',               // draconian
+        'Leonin',               // beastfolk
+        'Lizardfolk',           // draconian
+        'Locathah',             // beastfolk
+        'Loxodon',              // beastfolk
+        'Minotaur',             // beastfolk
+        'Orc',                  // giantkin
+        'Owlin',                // beastfolk
+        'Plasmoid',             // planar
+        'Satyr',                // fae
+        'Sea Elf',              // fae
+        'Shadar-kai',           // planar
+        'Shifter',              // beastfolk
+        'Simic Hybrid',         // beastfolk
+        'Tabaxi',               // beastfolk
+        'Tiefling',             // planar
+        'Thri-kreen',           // beastfolk
+        'Tortle',               // beastfolk
+        'Triton',               // planar
+        'Vedalken',             // planar
+        'Verdan',               // fae
+        'Warforged',            // mech
+        'Water Genasi',         // planar
+        'Yuan-ti'               // draconian
     ]
 
     return (
@@ -134,19 +134,6 @@ export const CharacterEditor = ({
                         onChange={(e) => setTitle(e.currentTarget.value)}
                     />
 
-                    {/*  select class */}
-                    <select
-                        className="border rounded-full px-3 py-1"
-                        value={charClass}
-                        onChange={(e) => setCharClass(e.currentTarget.value)}
-                    >
-                    {charClassOptions.map((option, index) => (
-                        <option key={index} value={option}>
-                            {option}
-                        </option>
-                    ))}
-                    </select>
-
                     {/* select race */}
                     <select 
                         className="border rounded-full px-3 py-1"
@@ -157,6 +144,19 @@ export const CharacterEditor = ({
                             <option key={index} value={option}>
                                 {option}
                             </option>
+                    ))}
+                    </select>
+                    
+                    {/*  select class */}
+                    <select
+                        className="border rounded-full px-3 py-1"
+                        value={charClass}
+                        onChange={(e) => setCharClass(e.currentTarget.value)}
+                    >
+                    {charClassOptions.map((option, index) => (
+                        <option key={index} value={option}>
+                            {option}
+                        </option>
                     ))}
                     </select>
                 </div>

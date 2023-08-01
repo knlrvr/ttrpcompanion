@@ -93,7 +93,7 @@ const Content: React.FC = () => {
   });
 
   return (
-    <div className="p-4 grid grid-cols-4 gap-4">
+    <div className="p-4 grid grid-cols-1 md:grid-cols-4 gap-4 max-w-7xl mx-auto">
       <div className="">
         <input 
           type="text"
