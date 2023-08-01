@@ -109,6 +109,8 @@ model CharacterStats {
 
     totalDeaths         Int                 @default(0)
     turnsNoDmg          Int                 @default(0)
+
+    totalXp                  Int                 @default(0)
 }
 
 

@@ -39,6 +39,7 @@ type CharacterStats = {
   charRace: string;
   totalSessions: number;
   totalTime: number;
+  totalXp: number;
   dmgDealt: number;
   dmgTaken: number;
   critHits: number;
@@ -93,12 +94,12 @@ const Content: React.FC = () => {
   });
 
   return (
-    <div className="p-4 grid grid-cols-1 md:grid-cols-4 gap-4 max-w-7xl mx-auto">
-      <div className="">
+    <div className="p-4 grid grid-cols-1 md:grid-cols-4 gap-y-4 md:gap-x-4 max-w-7xl mx-auto">
+      <div className="h-fit w-full border rounded-lg flex flex-col py-12 px-2">
         <input 
           type="text"
           placeholder="New Campaign"
-          className="border rounded-full px-3 py-1"
+          className="border rounded-full px-3 py-[0.1rem] flex justify-center"
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               createCampaign.mutate({
@@ -108,17 +109,21 @@ const Content: React.FC = () => {
             }
           }}
         />
-        <ul className="pt-8 px-3">
+        <ul className="pt-4">
           {campaigns?.map((campaign) => (
-            <li key={campaign.id}>
+            <li key={campaign.id}
+              className="mb-2 py-1 px-3 border rounded-md">
               <Link   
                 href="#"
+                className=""
                 onClick={(evt) => {
                   evt.preventDefault();
                   setSelectedCampaign(campaign); 
                 }}
               >
-                {campaign.title}
+                <span className="font-bold">
+                  {campaign.title}
+                </span>
               </Link>
             </li>
           ))}
@@ -127,7 +132,7 @@ const Content: React.FC = () => {
       <div className="col-span-3">
 
         {characters?.map((character) => (
-          <div key={character.id} className="">
+          <div key={character.id} className="pb-8">
             <CharacterCard
               character={character}
               onDelete={() => void deleteCharacter.mutate({ id: character.id})}

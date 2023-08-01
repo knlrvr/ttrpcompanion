@@ -24,4 +24,14 @@ export const campaignRouter = createTRPCRouter({
             },
         });
     }),
+
+    delete: protectedProcedure 
+    .input(z.object({ id: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+        return ctx.prisma.campaign.delete({
+            where: {
+                id: input.id,
+            },
+        });
+    }),
 })
