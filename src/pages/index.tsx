@@ -72,6 +72,12 @@ const Content: React.FC = () => {
     }
   });
 
+  const deleteCampaign = api.campaign.delete.useMutation({
+    onSuccess: () => {
+      void refetchCampaigns();
+    }
+  });
+
   const { data: characters, refetch: refetchCharacters } = api.character.getAll.useQuery(
     {
       campaignId: selectedCampaign?.id ?? "",
@@ -93,6 +99,10 @@ const Content: React.FC = () => {
     },
   });
 
+  function isCampaignSelected(campaignId: string, selectedCampaign: Campaign | null): boolean {
+    return selectedCampaign ? campaignId === selectedCampaign.id : false;
+  }
+  
   return (
     <div className="p-4 grid grid-cols-1 md:grid-cols-4 gap-y-4 md:gap-x-4 max-w-7xl mx-auto">
       <div className="h-fit w-full border rounded-lg flex flex-col py-12 px-2">
@@ -109,10 +119,12 @@ const Content: React.FC = () => {
             }
           }}
         />
+
         <ul className="pt-4">
           {campaigns?.map((campaign) => (
             <li key={campaign.id}
-              className="mb-2 py-1 px-3 border rounded-md">
+              className={`mb-2 py-1 px-3 rounded-md
+                ${isCampaignSelected(campaign.id, selectedCampaign) ? "bg-gray-100 font-semibold" : "tracking-wide"}`}>
               <Link   
                 href="#"
                 className=""
@@ -121,18 +133,19 @@ const Content: React.FC = () => {
                   setSelectedCampaign(campaign); 
                 }}
               >
-                <span className="font-bold">
+                <span className="">
                   {campaign.title}
                 </span>
               </Link>
             </li>
           ))}
         </ul>
+
       </div>
       <div className="col-span-3">
 
         {characters?.map((character) => (
-          <div key={character.id} className="pb-8">
+          <div key={character.id} className="pb-4">
             <CharacterCard
               character={character}
               onDelete={() => void deleteCharacter.mutate({ id: character.id})}
@@ -150,6 +163,13 @@ const Content: React.FC = () => {
           }}
         />
 
+
+        <div className="flex justify-end w-full mt-4">
+          <button 
+            className="bg-red-500 text-white px-2 py-1 rounded-md text-xs uppercase"
+            onClick={() => void deleteCampaign.mutate({ id: selectedCampaign?.id || ""})}
+          > delete campaign</button>
+        </div>
       </div>
     </div>
   );

@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+import { BsPlusLg, BsDashLg } from 'react-icons/bs'
+
 export const CharacterEditor = ({
     onSave,
 }: {
@@ -122,11 +124,21 @@ export const CharacterEditor = ({
         'Yuan-ti'               // draconian
     ]
 
+    const [isExpanded, setIsExpanded] = useState<boolean>(false);
+
     return (
         <div className="py-6 border p-4 rounded-lg">
-            <div className="flex flex-col">
+            <div className="flex justify-between">
+                <span className="text-gray-400 uppercase text-sm">Create Character</span>
+                <button 
+                    className="text-gray-400"
+                    onClick={() => setIsExpanded(!isExpanded)}>
+                        {isExpanded ? <BsDashLg /> : <BsPlusLg />}
+                </button>
+            </div>
 
-                {/* name input */}
+            {isExpanded && ( 
+            <div className="flex flex-col mt-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="flex flex-col space-y-2">
                         <label htmlFor='name'
@@ -143,7 +155,6 @@ export const CharacterEditor = ({
                         />
                     </div>
 
-                    {/* level */}
                     <div className="flex flex-col space-y-2">
                         <label htmlFor='level'
                                 className="text-xs uppercase text-gray-400"
@@ -158,7 +169,6 @@ export const CharacterEditor = ({
                         />
                     </div>
 
-                    {/* select race */}
                     <div className="flex flex-col space-y-2">
                         <label htmlFor='race'
                             className="text-xs uppercase text-gray-400">
@@ -178,7 +188,6 @@ export const CharacterEditor = ({
                         </select>
                     </div>
 
-                    {/*  select class */}
                     <div className="flex flex-col space-y-2">
                         <label htmlFor='class'
                             className="text-xs uppercase text-gray-400"
@@ -196,191 +205,178 @@ export const CharacterEditor = ({
                         ))}
                         </select>
                     </div>
-
                 </div>
 
                 <div className="grid grid-cols-3 gap-4 py-4">
 
-                {/* sessions */}
-                <div className="flex flex-col space-y-2">
-                    <label htmlFor='level'
-                            className="text-xs uppercase text-gray-400"
-                        > sessions </label> 
-                    <input 
-                        id="sessions"
-                        type="number"
-                        placeholder="Sessions"
-                        className="border"
-                        value={totalSessions}
-                        onChange={(e) => setTotalSessions(e.currentTarget.valueAsNumber)}
-                    />
+                    <div className="flex flex-col space-y-2">
+                        <label htmlFor='level'
+                                className="text-xs uppercase text-gray-400"
+                            > sessions </label> 
+                        <input 
+                            id="sessions"
+                            type="number"
+                            placeholder="Sessions"
+                            className="border"
+                            value={totalSessions}
+                            onChange={(e) => setTotalSessions(e.currentTarget.valueAsNumber)}
+                        />
+                    </div>
+
+                    <div className="flex flex-col space-y-2">
+                        <label htmlFor='level'
+                                className="text-xs uppercase text-gray-400"
+                            > total time </label> 
+                        <input 
+                            id="time"
+                            type="number"
+                            placeholder="Time"
+                            className="border"
+                            value={totalTime}
+                            onChange={(e) => setTotalTime(e.currentTarget.valueAsNumber)}
+                        />
+                    </div>
+
+                    <div className="flex flex-col space-y-2">
+                        <label htmlFor='level'
+                                className="text-xs uppercase text-gray-400"
+                            > total xp </label> 
+                        <input 
+                            id="time"
+                            type="number"
+                            placeholder="Time"
+                            className="border"
+                            value={totalXp}
+                            onChange={(e) => setTotalXp(e.currentTarget.valueAsNumber)}
+                        />
+                    </div>
+
+                    <div className="flex flex-col space-y-2">
+                        <label htmlFor='dmgDealt'
+                                className="text-xs uppercase text-gray-400"
+                            > total damage dealt </label> 
+                        <input 
+                            id="dmgDealt"
+                            type="number"
+                            placeholder="Damage Dealt"
+                            className="border"
+                            value={dmgDealt}
+                            onChange={(e) => setDmgDealt(e.currentTarget.valueAsNumber)}
+                        />
+                    </div>
+
+                    <div className="flex flex-col space-y-2">
+                        <label htmlFor='dmgTaken'
+                                className="text-xs uppercase text-gray-400"
+                            > total damage taken </label> 
+                        <input 
+                            type="number"
+                            placeholder="Damage Taken"
+                            className="border"
+                            value={dmgTaken}
+                            onChange={(e) => setDmgTaken(e.currentTarget.valueAsNumber)}
+                        />
+                    </div>
+
+                    <div className="flex flex-col space-y-2">
+                        <label htmlFor='critHits'
+                                className="text-xs uppercase text-gray-400"
+                            > Total Critical Hits </label> 
+                        <input 
+                            id="critHits"
+                            type="number"
+                            placeholder="Critical Hits"
+                            className="border"
+                            value={critHits}
+                            onChange={(e) => setCritHits(e.currentTarget.valueAsNumber)}
+                        />
+                    </div>
+
+                    <div className="flex flex-col space-y-2">
+                        <label htmlFor='totalKills'
+                                className="text-xs uppercase text-gray-400"
+                            > total kills </label> 
+                        <input 
+                            id="totalKills"
+                            type="number"
+                            placeholder="Total Kills"
+                            className="border"
+                            value={totalKills}
+                            onChange={(e) => setTotalKills(e.currentTarget.valueAsNumber)}
+                        />
+                    </div>
+
+                    <div className="flex flex-col space-y-2">
+                        <label htmlFor='spellsCast'
+                                className="text-xs uppercase text-gray-400"
+                            > spells cast </label> 
+                        <input 
+                            id="spellsCast"
+                            type="number"
+                            placeholder="Spells Cast"
+                            className="border"
+                            value={spellsCast}
+                            onChange={(e) => setSpellsCast(e.currentTarget.valueAsNumber)}
+                        />
+                    </div>
+
+                    <div className="flex flex-col space-y-2">
+                        <label htmlFor='totalhealingOthers'
+                                className="text-xs uppercase text-gray-400"
+                            > HP Healed (O) </label> 
+                        <input  
+                            id="totalHealingOthers"
+                            type="number"
+                            placeholder="Healing Done"
+                            className="border"
+                            value={totalHealingOthers}
+                            onChange={(e) => setTotalHealingOthers(e.currentTarget.valueAsNumber)}
+                        />
+                    </div>
+
+                    <div className="flex flex-col space-y-2">
+                        <label htmlFor='totalHealingSelf'
+                                className="text-xs uppercase text-gray-400"
+                            > HP Healed (S) </label> 
+                        <input 
+                            id="totalHealingSelf"
+                            type="number"
+                            placeholder="Healing Taken"
+                            className="border"
+                            value={totalHealingSelf}
+                            onChange={(e) => setTotalHealingSelf(e.currentTarget.valueAsNumber)}
+                        />
+                    </div>
+
+                    <div className="flex flex-col space-y-2">
+                        <label htmlFor='totalDeaths'
+                                className="text-xs uppercase text-gray-400"
+                            > total deaths </label> 
+                        <input 
+                            id="totalDeaths"
+                            type="number"
+                            placeholder="Total Deaths"
+                            className="border"
+                            value={totalDeaths}
+                            onChange={(e) => setTotalDeaths(e.currentTarget.valueAsNumber)}
+                        />
+                    </div>
+
+                    <div className="flex flex-col space-y-2">
+                        <label htmlFor='turnsNoDmg'
+                                className="text-xs uppercase text-gray-400"
+                            > turns </label> 
+                        <input 
+                            id="turnsNoDmg"
+                            type="number"
+                            placeholder="Turns Without Damage"
+                            className="border"
+                            value={turnsNoDmg}
+                            onChange={(e) => setTurnsNoDmg(e.currentTarget.valueAsNumber)}
+                        />
+                    </div>
                 </div>
 
-                {/* time */}
-                <div className="flex flex-col space-y-2">
-                    <label htmlFor='level'
-                            className="text-xs uppercase text-gray-400"
-                        > total time </label> 
-                    <input 
-                        id="time"
-                        type="number"
-                        placeholder="Time"
-                        className="border"
-                        value={totalTime}
-                        onChange={(e) => setTotalTime(e.currentTarget.valueAsNumber)}
-                    />
-                </div>
-
-                {/* xp */}
-                <div className="flex flex-col space-y-2">
-                    <label htmlFor='level'
-                            className="text-xs uppercase text-gray-400"
-                        > total xp </label> 
-                    <input 
-                        id="time"
-                        type="number"
-                        placeholder="Time"
-                        className="border"
-                        value={totalXp}
-                        onChange={(e) => setTotalXp(e.currentTarget.valueAsNumber)}
-                    />
-                </div>
-
-                {/* damage dealt */}
-                <div className="flex flex-col space-y-2">
-                    <label htmlFor='dmgDealt'
-                            className="text-xs uppercase text-gray-400"
-                        > total damage dealt </label> 
-                    <input 
-                        id="dmgDealt"
-                        type="number"
-                        placeholder="Damage Dealt"
-                        className="border"
-                        value={dmgDealt}
-                        onChange={(e) => setDmgDealt(e.currentTarget.valueAsNumber)}
-                    />
-                </div>
-
-                {/* damage taken */}
-                <div className="flex flex-col space-y-2">
-                    <label htmlFor='dmgTaken'
-                            className="text-xs uppercase text-gray-400"
-                        > total damage taken </label> 
-                    <input 
-                        type="number"
-                        placeholder="Damage Taken"
-                        className="border"
-                        value={dmgTaken}
-                        onChange={(e) => setDmgTaken(e.currentTarget.valueAsNumber)}
-                    />
-                </div>
-
-                {/* crits */}
-                <div className="flex flex-col space-y-2">
-                    <label htmlFor='critHits'
-                            className="text-xs uppercase text-gray-400"
-                        > Total Critical Hits </label> 
-                    <input 
-                        id="critHits"
-                        type="number"
-                        placeholder="Critical Hits"
-                        className="border"
-                        value={critHits}
-                        onChange={(e) => setCritHits(e.currentTarget.valueAsNumber)}
-                    />
-                </div>
-
-                {/* total kills */}
-                <div className="flex flex-col space-y-2">
-                    <label htmlFor='totalKills'
-                            className="text-xs uppercase text-gray-400"
-                        > total kills </label> 
-                    <input 
-                        id="totalKills"
-                        type="number"
-                        placeholder="Total Kills"
-                        className="border"
-                        value={totalKills}
-                        onChange={(e) => setTotalKills(e.currentTarget.valueAsNumber)}
-                    />
-                </div>
-
-                {/* spells cast */}
-                <div className="flex flex-col space-y-2">
-                    <label htmlFor='spellsCast'
-                            className="text-xs uppercase text-gray-400"
-                        > spells cast </label> 
-                    <input 
-                        id="spellsCast"
-                        type="number"
-                        placeholder="Spells Cast"
-                        className="border"
-                        value={spellsCast}
-                        onChange={(e) => setSpellsCast(e.currentTarget.valueAsNumber)}
-                    />
-                </div>
-
-                {/* total healing to others */}
-                <div className="flex flex-col space-y-2">
-                    <label htmlFor='totalhealingOthers'
-                            className="text-xs uppercase text-gray-400"
-                        > HP Healed (O) </label> 
-                    <input  
-                        id="totalHealingOthers"
-                        type="number"
-                        placeholder="Healing Done"
-                        className="border"
-                        value={totalHealingOthers}
-                        onChange={(e) => setTotalHealingOthers(e.currentTarget.valueAsNumber)}
-                    />
-                </div>
-
-                {/* total healing to self */}
-                <div className="flex flex-col space-y-2">
-                    <label htmlFor='totalHealingSelf'
-                            className="text-xs uppercase text-gray-400"
-                        > HP Healed (S) </label> 
-                    <input 
-                        id="totalHealingSelf"
-                        type="number"
-                        placeholder="Healing Taken"
-                        className="border"
-                        value={totalHealingSelf}
-                        onChange={(e) => setTotalHealingSelf(e.currentTarget.valueAsNumber)}
-                    />
-                </div>
-
-                {/* total deaths */}
-                <div className="flex flex-col space-y-2">
-                    <label htmlFor='totalDeaths'
-                            className="text-xs uppercase text-gray-400"
-                        > total deaths </label> 
-                    <input 
-                        id="totalDeaths"
-                        type="number"
-                        placeholder="Total Deaths"
-                        className="border"
-                        value={totalDeaths}
-                        onChange={(e) => setTotalDeaths(e.currentTarget.valueAsNumber)}
-                    />
-                </div>
-
-                {/* turns without damage */}
-                <div className="flex flex-col space-y-2">
-                    <label htmlFor='turnsNoDmg'
-                            className="text-xs uppercase text-gray-400"
-                        > turns </label> 
-                    <input 
-                        id="turnsNoDmg"
-                        type="number"
-                        placeholder="Turns Without Damage"
-                        className="border"
-                        value={turnsNoDmg}
-                        onChange={(e) => setTurnsNoDmg(e.currentTarget.valueAsNumber)}
-                    />
-                </div>
-
-                </div>
                 <button 
                     onClick={() => {
                         onSave({
@@ -425,6 +421,7 @@ export const CharacterEditor = ({
                     Save
                 </button>
             </div>
+            )}
         </div>
     )
 };

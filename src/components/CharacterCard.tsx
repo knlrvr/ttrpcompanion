@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { BsTrash } from 'react-icons/bs'
+import { BsTrash, BsChevronDown, BsChevronUp, BsPlusLg, BsDashLg } from 'react-icons/bs'
 
 import { type RouterOutputs } from '@/utils/api'
 
@@ -132,17 +132,24 @@ export const CharacterCard = ({
     onDelete: () => void;
 }) => {
 
+    const [isExpanded, setIsExpanded] = useState<boolean>(false);
+
     return (
-        <div className="bg-gray-100 rounded-xl shadow-lg p-4 mb-6">
+        <div className="bg-gray-100 rounded-xl shadow-md p-4">
             <div className="">
-                <div 
-                    className=""
-                    // onClick={() => setIsExpanded(!isExpanded)}
-                >
-                    <div className="text-lg tracking-wide font-semibold flex justify-between">
-                        <span>{character.title}</span>
+                    <div className="text-lg tracking-wide font-semibold flex items-center justify-between py-4">
+                        <div className="flex items-center">
+                            <span>{character.title}</span>
+                        </div>
+                        <button 
+                            className=""
+                            onClick={() => setIsExpanded(!isExpanded)}
+                        >
+                            {isExpanded ? <BsDashLg /> : <BsPlusLg />}
+                        </button>
                     </div>
 
+                    {isExpanded && (
                     <div className="">
                         {character.stats.map((stat) => (
                             <div key={stat.id}>
@@ -152,85 +159,83 @@ export const CharacterCard = ({
                                 {/* general */}
                                     <div className={`border-l-4 ${getBorderColorLevel(stat.level)} p-4 flex flex-col justify-between bg-gray-50`}>
                                         <p className="text-xs font-light">Level</p>
-                                        <span className="text-3xl font-light text-right">{stat.level}</span>
+                                        <span className="text-3xl font-semibold text-right">{stat.level}</span>
                                     </div>
                                     <div className={`border-l-4 ${getBorderColorRace(stat.charRace)} p-4 flex flex-col justify-between bg-gray-50`}>
                                         <p className="text-xs font-light">Race</p>
-                                        <span className="text-3xl font-light text-right">{stat.charRace}</span>
+                                        <span className="text-3xl font-semibold text-right">{stat.charRace}</span>
                                     </div>
                                     <div className={`border-l-4 ${getBorderColorClass(stat.charClass)} p-4 flex flex-col justify-between bg-gray-50`}>
                                         <p className="text-xs font-light">Class</p>
-                                        <span className="text-3xl font-light text-right">{stat.charClass}</span>
+                                        <span className="text-3xl font-semibold text-right">{stat.charClass}</span>
                                     </div>
                                 </div>
 
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-4 pt-4">
+                                <div className="grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-4 pt-4">
                                     {/* time & deaths */}
                                     <div className="border border-gray-400 rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
                                         <span className="font-semibold text-2xl">{stat.totalSessions}</span>
-                                        <p className="text-xs font-light">Total Sessions</p>
+                                        <p className="text-xs font-light text-right">Total Sessions</p>
                                     </div>
                                     <div className="border border-gray-400 rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
                                         <span className="font-semibold text-2xl">{stat.totalTime} hrs</span>
-                                        <p className="text-xs font-light">Total Time Played</p>
+                                        <p className="text-xs font-light text-right">Total Time Played</p>
                                     </div>
                                     <div className="border border-gray-400 rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
                                         <span className="font-semibold text-2xl">{stat.totalXp}</span>
-                                        <p className="text-xs font-light">Total Xp</p>
+                                        <p className="text-xs font-light text-right">Total XP</p>
                                     </div>
 
                                     {/* stats */}
                                     <div className="border border-gray-400 rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
                                         <span className="font-semibold text-2xl">{stat.totalDeaths}</span>
-                                        <p className="text-xs font-light">Deaths</p>
+                                        <p className="text-xs font-light text-right">Deaths</p>
                                     </div>
                                     <div className="border border-gray-400 rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
                                         <span className="font-semibold text-2xl">{stat.dmgTaken}</span>
-                                        <p className="text-xs font-light">Damage Taken</p>
+                                        <p className="text-xs font-light text-right">Damage Taken</p>
                                     </div>
                                     <div className="border border-gray-400 rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
                                         <span className="font-semibold text-2xl">{stat.dmgDealt}</span>
-                                        <p className="text-xs font-light">Damage Dealt</p>
+                                        <p className="text-xs font-light text-right">Damage Dealt</p>
                                     </div>
                                     <div className="border border-gray-400 rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
                                         <span className="font-semibold text-2xl">{stat.totalKills}</span>
-                                        <p className="text-xs font-light">Total Kills</p>
+                                        <p className="text-xs font-light text-right">Total Kills</p>
                                     </div>
                                     <div className="border border-gray-400 rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
                                         <span className="font-semibold text-2xl">{stat.critHits}</span>
-                                        <p className="text-xs font-light">Critical Hits</p>
+                                        <p className="text-xs font-light text-right">Critical Hits</p>
                                     </div>
                                     <div className="border border-gray-400 rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
                                         <span className="font-semibold text-2xl">{stat.spellsCast}</span>
-                                        <p className="text-xs font-light">Spells Cast</p>
+                                        <p className="text-xs font-light text-right">Spells Cast</p>
                                     </div>
                                     <div className="border border-gray-400 rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
                                         <span className="font-semibold text-2xl">{stat.turnsNoDmg}</span>
-                                        <p className="text-xs font-light">Avg. Turns Without Damage</p>
+                                        <p className="text-xs font-light text-right">Avg. Turns Without Damage</p>
                                     </div>
                                     <div className="border border-gray-400 rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
                                         <span className="font-semibold text-2xl">{stat.totalHealingOthers}</span>
-                                        <p className="text-xs font-light">Total HP Healed (others)</p>
+                                        <p className="text-xs font-light text-right">Total HP Healed (others)</p>
                                     </div>
                                     <div className="border border-gray-400 rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
                                         <span className="font-semibold text-2xl">{stat.totalHealingSelf}</span>
-                                        <p className="text-xs font-light">Total HP Healed (self)</p>
+                                        <p className="text-xs font-light text-right">Total HP Healed (self)</p>
                                     </div>
 
                                 </div>
                             </div>
                         ))}
-
+                        <div className="mt-8 flex justify-between text-sm uppercase text-gray-400">
+                            <span>{character.title}</span>
+                            <button 
+                                className="text-lg text-red-600"
+                                onClick={onDelete}
+                            > <BsTrash /> </button>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <button 
-                className="pt-6"
-                onClick={onDelete}
-            > <BsTrash /> </button>
-
-            <div className="flex justify-end text-sm uppercase text-gray-400">
-                <span>{character.title}</span>
+                )}
             </div>
         </div>
     )
