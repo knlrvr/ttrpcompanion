@@ -8,15 +8,41 @@ import Modal from 'react-modal'
 
 type Character = RouterOutputs["character"]["getAll"][0];
 
+type CharacterStats = {
+  id: string;
+  title: string;
+  characterId: string;
+  level: number;
+  charClass: string;
+  charRace: string;
+  totalSessions: number;
+  totalTime: number;
+  totalXp: number;
+  dmgDealt: number;
+  dmgTaken: number;
+  critHits: number;
+  totalKills: number;
+  spellsCast: number;
+  totalHealingOthers: number;
+  totalHealingSelf: number;
+  totalDeaths: number;
+  turnsNoDmg: number;
+  // added
+  combatTime: number;
+  natTwenty: number;
+  natOne: number;
+  totalKo: number;
+};
+
 const getBorderColorLevel = (level: number): string => {
     if (level >= 1 && level <= 5) {
         return "border-red-400";
     } else if (level >= 6 && level <= 10) {
         return "border-red-600";
     } else if (level >= 11 && level <= 15) {
-        return "border-red-800";
+        return "border-red-700";
     } else {
-        return "border-red-950";
+        return "border-red-800";
     }
 };
 
@@ -102,10 +128,11 @@ const getBorderColorRace = (race:string): string => {
 };
 
 // am I overcomplicating this? 
-type ClassType = "Artificer" | "Barbarian" | "Bard" | "Blood Hunter" | "Cleric" | "Druid" | "Fighter" | "Monk" | "Paladin" | "Ranger" | "Rogue" | "Sorcerer" | "Warlock" | "Wizard";
+type ClassType = "Select Class" | "Artificer" | "Barbarian" | "Bard" | "Blood Hunter" | "Cleric" | "Druid" | "Fighter" | "Monk" | "Paladin" | "Ranger" | "Rogue" | "Sorcerer" | "Warlock" | "Wizard";
 
 const getBorderColorClass = (charClass: string): string => {
     const classBorderColors: Record<ClassType, string> = {
+        'Select Class': 'border-gray-300',
         'Artificer': "border-amber-400",
         'Barbarian': "border-red-500",
         'Bard': "border-purple-500",
@@ -129,16 +156,15 @@ const getBorderColorClass = (charClass: string): string => {
 export const CharacterCard = ({
     character, 
     onDelete,
-    refetchCharacters,
 }: {
-    character: Character,
+    character: RouterOutputs["character"]['getAll'][0];
     onDelete: () => void;
-    refetchCharacters?: () => void;
 }) => {
 
     const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
     // to update character
+
 
     // to delete character
     const [isDelCharModalOpen, setDelCharModalOpen] = useState(false);
@@ -148,7 +174,6 @@ export const CharacterCard = ({
     const closeDelCharModal = () => {
         setDelCharModalOpen(false);
     };
-
 
     return (
         <>
@@ -176,79 +201,97 @@ export const CharacterCard = ({
                                     <div className={`border-l-4 ${getBorderColorLevel(stat.level)} p-4 flex flex-col justify-between bg-gray-50 rounded-r-lg`}
                                     >
                                         <p className="text-xs font-light">Level</p>
-                                        <span className="text-2xl font-semibold text-right">
+                                        <span className="text-lg md:text-2xl font-semibold text-right">
                                             {stat.level}
                                         </span>
                                     </div>
                                     <div className={`border-l-4 ${getBorderColorRace(stat.charRace)} p-4 flex flex-col justify-between bg-gray-50 rounded-r-lg`}>
                                         <p className="text-xs font-light">Race</p>
-                                        <span className="text-2xl font-semibold text-right">{stat.charRace}</span>
+                                        <span className="text-lg md:text-2xl font-semibold text-right">{stat.charRace}</span>
                                     </div>
                                     <div className={`border-l-4 ${getBorderColorClass(stat.charClass)} p-4 flex flex-col justify-between bg-gray-50 rounded-r-lg`}>
                                         <p className="text-xs font-light">Class</p>
-                                        <span className="text-2xl font-semibold text-right">{stat.charClass}</span>
+                                        <span className="text-lg md:text-2xl font-semibold text-right">{stat.charClass}</span>
                                     </div>
                                 </div>
 
                                 <div className="grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-4 pt-4">
                                     {/* time & deaths */}
                                     <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
-                                        <span className="font-semibold text-2xl">{stat.totalSessions}</span>
+                                        <span className="font-semibold text-lg md:text-2xl">{stat.totalSessions}</span>
                                         <p className="text-xs font-light text-right">Total Sessions</p>
                                     </div>
                                     <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
-                                        <span className="font-semibold text-2xl">{stat.totalTime} hrs</span>
+                                        <span className="font-semibold text-lg md:text-2xl">{stat.totalTime} hrs</span>
                                         <p className="text-xs font-light text-right">Total Time Played</p>
                                     </div>
                                     <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
-                                        <span className="font-semibold text-2xl">{stat.totalXp}</span>
+                                        <span className="font-semibold text-lg md:text-2xl">{stat.totalXp}</span>
                                         <p className="text-xs font-light text-right">Total XP</p>
                                     </div>
 
                                     {/* stats */}
                                     <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
-                                        <span className="font-semibold text-2xl">{stat.totalDeaths}</span>
-                                        <p className="text-xs font-light text-right">Deaths</p>
-                                    </div>
-                                    <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
-                                        <span className="font-semibold text-2xl">{stat.dmgTaken}</span>
+                                        <span className="font-semibold text-lg md:text-2xl">{stat.dmgTaken}</span>
                                         <p className="text-xs font-light text-right">Damage Taken</p>
                                     </div>
                                     <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
-                                        <span className="font-semibold text-2xl">{stat.dmgDealt}</span>
+                                        <span className="font-semibold text-lg md:text-2xl">{stat.dmgDealt}</span>
                                         <p className="text-xs font-light text-right">Damage Dealt</p>
                                     </div>
                                     <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
-                                        <span className="font-semibold text-2xl">{stat.totalKills}</span>
+                                        <span className="font-semibold text-lg md:text-2xl">{stat.totalKills}</span>
                                         <p className="text-xs font-light text-right">Total Kills</p>
                                     </div>
                                     <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
-                                        <span className="font-semibold text-2xl">{stat.critHits}</span>
+                                        <span className="font-semibold text-lg md:text-2xl">{stat.critHits}</span>
                                         <p className="text-xs font-light text-right">Critical Hits</p>
                                     </div>
                                     <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
-                                        <span className="font-semibold text-2xl">{stat.spellsCast}</span>
+                                        <span className="font-semibold text-lg md:text-2xl">{stat.totalDeaths}</span>
+                                        <p className="text-xs font-light text-right">Deaths</p>
+                                    </div>
+                                    <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                        <span className="font-semibold text-lg md:text-2xl">{stat.totalKo}</span>
+                                        <p className="text-xs font-light text-right">Times Unconscious</p>
+                                    </div>
+                                    <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                        <span className="font-semibold text-lg md:text-2xl">{stat.spellsCast}</span>
                                         <p className="text-xs font-light text-right">Spells Cast</p>
                                     </div>
                                     <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
-                                        <span className="font-semibold text-2xl">{stat.turnsNoDmg}</span>
+                                        <span className="font-semibold text-lg md:text-2xl">{stat.turnsNoDmg}</span>
                                         <p className="text-xs font-light text-right">Avg. Turns Without Damage</p>
                                     </div>
                                     <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
-                                        <span className="font-semibold text-2xl">{stat.totalHealingOthers}</span>
+                                        <span className="font-semibold text-lg md:text-2xl">{stat.combatTime} min</span>
+                                        <p className="text-xs font-light text-right">Time In Combat</p>
+                                    </div>
+                                    <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                        <span className="font-semibold text-lg md:text-2xl">{stat.totalHealingOthers}</span>
                                         <p className="text-xs font-light text-right">Total HP Healed (Others)</p>
                                     </div>
                                     <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
-                                        <span className="font-semibold text-2xl">{stat.totalHealingSelf}</span>
+                                        <span className="font-semibold text-lg md:text-2xl">{stat.totalHealingSelf}</span>
                                         <p className="text-xs font-light text-right">Total HP Healed (Self)</p>
                                     </div>
-
+                                    <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                        <span className="font-semibold text-lg md:text-2xl">{stat.natTwenty}</span>
+                                        <p className="text-xs font-light text-right">Nat 20's Rolled</p>
+                                    </div>
+                                    <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                        <span className="font-semibold text-lg md:text-2xl">{stat.natOne}</span>
+                                        <p className="text-xs font-light text-right">Nat 1's Rolled</p>
+                                    </div>
                                 </div>
                             </div>
                         ))}
                         <div className="mt-8 flex flex-col space-y-2 md:space-y-0 md:flex-row justify-between text-sm uppercase">
                             <span className="text-gray-300">{character.title}</span>
-                            <div className="flex">
+                            <div className="flex space-x-8">
+                                {/* <button
+                                    className="text-xs uppercase text-white bg-yellow-500 px-4 py-2 rounded-full"
+                                > edit </button> */}
                                 <button 
                                     className="text-xs uppercase text-white bg-red-500 px-4 py-2 rounded-full"
                                     onClick={openDelCharModal}

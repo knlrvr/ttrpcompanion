@@ -23,6 +23,10 @@ export const CharacterEditor = ({
             totalHealingSelf: number;
             totalDeaths: number;
             turnsNoDmg: number;
+            combatTime: number;
+            natTwenty: number;
+            natOne: number,
+            totalKo: number,
         }
     }) => void;
 }) => {
@@ -43,8 +47,13 @@ export const CharacterEditor = ({
     const [totalHealingSelf, setTotalHealingSelf] = useState<number>(0);
     const [totalDeaths, setTotalDeaths] = useState<number>(0);
     const [turnsNoDmg, setTurnsNoDmg] = useState<number>(0);
+    const [combatTime, setCombatTime] = useState<number>(0);
+    const [natTwenty, setNatTwenty] = useState<number>(0);
+    const [natOne, setNatOne] = useState<number>(0);
+    const [totalKo, setTotalKo] = useState<number>(0);
 
     const charClassOptions = [
+        'Select Class',
         'Artificer',
         'Barbarian', 
         'Bard',
@@ -62,6 +71,7 @@ export const CharacterEditor = ({
     ]
 
     const charRaceOptions = [
+        'Select Race',
         'Aarakocra',            // beastfolk
         'Aasimar',              // planar
         'Air Genasi',           // planar
@@ -230,7 +240,7 @@ export const CharacterEditor = ({
                     <div className="flex flex-col space-y-2">
                         <label htmlFor='level'
                                 className="text-xs uppercase text-gray-300"
-                            > time </label> 
+                            > time (hrs)</label> 
                         <input 
                             id="time"
                             type="number"
@@ -256,20 +266,6 @@ export const CharacterEditor = ({
                     </div>
 
                     <div className="flex flex-col space-y-2">
-                        <label htmlFor='dmgDealt'
-                                className="text-xs uppercase text-gray-300"
-                            > damage dealt </label> 
-                        <input 
-                            id="dmgDealt"
-                            type="number"
-                            placeholder="Damage Dealt"
-                            className="rounded-full px-3 py-1 placeholder:text-gray-300"
-                            value={dmgDealt}
-                            onChange={(e) => setDmgDealt(e.currentTarget.valueAsNumber)}
-                        />
-                    </div>
-
-                    <div className="flex flex-col space-y-2">
                         <label htmlFor='dmgTaken'
                                 className="text-xs uppercase text-gray-300"
                             > damage taken </label> 
@@ -283,16 +279,16 @@ export const CharacterEditor = ({
                     </div>
 
                     <div className="flex flex-col space-y-2">
-                        <label htmlFor='critHits'
-                                className="text-xs uppercase text-gray-400"
-                            > Critical Hits </label> 
+                        <label htmlFor='dmgDealt'
+                                className="text-xs uppercase text-gray-300"
+                            > damage dealt </label> 
                         <input 
-                            id="critHits"
+                            id="dmgDealt"
                             type="number"
-                            placeholder="Critical Hits"
+                            placeholder="Damage Dealt"
                             className="rounded-full px-3 py-1 placeholder:text-gray-300"
-                            value={critHits}
-                            onChange={(e) => setCritHits(e.currentTarget.valueAsNumber)}
+                            value={dmgDealt}
+                            onChange={(e) => setDmgDealt(e.currentTarget.valueAsNumber)}
                         />
                     </div>
 
@@ -311,6 +307,48 @@ export const CharacterEditor = ({
                     </div>
 
                     <div className="flex flex-col space-y-2">
+                        <label htmlFor='critHits'
+                                className="text-xs uppercase text-gray-300"
+                            > Critical Hits </label> 
+                        <input 
+                            id="critHits"
+                            type="number"
+                            placeholder="Critical Hits"
+                            className="rounded-full px-3 py-1 placeholder:text-gray-300"
+                            value={critHits}
+                            onChange={(e) => setCritHits(e.currentTarget.valueAsNumber)}
+                        />
+                    </div>
+
+                    <div className="flex flex-col space-y-2">
+                        <label htmlFor='totalDeaths'
+                                className="text-xs uppercase text-gray-300"
+                            > deaths </label> 
+                        <input 
+                            id="totalDeaths"
+                            type="number"
+                            placeholder="Deaths"
+                            className="rounded-full px-3 py-1 placeholder:text-gray-300"
+                            value={totalDeaths}
+                            onChange={(e) => setTotalDeaths(e.currentTarget.valueAsNumber)}
+                        />
+                    </div>
+
+                    <div className="flex flex-col space-y-2">
+                        <label htmlFor='totalKo'
+                                className="text-xs uppercase text-gray-300"
+                            > times unconscious </label> 
+                        <input 
+                            id="totalKo"
+                            type="number"
+                            placeholder="Knockouts"
+                            className="rounded-full px-3 py-1 placeholder:text-gray-300"
+                            value={totalKo}
+                            onChange={(e) => setTotalKo(e.currentTarget.valueAsNumber)}
+                        />
+                    </div>
+
+                    <div className="flex flex-col space-y-2">
                         <label htmlFor='spellsCast'
                                 className="text-xs uppercase text-gray-300"
                             > spells cast </label> 
@@ -321,6 +359,34 @@ export const CharacterEditor = ({
                             className="rounded-full px-3 py-1 placeholder:text-gray-300"
                             value={spellsCast}
                             onChange={(e) => setSpellsCast(e.currentTarget.valueAsNumber)}
+                        />
+                    </div>
+
+                    <div className="flex flex-col space-y-2">
+                        <label htmlFor='turnsNoDmg'
+                                className="text-xs uppercase text-gray-300"
+                            > turns </label> 
+                        <input 
+                            id="turnsNoDmg"
+                            type="number"
+                            placeholder="Turns Without Damage"
+                            className="rounded-full px-3 py-1 placeholder:text-gray-300"
+                            value={turnsNoDmg}
+                            onChange={(e) => setTurnsNoDmg(e.currentTarget.valueAsNumber)}
+                        />
+                    </div>
+
+                    <div className="flex flex-col space-y-2">
+                        <label htmlFor='combatTime'
+                                className="text-xs uppercase text-gray-300"
+                            > combat time </label> 
+                        <input 
+                            id="combatTime"
+                            type="number"
+                            placeholder="Combat Time"
+                            className="rounded-full px-3 py-1 placeholder:text-gray-300"
+                            value={combatTime}
+                            onChange={(e) => setCombatTime(e.currentTarget.valueAsNumber)}
                         />
                     </div>
 
@@ -353,30 +419,30 @@ export const CharacterEditor = ({
                     </div>
 
                     <div className="flex flex-col space-y-2">
-                        <label htmlFor='totalDeaths'
+                        <label htmlFor='natTwenty'
                                 className="text-xs uppercase text-gray-300"
-                            > deaths </label> 
+                            > Nat 20s </label> 
                         <input 
-                            id="totalDeaths"
+                            id="natTwenty"
                             type="number"
-                            placeholder="Total Deaths"
+                            placeholder="Nat 20s"
                             className="rounded-full px-3 py-1 placeholder:text-gray-300"
-                            value={totalDeaths}
-                            onChange={(e) => setTotalDeaths(e.currentTarget.valueAsNumber)}
+                            value={natTwenty}
+                            onChange={(e) => setNatTwenty(e.currentTarget.valueAsNumber)}
                         />
                     </div>
 
                     <div className="flex flex-col space-y-2">
-                        <label htmlFor='turnsNoDmg'
+                        <label htmlFor='natOne'
                                 className="text-xs uppercase text-gray-300"
-                            > turns </label> 
+                            > Nat 1s </label> 
                         <input 
-                            id="turnsNoDmg"
+                            id="natOne"
                             type="number"
-                            placeholder="Turns Without Damage"
+                            placeholder="Nat 1s"
                             className="rounded-full px-3 py-1 placeholder:text-gray-300"
-                            value={turnsNoDmg}
-                            onChange={(e) => setTurnsNoDmg(e.currentTarget.valueAsNumber)}
+                            value={natOne}
+                            onChange={(e) => setNatOne(e.currentTarget.valueAsNumber)}
                         />
                     </div>
                 </div>
@@ -401,6 +467,10 @@ export const CharacterEditor = ({
                                 totalHealingSelf,
                                 totalDeaths,
                                 turnsNoDmg,
+                                combatTime,
+                                natTwenty,
+                                natOne,
+                                totalKo
                             },
                         });
                         setTitle("");
@@ -419,6 +489,10 @@ export const CharacterEditor = ({
                         setTotalHealingSelf(0);
                         setTotalDeaths(0);
                         setTurnsNoDmg(0);
+                        setCombatTime(0);
+                        setNatTwenty(0);
+                        setNatOne(0);
+                        setTotalKo(0);
                     }}
                     className="mt-4 rounded-md py-1 px-3 bg-green-500 text-white"
                 >

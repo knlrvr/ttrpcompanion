@@ -23,6 +23,10 @@ const updateCharacterStatsInput = z.object({
         totalHealingSelf: z.number(),
         totalDeaths: z.number(),
         turnsNoDmg: z.number(),
+        combatTime: z.number(),
+        natTwenty: z.number(),
+        natOne: z.number(),
+        totalKo: z.number(),
     }),
 });
 
@@ -48,6 +52,11 @@ export const characterRouter = createTRPCRouter({
                 totalHealingSelf: z.number(),
                 totalDeaths: z.number(),
                 turnsNoDmg: z.number(),
+                // added 
+                combatTime: z.number(),
+                natTwenty: z.number(),
+                natOne: z.number(),
+                totalKo: z.number(),
             })
         }),
     )
@@ -74,6 +83,11 @@ export const characterRouter = createTRPCRouter({
                         totalHealingSelf: input.stats.totalHealingSelf,
                         totalDeaths: input.stats.totalDeaths,
                         turnsNoDmg: input.stats.turnsNoDmg,
+                        // added
+                        combatTime: input.stats.combatTime,
+                        natTwenty: input.stats.natTwenty,
+                        natOne: input.stats.natOne,
+                        totalKo: input.stats.totalKo,
                     },
                 },
             },
@@ -83,12 +97,12 @@ export const characterRouter = createTRPCRouter({
     update: protectedProcedure
     .input(updateCharacterStatsInput)
     .mutation(async ({ ctx, input }) => {
-        const { id, stats } = input;
-        return ctx.prisma.characterStats.update({
-          where: { id }, // Use the provided character ID to identify the character's stats to update
-          data: stats,
-        });
-      }),
+      const { id, stats } = input;
+      return ctx.prisma.characterStats.updateMany({
+        where: { characterId: id },
+        data: stats,
+      });
+    }),
 
     delete: protectedProcedure 
     .input(z.object({ id: z.string() }))

@@ -110,15 +110,17 @@ model CharacterStats {
     totalDeaths         Int                 @default(0)
     turnsNoDmg          Int                 @default(0)
 
+    // suggested to add
     totalXp             Int                 @default(0)
+    combatTime          Int                 @default(0)
+    natTwenty           Int                 @default(0)
+    natOne              Int                 @default(0)
+    totalKo             Int                 @default(0)
+
 }
 
-model DmStats {
-    id                  String              @id @default(cuid())
-}
-
-model CampaignStats {
-    id                  String              @id @default(cuid())
-}
+// model CampaignStats {
+//     id                  String              @id @default(cuid())
+// }
 
 

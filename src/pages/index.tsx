@@ -9,7 +9,7 @@ import { Header } from "@/components/Header";
 import { CharacterEditor } from "@/components/CharacterEditor";
 import { CharacterCard } from "@/components/CharacterCard";
 
-import { BsArrowRight, BsExclamationCircle } from "react-icons/bs";
+import { BsArrowRight, BsExclamationCircle, BsCheckLg, BsTrash } from "react-icons/bs";
 
 import Modal from 'react-modal'
 
@@ -32,32 +32,38 @@ export default function Home() {
 }
 
 type Campaign = RouterOutputs["campaign"]["getAll"][0];
-type CharacterWithStats = RouterOutputs["character"]["getAll"][0] & {characterStats: CharacterStats[] };
+// type CharacterWithStats = RouterOutputs["character"]["getAll"][0] & {characterStats: CharacterStats[] };
 
-type CharacterStats = {
-  id: string;
-  characterId: string;
-  level: number;
-  charClass: string;
-  charRace: string;
-  totalSessions: number;
-  totalTime: number;
-  totalXp: number;
-  dmgDealt: number;
-  dmgTaken: number;
-  critHits: number;
-  totalKills: number;
-  spellsCast: number;
-  totalHealingOthers: number;
-  totalHealingSelf: number;
-  totalDeaths: number;
-  turnsNoDmg: number;
-};
+// type CharacterStats = {
+//   id: string;
+//   characterId: string;
+//   level: number;
+//   charClass: string;
+//   charRace: string;
+//   totalSessions: number;
+//   totalTime: number;
+//   totalXp: number;
+//   dmgDealt: number;
+//   dmgTaken: number;
+//   critHits: number;
+//   totalKills: number;
+//   spellsCast: number;
+//   totalHealingOthers: number;
+//   totalHealingSelf: number;
+//   totalDeaths: number;
+//   turnsNoDmg: number;
+//   // added
+//   combatTime: number;
+//   natTwenty: number;
+//   natOne: number;
+//   totalKo: number;
+// };
 
 const Content: React.FC = () => {
   const { data: sessionData } = useSession();
 
   const [selectedCampaign, setSelectedCampaign] = useState<Campaign | null>(null);
+  const [newCampaigns, setNewCampaigns] = useState<Campaign[] | null>([]);
 
   const { data: campaigns, refetch: refetchCampaigns } = api.campaign.getAll.useQuery(
     undefined, // no input
@@ -65,13 +71,15 @@ const Content: React.FC = () => {
       enabled: sessionData?.user !== undefined,
       onSuccess: (data) => {
         setSelectedCampaign(selectedCampaign ?? data[0] ?? null);
+        setNewCampaigns(data);
       }
     }
   );
 
   const createCampaign = api.campaign.create.useMutation({
-    onSuccess: () => {
+    onSuccess: (data) => {
       void refetchCampaigns();
+      setSelectedCampaign(data);
     }
   });
   const handleCreateCampaign = (title: string) => {
@@ -86,16 +94,16 @@ const Content: React.FC = () => {
   const closeDelCampModal = () => {
     setDelCampModalOpen(false);
   };
-  // display active campaign after one is deleted
-  const selectNextCampaign = () => {
+  // display first active campaign after one is deleted
+  const selectFirstCampaign = () => {
     if (campaigns && campaigns.length > 0 && selectedCampaign && sessionData?.user?.id) {
       const currentIndex = campaigns.findIndex((campaign) => campaign.id === selectedCampaign.id);
       for (let i = 1; i <= campaigns.length; i++) {
-        const nextIndex = (currentIndex + i) % campaigns.length;
-        const nextCampaign = campaigns[nextIndex];
+        const firstIndex = (currentIndex + i) % campaigns.length;
+        const firstCampaign = campaigns[firstIndex];
         // Assuming user's ID is stored in sessionData.user.id
-        if (nextCampaign?.ownerId === sessionData.user.id) {
-          setSelectedCampaign(nextCampaign);
+        if (firstCampaign?.ownerId === sessionData.user.id) {
+          setSelectedCampaign(firstCampaign);
           return;
         }
       }
@@ -107,7 +115,7 @@ const Content: React.FC = () => {
     onSuccess: () => {
       closeDelCampModal();
       void refetchCampaigns();
-      selectNextCampaign();
+      selectFirstCampaign();
     },
   });
   const handleDeleteCampaign = () => {
@@ -145,27 +153,19 @@ const Content: React.FC = () => {
   return (
     <>
     {!sessionData?.user && (
-    <div className="max-w-7xl mx-auto">
-      <div className="h-screen flex flex-col justify-center items-center px-4">
-        <div className="bg-gray-200 py-16 rounded-lg flex justify-center items-center flex-col space-y-24 shadow-lg px-8">
-          <h1 className="text-4xl md:text-6xl font-bold tracking-wide">
-            TTRPCompanion
-          </h1>
-          <p className="flex items-center px-8">
-            <button className="font-semibold hover:text-[#888] transition duration-200"
-              onClick={() => void signIn()}>Sign In</button>
-            &nbsp;now to keep track of your character stats in any TTRPG!
-          </p>
-        </div>
+    <div className="bg-gray-100">
+      <div className="max-w-7xl mx-auto min-h-screen">
+        
       </div>
     </div>
     )}
 
     {sessionData?.user && (
     <div className="bg-gray-100 pb-4">
-      <div className="min-h-screen grid grid-cols-1 md:grid-cols-4 bg-gray-100">
+      <div className="grid grid-cols-1 md:grid-cols-4 bg-gray-100">
+
         <div className="w-full flex flex-col">
-          <div className="p-4 pt-6">
+          <div className="p-2 pt-2">
             <div className="flex items-center space-x-2">
               <input 
                 id="campaign"
@@ -191,7 +191,7 @@ const Content: React.FC = () => {
                   }
                 }}
               >
-                <BsArrowRight />
+                <BsCheckLg />
               </button> 
             </div>
 
@@ -218,46 +218,49 @@ const Content: React.FC = () => {
           </div>
         </div>
 
-        <div className="col-span-3 border mx-2 md:mx-0 md:ml-2 md:mt-2 p-4 rounded-lg md:rounded-l-lg md:rounded-r-none bg-gray-50 shadow-lg">
+      {sessionData?.user && campaigns && campaigns.length > 0 && selectedCampaign !== undefined && (
+        <div className="min-h-screen col-span-3 border mx-2 md:mx-0 md:ml-2 md:mt-2 p-4 rounded-lg md:rounded-l-lg md:rounded-r-none bg-gray-50 shadow-md">
           {characters?.map((character) => (
             <div key={character.id} className="pb-4">
               <CharacterCard
                 character={character}
                 onDelete={() => void deleteCharacter.mutate({ id: character.id })}
-                />
+              />
             </div>
           ))}
-
-          {selectedCampaign ? (
-            <div>
-              <CharacterEditor 
-                onSave={({ title, stats }) => {
-                  void createCharacter.mutate({
-                    title,
-                    campaignId: selectedCampaign?.id ?? "",
-                    stats
-                  })
-                }}
-              />
-              <div className="flex justify-end w-full mt-4">
-                <button 
-                  className="bg-red-500 text-white px-4 py-2 rounded-full text-xs uppercase"
-                  onClick={handleDeleteCampaign}
-                > delete campaign </button>
-              </div>
+          <div className="flex flex-col">
+            <CharacterEditor
+              onSave={({ title, stats }) => {
+                void createCharacter.mutate({
+                  title,
+                  campaignId: selectedCampaign?.id ?? "",
+                  stats,
+                });
+              }}
+            />
+            <div className="flex justify-end py-16">
+              <button
+                className="bg-red-500 text-white px-4 py-2 rounded-full text-xs uppercase flex items-center space-x-2"
+                onClick={handleDeleteCampaign}
+              >
+                <span>delete campaign</span><BsTrash />
+              </button>
             </div>
-          ) : (
-            <div className="h-full font-semibold flex flex-col justify-center items-center space-y-4 text-2xl">
-              <BsExclamationCircle />
-              <p className="text-xs">
-                Please select or create a campaign to view character stats
-              </p>
-            </div>
-          )}
+          </div>
         </div>
+        )} 
+
+        {sessionData?.user && (!campaigns || campaigns.length === 0 || selectedCampaign === null) && (
+        <div className="min-h-screen col-span-3 border mx-2 md:mx-0 md:ml-2 md:mt-2 p-4 pb-36 rounded-lg md:rounded-l-lg md:rounded-r-none bg-gray-50 shadow-lg flex flex-col justify-center items-center text-xl">
+          <BsExclamationCircle />
+            <p className="text-xs pt-4">
+              Please select or create a campaign to view character stats
+            </p>
+          </div> 
+        )}
       </div>
     </div>
-    )}
+  )}
 
 
     {/* Modal for delete campaign confirmation */}
@@ -268,28 +271,28 @@ const Content: React.FC = () => {
       overlayClassName="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center px-8"
       className="bg-white p-8 rounded-lg"
     >
-      <div className="text-center flex flex-col justify-between space-y-8">
-        <p className="font-bold uppercase text-sm">Are you sure you want to delete this campaign?</p>
-          <div className="mt-6 flex justify-center space-x-12">
-            <button
-              className="bg-blue-500 text-white px-4 py-2 rounded-full text-xs uppercase"
-              onClick={closeDelCampModal}
-            >
-              Cancel
-            </button>
-            <button
-              className="bg-red-500 text-white px-4 py-2 rounded-full text-xs uppercase"
-              onClick={() => {
-                if (selectedCampaign) {
-                  deleteCampaign.mutate({ id: selectedCampaign.id });
-                }
-              }}
-            >
-              Delete
-            </button>
-          </div>
+    <div className="text-center flex flex-col justify-between space-y-8">
+      <p className="text-sm">Are you sure you want to delete this campaign? This action cannot be undone.</p>
+        <div className="mt-6 flex justify-center space-x-12">
+          <button
+            className="bg-blue-500 text-white px-4 py-2 rounded-full text-xs uppercase"
+            onClick={closeDelCampModal}
+          >
+            Cancel
+          </button>
+          <button
+            className="bg-red-500 text-white px-4 py-2 rounded-full text-xs uppercase"
+            onClick={() => {
+              if (selectedCampaign) {
+                deleteCampaign.mutate({ id: selectedCampaign.id });
+              }
+            }}
+          >
+            Delete Campaign
+          </button>
         </div>
-      </Modal>
+      </div>
+    </Modal>
     </>
   );
 };
