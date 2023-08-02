@@ -277,11 +277,11 @@ export const CharacterCard = ({
                                     </div>
                                     <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
                                         <span className="font-semibold text-lg md:text-2xl">{stat.natTwenty}</span>
-                                        <p className="text-xs font-light text-right">Nat 20's Rolled</p>
+                                        <p className="text-xs font-light text-right">Nat 20&apos;s Rolled</p>
                                     </div>
                                     <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
                                         <span className="font-semibold text-lg md:text-2xl">{stat.natOne}</span>
-                                        <p className="text-xs font-light text-right">Nat 1's Rolled</p>
+                                        <p className="text-xs font-light text-right">Nat 1&apos;s Rolled</p>
                                     </div>
                                 </div>
                             </div>
