@@ -9,6 +9,8 @@ import { Header } from "@/components/Header";
 import { CharacterEditor } from "@/components/CharacterEditor";
 import { CharacterCard } from "@/components/CharacterCard";
 
+import { BsArrowRight, BsExclamationCircle } from "react-icons/bs";
+
 import Modal from 'react-modal'
 
 Modal.setAppElement('main')
@@ -72,6 +74,9 @@ const Content: React.FC = () => {
       void refetchCampaigns();
     }
   });
+  const handleCreateCampaign = (title: string) => {
+    createCampaign.mutate({ title });
+  };
 
   // to delete campaign
   const [isDelCampModalOpen, setDelCampModalOpen] = useState(false);
@@ -81,10 +86,28 @@ const Content: React.FC = () => {
   const closeDelCampModal = () => {
     setDelCampModalOpen(false);
   };
+  // display active campaign after one is deleted
+  const selectNextCampaign = () => {
+    if (campaigns && campaigns.length > 0 && selectedCampaign && sessionData?.user?.id) {
+      const currentIndex = campaigns.findIndex((campaign) => campaign.id === selectedCampaign.id);
+      for (let i = 1; i <= campaigns.length; i++) {
+        const nextIndex = (currentIndex + i) % campaigns.length;
+        const nextCampaign = campaigns[nextIndex];
+        // Assuming user's ID is stored in sessionData.user.id
+        if (nextCampaign?.ownerId === sessionData.user.id) {
+          setSelectedCampaign(nextCampaign);
+          return;
+        }
+      }
+    }
+    setSelectedCampaign(null); // No campaigns or selectedCampaign, or next campaign not found, set selectedCampaign to null
+  };
+
   const deleteCampaign = api.campaign.delete.useMutation({
     onSuccess: () => {
       closeDelCampModal();
       void refetchCampaigns();
+      selectNextCampaign();
     },
   });
   const handleDeleteCampaign = () => {
@@ -143,20 +166,34 @@ const Content: React.FC = () => {
       <div className="min-h-screen grid grid-cols-1 md:grid-cols-4 bg-gray-100">
         <div className="w-full flex flex-col">
           <div className="p-4 pt-6">
-            <input 
-              id="campaign"
-              type="text"
-              placeholder="New Campaign"
-              className="border rounded-full px-4 py-[0.2rem] flex justify-center w-[98%] bg-gray-50"
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  createCampaign.mutate({
-                    title: e.currentTarget.value,
-                  });
-                  e.currentTarget.value = "";
-                }
-              }}
-            />
+            <div className="flex items-center space-x-2">
+              <input 
+                id="campaign"
+                type="text"
+                placeholder="New Campaign"
+                className="border rounded-full px-4 py-[0.2rem] flex justify-center w-[98%] bg-gray-50"
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    createCampaign.mutate({
+                      title: e.currentTarget.value,
+                    });
+                    e.currentTarget.value = "";
+                  }
+                }}
+              />
+              <button
+                className="bg-blue-500 text-white p-1.5 px-2 rounded-full text-lg uppercase"
+                onClick={() => {
+                  const titleInput = document.getElementById("campaign") as HTMLInputElement;
+                  if (titleInput) {
+                    handleCreateCampaign(titleInput.value);
+                    titleInput.value = "";
+                  }
+                }}
+              >
+                <BsArrowRight />
+              </button> 
+            </div>
 
             <ul className="pt-4 space-y-2">
               {campaigns?.map((campaign) => (
@@ -191,22 +228,32 @@ const Content: React.FC = () => {
             </div>
           ))}
 
-          <CharacterEditor 
-            onSave={({ title, stats }) => {
-              void createCharacter.mutate({
-                title,
-                campaignId: selectedCampaign?.id ?? "",
-                stats
-              })
-            }}
-          />
-
-          <div className="flex justify-end w-full mt-4">
-            <button 
-              className="bg-red-500 text-white px-4 py-2 rounded-full text-xs uppercase"
-              onClick={handleDeleteCampaign}
-            > delete campaign</button>
-          </div>
+          {selectedCampaign ? (
+            <div>
+              <CharacterEditor 
+                onSave={({ title, stats }) => {
+                  void createCharacter.mutate({
+                    title,
+                    campaignId: selectedCampaign?.id ?? "",
+                    stats
+                  })
+                }}
+              />
+              <div className="flex justify-end w-full mt-4">
+                <button 
+                  className="bg-red-500 text-white px-4 py-2 rounded-full text-xs uppercase"
+                  onClick={handleDeleteCampaign}
+                > delete campaign </button>
+              </div>
+            </div>
+          ) : (
+            <div className="h-full font-semibold flex flex-col justify-center items-center space-y-4 text-2xl">
+              <BsExclamationCircle />
+              <p className="text-xs">
+                Please select or create a campaign to view character stats
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </div>

@@ -207,7 +207,11 @@ export const CharacterEditor = ({
                     </div>
                 </div>
 
-                <div className="grid grid-cols-3 gap-4 py-4">
+                <div className="pt-8 pb-4 text-sm text-gray-400">
+                    Please use total amounts in the fields below.
+                </div>
+
+                <div className="grid grid-cols-3 gap-4">
 
                     <div className="flex flex-col space-y-2">
                         <label htmlFor='level'
@@ -226,7 +230,7 @@ export const CharacterEditor = ({
                     <div className="flex flex-col space-y-2">
                         <label htmlFor='level'
                                 className="text-xs uppercase text-gray-300"
-                            > total time </label> 
+                            > time </label> 
                         <input 
                             id="time"
                             type="number"
@@ -240,7 +244,7 @@ export const CharacterEditor = ({
                     <div className="flex flex-col space-y-2">
                         <label htmlFor='level'
                                 className="text-xs uppercase text-gray-300"
-                            > total xp </label> 
+                            > xp </label> 
                         <input 
                             id="time"
                             type="number"
@@ -254,7 +258,7 @@ export const CharacterEditor = ({
                     <div className="flex flex-col space-y-2">
                         <label htmlFor='dmgDealt'
                                 className="text-xs uppercase text-gray-300"
-                            > total damage dealt </label> 
+                            > damage dealt </label> 
                         <input 
                             id="dmgDealt"
                             type="number"
@@ -268,7 +272,7 @@ export const CharacterEditor = ({
                     <div className="flex flex-col space-y-2">
                         <label htmlFor='dmgTaken'
                                 className="text-xs uppercase text-gray-300"
-                            > total damage taken </label> 
+                            > damage taken </label> 
                         <input 
                             type="number"
                             placeholder="Damage Taken"
@@ -281,7 +285,7 @@ export const CharacterEditor = ({
                     <div className="flex flex-col space-y-2">
                         <label htmlFor='critHits'
                                 className="text-xs uppercase text-gray-400"
-                            > Total Critical Hits </label> 
+                            > Critical Hits </label> 
                         <input 
                             id="critHits"
                             type="number"
@@ -295,7 +299,7 @@ export const CharacterEditor = ({
                     <div className="flex flex-col space-y-2">
                         <label htmlFor='totalKills'
                                 className="text-xs uppercase text-gray-300"
-                            > total kills </label> 
+                            > Kills </label> 
                         <input 
                             id="totalKills"
                             type="number"
@@ -351,7 +355,7 @@ export const CharacterEditor = ({
                     <div className="flex flex-col space-y-2">
                         <label htmlFor='totalDeaths'
                                 className="text-xs uppercase text-gray-300"
-                            > total deaths </label> 
+                            > deaths </label> 
                         <input 
                             id="totalDeaths"
                             type="number"
