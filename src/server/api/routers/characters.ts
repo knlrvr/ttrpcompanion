@@ -4,6 +4,28 @@ import {
   protectedProcedure,
 } from "@/server/api/trpc";
 
+
+const updateCharacterStatsInput = z.object({
+    id: z.string(),
+    stats: z.object({
+        level: z.number(),
+        charClass: z.string(),
+        charRace: z.string(),
+        totalSessions: z.number(),
+        totalTime: z.number(),
+        totalXp: z.number(),
+        dmgDealt: z.number(),
+        dmgTaken: z.number(),
+        critHits: z.number(),
+        totalKills: z.number(),
+        spellsCast: z.number(),
+        totalHealingOthers: z.number(),
+        totalHealingSelf: z.number(),
+        totalDeaths: z.number(),
+        turnsNoDmg: z.number(),
+    }),
+});
+
 export const characterRouter = createTRPCRouter({
     create: protectedProcedure
     .input(
@@ -29,6 +51,7 @@ export const characterRouter = createTRPCRouter({
             })
         }),
     )
+
     .mutation(async ({ ctx, input }) => {
         return ctx.prisma.character.create({
             data: {
@@ -56,6 +79,17 @@ export const characterRouter = createTRPCRouter({
             },
         });
     }),
+
+    update: protectedProcedure
+    .input(updateCharacterStatsInput)
+    .mutation(async ({ ctx, input }) => {
+        const { id, stats } = input;
+        return ctx.prisma.characterStats.update({
+          where: { id }, // Use the provided character ID to identify the character's stats to update
+          data: stats,
+        });
+      }),
+
     delete: protectedProcedure 
     .input(z.object({ id: z.string() }))
     .mutation(async ({ ctx, input }) => {

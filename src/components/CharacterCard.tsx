@@ -2,7 +2,9 @@ import { useState } from 'react'
 
 import { BsTrash, BsPencilSquare, BsPlusLg, BsDashLg } from 'react-icons/bs'
 
-import { type RouterOutputs } from '@/utils/api'
+import { api, type RouterOutputs } from '@/utils/api'
+
+import Modal from 'react-modal'
 
 type Character = RouterOutputs["character"]["getAll"][0];
 
@@ -127,14 +129,29 @@ const getBorderColorClass = (charClass: string): string => {
 export const CharacterCard = ({
     character, 
     onDelete,
+    refetchCharacters,
 }: {
     character: Character,
     onDelete: () => void;
+    refetchCharacters?: () => void;
 }) => {
 
     const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
+    // to update character
+
+    // to delete character
+    const [isDelCharModalOpen, setDelCharModalOpen] = useState(false);
+    const openDelCharModal = () => {
+        setDelCharModalOpen(true);
+    };
+    const closeDelCharModal = () => {
+        setDelCharModalOpen(false);
+    };
+
+
     return (
+        <>
         <div className="bg-white rounded-xl shadow-md p-4">
             <div className="">
                     <div className="text-lg tracking-wide font-bold flex items-center justify-between py-4">
@@ -234,7 +251,7 @@ export const CharacterCard = ({
                             <div className="flex">
                                 <button 
                                     className="text-xs uppercase text-white bg-red-500 px-4 py-2 rounded-full"
-                                    onClick={onDelete}
+                                    onClick={openDelCharModal}
                                 > delete </button>
                             </div>
                         </div>
@@ -242,5 +259,37 @@ export const CharacterCard = ({
                 )}
             </div>
         </div>
+              
+        {/* Modal for delete character confirmation */}
+        <Modal
+            isOpen={isDelCharModalOpen}
+            onRequestClose={closeDelCharModal}
+            contentLabel="Confirm Delete"
+            overlayClassName="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center px-8"
+            className="bg-white p-8 rounded-lg"
+        >
+            <div className="text-center flex flex-col justify-between space-y-8">
+                <p className="text-sm">
+                    Are you sure you want to delete <span className="font-semibold">{character.title}</span>? This action cannot be undone.
+                </p>
+                <div className="mt-6 flex justify-center space-x-12">
+                    <button
+                        className="bg-blue-500 text-white px-4 py-2 rounded-full text-xs uppercase font-light"
+                        onClick={closeDelCharModal}
+                        >
+                        Cancel
+                    </button>
+                    <button
+                        className="bg-red-500 text-white px-4 py-2 rounded-full text-xs uppercase font-light"
+                        onClick={() => {
+                            // Call the onDelete function to delete the character
+                            onDelete();
+                            closeDelCharModal();
+                        }}
+                    > Delete Character</button>
+                </div>
+            </div>
+        </Modal>
+        </>
     )
 }

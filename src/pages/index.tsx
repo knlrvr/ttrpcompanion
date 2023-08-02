@@ -11,9 +11,9 @@ import { CharacterCard } from "@/components/CharacterCard";
 
 import Modal from 'react-modal'
 
+Modal.setAppElement('main')
 
 export default function Home() {
-
   return (
     <>
       <Head>
@@ -21,7 +21,7 @@ export default function Home() {
         <meta name="description" content="TTRPCompanion" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="">
+      <main id="main" className="">
         <Header />
         <Content />
       </main>
@@ -98,7 +98,7 @@ const Content: React.FC = () => {
       campaignId: selectedCampaign?.id ?? "",
     },
     {
-      enabled: sessionData?.user !== undefined && selectedCampaign !== null,
+      enabled: sessionData?.user !== undefined,
     }
   );
 
@@ -108,6 +108,7 @@ const Content: React.FC = () => {
     },
   });
 
+  // to delete character
   const deleteCharacter = api.character.delete.useMutation({
     onSuccess: () => {
       void refetchCharacters();
@@ -185,8 +186,8 @@ const Content: React.FC = () => {
             <div key={character.id} className="pb-4">
               <CharacterCard
                 character={character}
-                onDelete={() => void deleteCharacter.mutate({ id: character.id})}
-              />
+                onDelete={() => void deleteCharacter.mutate({ id: character.id })}
+                />
             </div>
           ))}
 
@@ -212,7 +213,7 @@ const Content: React.FC = () => {
     )}
 
 
-    {/* Modal for delete confirmation */}
+    {/* Modal for delete campaign confirmation */}
     <Modal
       isOpen={isDelCampModalOpen}
       onRequestClose={closeDelCampModal}
