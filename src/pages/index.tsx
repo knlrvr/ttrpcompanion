@@ -127,7 +127,8 @@ const Content: React.FC = () => {
             TTRPCompanion
           </h1>
           <p className="flex items-center px-8">
-            <button className="font-semibold hover:text-[#888] transition duration-200">Sign In</button>
+            <button className="font-semibold hover:text-[#888] transition duration-200"
+              onClick={() => void signIn()}>Sign In</button>
             &nbsp;now to keep track of your character stats in any TTRPG!
           </p>
         </div>
