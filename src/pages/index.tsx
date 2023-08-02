@@ -3,6 +3,7 @@ import { useState } from "react";
 
 import Head from "next/head";
 import Link from "next/link";
+import Image from 'next/image'
 import { api, type RouterOutputs } from "@/utils/api";
 
 import { Header } from "@/components/Header";
@@ -154,8 +155,37 @@ const Content: React.FC = () => {
     <>
     {!sessionData?.user && (
     <div className="bg-gray-100">
-      <div className="max-w-7xl mx-auto min-h-screen">
+      <div className="max-w-7xl mx-auto min-h-screen flex justify-center items-center px-4">
         
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 p-16 border rounded-lg bg-gray-50 mb-16 shadow-md place-items-center">
+        <div className="hidden md:block h-full w-full row-span-2 rounded-l-md overflow-hidden">
+          <Image
+            src="https://images.unsplash.com/photo-1605106925746-22f723ca945b"
+            alt="picture"
+            width={1000}
+            height={1000}
+            className=""
+          />
+        </div>
+        <div className="flex flex-col">
+          <p className="text-2xl md:text-3xl font-light uppercase">
+            welcome to
+          </p>
+          <h1 className="font-bold text-4xl md:text-5xl">
+            TTRPCompanion
+          </h1>
+          <p className="font-semibold text-gray-500 pt-16 text-xl">
+            Sign in now to get started on tracking stats for your characters throughout your campaign!
+          </p>
+        </div>
+        <div className="flex justify-start">
+          <button 
+            className="bg-blue-400 px-4 py-2 rounded-full text-white hover:bg-blue-300 transition duration-200"
+            onClick={() => void signIn()}
+          > Sign In </button>
+        </div>
+      </div>
+      
       </div>
     </div>
     )}
