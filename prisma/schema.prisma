@@ -85,7 +85,7 @@ model Character {
     createdAt           DateTime            @default(now())
     updatedAt           DateTime            @updatedAt
     title               String
-    campaign            Campaign?           @relation(fields: [campaignId], references: [id])
+    campaign            Campaign?           @relation(fields: [campaignId], references: [id], onDelete: Cascade)
     campaignId          String?             // Foreign key to associate Character with Campaign
     stats               CharacterStats[]    // One to many
 }

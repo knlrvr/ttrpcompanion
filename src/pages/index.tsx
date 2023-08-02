@@ -119,7 +119,8 @@ const Content: React.FC = () => {
   }
   
   return (
-    <> 
+    <>
+    {!sessionData?.user && (
     <div className="max-w-7xl mx-auto">
       <div className="h-screen flex flex-col justify-center items-center px-4">
         <div className="bg-gray-200 py-16 rounded-lg flex justify-center items-center flex-col space-y-24 shadow-lg px-8">
@@ -134,6 +135,7 @@ const Content: React.FC = () => {
         </div>
       </div>
     </div>
+    )}
 
     {sessionData?.user && (
     <div className="bg-gray-100 pb-4">
