@@ -240,6 +240,7 @@ export const CharacterCard = ({
                                                     level: parseInt(e.target.value),
                                                     }))
                                                 }
+                                                className="font-semibold text-lg md:text-2xl w-1/2"
                                             />
                                         </div>
                                         <div className={`border-l-4 ${getBorderColorRace(stat.charRace)} p-4 flex flex-col justify-between bg-gray-50 rounded-r-lg`}>
@@ -263,69 +264,220 @@ export const CharacterCard = ({
                                                     totalSessions: parseInt(e.target.value),
                                                     }))
                                                 }
+                                                className="font-semibold text-lg md:text-2xl w-1/2"
                                             />                                            
                                             <p className="text-xs font-light text-right">Total Sessions</p>
                                         </div>
                                         <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
-                                            <span className="font-semibold text-lg md:text-2xl">{stat.totalTime} hrs</span>
+                                            <input
+                                                type="number"
+                                                value={editedStats.totalTime?.toString() ?? ""}
+                                                onChange={(e) =>
+                                                    setEditedStats((prevState) => ({
+                                                    ...prevState,
+                                                    totalTime: parseInt(e.target.value),
+                                                    }))
+                                                }
+                                                className="font-semibold text-lg md:text-2xl w-1/2"
+                                            />                                             
                                             <p className="text-xs font-light text-right">Total Time Played</p>
                                         </div>
                                         <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
-                                            <span className="font-semibold text-lg md:text-2xl">{stat.totalXp}</span>
+                                        <input
+                                                type="number"
+                                                value={editedStats.totalXp?.toString() ?? ""}
+                                                onChange={(e) =>
+                                                    setEditedStats((prevState) => ({
+                                                    ...prevState,
+                                                    totalXp: parseInt(e.target.value),
+                                                    }))
+                                                }
+                                                className="font-semibold text-lg md:text-2xl w-1/2"
+                                            />                                             
                                             <p className="text-xs font-light text-right">Total XP</p>
                                         </div>
 
                                         {/* stats */}
                                         <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
-                                            <span className="font-semibold text-lg md:text-2xl">{stat.dmgTaken}</span>
+                                            <input
+                                                type="number"
+                                                value={editedStats.dmgTaken?.toString() ?? ""}
+                                                onChange={(e) =>
+                                                    setEditedStats((prevState) => ({
+                                                    ...prevState,
+                                                    dmgTaken: parseInt(e.target.value),
+                                                    }))
+                                                }
+                                                className="font-semibold text-lg md:text-2xl w-1/2"
+                                            />                                             
                                             <p className="text-xs font-light text-right">Damage Taken</p>
                                         </div>
                                         <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
-                                            <span className="font-semibold text-lg md:text-2xl">{stat.dmgDealt}</span>
+                                            <input
+                                                type="number"
+                                                value={editedStats.dmgDealt?.toString() ?? ""}
+                                                onChange={(e) =>
+                                                    setEditedStats((prevState) => ({
+                                                    ...prevState,
+                                                    dmgDealt: parseInt(e.target.value),
+                                                    }))
+                                                }
+                                                className="font-semibold text-lg md:text-2xl w-1/2"
+                                            />                                             
                                             <p className="text-xs font-light text-right">Damage Dealt</p>
                                         </div>
                                         <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
-                                            <span className="font-semibold text-lg md:text-2xl">{stat.totalKills}</span>
+                                            <input
+                                                type="number"
+                                                value={editedStats.totalKills?.toString() ?? ""}
+                                                onChange={(e) =>
+                                                    setEditedStats((prevState) => ({
+                                                    ...prevState,
+                                                    totalKills: parseInt(e.target.value),
+                                                    }))
+                                                }
+                                                className="font-semibold text-lg md:text-2xl w-1/2"
+                                            />                                             
                                             <p className="text-xs font-light text-right">Total Kills</p>
                                         </div>
                                         <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
-                                            <span className="font-semibold text-lg md:text-2xl">{stat.critHits}</span>
+                                            <input
+                                                type="number"
+                                                value={editedStats.critHits?.toString() ?? ""}
+                                                onChange={(e) =>
+                                                    setEditedStats((prevState) => ({
+                                                    ...prevState,
+                                                    critHits: parseInt(e.target.value),
+                                                    }))
+                                                }
+                                                className="font-semibold text-lg md:text-2xl w-1/2"
+                                            />                                             
                                             <p className="text-xs font-light text-right">Critical Hits</p>
                                         </div>
                                         <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
-                                            <span className="font-semibold text-lg md:text-2xl">{stat.totalDeaths}</span>
+                                            <input
+                                                type="number"
+                                                value={editedStats.totalDeaths?.toString() ?? ""}
+                                                onChange={(e) =>
+                                                    setEditedStats((prevState) => ({
+                                                    ...prevState,
+                                                    totalDeaths: parseInt(e.target.value),
+                                                    }))
+                                                }
+                                                className="font-semibold text-lg md:text-2xl w-1/2"
+                                            />                                             
                                             <p className="text-xs font-light text-right">Deaths</p>
                                         </div>
                                         <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
-                                            <span className="font-semibold text-lg md:text-2xl">{stat.totalKo}</span>
+                                            <input
+                                                type="number"
+                                                value={editedStats.totalKo?.toString() ?? ""}
+                                                onChange={(e) =>
+                                                    setEditedStats((prevState) => ({
+                                                    ...prevState,
+                                                    totalKo: parseInt(e.target.value),
+                                                    }))
+                                                }
+                                                className="font-semibold text-lg md:text-2xl w-1/2"
+                                            />                                             
                                             <p className="text-xs font-light text-right">Times Unconscious</p>
                                         </div>
                                         <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
-                                            <span className="font-semibold text-lg md:text-2xl">{stat.spellsCast}</span>
+                                            <input
+                                                type="number"
+                                                value={editedStats.spellsCast?.toString() ?? ""}
+                                                onChange={(e) =>
+                                                    setEditedStats((prevState) => ({
+                                                    ...prevState,
+                                                    spellsCast: parseInt(e.target.value),
+                                                    }))
+                                                }
+                                                className="font-semibold text-lg md:text-2xl w-1/2"
+                                            />                                                  
                                             <p className="text-xs font-light text-right">Spells Cast</p>
                                         </div>
                                         <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
-                                            <span className="font-semibold text-lg md:text-2xl">{stat.turnsNoDmg}</span>
+                                            <input
+                                                type="number"
+                                                value={editedStats.turnsNoDmg?.toString() ?? ""}
+                                                onChange={(e) =>
+                                                    setEditedStats((prevState) => ({
+                                                    ...prevState,
+                                                    turnsNoDmg: parseInt(e.target.value),
+                                                    }))
+                                                }
+                                                className="font-semibold text-lg md:text-2xl w-1/2"
+                                            />                                                  
                                             <p className="text-xs font-light text-right">Avg. Turns Without Damage</p>
                                         </div>
                                         <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
-                                            <span className="font-semibold text-lg md:text-2xl">{stat.combatTime} min</span>
+                                            <input
+                                                type="number"
+                                                value={editedStats.combatTime?.toString() ?? ""}
+                                                onChange={(e) =>
+                                                    setEditedStats((prevState) => ({
+                                                    ...prevState,
+                                                    combatTime: parseInt(e.target.value),
+                                                    }))
+                                                }
+                                                className="font-semibold text-lg md:text-2xl w-1/2"
+                                            />                                                  
                                             <p className="text-xs font-light text-right">Time In Combat</p>
                                         </div>
                                         <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
-                                            <span className="font-semibold text-lg md:text-2xl">{stat.totalHealingOthers}</span>
+                                            <input
+                                                type="number"
+                                                value={editedStats.totalHealingOthers?.toString() ?? ""}
+                                                onChange={(e) =>
+                                                    setEditedStats((prevState) => ({
+                                                    ...prevState,
+                                                    totalHealingOthers: parseInt(e.target.value),
+                                                    }))
+                                                }
+                                                className="font-semibold text-lg md:text-2xl w-1/2"
+                                            />                                                  
                                             <p className="text-xs font-light text-right">Total HP Healed (Others)</p>
                                         </div>
                                         <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
-                                            <span className="font-semibold text-lg md:text-2xl">{stat.totalHealingSelf}</span>
+                                            <input
+                                                type="number"
+                                                value={editedStats.totalHealingSelf?.toString() ?? ""}
+                                                onChange={(e) =>
+                                                    setEditedStats((prevState) => ({
+                                                    ...prevState,
+                                                    totalHealingSelf: parseInt(e.target.value),
+                                                    }))
+                                                }
+                                                className="font-semibold text-lg md:text-2xl w-1/2"
+                                            />                                                  
                                             <p className="text-xs font-light text-right">Total HP Healed (Self)</p>
                                         </div>
                                         <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
-                                            <span className="font-semibold text-lg md:text-2xl">{stat.natTwenty}</span>
+                                            <input
+                                                type="number"
+                                                value={editedStats.natTwenty?.toString() ?? ""}
+                                                onChange={(e) =>
+                                                    setEditedStats((prevState) => ({
+                                                    ...prevState,
+                                                    natTwenty: parseInt(e.target.value),
+                                                    }))
+                                                }
+                                                className="font-semibold text-lg md:text-2xl w-1/2"
+                                            />                                                  
                                             <p className="text-xs font-light text-right">Nat 20&apos;s Rolled</p>
                                         </div>
                                         <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
-                                            <span className="font-semibold text-lg md:text-2xl">{stat.natOne}</span>
+                                            <input
+                                                type="number"
+                                                value={editedStats.natOne?.toString() ?? ""}
+                                                onChange={(e) =>
+                                                    setEditedStats((prevState) => ({
+                                                    ...prevState,
+                                                    natOne: parseInt(e.target.value),
+                                                    }))
+                                                }
+                                                className="font-semibold text-lg md:text-2xl w-1/2"
+                                            />                                                  
                                             <p className="text-xs font-light text-right">Nat 1&apos;s Rolled</p>
                                         </div>
                                     </div>
