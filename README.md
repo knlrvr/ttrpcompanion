@@ -1,12 +1,12 @@
 <h2 align="center"> TTRPCompanion </h2>
 
-![ttrpc-landing](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/e2bb0dfc-3fcd-4541-ba2b-7d74e893d500)
+![ttrpc-landing](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/b1ef75ef-213e-4b29-8012-a0b282f55ebc)
 
-![ttrpc-null](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/2bab4b8b-1e8d-4e80-a608-a52621eb07ba)
+![ttrpc-null](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/e4e98c7b-33e6-4644-8ff0-49fa97fafc9d)
 
-![ttrpc-create](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/aa38e188-b588-4ac0-9fd1-2a83c231f254)
+![ttrpc-create](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/7a3b726e-9cb2-40ce-bcee-b8c74e1cc33c)
 
-![ttrpc-card](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/1023f98d-80fb-411d-9b37-ff9d1aacb7ed)
+![ttrpc-card](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/96d39fdb-7a62-4b09-9444-e2bf67ac7256)
 
 ## Description
 A full stack app designed to track character stats throughout multiple campaigns. All stats can be updated after creation, except for class & race. Stats include total XP, total time in combat, total damage taken, & more!  Border colors for level, race and class are dependent on input for those fields. There is no limit to the number of created campaigns or characters. 
