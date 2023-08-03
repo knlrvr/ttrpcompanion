@@ -34,7 +34,4 @@ With the rise of D&D's popularity, tools like D&DBeyond are incredibly reliable 
 4. Open `http://localhost:3000` in a browser to view the application
 
 ## Notes 
-> This is an ongoing project! If anyone comes across this, please let me know what you think! I'm also open to community suggestions, so let me know if there's any other functionality you'd like to see in this tool!
-
-## Another Note
-> The styling feels a little too dashboard-y so I'm going to restyle this app into hell and I won't apologize for it. 
+> This is an ongoing project! If anyone comes across this, please let me know what you think! I'm also open to community suggestions, so let me know if there's any other functionality you'd like to see in this tool! This app will also be undergoing gradual restyling. 
