@@ -266,7 +266,7 @@ export const CharacterCard = ({
                                                 }
                                                 className="font-semibold text-lg md:text-2xl w-1/2"
                                             />                                            
-                                            <p className="text-xs font-light text-right">Total Sessions</p>
+                                            <p className="text-xs font-light text-right">Sessions</p>
                                         </div>
                                         <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
                                             <input
@@ -280,7 +280,7 @@ export const CharacterCard = ({
                                                 }
                                                 className="font-semibold text-lg md:text-2xl w-1/2"
                                             />                                             
-                                            <p className="text-xs font-light text-right">Total Time Played</p>
+                                            <p className="text-xs font-light text-right">Time Played</p>
                                         </div>
                                         <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
                                         <input
@@ -294,7 +294,7 @@ export const CharacterCard = ({
                                                 }
                                                 className="font-semibold text-lg md:text-2xl w-1/2"
                                             />                                             
-                                            <p className="text-xs font-light text-right">Total XP</p>
+                                            <p className="text-xs font-light text-right">XP</p>
                                         </div>
 
                                         {/* stats */}
@@ -338,7 +338,7 @@ export const CharacterCard = ({
                                                 }
                                                 className="font-semibold text-lg md:text-2xl w-1/2"
                                             />                                             
-                                            <p className="text-xs font-light text-right">Total Kills</p>
+                                            <p className="text-xs font-light text-right">Kills</p>
                                         </div>
                                         <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
                                             <input
@@ -504,15 +504,15 @@ export const CharacterCard = ({
                                     <div className="grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-4 pt-4">
                                         <div className="border-l-4 border-[#222] rounded-r-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
                                             <span className="font-semibold text-lg md:text-2xl">{stat.totalSessions}</span>
-                                            <p className="text-xs font-light text-right">Total Sessions</p>
+                                            <p className="text-xs font-light text-right">Sessions</p>
                                         </div>
                                         <div className="border-l-4 border-[#222] rounded-r-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
                                             <span className="font-semibold text-lg md:text-2xl">{stat.totalTime} hrs</span>
-                                            <p className="text-xs font-light text-right">Total Time Played</p>
+                                            <p className="text-xs font-light text-right">Time Played</p>
                                         </div>
                                         <div className="border-l-4 border-[#222] rounded-r-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
                                             <span className="font-semibold text-lg md:text-2xl">{stat.totalXp}</span>
-                                            <p className="text-xs font-light text-right">Total XP</p>
+                                            <p className="text-xs font-light text-right">XP</p>
                                         </div>
 
                                         {/* stats */}
@@ -526,7 +526,7 @@ export const CharacterCard = ({
                                         </div>
                                         <div className="border-l-4 border-gray-400 rounded-r-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
                                             <span className="font-semibold text-lg md:text-2xl">{stat.totalKills}</span>
-                                            <p className="text-xs font-light text-right">Total Kills</p>
+                                            <p className="text-xs font-light text-right">Kills</p>
                                         </div>
                                         <div className="border-l-4 border-gray-400 rounded-r-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
                                             <span className="font-semibold text-lg md:text-2xl">{stat.critHits}</span>

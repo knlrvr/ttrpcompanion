@@ -157,7 +157,7 @@ const Content: React.FC = () => {
     <div className="bg-gray-100">
       <div className="max-w-7xl mx-auto min-h-screen flex justify-center items-center px-4">
         
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 p-16 border rounded-lg bg-gray-50 mb-16 shadow-md place-items-center">
+      <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 p-16 border rounded-lg bg-gray-50 mb-16 shadow-md place-items-center">
         <div className="hidden md:block h-full w-full row-span-2 rounded-l-md overflow-hidden">
           <Image
             src="https://images.unsplash.com/photo-1628160634750-a81a2a780805"
@@ -180,7 +180,7 @@ const Content: React.FC = () => {
         </div>
         <div className="flex justify-start">
           <button 
-            className="bg-gray-400 px-4 py-2 rounded-full text-white hover:bg-blue-400 transition duration-200"
+            className="bg-blue-400 px-4 py-2 rounded-full text-white hover:bg-blue-500 transition duration-200"
             onClick={() => void signIn()}
           > Sign In </button>
         </div>
