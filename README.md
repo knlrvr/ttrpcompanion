@@ -25,6 +25,7 @@ With the rise of D&D's popularity, tools like D&DBeyond are incredibly reliable 
 - [NextAuth](https://next-auth.js.org/) (Login via Google)
 - [Prisma](https://www.prisma.io/)
 - [tRPC](https://trpc.io/docs/quickstart)
+- [Supabase](https://supabase.com/) (postgres)
 
 ## Running This Project Yourself 
 1. Clone the project to your machine with `git clone https://github.com/knlrvr/ttrpg-char-stats-v2.git`
