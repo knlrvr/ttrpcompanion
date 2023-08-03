@@ -1,4 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+
+import { useSession } from 'next-auth/react'
 
 import { BsTrash, BsPencilSquare, BsPlusLg, BsDashLg } from 'react-icons/bs'
 
@@ -6,11 +8,8 @@ import { api, type RouterOutputs } from '@/utils/api'
 
 import Modal from 'react-modal'
 
-type Character = RouterOutputs["character"]["getAll"][0];
-
-type CharacterStats = {
-  id: string;
-  title: string;
+interface Stats {
+  id?: string;
   characterId: string;
   level: number;
   charClass: string;
@@ -33,6 +32,12 @@ type CharacterStats = {
   natOne: number;
   totalKo: number;
 };
+
+type CharacterStats = {
+    id: string;
+    title: string;
+    stats: Stats[];
+}
 
 const getBorderColorLevel = (level: number): string => {
     if (level >= 1 && level <= 5) {
@@ -157,14 +162,48 @@ export const CharacterCard = ({
     character, 
     onDelete,
 }: {
-    character: RouterOutputs["character"]['getAll'][0];
+    character: CharacterStats;
     onDelete: () => void;
 }) => {
 
+    const { data: sessionData } = useSession();
+
     const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
-    // to update character
+    // update character 
+    const [isEditMode, setIsEditMode] = useState<boolean>(false);
+    const [editedStats, setEditedStats] = useState<Partial<Stats>>({
+        level: 0,
+    }); // Use Partial<Stats> for editedStats
+    const { data: characters, refetch: refetchCharacters } = api.character.getAll.useQuery(
+        {
+            campaignId: character.id ?? "",
 
+        },
+        {
+          enabled: sessionData?.user !== undefined,
+        }
+    );
+    const updateCharacterStats = api.character.update.useMutation({
+        onSuccess: () => {
+            window.location.reload();
+        },
+    });
+    const handleEditClick = () => {
+        setIsEditMode(true);
+        // Clone the stats object when entering edit mode
+        setEditedStats({ ...character.stats[0] });
+    };
+    const handleUpdateClick = () => {
+        if (editedStats?.id) {
+          // Pass the editedStats state to the mutate function
+            updateCharacterStats.mutateAsync({
+                id: character.stats[0]?.id!,
+                stats: editedStats as Stats, // Cast editedStats to Stats
+            });
+            setIsEditMode(false); // Close the edit mode
+        }
+    };
 
     // to delete character
     const [isDelCharModalOpen, setDelCharModalOpen] = useState(false);
@@ -195,107 +234,235 @@ export const CharacterCard = ({
                     <div className="">
                         {character.stats.map((stat) => (
                             <div key={stat.id}>
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 py-4">
-                                
-                                    {/* general */}
-                                    <div className={`border-l-4 ${getBorderColorLevel(stat.level)} p-4 flex flex-col justify-between bg-gray-50 rounded-r-lg`}
-                                    >
-                                        <p className="text-xs font-light">Level</p>
-                                        <span className="text-lg md:text-2xl font-semibold text-right">
-                                            {stat.level}
-                                        </span>
-                                    </div>
-                                    <div className={`border-l-4 ${getBorderColorRace(stat.charRace)} p-4 flex flex-col justify-between bg-gray-50 rounded-r-lg`}>
-                                        <p className="text-xs font-light">Race</p>
-                                        <span className="text-lg md:text-2xl font-semibold text-right">{stat.charRace}</span>
-                                    </div>
-                                    <div className={`border-l-4 ${getBorderColorClass(stat.charClass)} p-4 flex flex-col justify-between bg-gray-50 rounded-r-lg`}>
-                                        <p className="text-xs font-light">Class</p>
-                                        <span className="text-lg md:text-2xl font-semibold text-right">{stat.charClass}</span>
-                                    </div>
-                                </div>
 
-                                <div className="grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-4 pt-4">
-                                    {/* time & deaths */}
-                                    <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
-                                        <span className="font-semibold text-lg md:text-2xl">{stat.totalSessions}</span>
-                                        <p className="text-xs font-light text-right">Total Sessions</p>
-                                    </div>
-                                    <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
-                                        <span className="font-semibold text-lg md:text-2xl">{stat.totalTime} hrs</span>
-                                        <p className="text-xs font-light text-right">Total Time Played</p>
-                                    </div>
-                                    <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
-                                        <span className="font-semibold text-lg md:text-2xl">{stat.totalXp}</span>
-                                        <p className="text-xs font-light text-right">Total XP</p>
+                                {isEditMode ? (
+                                <div>
+                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 py-4">
+                                        <div
+                                            className={`border-l-4 ${getBorderColorLevel(
+                                            editedStats?.level || 0
+                                            )} p-4 flex flex-col justify-between bg-gray-50 rounded-r-lg`}
+                                        >
+                                            <p className="text-xs font-light">Level</p>
+                                            <input
+                                                type="number"
+                                                value={editedStats.level?.toString() || ""}
+                                                onChange={(e) =>
+                                                    setEditedStats((prevState) => ({
+                                                    ...prevState,
+                                                    level: parseInt(e.target.value),
+                                                    }))
+                                                }
+                                            />
+                                        </div>
+                                        <div className={`border-l-4 ${getBorderColorRace(stat.charRace)} p-4 flex flex-col justify-between bg-gray-50 rounded-r-lg`}>
+                                            <p className="text-xs font-light">Race</p>
+                                            <span className="text-lg md:text-2xl font-semibold text-right">{stat.charRace}</span>
+                                        </div>
+                                        <div className={`border-l-4 ${getBorderColorClass(stat.charClass)} p-4 flex flex-col justify-between bg-gray-50 rounded-r-lg`}>
+                                            <p className="text-xs font-light">Class</p>
+                                            <span className="text-lg md:text-2xl font-semibold text-right">{stat.charClass}</span>
+                                        </div>
                                     </div>
 
-                                    {/* stats */}
-                                    <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
-                                        <span className="font-semibold text-lg md:text-2xl">{stat.dmgTaken}</span>
-                                        <p className="text-xs font-light text-right">Damage Taken</p>
-                                    </div>
-                                    <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
-                                        <span className="font-semibold text-lg md:text-2xl">{stat.dmgDealt}</span>
-                                        <p className="text-xs font-light text-right">Damage Dealt</p>
-                                    </div>
-                                    <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
-                                        <span className="font-semibold text-lg md:text-2xl">{stat.totalKills}</span>
-                                        <p className="text-xs font-light text-right">Total Kills</p>
-                                    </div>
-                                    <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
-                                        <span className="font-semibold text-lg md:text-2xl">{stat.critHits}</span>
-                                        <p className="text-xs font-light text-right">Critical Hits</p>
-                                    </div>
-                                    <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
-                                        <span className="font-semibold text-lg md:text-2xl">{stat.totalDeaths}</span>
-                                        <p className="text-xs font-light text-right">Deaths</p>
-                                    </div>
-                                    <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
-                                        <span className="font-semibold text-lg md:text-2xl">{stat.totalKo}</span>
-                                        <p className="text-xs font-light text-right">Times Unconscious</p>
-                                    </div>
-                                    <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
-                                        <span className="font-semibold text-lg md:text-2xl">{stat.spellsCast}</span>
-                                        <p className="text-xs font-light text-right">Spells Cast</p>
-                                    </div>
-                                    <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
-                                        <span className="font-semibold text-lg md:text-2xl">{stat.turnsNoDmg}</span>
-                                        <p className="text-xs font-light text-right">Avg. Turns Without Damage</p>
-                                    </div>
-                                    <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
-                                        <span className="font-semibold text-lg md:text-2xl">{stat.combatTime} min</span>
-                                        <p className="text-xs font-light text-right">Time In Combat</p>
-                                    </div>
-                                    <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
-                                        <span className="font-semibold text-lg md:text-2xl">{stat.totalHealingOthers}</span>
-                                        <p className="text-xs font-light text-right">Total HP Healed (Others)</p>
-                                    </div>
-                                    <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
-                                        <span className="font-semibold text-lg md:text-2xl">{stat.totalHealingSelf}</span>
-                                        <p className="text-xs font-light text-right">Total HP Healed (Self)</p>
-                                    </div>
-                                    <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
-                                        <span className="font-semibold text-lg md:text-2xl">{stat.natTwenty}</span>
-                                        <p className="text-xs font-light text-right">Nat 20&apos;s Rolled</p>
-                                    </div>
-                                    <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
-                                        <span className="font-semibold text-lg md:text-2xl">{stat.natOne}</span>
-                                        <p className="text-xs font-light text-right">Nat 1&apos;s Rolled</p>
+                                    <div className="grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-4 pt-4">
+                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                            <input
+                                                type="number"
+                                                value={editedStats.totalSessions?.toString() || ""}
+                                                onChange={(e) =>
+                                                    setEditedStats((prevState) => ({
+                                                    ...prevState,
+                                                    totalSessions: parseInt(e.target.value),
+                                                    }))
+                                                }
+                                            />                                            
+                                            <p className="text-xs font-light text-right">Total Sessions</p>
+                                        </div>
+                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                            <span className="font-semibold text-lg md:text-2xl">{stat.totalTime} hrs</span>
+                                            <p className="text-xs font-light text-right">Total Time Played</p>
+                                        </div>
+                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                            <span className="font-semibold text-lg md:text-2xl">{stat.totalXp}</span>
+                                            <p className="text-xs font-light text-right">Total XP</p>
+                                        </div>
+
+                                        {/* stats */}
+                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                            <span className="font-semibold text-lg md:text-2xl">{stat.dmgTaken}</span>
+                                            <p className="text-xs font-light text-right">Damage Taken</p>
+                                        </div>
+                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                            <span className="font-semibold text-lg md:text-2xl">{stat.dmgDealt}</span>
+                                            <p className="text-xs font-light text-right">Damage Dealt</p>
+                                        </div>
+                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                            <span className="font-semibold text-lg md:text-2xl">{stat.totalKills}</span>
+                                            <p className="text-xs font-light text-right">Total Kills</p>
+                                        </div>
+                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                            <span className="font-semibold text-lg md:text-2xl">{stat.critHits}</span>
+                                            <p className="text-xs font-light text-right">Critical Hits</p>
+                                        </div>
+                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                            <span className="font-semibold text-lg md:text-2xl">{stat.totalDeaths}</span>
+                                            <p className="text-xs font-light text-right">Deaths</p>
+                                        </div>
+                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                            <span className="font-semibold text-lg md:text-2xl">{stat.totalKo}</span>
+                                            <p className="text-xs font-light text-right">Times Unconscious</p>
+                                        </div>
+                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                            <span className="font-semibold text-lg md:text-2xl">{stat.spellsCast}</span>
+                                            <p className="text-xs font-light text-right">Spells Cast</p>
+                                        </div>
+                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                            <span className="font-semibold text-lg md:text-2xl">{stat.turnsNoDmg}</span>
+                                            <p className="text-xs font-light text-right">Avg. Turns Without Damage</p>
+                                        </div>
+                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                            <span className="font-semibold text-lg md:text-2xl">{stat.combatTime} min</span>
+                                            <p className="text-xs font-light text-right">Time In Combat</p>
+                                        </div>
+                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                            <span className="font-semibold text-lg md:text-2xl">{stat.totalHealingOthers}</span>
+                                            <p className="text-xs font-light text-right">Total HP Healed (Others)</p>
+                                        </div>
+                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                            <span className="font-semibold text-lg md:text-2xl">{stat.totalHealingSelf}</span>
+                                            <p className="text-xs font-light text-right">Total HP Healed (Self)</p>
+                                        </div>
+                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                            <span className="font-semibold text-lg md:text-2xl">{stat.natTwenty}</span>
+                                            <p className="text-xs font-light text-right">Nat 20&apos;s Rolled</p>
+                                        </div>
+                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                            <span className="font-semibold text-lg md:text-2xl">{stat.natOne}</span>
+                                            <p className="text-xs font-light text-right">Nat 1&apos;s Rolled</p>
+                                        </div>
                                     </div>
                                 </div>
+                                ) : (
+                                <div>
+                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 py-4">                         
+                                        <div className={`border-l-4 ${getBorderColorLevel(stat.level)} p-4 flex flex-col justify-between bg-gray-50 rounded-r-lg`}>
+                                            <p className="text-xs font-light">Level</p>
+                                            <span className="text-lg md:text-2xl font-semibold text-right">
+                                                {stat.level}
+                                            </span>
+                                        </div>
+                                        <div className={`border-l-4 ${getBorderColorRace(stat.charRace)} p-4 flex flex-col justify-between bg-gray-50 rounded-r-lg`}>
+                                            <p className="text-xs font-light">Race</p>
+                                            <span className="text-lg md:text-2xl font-semibold text-right">{stat.charRace}</span>
+                                        </div>
+                                        <div className={`border-l-4 ${getBorderColorClass(stat.charClass)} p-4 flex flex-col justify-between bg-gray-50 rounded-r-lg`}>
+                                            <p className="text-xs font-light">Class</p>
+                                            <span className="text-lg md:text-2xl font-semibold text-right">{stat.charClass}</span>
+                                        </div>
+                                    </div>
+
+                                    <div className="grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-4 pt-4">
+                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                            <span className="font-semibold text-lg md:text-2xl">{stat.totalSessions}</span>
+                                            <p className="text-xs font-light text-right">Total Sessions</p>
+                                        </div>
+                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                            <span className="font-semibold text-lg md:text-2xl">{stat.totalTime} hrs</span>
+                                            <p className="text-xs font-light text-right">Total Time Played</p>
+                                        </div>
+                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                            <span className="font-semibold text-lg md:text-2xl">{stat.totalXp}</span>
+                                            <p className="text-xs font-light text-right">Total XP</p>
+                                        </div>
+
+                                        {/* stats */}
+                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                            <span className="font-semibold text-lg md:text-2xl">{stat.dmgTaken}</span>
+                                            <p className="text-xs font-light text-right">Damage Taken</p>
+                                        </div>
+                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                            <span className="font-semibold text-lg md:text-2xl">{stat.dmgDealt}</span>
+                                            <p className="text-xs font-light text-right">Damage Dealt</p>
+                                        </div>
+                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                            <span className="font-semibold text-lg md:text-2xl">{stat.totalKills}</span>
+                                            <p className="text-xs font-light text-right">Total Kills</p>
+                                        </div>
+                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                            <span className="font-semibold text-lg md:text-2xl">{stat.critHits}</span>
+                                            <p className="text-xs font-light text-right">Critical Hits</p>
+                                        </div>
+                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                            <span className="font-semibold text-lg md:text-2xl">{stat.totalDeaths}</span>
+                                            <p className="text-xs font-light text-right">Deaths</p>
+                                        </div>
+                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                            <span className="font-semibold text-lg md:text-2xl">{stat.totalKo}</span>
+                                            <p className="text-xs font-light text-right">Times Unconscious</p>
+                                        </div>
+                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                            <span className="font-semibold text-lg md:text-2xl">{stat.spellsCast}</span>
+                                            <p className="text-xs font-light text-right">Spells Cast</p>
+                                        </div>
+                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                            <span className="font-semibold text-lg md:text-2xl">{stat.turnsNoDmg}</span>
+                                            <p className="text-xs font-light text-right">Avg. Turns Without Damage</p>
+                                        </div>
+                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                            <span className="font-semibold text-lg md:text-2xl">{stat.combatTime} min</span>
+                                            <p className="text-xs font-light text-right">Time In Combat</p>
+                                        </div>
+                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                            <span className="font-semibold text-lg md:text-2xl">{stat.totalHealingOthers}</span>
+                                            <p className="text-xs font-light text-right">Total HP Healed (Others)</p>
+                                        </div>
+                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                            <span className="font-semibold text-lg md:text-2xl">{stat.totalHealingSelf}</span>
+                                            <p className="text-xs font-light text-right">Total HP Healed (Self)</p>
+                                        </div>
+                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                            <span className="font-semibold text-lg md:text-2xl">{stat.natTwenty}</span>
+                                            <p className="text-xs font-light text-right">Nat 20&apos;s Rolled</p>
+                                        </div>
+                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                            <span className="font-semibold text-lg md:text-2xl">{stat.natOne}</span>
+                                            <p className="text-xs font-light text-right">Nat 1&apos;s Rolled</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                )}
                             </div>
                         ))}
                         <div className="mt-8 flex flex-col space-y-2 md:space-y-0 md:flex-row justify-between text-sm uppercase">
                             <span className="text-gray-300">{character.title}</span>
                             <div className="flex space-x-8">
-                                {/* <button
-                                    className="text-xs uppercase text-white bg-yellow-500 px-4 py-2 rounded-full"
-                                > edit </button> */}
+                                {isEditMode ? (
                                 <button 
-                                    className="text-xs uppercase text-white bg-red-500 px-4 py-2 rounded-full"
+                                    className="text-xs uppercase text-white bg-blue-500 px-4 py-2 rounded-full"
+                                    onClick={handleUpdateClick}
+                                > save </button>
+                                ) : (
+                                <button 
+                                    className="text-xs uppercase text-white bg-green-500 px-[1.1rem] py-2 rounded-full"
+                                    onClick={handleEditClick}
+                                > edit </button>
+                                )}
+                                {isEditMode ? (
+                                <button 
+                                    className="text-xs uppercase text-white bg-yellow-400 px-4 py-2 rounded-full"
+                                    onClick={() => {
+                                        setIsEditMode(false);
+                                        // Reset the editedStats to the original stats when canceling edit
+                                        setEditedStats({ ...character.stats[0] });
+                                    }}
+                                > cancel </button>
+                                ) : (
+                                <button 
+                                    className="text-xs uppercase text-white bg-red-500 px-[1.1rem] py-2 rounded-full"
                                     onClick={openDelCharModal}
                                 > delete </button>
+                                )}
                             </div>
                         </div>
                     </div>
@@ -335,4 +502,4 @@ export const CharacterCard = ({
         </Modal>
         </>
     )
-}
+};

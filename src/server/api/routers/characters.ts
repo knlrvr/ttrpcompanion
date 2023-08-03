@@ -5,7 +5,7 @@ import {
 } from "@/server/api/trpc";
 
 
-const updateCharacterStatsInput = z.object({
+export const updateCharacterStatsInput = z.object({
     id: z.string(),
     stats: z.object({
         level: z.number(),
@@ -98,9 +98,13 @@ export const characterRouter = createTRPCRouter({
     .input(updateCharacterStatsInput)
     .mutation(async ({ ctx, input }) => {
       const { id, stats } = input;
-      return ctx.prisma.characterStats.updateMany({
-        where: { characterId: id },
-        data: stats,
+      return ctx.prisma.characterStats.update({
+        where: { 
+            id
+         },
+        data: {
+            ...stats,
+        }
       });
     }),
 

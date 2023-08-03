@@ -10,7 +10,7 @@ import { Header } from "@/components/Header";
 import { CharacterEditor } from "@/components/CharacterEditor";
 import { CharacterCard } from "@/components/CharacterCard";
 
-import { BsArrowRight, BsExclamationCircle, BsCheckLg, BsTrash } from "react-icons/bs";
+import { BsExclamationCircle, BsCheckLg, BsTrash } from "react-icons/bs";
 
 import Modal from 'react-modal'
 
@@ -160,8 +160,8 @@ const Content: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 p-16 border rounded-lg bg-gray-50 mb-16 shadow-md place-items-center">
         <div className="hidden md:block h-full w-full row-span-2 rounded-l-md overflow-hidden">
           <Image
-            src="https://images.unsplash.com/photo-1605106925746-22f723ca945b"
-            alt="picture"
+            src="https://images.unsplash.com/photo-1551174326-0ca06dacd15c"
+            alt="table top"
             width={1000}
             height={1000}
             className=""
