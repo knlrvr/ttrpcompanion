@@ -1,6 +1,6 @@
 <h2 align="center"> TTRPCompanion </h2>
 
-![ttrpc-landing](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/b1ef75ef-213e-4b29-8012-a0b282f55ebc)
+![ttrpc-landing](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/8eb35a74-4333-4f18-8833-02b3b7948ada)
 
 ![ttrpc-null](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/e4e98c7b-33e6-4644-8ff0-49fa97fafc9d)
 
