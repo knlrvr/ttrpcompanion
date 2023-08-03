@@ -185,7 +185,7 @@ export const CharacterCard = ({
         if (editedStats?.id) {
           // Pass the editedStats state to the mutate function
             void updateCharacterStats.mutateAsync({
-                id: character.stats[0]?.id!,
+                id: character.stats[0]?.id ?? "",
                 stats: editedStats as Stats, // Cast editedStats to Stats
             });
             setIsEditMode(false); // Close the edit mode
