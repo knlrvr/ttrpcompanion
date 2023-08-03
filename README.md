@@ -1,28 +1,36 @@
-# Create T3 App
+<h2 align="center"> TTRPCompanion </h2>
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+![ttrpc-landing](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/e2bb0dfc-3fcd-4541-ba2b-7d74e893d500)
 
-## What's next? How do I make an app with this?
+![ttrpc-null](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/2bab4b8b-1e8d-4e80-a608-a52621eb07ba)
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+![ttrpc-create](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/aa38e188-b588-4ac0-9fd1-2a83c231f254)
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+![ttrpc-card](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/1023f98d-80fb-411d-9b37-ff9d1aacb7ed)
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+## Description
+A full stack app designed to track character stats throughout multiple campaigns. 
 
-## Learn More
+## Purpose
+With the rise of D&D's popularity, tools like D&DBeyond are incredibly reliable in tracking typical character stats like strength & dexterity, or proficiencies and languages. They track stats specific to who, why and what your character is, but they don't have any tools for tracking game related stats, like total Nat 20's rolled or total sessions played, or other character specific stats like total damage dealt, or total time in combat. I think it's important to have tools that bridge the gap between you and your character. So I made one. 
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+## View
+[View Live](https://ttrpg-char-stats-v2.vercel.app/)
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+## Built With
+- [T3](https://create.t3.gg/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Next](https://nextjs.org/docs)
+- [Tailwind](https://tailwindcss.com/docs/installation)
+- [NextAuth](https://next-auth.js.org/) (Login via Google)
+- [Prisma](https://www.prisma.io/)
+- [tRPC](https://trpc.io/docs/quickstart)
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+## Running This Project Yourself 
+1. Clone the project to your machine with `git clone https://github.com/knlrvr/ttrpg-char-stats-v2.git`
+2. On a command line inside of the application's folder, run `npm install`
+3. Again, on a command line inside of the application's folder, run `npm start`
+4. Open `http://localhost:3000` in a browser to view the application
 
-## How do I deploy this?
-
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+## Notes 
+> This is an ongoing project! If anyone comes across this, please let me know what you think! I'm also open to community suggestions, so let me know if there's any other functionality you'd like to see in this tool!  
