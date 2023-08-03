@@ -27,11 +27,5 @@ With the rise of D&D's popularity, tools like D&DBeyond are incredibly reliable 
 - [tRPC](https://trpc.io/docs/quickstart)
 - [Supabase](https://supabase.com/) (postgres)
 
-## Running This Project Yourself 
-1. Clone the project to your machine with `git clone https://github.com/knlrvr/ttrpg-char-stats-v2.git`
-2. On a command line inside of the application's folder, run `npm install`
-3. Again, on a command line inside of the application's folder, run `npm start`
-4. Open `http://localhost:3000` in a browser to view the application
-
 ## Notes 
 > This is an ongoing project! If anyone comes across this, please let me know what you think! I'm also open to community suggestions, so let me know if there's any other functionality you'd like to see in this tool! This app will also be undergoing gradual restyling. 
