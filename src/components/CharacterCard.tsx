@@ -1,7 +1,5 @@
 import { useState } from 'react'
 
-import { useSession } from 'next-auth/react'
-
 import { BsPlusLg, BsDashLg } from 'react-icons/bs'
 
 import { api } from '@/utils/api'
@@ -186,7 +184,7 @@ export const CharacterCard = ({
     const handleUpdateClick = () => {
         if (editedStats?.id) {
           // Pass the editedStats state to the mutate function
-            updateCharacterStats.mutateAsync({
+            void updateCharacterStats.mutateAsync({
                 id: character.stats[0]?.id!,
                 stats: editedStats as Stats, // Cast editedStats to Stats
             });
@@ -229,13 +227,13 @@ export const CharacterCard = ({
                                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 py-4">
                                         <div
                                             className={`border-l-4 ${getBorderColorLevel(
-                                            editedStats?.level || 0
+                                            editedStats?.level ?? 0
                                             )} p-4 flex flex-col justify-between bg-gray-50 rounded-r-lg`}
                                         >
                                             <p className="text-xs font-light">Level</p>
                                             <input
                                                 type="number"
-                                                value={editedStats.level?.toString() || ""}
+                                                value={editedStats.level?.toString() ?? ""}
                                                 onChange={(e) =>
                                                     setEditedStats((prevState) => ({
                                                     ...prevState,
@@ -258,7 +256,7 @@ export const CharacterCard = ({
                                         <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
                                             <input
                                                 type="number"
-                                                value={editedStats.totalSessions?.toString() || ""}
+                                                value={editedStats.totalSessions?.toString() ?? ""}
                                                 onChange={(e) =>
                                                     setEditedStats((prevState) => ({
                                                     ...prevState,
