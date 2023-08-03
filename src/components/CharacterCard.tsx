@@ -164,7 +164,7 @@ export const CharacterCard = ({
     onDelete: () => void;
 }) => {
 
-    const [isExpanded, setIsExpanded] = useState<boolean>(false);
+    const [isExpanded, setIsExpanded] = useState<boolean>(true);
 
     // update character 
     const [isEditMode, setIsEditMode] = useState<boolean>(false);
