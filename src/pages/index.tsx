@@ -160,7 +160,7 @@ const Content: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 p-16 border rounded-lg bg-gray-50 mb-16 shadow-md place-items-center">
         <div className="hidden md:block h-full w-full row-span-2 rounded-l-md overflow-hidden">
           <Image
-            src="https://images.unsplash.com/photo-1491895200222-0fc4a4c35e18"
+            src="https://images.unsplash.com/photo-1628160634750-a81a2a780805"
             alt="table top"
             width={1000}
             height={1000}
