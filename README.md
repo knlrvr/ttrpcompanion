@@ -9,7 +9,7 @@
 ![ttrpc-card](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/96d39fdb-7a62-4b09-9444-e2bf67ac7256)
 
 ## Description
-A full stack app designed to track character stats throughout multiple campaigns. All stats can be updated after creation, except for class & race. Stats include total XP, total time in combat, total damage taken, & more!  Border colors for level, race and class are dependent on input for those fields. There is no limit to the number of created campaigns or characters. 
+A full stack app designed to track character stats throughout multiple campaigns. All stats can be updated after creation, except for class & race. Stats include total XP, total time in combat, total damage taken & more!  Border colors for level, race and class are dependent on input for those fields. There is no limit to the number of created campaigns or characters. 
 
 ## Purpose
 With the rise of D&D's popularity, tools like D&DBeyond are incredibly reliable in tracking typical character stats like strength & dexterity, or proficiencies and languages. They track stats specific to who, why and what your character is, but they don't have any tools for tracking game related stats, like total Nat 20's rolled or total sessions played, or other character specific stats like total damage dealt, or total time in combat. I think it's important to have tools that bridge the gap between you and your character. So I made one. 
