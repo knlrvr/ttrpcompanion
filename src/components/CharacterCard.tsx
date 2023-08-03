@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import { useSession } from 'next-auth/react'
 
-import { BsTrash, BsPencilSquare, BsPlusLg, BsDashLg } from 'react-icons/bs'
+import { BsPlusLg, BsDashLg } from 'react-icons/bs'
 
-import { api, type RouterOutputs } from '@/utils/api'
+import { api } from '@/utils/api'
 
 import Modal from 'react-modal'
 
@@ -166,8 +166,6 @@ export const CharacterCard = ({
     onDelete: () => void;
 }) => {
 
-    const { data: sessionData } = useSession();
-
     const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
     // update character 
@@ -175,15 +173,6 @@ export const CharacterCard = ({
     const [editedStats, setEditedStats] = useState<Partial<Stats>>({
         level: 0,
     }); // Use Partial<Stats> for editedStats
-    const { data: characters, refetch: refetchCharacters } = api.character.getAll.useQuery(
-        {
-            campaignId: character.id ?? "",
-
-        },
-        {
-          enabled: sessionData?.user !== undefined,
-        }
-    );
     const updateCharacterStats = api.character.update.useMutation({
         onSuccess: () => {
             window.location.reload();
