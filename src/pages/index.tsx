@@ -160,7 +160,7 @@ const Content: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 p-16 border rounded-lg bg-gray-50 mb-16 shadow-md place-items-center">
         <div className="hidden md:block h-full w-full row-span-2 rounded-l-md overflow-hidden">
           <Image
-            src="https://images.unsplash.com/photo-1551174326-0ca06dacd15c"
+            src="https://images.unsplash.com/photo-1491895200222-0fc4a4c35e18"
             alt="table top"
             width={1000}
             height={1000}
@@ -174,13 +174,13 @@ const Content: React.FC = () => {
           <h1 className="font-bold text-4xl md:text-5xl">
             TTRPCompanion
           </h1>
-          <p className="font-semibold text-gray-500 pt-16 text-xl">
+          <p className="font-semibold text-gray-500 pt-10 text-xl">
             Sign in now to get started on tracking stats for your characters throughout your campaign!
           </p>
         </div>
         <div className="flex justify-start">
           <button 
-            className="bg-blue-400 px-4 py-2 rounded-full text-white hover:bg-blue-300 transition duration-200"
+            className="bg-gray-400 px-4 py-2 rounded-full text-white hover:bg-blue-400 transition duration-200"
             onClick={() => void signIn()}
           > Sign In </button>
         </div>

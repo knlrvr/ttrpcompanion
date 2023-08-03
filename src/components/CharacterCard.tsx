@@ -164,7 +164,7 @@ export const CharacterCard = ({
     onDelete: () => void;
 }) => {
 
-    const [isExpanded, setIsExpanded] = useState<boolean>(true);
+    const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
     // update character 
     const [isEditMode, setIsEditMode] = useState<boolean>(false);
@@ -502,69 +502,69 @@ export const CharacterCard = ({
                                     </div>
 
                                     <div className="grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-4 pt-4">
-                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                        <div className="border-l-4 border-[#222] rounded-r-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
                                             <span className="font-semibold text-lg md:text-2xl">{stat.totalSessions}</span>
                                             <p className="text-xs font-light text-right">Total Sessions</p>
                                         </div>
-                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                        <div className="border-l-4 border-[#222] rounded-r-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
                                             <span className="font-semibold text-lg md:text-2xl">{stat.totalTime} hrs</span>
                                             <p className="text-xs font-light text-right">Total Time Played</p>
                                         </div>
-                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                        <div className="border-l-4 border-[#222] rounded-r-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
                                             <span className="font-semibold text-lg md:text-2xl">{stat.totalXp}</span>
                                             <p className="text-xs font-light text-right">Total XP</p>
                                         </div>
 
                                         {/* stats */}
-                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                        <div className="border-l-4 border-gray-400 rounded-r-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
                                             <span className="font-semibold text-lg md:text-2xl">{stat.dmgTaken}</span>
                                             <p className="text-xs font-light text-right">Damage Taken</p>
                                         </div>
-                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                        <div className="border-l-4 border-gray-400 rounded-r-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
                                             <span className="font-semibold text-lg md:text-2xl">{stat.dmgDealt}</span>
                                             <p className="text-xs font-light text-right">Damage Dealt</p>
                                         </div>
-                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                        <div className="border-l-4 border-gray-400 rounded-r-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
                                             <span className="font-semibold text-lg md:text-2xl">{stat.totalKills}</span>
                                             <p className="text-xs font-light text-right">Total Kills</p>
                                         </div>
-                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                        <div className="border-l-4 border-gray-400 rounded-r-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
                                             <span className="font-semibold text-lg md:text-2xl">{stat.critHits}</span>
                                             <p className="text-xs font-light text-right">Critical Hits</p>
                                         </div>
-                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                        <div className="border-l-4 border-gray-400 rounded-r-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
                                             <span className="font-semibold text-lg md:text-2xl">{stat.totalDeaths}</span>
                                             <p className="text-xs font-light text-right">Deaths</p>
                                         </div>
-                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                        <div className="border-l-4 border-gray-400 rounded-r-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
                                             <span className="font-semibold text-lg md:text-2xl">{stat.totalKo}</span>
                                             <p className="text-xs font-light text-right">Times Unconscious</p>
                                         </div>
-                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                        <div className="border-l-4 border-gray-400 rounded-r-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
                                             <span className="font-semibold text-lg md:text-2xl">{stat.spellsCast}</span>
                                             <p className="text-xs font-light text-right">Spells Cast</p>
                                         </div>
-                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                        <div className="border-l-4 border-gray-400 rounded-r-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
                                             <span className="font-semibold text-lg md:text-2xl">{stat.turnsNoDmg}</span>
                                             <p className="text-xs font-light text-right">Avg. Turns Without Damage</p>
                                         </div>
-                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                        <div className="border-l-4 border-gray-400 rounded-r-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
                                             <span className="font-semibold text-lg md:text-2xl">{stat.combatTime} min</span>
                                             <p className="text-xs font-light text-right">Time In Combat</p>
                                         </div>
-                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                        <div className="border-l-4 border-gray-400 rounded-r-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
                                             <span className="font-semibold text-lg md:text-2xl">{stat.totalHealingOthers}</span>
                                             <p className="text-xs font-light text-right">Total HP Healed (Others)</p>
                                         </div>
-                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                        <div className="border-l-4 border-gray-400 rounded-r-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
                                             <span className="font-semibold text-lg md:text-2xl">{stat.totalHealingSelf}</span>
                                             <p className="text-xs font-light text-right">Total HP Healed (Self)</p>
                                         </div>
-                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                        <div className="border-l-4 border-gray-400 rounded-r-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
                                             <span className="font-semibold text-lg md:text-2xl">{stat.natTwenty}</span>
                                             <p className="text-xs font-light text-right">Nat 20&apos;s Rolled</p>
                                         </div>
-                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                        <div className="border-l-4 border-gray-400 rounded-r-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
                                             <span className="font-semibold text-lg md:text-2xl">{stat.natOne}</span>
                                             <p className="text-xs font-light text-right">Nat 1&apos;s Rolled</p>
                                         </div>
@@ -578,12 +578,12 @@ export const CharacterCard = ({
                             <div className="flex space-x-8">
                                 {isEditMode ? (
                                 <button 
-                                    className="text-xs uppercase text-white bg-blue-500 px-4 py-2 rounded-full"
+                                    className="text-xs uppercase text-white bg-green-500 px-4 py-2 rounded-full"
                                     onClick={handleUpdateClick}
                                 > save </button>
                                 ) : (
                                 <button 
-                                    className="text-xs uppercase text-white bg-green-500 px-[1.1rem] py-2 rounded-full"
+                                    className="text-xs uppercase text-white bg-blue-500 px-[1.1rem] py-2 rounded-full"
                                     onClick={handleEditClick}
                                 > edit </button>
                                 )}
