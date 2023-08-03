@@ -1,28 +1,31 @@
-# Create T3 App
+<h2 align="center"> TTRPCompanion </h2>
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+![ttrpc-landing](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/b1ef75ef-213e-4b29-8012-a0b282f55ebc)
 
-## What's next? How do I make an app with this?
+![ttrpc-null](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/e4e98c7b-33e6-4644-8ff0-49fa97fafc9d)
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+![ttrpc-create](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/7a3b726e-9cb2-40ce-bcee-b8c74e1cc33c)
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+![ttrpc-card](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/96d39fdb-7a62-4b09-9444-e2bf67ac7256)
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+## Description
+A full stack app designed to track character stats throughout multiple campaigns. All stats can be updated after creation, except for class & race. Stats include total XP, total time in combat, total damage taken & more!  Border colors for level, race and class are dependent on input for those fields. There is no limit to the number of created campaigns or characters. 
 
-## Learn More
+## Purpose
+With the rise of D&D's popularity, tools like D&DBeyond are incredibly reliable in tracking typical character stats like strength & dexterity, or proficiencies and languages. They track stats specific to who, why and what your character is, but they don't have any tools for tracking game related stats, like total Nat 20's rolled or total sessions played, or other character specific stats like total damage dealt, or total time in combat. I think it's important to have tools that bridge the gap between you and your character. So I made one. 
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+## View
+[View Live](https://ttrpg-char-stats-v2.vercel.app/)
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+## Built With
+- [T3](https://create.t3.gg/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Next](https://nextjs.org/docs)
+- [Tailwind](https://tailwindcss.com/docs/installation)
+- [NextAuth](https://next-auth.js.org/) (Login via Google)
+- [Prisma](https://www.prisma.io/)
+- [tRPC](https://trpc.io/docs/quickstart)
+- [Supabase](https://supabase.com/) (postgres)
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
-
-## How do I deploy this?
-
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+## Notes 
+> This is an ongoing project! If anyone comes across this, please let me know what you think! I'm also open to community suggestions, so let me know if there's any other functionality you'd like to see in this tool! This app will also be undergoing gradual restyling. 
