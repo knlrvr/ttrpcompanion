@@ -185,14 +185,14 @@ const Content: React.FC = () => {
     <div className="bg-gray-100">
       <div className="max-w-7xl mx-auto min-h-screen flex justify-center items-center px-4">
         
-      <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 p-16 border rounded-lg bg-gray-50 mb-16 shadow-md place-items-center">
+      <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 px-16 border rounded-lg bg-gray-50 mb-16 shadow-md place-items-center py-8 md:py-4">
         <div className="hidden md:block h-full w-full row-span-2 rounded-l-md overflow-hidden">
           <Image
             src="https://images.unsplash.com/photo-1628160634750-a81a2a780805"
             alt="table top"
             width={1000}
             height={1000}
-            className=""
+            className="p-8"
           />
         </div>
         <div className="flex flex-col">
@@ -219,7 +219,7 @@ const Content: React.FC = () => {
     )}
 
     {sessionData?.user && (
-    <div className="bg-gray-100 min-h-screen">
+    <div className="bg-gray-100 min-h-screen relative">
       <button
         data-drawer-target="default-sidebar"
         data-drawer-toggle="default-sidebar"
@@ -234,13 +234,13 @@ const Content: React.FC = () => {
       </button>
       <aside
         id="default-sidebar"
-        className={`fixed top-0 left-0 z-40 w-64 h-screen transition-transform ${
+        className={`fixed top-0 left-0 z-40 w-4/5 sm:w-64 h-screen transition-transform ${
           isSidebarOpen ? "" : "-translate-x-full sm:translate-x-0"
         }`}
         aria-label="Sidebar"
       >
       <button
-          className="sm:hidden absolute top-2 right-0 p-2 text-[#222] rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-200"
+          className="sm:hidden absolute top-2 right-2 p-2 text-[#222] rounded-lg focus:outline-none focus:ring focus:ring-gray-200"
           onClick={handleCloseSidebar}
         >
           <span className="sr-only">Close sidebar</span>
@@ -248,10 +248,10 @@ const Content: React.FC = () => {
             className="text-3xl" />
         </button>
         {/* Sidebar content here */}
-        <div className="h-full flex flex-col justify-between px-2 py-4 overflow-y-auto bg-gray-100 pt-14 sm:pt-4 border-r-2 border-gray-500 sm:border-none pb-32">
+        <div className="h-full flex flex-col justify-between px-2 py-4 overflow-y-auto bg-gray-100 pt-14 sm:pt-4 border-r-2 border-gray-400 sm:border-none pb-32">
           <div className="h-fit">
             <ul className="font-light m-2 space-y-2">
-              <li className="flex items-center justify-between pb-2 mb-4 border-b border-gray-500">
+              <li className="flex items-center justify-between pb-2 mb-4 border-b border-gray-400">
                   <span className="font-bold">TTRPCompanion</span>
                   {/* <Image
                     src={sessionData?.user.image ?? ""}
@@ -328,32 +328,22 @@ const Content: React.FC = () => {
                   </div>
                 )}
               </li>
+              <li onClick={() => void signOut()}>
+              <div className={`flex items-center p-2 rounded-lg hover:bg-gray-50 group cursor-pointer`}>
+                  <BsChevronBarLeft />
+                  <span className="flex-1 whitespace-nowrap ml-3">Sign Out</span>
+                </div>
+              </li>
             </ul>
-          </div>
-          <div className="flex items-center justify-between border-t border-[#222] pt-4">
-            <div className="text-sm">
-              <button 
-                className="flex items-center gap-2 text-gray-400"
-                onClick={() => void signOut()}
-              > 
-                <BsChevronBarLeft />
-                <span> Sign Out </span>
-              </button>
-            </div>
-            <div className="w-6 h-6">   
-              <Image
-                src={sessionData?.user.image ?? ""}
-                alt={sessionData?.user.name ?? ""}
-                width={1000}
-                height={1000}
-                className="rounded-full"
-              />
-            </div>
           </div>
         </div>
       </aside>
 
       <div className="m-4 sm:ml-64 rounded-xl bg-gray-50 min-h-screen">
+        <div className="px-4 pt-4 flex items-center justify-between">
+          <p className="text-xs text-gray-400 uppercase">Current Campaign:</p>
+          <span className="text-xs text-gray-500">{selectedCampaign?.title}</span>
+        </div>
         {sessionData?.user && campaigns && campaigns.length > 0 && selectedCampaign !== undefined && (
           <div className="p-4 grid grid-cols-1 xl:grid-cols-2 gap-4">
             {characters?.map((character) => (
@@ -364,7 +354,7 @@ const Content: React.FC = () => {
                 />
               </div>
             ))}
-            <div className="flex flex-col xl:col-start-2">
+            <div className="flex flex-col">
               <CharacterEditor
                 onSave={({ title, stats }) => {
                   void createCharacter.mutate({
@@ -374,18 +364,18 @@ const Content: React.FC = () => {
                   });
                 }}
               />
-              <div className="flex justify-end py-16">
-                <button
-                  className="bg-red-500 text-white px-4 py-2 rounded-full text-xs uppercase flex items-center space-x-2"
-                  onClick={handleDeleteCampaign}
-                >
-                  <span>delete campaign</span><BsTrash />
-                </button>
-              </div>
             </div>
-
           </div>
+          
         )}
+        <div className="flex justify-end px-4 pb-4">
+          <button
+            className="bg-red-500 text-white px-4 py-2 rounded-full text-xs uppercase flex items-center space-x-2"
+            onClick={handleDeleteCampaign}
+          >
+            <span>delete campaign</span><BsTrash />
+          </button>
+        </div>
       </div>
     </div>
     )}

@@ -573,8 +573,8 @@ export const CharacterCard = ({
                                 )}
                             </div>
                         ))}
-                        <div className="mt-8 flex flex-col space-y-2 md:space-y-0 md:flex-row justify-between text-sm uppercase">
-                            <span className="text-gray-300">{character.title}</span>
+                        <div className="mt-8 flex flex-col items-end space-y-2 md:space-y-0 md:flex-row justify-between text-sm uppercase">
+                            <span className="text-gray-300">{character.title}'s Stats</span>
                             <div className="flex space-x-8">
                                 {isEditMode ? (
                                 <button 
@@ -615,7 +615,7 @@ export const CharacterCard = ({
             onRequestClose={closeDelCharModal}
             contentLabel="Confirm Delete"
             overlayClassName="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center px-8"
-            className="bg-white p-8 rounded-lg"
+            className="bg-white p-8 rounded-lg sm:ml-64"
         >
             <div className="text-center flex flex-col justify-between space-y-8">
                 <p className="text-sm">

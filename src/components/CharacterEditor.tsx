@@ -139,7 +139,7 @@ export const CharacterEditor = ({
     return (
         <div className="py-6 border p-4 rounded-lg">
             <div className="flex justify-between">
-                <span className="text-gray-400 uppercase text-sm">Create Character</span>
+                <span className="text-gray-400 uppercase text-sm py-3">Create Character</span>
                 <button 
                     className="text-gray-400"
                     onClick={() => setIsExpanded(!isExpanded)}>
