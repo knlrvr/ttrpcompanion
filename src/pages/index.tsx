@@ -330,7 +330,7 @@ const Content: React.FC = () => {
               </li>
             </ul>
           </div>
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between mb-12">
             <div className="text-sm">
               <button 
                 className="flex items-center gap-2 text-gray-400"
@@ -353,7 +353,7 @@ const Content: React.FC = () => {
         </div>
       </aside>
 
-      <div className="m-4 sm:ml-64 rounded-xl bg-gray-50 min-h-screen">
+      <div className="m-4 sm:ml-64 rounded-xl bg-gray-50 min-h-screen mb-16">
         {sessionData?.user && campaigns && campaigns.length > 0 && selectedCampaign !== undefined && (
           <div className="p-4 grid grid-cols-1 xl:grid-cols-2 gap-4">
             {characters?.map((character) => (
