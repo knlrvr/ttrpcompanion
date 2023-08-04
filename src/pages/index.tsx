@@ -1,4 +1,4 @@
-import { signIn, useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import { useState } from "react";
 
 import Head from "next/head";
@@ -9,7 +9,20 @@ import { api, type RouterOutputs } from "@/utils/api";
 import { CharacterEditor } from "@/components/CharacterEditor";
 import { CharacterCard } from "@/components/CharacterCard";
 
-import { BsExclamationCircle, BsTrash, BsPlusLg, BsChevronDown, BsChevronUp, BsHouse } from "react-icons/bs";
+import { 
+  BsExclamationCircle, 
+  BsTrash, 
+  BsChevronDown, 
+  BsChevronUp, 
+  BsHouse, 
+  BsChevronBarLeft, 
+  BsPlusLg,
+  BsPlus
+} from "react-icons/bs";
+
+import {
+  HiOutlineMenuAlt2
+} from 'react-icons/hi'
 
 import Modal from 'react-modal'
 
@@ -149,17 +162,21 @@ const Content: React.FC = () => {
     return selectedCampaign ? campaignId === selectedCampaign.id : false;
   }
 
-  // sidebar menu? 
+  // sidebar menu
   const [isSidebarOpen, setSidebarOpen] = useState<boolean>(false);
-  const [isDropdownOpen, setDropdownOpen] = useState<boolean>(false);
+  const [isCampaignDropdownOpen, setCampaignDropdownOpen] = useState<boolean>(false);
   const toggleSidebar = () => {
     setSidebarOpen(!isSidebarOpen);
   };
   const handleCloseSidebar = () => {
     setSidebarOpen(false);
   };
-  const toggleDropdown = () => {
-    setDropdownOpen(!isDropdownOpen);
+  const toggleCampaignDropdown = () => {
+    setCampaignDropdownOpen(!isCampaignDropdownOpen);
+  };
+  const [isAddDropdownOpen, setAddDropdownOpen] = useState<boolean>(false);
+  const toggleAddDropdown = () => {
+    setAddDropdownOpen(!isAddDropdownOpen);
   };
   
   return (
@@ -202,7 +219,7 @@ const Content: React.FC = () => {
     )}
 
     {sessionData?.user && (
-    <div className="bg-gray-200 min-h-screen">
+    <div className="bg-gray-100 min-h-screen">
       <button
         data-drawer-target="default-sidebar"
         data-drawer-toggle="default-sidebar"
@@ -212,19 +229,8 @@ const Content: React.FC = () => {
         onClick={toggleSidebar}
       >
         <span className="sr-only">Open sidebar</span>
-        <svg
-          className="w-6 h-6"
-          aria-hidden="true"
-          fill="#222"
-          viewBox="0 0 20 20"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            clipRule="evenodd"
-            fillRule="evenodd"
-            d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"
-          ></path>
-        </svg>
+        <HiOutlineMenuAlt2 
+          className="text-3xl" />
       </button>
       <aside
         id="default-sidebar"
@@ -234,28 +240,17 @@ const Content: React.FC = () => {
         aria-label="Sidebar"
       >
       <button
-          className="sm:hidden absolute top-2 left-2 p-2 text-[#222] rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+          className="sm:hidden absolute top-2 right-0 p-2 text-[#222] rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-200"
           onClick={handleCloseSidebar}
         >
           <span className="sr-only">Close sidebar</span>
-          <svg
-            className="w-6 h-6"
-            aria-hidden="true"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              clipRule="evenodd"
-              fillRule="evenodd"
-              d="M14.95 4.95a.999.999 0 0 0-1.414 0L10 8.586 6.464 5.05a.999.999 0 1 0-1.414 1.414L8.586 10l-3.536 3.536a.999.999 0 1 0 1.414 1.414L10 11.414l3.536 3.536a.997.997 0 0 0 .707.293.999.999 0 0 0 .707-1.707L11.414 10l3.536-3.536a.999.999 0 0 0 0-1.414Z"
-            ></path>
-          </svg>
+          <BsChevronBarLeft 
+            className="text-3xl" />
         </button>
         {/* Sidebar content here */}
-        <div className="h-full flex flex-col justify-between px-3 py-4 overflow-y-auto bg-gray-200 pt-12 sm:pt-4 border-r-2 border-gray-500 sm:border-none">
+        <div className="h-full flex flex-col justify-between px-2 py-4 overflow-y-auto bg-gray-100 pt-14 sm:pt-4 border-r-2 border-gray-500 sm:border-none">
           <div className="">
-            <ul className="font-light m-2">
+            <ul className="font-light m-2 space-y-2">
               <li className="flex items-center justify-between pb-2 mb-4 border-b border-gray-500">
                   <span className="font-bold">TTRPCompanion</span>
                   {/* <Image
@@ -267,15 +262,15 @@ const Content: React.FC = () => {
                   /> */}
               </li>
               <li>
-                <div className={`flex items-center p-2 rounded-lg hover:bg-gray-100 group cursor-pointer
-                  ${isDropdownOpen ? 'bg-gray-100 rounded-b-none' : ''}`}
-                  onClick={toggleDropdown}>
+                <div className={`flex items-center p-2 rounded-lg hover:bg-gray-50 group cursor-pointer
+                  ${isCampaignDropdownOpen ? 'bg-gray-50 rounded-b-none' : ''}`}
+                  onClick={toggleCampaignDropdown}>
                   <BsHouse />
                   <span className="flex-1 whitespace-nowrap ml-3">Active Campaigns</span>
-                  {isDropdownOpen ? <BsChevronUp /> : <BsChevronDown />}
+                  {isCampaignDropdownOpen ? <BsChevronUp /> : <BsChevronDown />}
                 </div>
-                {isDropdownOpen && (
-                  <ul className="pl-8 bg-gray-100 rounded-b-lg p-2">
+                {isCampaignDropdownOpen && (
+                  <ul className="pl-9 bg-gray-50 rounded-b-lg p-2">
                     {campaigns?.map((campaign) => (
                       <li key={campaign.id}
                         className={`mb-2 px-3 w-full text-sm
@@ -294,23 +289,82 @@ const Content: React.FC = () => {
                   </ul>
                 )}
               </li>
+              <li>
+                <div className={`flex items-center p-2 rounded-lg hover:bg-gray-50 group cursor-pointer
+                  ${isAddDropdownOpen ? 'bg-gray-50 rounded-b-none' : ''}`}
+                  onClick={toggleAddDropdown}>
+                  <BsPlusLg />
+                  <span className="flex-1 whitespace-nowrap ml-3">Add Campaign</span>
+                  {isAddDropdownOpen ? <BsChevronUp /> : <BsChevronDown />}
+                </div>
+                {isAddDropdownOpen && (
+                  <div className="bg-gray-50 p-2 flex flex-col justify-center items-end gap-2 pb-6 rounded-b-lg">
+                    <input 
+                      id="campaign"
+                      type="text"
+                      placeholder="New Campaign"
+                      className="border rounded-full px-4 py-[0.2rem] flex justify-center w-[98%] bg-gray-50"
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                          createCampaign.mutate({
+                            title: e.currentTarget.value,
+                          });
+                          e.currentTarget.value = "";
+                        }
+                      }}
+                    />
+                    <button
+                      className="bg-blue-500 text-white p-1.5 px-5 rounded-full text-lg uppercase"
+                      onClick={() => {
+                        const titleInput = document.getElementById("campaign") as HTMLInputElement;
+                        if (titleInput) {
+                          handleCreateCampaign(titleInput.value);
+                          titleInput.value = "";
+                        }
+                      }}
+                    >
+                      <BsPlus />
+                    </button> 
+                  </div>
+                )}
+              </li>
             </ul>
+          </div>
+          <div className="flex items-center justify-between">
+            <div className="text-sm">
+              <button 
+                className="flex items-center gap-2 text-gray-400"
+                onClick={() => void signOut()}
+              > 
+                <BsChevronBarLeft />
+                <span> Sign Out </span>
+              </button>
+            </div>
+            <div className="w-6 h-6 cursor-pointer">   
+              <Image
+                src={sessionData?.user.image ?? ""}
+                alt={sessionData?.user.name ?? ""}
+                width={1000}
+                height={1000}
+                className="rounded-full"
+              />
+            </div>
           </div>
         </div>
       </aside>
 
-      <div className="p-4 sm:ml-64">
+      <div className="m-4 ml-64 rounded-xl bg-gray-50 min-h-screen">
         {sessionData?.user && campaigns && campaigns.length > 0 && selectedCampaign !== undefined && (
-          <div className="p-4 rounded-xl bg-gray-100 min-h-screen">
+          <div className="p-4 grid grid-cols-1 xl:grid-cols-2 gap-4">
             {characters?.map((character) => (
-              <div key={character.id} className="pb-4">
+              <div key={character.id} className="">
                 <CharacterCard
                   character={character}
                   onDelete={() => void deleteCharacter.mutate({ id: character.id })}
                 />
               </div>
             ))}
-            <div className="flex flex-col">
+            <div className="flex flex-col xl:col-start-2">
               <CharacterEditor
                 onSave={({ title, stats }) => {
                   void createCharacter.mutate({
@@ -343,7 +397,7 @@ const Content: React.FC = () => {
       onRequestClose={closeDelCampModal}
       contentLabel="Confirm Delete"
       overlayClassName="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center px-8"
-      className="bg-white p-8 rounded-lg"
+      className="bg-white p-4 py-12 rounded-lg sm:ml-64"
     >
     <div className="text-center flex flex-col justify-between space-y-8">
       <p className="text-sm">Are you sure you want to delete this campaign? This action cannot be undone.</p>
