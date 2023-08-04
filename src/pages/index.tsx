@@ -1,5 +1,5 @@
 import { signIn, signOut, useSession } from "next-auth/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Head from "next/head";
 import Link from "next/link";
@@ -8,6 +8,7 @@ import { api, type RouterOutputs } from "@/utils/api";
 
 import { CharacterEditor } from "@/components/CharacterEditor";
 import { CharacterCard } from "@/components/CharacterCard";
+import CampaignTotals from "@/components/CampaignTotals";
 
 import { 
   BsExclamationCircle, 
@@ -46,30 +47,30 @@ export default function Home() {
 type Campaign = RouterOutputs["campaign"]["getAll"][0];
 // type CharacterWithStats = RouterOutputs["character"]["getAll"][0] & {characterStats: CharacterStats[] };
 
-// type CharacterStats = {
-//   id: string;
-//   characterId: string;
-//   level: number;
-//   charClass: string;
-//   charRace: string;
-//   totalSessions: number;
-//   totalTime: number;
-//   totalXp: number;
-//   dmgDealt: number;
-//   dmgTaken: number;
-//   critHits: number;
-//   totalKills: number;
-//   spellsCast: number;
-//   totalHealingOthers: number;
-//   totalHealingSelf: number;
-//   totalDeaths: number;
-//   turnsNoDmg: number;
-//   // added
-//   combatTime: number;
-//   natTwenty: number;
-//   natOne: number;
-//   totalKo: number;
-// };
+type CharacterStats = {
+  id: string;
+  characterId: string;
+  level: number;
+  charClass: string;
+  charRace: string;
+  totalSessions: number;
+  totalTime: number;
+  totalXp: number;
+  dmgDealt: number;
+  dmgTaken: number;
+  critHits: number;
+  totalKills: number;
+  spellsCast: number;
+  totalHealingOthers: number;
+  totalHealingSelf: number;
+  totalDeaths: number;
+  turnsNoDmg: number;
+  // added
+  combatTime: number;
+  natTwenty: number;
+  natOne: number;
+  totalKo: number;
+};
 
 const Content: React.FC = () => {
   const { data: sessionData } = useSession();
@@ -136,7 +137,7 @@ const Content: React.FC = () => {
     }
   };
 
-  const { data: characters, refetch: refetchCharacters } = api.character.getAll.useQuery(
+  const { data: charactersData, refetch: refetchCharacters } = api.character.getAll.useQuery(
     {
       campaignId: selectedCampaign?.id ?? "",
     },
@@ -178,7 +179,10 @@ const Content: React.FC = () => {
   const toggleAddDropdown = () => {
     setAddDropdownOpen(!isAddDropdownOpen);
   };
-  
+
+  const characterStatsArray = charactersData ?? [];
+
+
   return (
     <>
     {!sessionData?.user && (
@@ -328,7 +332,8 @@ const Content: React.FC = () => {
                   </div>
                 )}
               </li>
-              <li onClick={() => void signOut()}>
+              <li className="pt-4"
+                onClick={() => void signOut()}>
               <div className={`flex items-center p-2 rounded-lg hover:bg-gray-50 group cursor-pointer`}>
                   <BsChevronBarLeft />
                   <span className="flex-1 whitespace-nowrap ml-3">Sign Out</span>
@@ -340,42 +345,59 @@ const Content: React.FC = () => {
       </aside>
 
       <div className="m-4 sm:ml-64 rounded-xl bg-gray-50 min-h-screen">
+
+        {sessionData?.user && (!campaigns || campaigns.length > 0 || selectedCampaign === null) && (
         <div className="px-4 pt-4 flex items-center justify-between">
           <p className="text-xs text-gray-400 uppercase">Current Campaign:</p>
           <span className="text-xs text-gray-500">{selectedCampaign?.title}</span>
         </div>
+        )}
+
+          <CampaignTotals characters={characterStatsArray}/>
+
         {sessionData?.user && campaigns && campaigns.length > 0 && selectedCampaign !== undefined && (
-          <div className="p-4 grid grid-cols-1 xl:grid-cols-2 gap-4">
-            {characters?.map((character) => (
-              <div key={character.id} className="">
-                <CharacterCard
-                  character={character}
-                  onDelete={() => void deleteCharacter.mutate({ id: character.id })}
+          <div className="">
+            <p className="text-gray-400 uppercase text-xs pt-4 px-4 pb-2">Players</p>
+            <div className="px-4 pb-4 grid grid-cols-1 xl:grid-cols-2 gap-4">
+              {charactersData?.map((character) => (
+                <div key={character.id} className="">
+                  <CharacterCard
+                    character={character}
+                    onDelete={() => void deleteCharacter.mutate({ id: character.id })}
+                  />
+                </div>
+              ))}
+              <div className="flex flex-col">
+                <CharacterEditor
+                  onSave={({ title, stats }) => {
+                    void createCharacter.mutate({
+                      title,
+                      campaignId: selectedCampaign?.id ?? "",
+                      stats,
+                    });
+                  }}
                 />
+                <div className="flex justify-end py-8">
+                  <button
+                    className="bg-red-500 text-white px-4 py-2 rounded-full text-xs uppercase flex items-center space-x-2"
+                    onClick={handleDeleteCampaign}
+                  >
+                  <span>delete campaign</span><BsTrash />
+                </button>
               </div>
-            ))}
-            <div className="flex flex-col">
-              <CharacterEditor
-                onSave={({ title, stats }) => {
-                  void createCharacter.mutate({
-                    title,
-                    campaignId: selectedCampaign?.id ?? "",
-                    stats,
-                  });
-                }}
-              />
+              </div>
             </div>
           </div>
-          
         )}
-        <div className="flex justify-end px-4 pb-4">
-          <button
-            className="bg-red-500 text-white px-4 py-2 rounded-full text-xs uppercase flex items-center space-x-2"
-            onClick={handleDeleteCampaign}
-          >
-            <span>delete campaign</span><BsTrash />
-          </button>
-        </div>
+
+        {sessionData?.user && (!campaigns || campaigns.length === 0 || selectedCampaign === null) && (
+        <div className="min-h-screen flex flex-col justify-center items-center text-xl">
+          <BsExclamationCircle />
+            <p className="text-xs pt-4">
+              Please select or create a campaign to view character stats
+            </p>
+          </div> 
+        )}
       </div>
     </div>
     )}
