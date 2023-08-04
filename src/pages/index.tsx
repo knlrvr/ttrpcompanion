@@ -353,7 +353,7 @@ const Content: React.FC = () => {
         </div>
       </aside>
 
-      <div className="m-4 ml-64 rounded-xl bg-gray-50 min-h-screen">
+      <div className="m-4 sm:ml-64 rounded-xl bg-gray-50 min-h-screen">
         {sessionData?.user && campaigns && campaigns.length > 0 && selectedCampaign !== undefined && (
           <div className="p-4 grid grid-cols-1 xl:grid-cols-2 gap-4">
             {characters?.map((character) => (
