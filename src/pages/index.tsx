@@ -248,7 +248,7 @@ const Content: React.FC = () => {
             className="text-3xl" />
         </button>
         {/* Sidebar content here */}
-        <div className="h-full flex flex-col justify-between px-2 py-4 overflow-y-auto bg-gray-100 pt-14 sm:pt-4 border-r-2 border-gray-500 sm:border-none">
+        <div className="h-full flex flex-col justify-between px-2 py-4 overflow-y-auto bg-gray-100 pt-14 sm:pt-4 border-r-2 border-gray-500 sm:border-none pb-32">
           <div className="h-fit">
             <ul className="font-light m-2 space-y-2">
               <li className="flex items-center justify-between pb-2 mb-4 border-b border-gray-500">
@@ -330,7 +330,7 @@ const Content: React.FC = () => {
               </li>
             </ul>
           </div>
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between border-t border-[#222] pt-4">
             <div className="text-sm">
               <button 
                 className="flex items-center gap-2 text-gray-400"
@@ -340,7 +340,7 @@ const Content: React.FC = () => {
                 <span> Sign Out </span>
               </button>
             </div>
-            <div className="w-6 h-6 cursor-pointer">   
+            <div className="w-6 h-6">   
               <Image
                 src={sessionData?.user.image ?? ""}
                 alt={sessionData?.user.name ?? ""}
