@@ -57,7 +57,7 @@ const CampaignTotals: React.FC<{ characters: CharacterStats[] }> = ({ characters
 
   useEffect(() => {
     // Fetch the stats here and update the state
-    const fetchCampaignStats = async () => {
+    const fetchCampaignStats = () => {
       try {
         // Calculate the campaign totals
         const campaignStats: Stats = {
@@ -125,11 +125,11 @@ const CampaignTotals: React.FC<{ characters: CharacterStats[] }> = ({ characters
         <span className="text-2xl md:text-3xl font-semibold text-right">{totalStats.totalTime} hrs</span>
       </div>
       <div className='border-l-4 border-cyan-500 p-4 flex flex-col justify-between bg-white rounded-r-lg space-y-4'>
-        <p className="text-sm font-light">Nat 1's Rolled</p>
+        <p className="text-sm font-light">Nat 1&apos;s Rolled</p>
         <span className="text-2xl md:text-3xl font-semibold text-right">{totalStats.natOne}</span>
       </div>
       <div className='border-l-4 border-orange-500 p-4 flex flex-col justify-between bg-white rounded-r-lg space-y-4'>
-        <p className="text-sm font-light">Nat 20's Rolled</p>
+        <p className="text-sm font-light">Nat 20&apos;s Rolled</p>
         <span className="text-2xl md:text-3xl font-semibold text-right">{totalStats.natTwenty}</span>
       </div>
       <div className='border-l-4 border-blue-500 p-4 flex flex-col justify-between bg-white rounded-r-lg space-y-4'>
