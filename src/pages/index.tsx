@@ -6,11 +6,10 @@ import Link from "next/link";
 import Image from 'next/image'
 import { api, type RouterOutputs } from "@/utils/api";
 
-import { Header } from "@/components/Header";
 import { CharacterEditor } from "@/components/CharacterEditor";
 import { CharacterCard } from "@/components/CharacterCard";
 
-import { BsExclamationCircle, BsCheckLg, BsTrash } from "react-icons/bs";
+import { BsExclamationCircle, BsTrash, BsPlusLg, BsChevronDown, BsChevronUp, BsHouse } from "react-icons/bs";
 
 import Modal from 'react-modal'
 
@@ -25,7 +24,6 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main id="main" className="">
-        <Header />
         <Content />
       </main>
     </> 
@@ -150,6 +148,19 @@ const Content: React.FC = () => {
   function isCampaignSelected(campaignId: string, selectedCampaign: Campaign | null): boolean {
     return selectedCampaign ? campaignId === selectedCampaign.id : false;
   }
+
+  // sidebar menu? 
+  const [isSidebarOpen, setSidebarOpen] = useState<boolean>(false);
+  const [isDropdownOpen, setDropdownOpen] = useState<boolean>(false);
+  const toggleSidebar = () => {
+    setSidebarOpen(!isSidebarOpen);
+  };
+  const handleCloseSidebar = () => {
+    setSidebarOpen(false);
+  };
+  const toggleDropdown = () => {
+    setDropdownOpen(!isDropdownOpen);
+  };
   
   return (
     <>
@@ -191,106 +202,139 @@ const Content: React.FC = () => {
     )}
 
     {sessionData?.user && (
-    <div className="bg-gray-100 pb-4">
-      <div className="grid grid-cols-1 md:grid-cols-4 bg-gray-100">
-
-        <div className="w-full flex flex-col">
-          <div className="p-2 pt-2">
-            <div className="flex items-center space-x-2">
-              <input 
-                id="campaign"
-                type="text"
-                placeholder="New Campaign"
-                className="border rounded-full px-4 py-[0.2rem] flex justify-center w-[98%] bg-gray-50"
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") {
-                    createCampaign.mutate({
-                      title: e.currentTarget.value,
-                    });
-                    e.currentTarget.value = "";
-                  }
-                }}
-              />
-              <button
-                className="bg-blue-500 text-white p-1.5 px-2 rounded-full text-lg uppercase"
-                onClick={() => {
-                  const titleInput = document.getElementById("campaign") as HTMLInputElement;
-                  if (titleInput) {
-                    handleCreateCampaign(titleInput.value);
-                    titleInput.value = "";
-                  }
-                }}
-              >
-                <BsCheckLg />
-              </button> 
-            </div>
-
-            <ul className="pt-4 space-y-2">
-              {campaigns?.map((campaign) => (
-                <li key={campaign.id}
-                  className={`mb-2 py-1 px-3 w-full text-lg
-                    ${isCampaignSelected(campaign.id, selectedCampaign) ? "border-l-4 border-[#222]" : "ml-1"}`}>
-                  <Link   
-                    href="#"
-                    className="flex justify-start"
-                    onClick={(evt) => {
-                      evt.preventDefault();
-                      setSelectedCampaign(campaign); 
-                    }}
-                  >
-                    <span className="">
-                      {campaign.title}
-                    </span>
-                  </Link>
-                </li>
-              ))}
+    <div className="bg-gray-200 min-h-screen">
+      <button
+        data-drawer-target="default-sidebar"
+        data-drawer-toggle="default-sidebar"
+        aria-controls="default-sidebar"
+        type="button"
+        className="inline-flex items-center p-2 mt-2 ml-3 text-sm text-black rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+        onClick={toggleSidebar}
+      >
+        <span className="sr-only">Open sidebar</span>
+        <svg
+          className="w-6 h-6"
+          aria-hidden="true"
+          fill="#222"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            clipRule="evenodd"
+            fillRule="evenodd"
+            d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"
+          ></path>
+        </svg>
+      </button>
+      <aside
+        id="default-sidebar"
+        className={`fixed top-0 left-0 z-40 w-64 h-screen transition-transform ${
+          isSidebarOpen ? "" : "-translate-x-full sm:translate-x-0"
+        }`}
+        aria-label="Sidebar"
+      >
+      <button
+          className="sm:hidden absolute top-2 left-2 p-2 text-[#222] rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+          onClick={handleCloseSidebar}
+        >
+          <span className="sr-only">Close sidebar</span>
+          <svg
+            className="w-6 h-6"
+            aria-hidden="true"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              clipRule="evenodd"
+              fillRule="evenodd"
+              d="M14.95 4.95a.999.999 0 0 0-1.414 0L10 8.586 6.464 5.05a.999.999 0 1 0-1.414 1.414L8.586 10l-3.536 3.536a.999.999 0 1 0 1.414 1.414L10 11.414l3.536 3.536a.997.997 0 0 0 .707.293.999.999 0 0 0 .707-1.707L11.414 10l3.536-3.536a.999.999 0 0 0 0-1.414Z"
+            ></path>
+          </svg>
+        </button>
+        {/* Sidebar content here */}
+        <div className="h-full flex flex-col justify-between px-3 py-4 overflow-y-auto bg-gray-200 pt-12 sm:pt-4 border-r-2 border-gray-500 sm:border-none">
+          <div className="">
+            <ul className="font-light m-2">
+              <li className="flex items-center justify-between pb-2 mb-4 border-b border-gray-500">
+                  <span className="font-bold">TTRPCompanion</span>
+                  {/* <Image
+                    src={sessionData?.user.image ?? ""}
+                    alt={sessionData?.user.name ?? ""}
+                    width={1000}
+                    height={1000}
+                    className="rounded-full w-6 h-6"
+                  /> */}
+              </li>
+              <li>
+                <div className={`flex items-center p-2 rounded-lg hover:bg-gray-100 group cursor-pointer
+                  ${isDropdownOpen ? 'bg-gray-100 rounded-b-none' : ''}`}
+                  onClick={toggleDropdown}>
+                  <BsHouse />
+                  <span className="flex-1 whitespace-nowrap ml-3">Active Campaigns</span>
+                  {isDropdownOpen ? <BsChevronUp /> : <BsChevronDown />}
+                </div>
+                {isDropdownOpen && (
+                  <ul className="pl-8 bg-gray-100 rounded-b-lg p-2">
+                    {campaigns?.map((campaign) => (
+                      <li key={campaign.id}
+                        className={`mb-2 px-3 w-full text-sm
+                          ${isCampaignSelected(campaign.id, selectedCampaign) ? "border-l-2 font-semibold border-[#222]" : "ml-0.5"}`}>
+                        <Link   
+                          href="#"
+                          className="flex justify-start"
+                          onClick={(evt) => {
+                            evt.preventDefault();
+                            setSelectedCampaign(campaign); 
+                          }}
+                        > <span> {campaign.title}</span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
             </ul>
           </div>
         </div>
+      </aside>
 
-      {sessionData?.user && campaigns && campaigns.length > 0 && selectedCampaign !== undefined && (
-        <div className="min-h-screen col-span-3 border mx-2 md:mx-0 md:ml-2 md:mt-2 p-4 rounded-lg md:rounded-l-lg md:rounded-r-none bg-gray-50 shadow-md">
-          {characters?.map((character) => (
-            <div key={character.id} className="pb-4">
-              <CharacterCard
-                character={character}
-                onDelete={() => void deleteCharacter.mutate({ id: character.id })}
+      <div className="p-4 sm:ml-64">
+        {sessionData?.user && campaigns && campaigns.length > 0 && selectedCampaign !== undefined && (
+          <div className="p-4 rounded-xl bg-gray-100 min-h-screen">
+            {characters?.map((character) => (
+              <div key={character.id} className="pb-4">
+                <CharacterCard
+                  character={character}
+                  onDelete={() => void deleteCharacter.mutate({ id: character.id })}
+                />
+              </div>
+            ))}
+            <div className="flex flex-col">
+              <CharacterEditor
+                onSave={({ title, stats }) => {
+                  void createCharacter.mutate({
+                    title,
+                    campaignId: selectedCampaign?.id ?? "",
+                    stats,
+                  });
+                }}
               />
+              <div className="flex justify-end py-16">
+                <button
+                  className="bg-red-500 text-white px-4 py-2 rounded-full text-xs uppercase flex items-center space-x-2"
+                  onClick={handleDeleteCampaign}
+                >
+                  <span>delete campaign</span><BsTrash />
+                </button>
+              </div>
             </div>
-          ))}
-          <div className="flex flex-col">
-            <CharacterEditor
-              onSave={({ title, stats }) => {
-                void createCharacter.mutate({
-                  title,
-                  campaignId: selectedCampaign?.id ?? "",
-                  stats,
-                });
-              }}
-            />
-            <div className="flex justify-end py-16">
-              <button
-                className="bg-red-500 text-white px-4 py-2 rounded-full text-xs uppercase flex items-center space-x-2"
-                onClick={handleDeleteCampaign}
-              >
-                <span>delete campaign</span><BsTrash />
-              </button>
-            </div>
-          </div>
-        </div>
-        )} 
 
-        {sessionData?.user && (!campaigns || campaigns.length === 0 || selectedCampaign === null) && (
-        <div className="min-h-screen col-span-3 border mx-2 md:mx-0 md:ml-2 md:mt-2 p-4 pb-36 rounded-lg md:rounded-l-lg md:rounded-r-none bg-gray-50 shadow-lg flex flex-col justify-center items-center text-xl">
-          <BsExclamationCircle />
-            <p className="text-xs pt-4">
-              Please select or create a campaign to view character stats
-            </p>
-          </div> 
+          </div>
         )}
       </div>
     </div>
-  )}
+    )}
 
 
     {/* Modal for delete campaign confirmation */}

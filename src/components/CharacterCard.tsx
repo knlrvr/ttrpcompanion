@@ -203,7 +203,7 @@ export const CharacterCard = ({
 
     return (
         <>
-        <div className="bg-white rounded-xl shadow-md p-4">
+        <div className="bg-white rounded-lg shadow-md p-4 grid">
             <div className="">
                     <div className="text-lg tracking-wide font-bold flex items-center justify-between py-4">
                         <div className="flex items-center text-xl text-[#222]">

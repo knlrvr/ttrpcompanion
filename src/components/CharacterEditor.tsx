@@ -159,7 +159,7 @@ export const CharacterEditor = ({
                             id="name"
                             type="text"
                             placeholder='Character Name'
-                            className="rounded-full px-3 py-[0.1rem] w-full placeholder:text-gray-300"
+                            className="rounded-full px-3 py-[0.1rem] w-full bg-gray-50 placeholder:text-gray-300"
                             value={title}
                             onChange={(e) => setTitle(e.currentTarget.value)}
                         />
@@ -173,7 +173,7 @@ export const CharacterEditor = ({
                             id="level"
                             type="number"
                             placeholder='Level'
-                            className="rounded-full px-3 py-[0.1rem] placeholder:text-gray-300"
+                            className="rounded-full px-3 py-[0.1rem] bg-gray-50 placeholder:text-gray-300"
                             value={level}
                             onChange={(e) => setLevel(e.currentTarget.valueAsNumber)}
                         />
@@ -186,7 +186,7 @@ export const CharacterEditor = ({
                         </label>
                         <select 
                             id="race"
-                            className="rounded-full px-2 py-1 w-full placeholder:text-gray-300"
+                            className="rounded-full px-2 py-1 w-full bg-gray-50 placeholder:text-gray-300"
                             value={charRace}
                             onChange={(e) => setCharRace(e.currentTarget.value)}
                         >
@@ -204,7 +204,7 @@ export const CharacterEditor = ({
                         > class </label>
                         <select
                             id="class"
-                            className="rounded-full px-2 py-1 w-full placeholder:text-gray-300"
+                            className="rounded-full px-2 py-1 w-full bg-gray-50 placeholder:text-gray-300"
                             value={charClass}
                             onChange={(e) => setCharClass(e.currentTarget.value)}
                         >
@@ -231,7 +231,7 @@ export const CharacterEditor = ({
                             id="sessions"
                             type="number"
                             placeholder="Sessions"
-                            className="rounded-full px-3 py-1 placeholder:text-gray-300"
+                            className="rounded-full px-3 py-1 bg-gray-50 placeholder:text-gray-300"
                             value={totalSessions}
                             onChange={(e) => setTotalSessions(e.currentTarget.valueAsNumber)}
                         />
@@ -245,7 +245,7 @@ export const CharacterEditor = ({
                             id="time"
                             type="number"
                             placeholder="Time"
-                            className="rounded-full px-3 py-1 placeholder:text-gray-300"
+                            className="rounded-full px-3 py-1 bg-gray-50 placeholder:text-gray-300"
                             value={totalTime}
                             onChange={(e) => setTotalTime(e.currentTarget.valueAsNumber)}
                         />
@@ -259,7 +259,7 @@ export const CharacterEditor = ({
                             id="time"
                             type="number"
                             placeholder="Time"
-                            className="rounded-full px-3 py-1 placeholder:text-gray-300"
+                            className="rounded-full px-3 py-1 bg-gray-50 placeholder:text-gray-300"
                             value={totalXp}
                             onChange={(e) => setTotalXp(e.currentTarget.valueAsNumber)}
                         />
@@ -272,7 +272,7 @@ export const CharacterEditor = ({
                         <input 
                             type="number"
                             placeholder="Damage Taken"
-                            className="rounded-full px-3 py-1 placeholder:text-gray-300"
+                            className="rounded-full px-3 py-1 bg-gray-50 placeholder:text-gray-300"
                             value={dmgTaken}
                             onChange={(e) => setDmgTaken(e.currentTarget.valueAsNumber)}
                         />
@@ -286,7 +286,7 @@ export const CharacterEditor = ({
                             id="dmgDealt"
                             type="number"
                             placeholder="Damage Dealt"
-                            className="rounded-full px-3 py-1 placeholder:text-gray-300"
+                            className="rounded-full px-3 py-1 bg-gray-50 placeholder:text-gray-300"
                             value={dmgDealt}
                             onChange={(e) => setDmgDealt(e.currentTarget.valueAsNumber)}
                         />
@@ -300,7 +300,7 @@ export const CharacterEditor = ({
                             id="totalKills"
                             type="number"
                             placeholder="Total Kills"
-                            className="rounded-full px-3 py-1 placeholder:text-gray-300"
+                            className="rounded-full px-3 py-1 bg-gray-50 placeholder:text-gray-300"
                             value={totalKills}
                             onChange={(e) => setTotalKills(e.currentTarget.valueAsNumber)}
                         />
@@ -314,7 +314,7 @@ export const CharacterEditor = ({
                             id="critHits"
                             type="number"
                             placeholder="Critical Hits"
-                            className="rounded-full px-3 py-1 placeholder:text-gray-300"
+                            className="rounded-full px-3 py-1 bg-gray-50 placeholder:text-gray-300"
                             value={critHits}
                             onChange={(e) => setCritHits(e.currentTarget.valueAsNumber)}
                         />
@@ -328,7 +328,7 @@ export const CharacterEditor = ({
                             id="totalDeaths"
                             type="number"
                             placeholder="Deaths"
-                            className="rounded-full px-3 py-1 placeholder:text-gray-300"
+                            className="rounded-full px-3 py-1 bg-gray-50 placeholder:text-gray-300"
                             value={totalDeaths}
                             onChange={(e) => setTotalDeaths(e.currentTarget.valueAsNumber)}
                         />
@@ -342,7 +342,7 @@ export const CharacterEditor = ({
                             id="totalKo"
                             type="number"
                             placeholder="Knockouts"
-                            className="rounded-full px-3 py-1 placeholder:text-gray-300"
+                            className="rounded-full px-3 py-1 bg-gray-50 placeholder:text-gray-300"
                             value={totalKo}
                             onChange={(e) => setTotalKo(e.currentTarget.valueAsNumber)}
                         />
@@ -356,7 +356,7 @@ export const CharacterEditor = ({
                             id="spellsCast"
                             type="number"
                             placeholder="Spells Cast"
-                            className="rounded-full px-3 py-1 placeholder:text-gray-300"
+                            className="rounded-full px-3 py-1 bg-gray-50 placeholder:text-gray-300"
                             value={spellsCast}
                             onChange={(e) => setSpellsCast(e.currentTarget.valueAsNumber)}
                         />
@@ -370,7 +370,7 @@ export const CharacterEditor = ({
                             id="turnsNoDmg"
                             type="number"
                             placeholder="Turns Without Damage"
-                            className="rounded-full px-3 py-1 placeholder:text-gray-300"
+                            className="rounded-full px-3 py-1 bg-gray-50 placeholder:text-gray-300"
                             value={turnsNoDmg}
                             onChange={(e) => setTurnsNoDmg(e.currentTarget.valueAsNumber)}
                         />
@@ -384,7 +384,7 @@ export const CharacterEditor = ({
                             id="combatTime"
                             type="number"
                             placeholder="Combat Time"
-                            className="rounded-full px-3 py-1 placeholder:text-gray-300"
+                            className="rounded-full px-3 py-1 bg-gray-50 placeholder:text-gray-300"
                             value={combatTime}
                             onChange={(e) => setCombatTime(e.currentTarget.valueAsNumber)}
                         />
@@ -398,7 +398,7 @@ export const CharacterEditor = ({
                             id="totalHealingOthers"
                             type="number"
                             placeholder="Healing Done"
-                            className="rounded-full px-3 py-1 placeholder:text-gray-300"
+                            className="rounded-full px-3 py-1 bg-gray-50 placeholder:text-gray-300"
                             value={totalHealingOthers}
                             onChange={(e) => setTotalHealingOthers(e.currentTarget.valueAsNumber)}
                         />
@@ -412,7 +412,7 @@ export const CharacterEditor = ({
                             id="totalHealingSelf"
                             type="number"
                             placeholder="Healing Taken"
-                            className="rounded-full px-3 py-1 placeholder:text-gray-300"
+                            className="rounded-full px-3 py-1 bg-gray-50 placeholder:text-gray-300"
                             value={totalHealingSelf}
                             onChange={(e) => setTotalHealingSelf(e.currentTarget.valueAsNumber)}
                         />
@@ -426,7 +426,7 @@ export const CharacterEditor = ({
                             id="natTwenty"
                             type="number"
                             placeholder="Nat 20s"
-                            className="rounded-full px-3 py-1 placeholder:text-gray-300"
+                            className="rounded-full px-3 py-1 bg-gray-50 placeholder:text-gray-300"
                             value={natTwenty}
                             onChange={(e) => setNatTwenty(e.currentTarget.valueAsNumber)}
                         />
@@ -440,7 +440,7 @@ export const CharacterEditor = ({
                             id="natOne"
                             type="number"
                             placeholder="Nat 1s"
-                            className="rounded-full px-3 py-1 placeholder:text-gray-300"
+                            className="rounded-full px-3 py-1 bg-gray-50 placeholder:text-gray-300"
                             value={natOne}
                             onChange={(e) => setNatOne(e.currentTarget.valueAsNumber)}
                         />
