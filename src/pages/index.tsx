@@ -249,7 +249,7 @@ const Content: React.FC = () => {
         </button>
         {/* Sidebar content here */}
         <div className="h-full flex flex-col justify-between px-2 py-4 overflow-y-auto bg-gray-100 pt-14 sm:pt-4 border-r-2 border-gray-500 sm:border-none">
-          <div className="">
+          <div className="h-fit">
             <ul className="font-light m-2 space-y-2">
               <li className="flex items-center justify-between pb-2 mb-4 border-b border-gray-500">
                   <span className="font-bold">TTRPCompanion</span>
@@ -330,7 +330,7 @@ const Content: React.FC = () => {
               </li>
             </ul>
           </div>
-          <div className="flex items-center justify-between mb-12">
+          <div className="flex items-center justify-between">
             <div className="text-sm">
               <button 
                 className="flex items-center gap-2 text-gray-400"
@@ -353,7 +353,7 @@ const Content: React.FC = () => {
         </div>
       </aside>
 
-      <div className="m-4 sm:ml-64 rounded-xl bg-gray-50 min-h-screen mb-16">
+      <div className="m-4 sm:ml-64 rounded-xl bg-gray-50 min-h-screen">
         {sessionData?.user && campaigns && campaigns.length > 0 && selectedCampaign !== undefined && (
           <div className="p-4 grid grid-cols-1 xl:grid-cols-2 gap-4">
             {characters?.map((character) => (
