@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 
+import { useSession } from "next-auth/react";
+
 interface Stats {
   id?: string;
   characterId: string;
@@ -115,6 +117,7 @@ const CampaignTotals: React.FC<{ characters: CharacterStats[] }> = ({ characters
   }
 
   return (
+
     <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
       <div className='border-l-4 border-green-500 p-4 flex flex-col justify-between bg-white rounded-r-lg space-y-4'>
         <p className="text-sm font-light">Total Sessions</p>
