@@ -144,12 +144,12 @@ const CampaignTotals: React.FC<{ characters: CharacterStats[] }> = ({ characters
         <span className="text-2xl md:text-3xl font-semibold text-right">{totalStats.dmgTaken}</span>
       </div>
       <div className='border-l-4 border-purple-500 p-4 flex flex-col justify-between bg-white rounded-r-lg space-y-4'>
-        <p className="text-sm font-light">Total Damage Taken</p>
-        <span className="text-2xl md:text-3xl font-semibold text-right">{totalStats.dmgTaken}</span>
+        <p className="text-sm font-light">Total Kills</p>
+        <span className="text-2xl md:text-3xl font-semibold text-right">{totalStats.totalKills}</span>
       </div>
       <div className='border-l-4 border-rose-400 p-4 flex flex-col justify-between bg-white rounded-r-lg space-y-4'>
-        <p className="text-sm font-light">Total Damage Dealt</p>
-        <span className="text-2xl md:text-3xl font-semibold text-right">{totalStats.dmgTaken}</span>
+        <p className="text-sm font-light">Total Deaths</p>
+        <span className="text-2xl md:text-3xl font-semibold text-right">{totalStats.totalDeaths}</span>
       </div>
       {/* Add other stats accordingly */}
     </div>
