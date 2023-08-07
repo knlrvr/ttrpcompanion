@@ -18,7 +18,8 @@ import {
   BsHouse, 
   BsChevronBarLeft, 
   BsPlusLg,
-  BsPlus
+  BsPlus,
+  BsBoxArrowLeft
 } from "react-icons/bs";
 
 import {
@@ -335,7 +336,7 @@ const Content: React.FC = () => {
               <li className="pt-4"
                 onClick={() => void signOut()}>
               <div className={`flex items-center p-2 rounded-lg hover:bg-gray-50 group cursor-pointer`}>
-                  <BsChevronBarLeft />
+                  <BsBoxArrowLeft />
                   <span className="flex-1 whitespace-nowrap ml-3">Sign Out</span>
                 </div>
               </li>
