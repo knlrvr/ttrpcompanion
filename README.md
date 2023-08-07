@@ -23,7 +23,7 @@ With the rise of D&D's popularity, tools like D&DBeyond are incredibly reliable 
 Features that can be expected in the coming weeks/months are: 
 - Create & track individual characters outside of campaigns.
 - View user profiles, including an overview of current campaigns & characters. (No details available in overview unless the profile belongs to you)
-- (Owner) Invite other users to view your campaign.
+- (Owner) Invite other users to view & play in your campaign.
 - (Owner) Assign permissions to users in your campaign. 
 - (Joined) Add personal characters to a campaign you've been invited to.
 - (Joined) Edit characters that belong to you, but are participating in a campaign that you do not own.
