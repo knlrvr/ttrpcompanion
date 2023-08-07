@@ -357,7 +357,7 @@ const Content: React.FC = () => {
         {sessionData?.user && campaigns && campaigns.length > 0 && selectedCampaign !== undefined && (
           <div className="">
             <CampaignTotals characters={characterStatsArray}/>
-            <p className="text-gray-400 uppercase text-xs pt-4 px-4 pb-2">Players</p>
+            <p className="text-gray-400 uppercase text-xs pt-4 px-4 pb-2">Characters</p>
             <div className="px-4 pb-4 grid grid-cols-1 gap-4">
               {charactersData?.map((character) => (
                 <div key={character.id} className="">
