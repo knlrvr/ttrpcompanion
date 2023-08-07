@@ -1,15 +1,7 @@
 <h2 align="center"> TTRPCompanion </h2>
 
-![ttrpc-landing](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/8eb35a74-4333-4f18-8833-02b3b7948ada)
-
-![ttrpc-null](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/e4e98c7b-33e6-4644-8ff0-49fa97fafc9d)
-
-![ttrpc-create](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/7a3b726e-9cb2-40ce-bcee-b8c74e1cc33c)
-
-![ttrpc-card](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/96d39fdb-7a62-4b09-9444-e2bf67ac7256)
-
 ## Description
-A full stack app designed to track character stats throughout multiple campaigns. All stats can be updated after creation, except for class & race. Stats include total XP, total time in combat, total damage taken & more!  Border colors for level, race and class are dependent on input for those fields. There is no limit to the number of created campaigns or characters. 
+A full stack app designed to track character stats throughout multiple campaigns. All stats can be updated after creation, except for class & race. Stats include total XP, total time in combat, total damage taken & more!  Border colors for level, race and class are dependent on input for those fields. There is no limit to the number of created campaigns or characters. Once a character's stats are created/updated, the campaign totals will update as well, reflecting the totals of all characters in the campaign. 
 
 ## Purpose
 With the rise of D&D's popularity, tools like D&DBeyond are incredibly reliable in tracking typical character stats like strength & dexterity, or proficiencies and languages. They track stats specific to who, why and what your character is, but they don't have any tools for tracking game related stats, like total Nat 20's rolled or total sessions played, or other character specific stats like total damage dealt, or total time in combat. I think it's important to have tools that bridge the gap between you and your character. So I made one. 
@@ -29,3 +21,21 @@ With the rise of D&D's popularity, tools like D&DBeyond are incredibly reliable 
 
 ## Notes 
 > This is an ongoing project! If anyone comes across this, please let me know what you think! I'm also open to community suggestions, so let me know if there's any other functionality you'd like to see in this tool! This app will also be undergoing gradual restyling. 
+
+## Gallery
+![ttrpc-landing-window](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/bc9bf633-b773-4743-94cc-257efa74af2c)
+![ttrpc-default-window](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/a2a3fdd8-45ef-4b5d-83d3-d976f172ef9b)
+![ttrpc-camp-window](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/55fa02c9-ceb8-4692-ad17-ad5774f66639)
+![ttrpc-create-window](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/fa6997e3-1c15-4c71-8237-04811f8b1874)
+![ttrpc-card-window](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/037d0965-3a27-4532-b342-10935f3ca87a)
+![ttrpc-overview-window](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/fb3abf93-b3e8-4e21-aa5f-8545336bd806)
+
+![ttrpc-mobile-1](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/53338f9c-032e-4587-8e47-2489ca2fb9a9)
+![ttrpc-mobile-2](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/9691c2d8-98d7-4d5d-bb93-0323ef4e2f24)
+
+
+
+
+
+
+
