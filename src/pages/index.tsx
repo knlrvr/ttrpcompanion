@@ -358,7 +358,7 @@ const Content: React.FC = () => {
           <div className="">
             <CampaignTotals characters={characterStatsArray}/>
             <p className="text-gray-400 uppercase text-xs pt-4 px-4 pb-2">Players</p>
-            <div className="px-4 pb-4 grid grid-cols-1 xl:grid-cols-2 gap-4">
+            <div className="px-4 pb-4 grid grid-cols-1 gap-4">
               {charactersData?.map((character) => (
                 <div key={character.id} className="">
                   <CharacterCard

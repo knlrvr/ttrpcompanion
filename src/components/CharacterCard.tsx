@@ -54,10 +54,10 @@ type RaceGroup = "Beastfolk" | "Draconian" | "Fae" | "Giantkin" | "Mech" | "Mund
 
 const getBorderColorRace = (race:string): string => {
     const raceGroups: Record<RaceGroup, string> = {
-        Beastfolk: "border-green-400",
+        Beastfolk: "border-green-600",
         Draconian: "border-red-500",
-        Fae: "border-purple-400",
-        Giantkin: "border-orange-400",
+        Fae: "border-purple-500",
+        Giantkin: "border-orange-500",
         Mech: "border-[#222]",
         Mundane: "border-blue-400",
         Planar: "border-blue-500",
