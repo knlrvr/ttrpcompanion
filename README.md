@@ -19,6 +19,16 @@ With the rise of D&D's popularity, tools like D&DBeyond are incredibly reliable 
 - [tRPC](https://trpc.io/docs/quickstart)
 - [Supabase](https://supabase.com/) (postgres)
 
+## The Future of TTRPCompanion
+Features that can be expected in the coming weeks/months are: 
+- Create & track individual characters outside of campaigns.
+- View user profiles, including an overview of current campaigns & characters. (No details available in overview unless the profile belongs to you)
+- (Owner) Invite other users to view your campaign.
+- (Owner) Assign permissions to users in your campaign. 
+- (Joined) Add personal characters to a campaign you've been invited to.
+- (Joined) Edit characters that belong to you, but are participating in a campaign that you do not own.
+- & more!
+
 ## Notes 
 > This is an ongoing project! If anyone comes across this, please let me know what you think! I'm also open to community suggestions, so let me know if there's any other functionality you'd like to see in this tool! This app will also be undergoing gradual restyling. 
 
