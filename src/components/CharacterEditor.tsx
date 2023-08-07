@@ -449,6 +449,7 @@ export const CharacterEditor = ({
 
                 <button 
                     onClick={() => {
+                        setIsExpanded(false);
                         onSave({
                             title, 
                             stats: {
