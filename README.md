@@ -33,6 +33,13 @@ Features that can be expected in the coming weeks/months are:
 > This is an ongoing project! If anyone comes across this, please let me know what you think! I'm also open to community suggestions, so let me know if there's any other functionality you'd like to see in this tool! This app will also be undergoing gradual restyling. 
 
 ## Gallery
+![ttrpc-no-auth](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/33879a59-4250-4a32-b611-cd844f5afc71)
+![ttrpc-no-camp](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/2b658233-d2a7-408b-b3f8-66db9c785d47)
+![ttrpc-no-char](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/4bb37c62-e65d-4400-8f05-54f001bddf76)
+![ttrpc-create](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/fd229b0e-c69f-4655-8786-3a336a06d695)
+![ttrpc-card](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/0016c714-85d6-4467-9150-4d7467661adc)
+![ttrpc-camp-overview](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/f0fb6fa8-0677-476c-9c3c-3644b3ca9ec3)
+
 ![ttrpc-mobile-1](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/32578af0-082d-4eaf-a54e-5f0136388ed3)
 ![ttrpc-mobile-2](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/9b9c2445-7a3a-41cb-8627-c5fecc496ddb)
 
