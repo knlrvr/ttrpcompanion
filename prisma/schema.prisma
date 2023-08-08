@@ -123,4 +123,3 @@ model CharacterStats {
 //     id                  String              @id @default(cuid())
 // }
 
-

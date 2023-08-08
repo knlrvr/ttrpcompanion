@@ -19,7 +19,11 @@ import {
   BsChevronBarLeft, 
   BsPlusLg,
   BsPlus,
-  BsBoxArrowLeft
+  BsBoxArrowLeft,
+  BsBook,
+  BsPerson,
+
+  BsExclamation
 } from "react-icons/bs";
 
 import {
@@ -332,6 +336,24 @@ const Content: React.FC = () => {
                     </button> 
                   </div>
                 )}
+              </li>
+              <li className=""
+                >
+              <div className={`flex items-center p-2 rounded-lg group text-gray-300`}>
+                  <BsBook />
+                  <span className="flex-1 whitespace-nowrap ml-3">Characters</span>
+                  <BsExclamation 
+                    className="text-red-300" />
+                </div>
+              </li>
+              <li className=""
+                >
+              <div className={`flex items-center p-2 rounded-lg group text-gray-300`}>
+                  <BsPerson />
+                  <span className="flex-1 whitespace-nowrap ml-3">My Profile</span>
+                  <BsExclamation 
+                    className="text-red-300" />
+                </div>
               </li>
               <li className="pt-4"
                 onClick={() => void signOut()}>
