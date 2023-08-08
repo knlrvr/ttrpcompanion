@@ -19,22 +19,29 @@ With the rise of D&D's popularity, tools like D&DBeyond are incredibly reliable 
 - [tRPC](https://trpc.io/docs/quickstart)
 - [Supabase](https://supabase.com/) (postgres)
 
+## The Future of TTRPCompanion
+Features that can be expected in the coming weeks/months are: 
+- Create & track individual characters outside of campaigns.
+- View user profiles, including an overview of current campaigns & characters. (No details available in overview unless the profile belongs to you)
+- (**Owner**) Invite other users to view & play in your campaign.
+- (**Owner**) Assign permissions to users in your campaign. 
+- (**Joined**) Add personal characters to a campaign you've been invited to.
+- (**Joined**) Edit characters that belong to you, but are participating in a campaign that you do not own.
+- & more!
+
 ## Notes 
 > This is an ongoing project! If anyone comes across this, please let me know what you think! I'm also open to community suggestions, so let me know if there's any other functionality you'd like to see in this tool! This app will also be undergoing gradual restyling. 
 
 ## Gallery
-![ttrpc-landing-window](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/bc9bf633-b773-4743-94cc-257efa74af2c)
-![ttrpc-default-window](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/a2a3fdd8-45ef-4b5d-83d3-d976f172ef9b)
-![ttrpc-camp-window](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/55fa02c9-ceb8-4692-ad17-ad5774f66639)
-![ttrpc-create-window](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/fa6997e3-1c15-4c71-8237-04811f8b1874)
-![ttrpc-card-window](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/037d0965-3a27-4532-b342-10935f3ca87a)
-![ttrpc-overview-window](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/fb3abf93-b3e8-4e21-aa5f-8545336bd806)
+![ttrpc-no-auth](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/33879a59-4250-4a32-b611-cd844f5afc71)
+![ttrpc-no-camp](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/2b658233-d2a7-408b-b3f8-66db9c785d47)
+![ttrpc-no-char](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/4bb37c62-e65d-4400-8f05-54f001bddf76)
+![ttrpc-create](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/fd229b0e-c69f-4655-8786-3a336a06d695)
+![ttrpc-card](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/0016c714-85d6-4467-9150-4d7467661adc)
+![ttrpc-camp-overview](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/f0fb6fa8-0677-476c-9c3c-3644b3ca9ec3)
 
-![ttrpc-mobile-1](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/53338f9c-032e-4587-8e47-2489ca2fb9a9)
-![ttrpc-mobile-2](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/9691c2d8-98d7-4d5d-bb93-0323ef4e2f24)
-
-
-
+![ttrpc-mobile-1](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/32578af0-082d-4eaf-a54e-5f0136388ed3)
+![ttrpc-mobile-2](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/9b9c2445-7a3a-41cb-8627-c5fecc496ddb)
 
 
 
