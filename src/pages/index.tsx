@@ -50,32 +50,6 @@ export default function Home() {
 }
 
 type Campaign = RouterOutputs["campaign"]["getAll"][0];
-// type CharacterWithStats = RouterOutputs["character"]["getAll"][0] & {characterStats: CharacterStats[] };
-
-// type CharacterStats = {
-//   id: string;
-//   characterId: string;
-//   level: number;
-//   charClass: string;
-//   charRace: string;
-//   totalSessions: number;
-//   totalTime: number;
-//   totalXp: number;
-//   dmgDealt: number;
-//   dmgTaken: number;
-//   critHits: number;
-//   totalKills: number;
-//   spellsCast: number;
-//   totalHealingOthers: number;
-//   totalHealingSelf: number;
-//   totalDeaths: number;
-//   turnsNoDmg: number;
-//   // added
-//   combatTime: number;
-//   natTwenty: number;
-//   natOne: number;
-//   totalKo: number;
-// };
 
 const Content: React.FC = () => {
   const { data: sessionData } = useSession();
@@ -257,11 +231,11 @@ const Content: React.FC = () => {
             className="text-3xl" />
         </button>
         {/* Sidebar content here */}
-        <div className="h-full flex flex-col justify-between px-2 py-4 overflow-y-auto bg-gray-100 pt-14 sm:pt-4 border-r-2 border-gray-400 sm:border-none pb-32">
+        <div className="min-h-screen flex flex-col justify-between px-2 py-4 overflow-y-auto bg-gray-100 pt-14 sm:pt-4 border-r-2 border-gray-400 sm:border-none">
           <div className="h-fit">
             <ul className="font-light m-2 space-y-2">
-              <li className="flex items-center justify-between pb-2 mb-4 border-b border-gray-400">
-                  <span className="font-bold">TTRPCompanion</span>
+              <li className="flex items-center justify-between pb-2 mb-4">
+                  <span className="font-extrabold text-xl">TTRPCompanion</span>
                   {/* <Image
                     src={sessionData?.user.image ?? ""}
                     alt={sessionData?.user.name ?? ""}
@@ -346,21 +320,26 @@ const Content: React.FC = () => {
                     className="text-red-300" />
                 </div>
               </li>
-              <li className=""
-                >
-              <div className={`flex items-center p-2 rounded-lg group text-gray-300`}>
-                  <BsPerson />
-                  <span className="flex-1 whitespace-nowrap ml-3">My Profile</span>
+            </ul>
+          </div>
+          <div className="">
+            <ul>
+              <li className="text-sm flex items-center p-2 rounded-lg group text-gray-300">
+                <Image
+                    src={sessionData?.user.image ?? ""}
+                    alt={sessionData?.user.name ?? ""}
+                    width={1000}
+                    height={1000}
+                    className="rounded-full h-4 w-4"
+                  />
+                  <span className="flex-1 whitespace-nowrap ml-2.5">My Profile</span>
                   <BsExclamation 
                     className="text-red-300" />
-                </div>
               </li>
-              <li className="pt-4"
+              <li className="text-sm flex items-center p-2 rounded-lg hover:bg-gray-50 group cursor-pointer"
                 onClick={() => void signOut()}>
-              <div className={`flex items-center p-2 rounded-lg hover:bg-gray-50 group cursor-pointer`}>
                   <BsBoxArrowLeft />
                   <span className="flex-1 whitespace-nowrap ml-3">Sign Out</span>
-                </div>
               </li>
             </ul>
           </div>
