@@ -346,59 +346,72 @@ const Content: React.FC = () => {
         </div>
       </aside>
 
-      <div className="m-4 sm:ml-64 rounded-xl bg-gray-50 min-h-screen">
+      <div className="m-4 sm:ml-64 rounded-xl bg-gray-50 min-h-screen flex flex-col justify-between">
+        <div>
+          {sessionData?.user && campaigns && campaigns.length > 0 && selectedCampaign !== null && (
+          <div className="px-4 pt-4 flex items-center justify-between">
+            <p className="text-xs text-gray-400 uppercase">Current Campaign:</p>
+            <span className="text-xs text-gray-500">{selectedCampaign?.title}</span>
+          </div>
+          )}
 
-        {sessionData?.user && campaigns && campaigns.length > 0 && selectedCampaign !== null && (
-        <div className="px-4 pt-4 flex items-center justify-between">
-          <p className="text-xs text-gray-400 uppercase">Current Campaign:</p>
-          <span className="text-xs text-gray-500">{selectedCampaign?.title}</span>
-        </div>
-        )}
-
-        {sessionData?.user && campaigns && campaigns.length > 0 && selectedCampaign !== undefined && (
-          <div className="">
-            <CampaignTotals characters={characterStatsArray}/>
-            <p className="text-gray-400 uppercase text-xs pt-4 px-4 pb-2">Characters</p>
-            <div className="px-4 pb-4 grid grid-cols-1 gap-4">
-              {charactersData?.map((character) => (
-                <div key={character.id} className="">
-                  <CharacterCard
-                    character={character}
-                    onDelete={() => void deleteCharacter.mutate({ id: character.id })}
+          {sessionData?.user && campaigns && campaigns.length > 0 && selectedCampaign !== undefined && (
+            <div className="">
+              <CampaignTotals characters={characterStatsArray}/>
+              <p className="text-gray-400 uppercase text-xs pt-4 px-4 pb-2">Characters</p>
+              <div className="px-4 pb-4 grid grid-cols-1 gap-4">
+                {charactersData?.map((character) => (
+                  <div key={character.id} className="">
+                    <CharacterCard
+                      character={character}
+                      onDelete={() => void deleteCharacter.mutate({ id: character.id })}
+                    />
+                  </div>
+                ))}
+                <div className="flex flex-col">
+                  <CharacterEditor
+                    onSave={({ title, stats }) => {
+                      void createCharacter.mutate({
+                        title,
+                        campaignId: selectedCampaign?.id ?? "",
+                        stats,
+                      });
+                    }}
                   />
+                  <div className="flex justify-end py-8">
+                    <button
+                      className="bg-red-500 text-white px-4 py-2 rounded-full text-xs uppercase flex items-center space-x-2"
+                      onClick={handleDeleteCampaign}
+                    >
+                    <span>delete campaign</span><BsTrash />
+                  </button>
                 </div>
-              ))}
-              <div className="flex flex-col">
-                <CharacterEditor
-                  onSave={({ title, stats }) => {
-                    void createCharacter.mutate({
-                      title,
-                      campaignId: selectedCampaign?.id ?? "",
-                      stats,
-                    });
-                  }}
-                />
-                <div className="flex justify-end py-8">
-                  <button
-                    className="bg-red-500 text-white px-4 py-2 rounded-full text-xs uppercase flex items-center space-x-2"
-                    onClick={handleDeleteCampaign}
-                  >
-                  <span>delete campaign</span><BsTrash />
-                </button>
-              </div>
+                </div>
               </div>
             </div>
-          </div>
-        )}
+          )}
 
-        {sessionData?.user && (!campaigns || campaigns.length === 0 || selectedCampaign === null) && (
-          <div className="min-h-screen flex flex-col justify-center items-center text-xl">
-            <BsExclamationCircle />
-            <p className="text-xs pt-4">
-              Please select or create a campaign to view character stats
-            </p>
-          </div> 
-        )}
+          {sessionData?.user && (!campaigns || campaigns.length === 0 || selectedCampaign === null) && (
+            <div className="min-h-screen flex flex-col justify-center items-center text-xl">
+              <BsExclamationCircle />
+              <p className="text-xs pt-4">
+                Please select or create a campaign to view character stats
+              </p>
+            </div> 
+          )}
+        </div>
+
+        {/* remove when mobile menu is fixed */}
+        <div className="p-4 flex justify-end">
+          <button 
+            onClick={() => void signOut()}
+            className="text-xs text-gray-400 flex items-center space-x-2"
+          >
+            <BsBoxArrowLeft />
+            <span>Sign Out</span>
+          </button>
+        </div>
+
       </div>
     </div>
     )}
