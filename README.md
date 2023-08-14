@@ -18,6 +18,7 @@ With the rise of D&D's popularity, tools like D&DBeyond are incredibly reliable 
 - [Prisma](https://www.prisma.io/)
 - [tRPC](https://trpc.io/docs/quickstart)
 - [Supabase](https://supabase.com/) (postgres)
+- [Playwright](https://playwright.dev/docs/intro) (E2E Testing) 
 
 ## The Future of TTRPCompanion
 Features that can be expected in the coming weeks/months are: 
