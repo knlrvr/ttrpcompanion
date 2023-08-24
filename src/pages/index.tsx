@@ -342,7 +342,7 @@ const Content: React.FC = () => {
                   <BsExclamation 
                     className="text-red-300" />
               </li>
-              <li className="text-sm flex items-center p-2 pb-6 rounded-lg hover:bg-gray-50 dark:hover:bg-[#222] group cursor-pointer"
+              <li className="text-sm flex items-center p-2 mb-6 rounded-lg hover:bg-gray-50 dark:hover:bg-[#222] group cursor-pointer"
                 onClick={() => void signOut()}>
                   <BsBoxArrowLeft />
                   <span className="flex-1 whitespace-nowrap ml-3">Sign Out</span>
@@ -413,7 +413,7 @@ const Content: React.FC = () => {
           )}
 
           {sessionData?.user && (!campaigns || campaigns.length === 0 || selectedCampaign === null) && (
-            <div className="min-h-screen flex flex-col justify-center items-center text-xl">
+            <div className="min-h-screen flex flex-col justify-center items-center text-xl text-[#222] dark:text-white">
               <BsExclamationCircle />
               <p className="text-xs pt-4">
                 Please select or create a campaign to view character stats
