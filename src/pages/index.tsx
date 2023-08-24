@@ -342,7 +342,7 @@ const Content: React.FC = () => {
                   <BsExclamation 
                     className="text-red-300" />
               </li>
-              <li className="text-sm flex items-center p-2 rounded-lg hover:bg-gray-50 group cursor-pointer"
+              <li className="text-sm flex items-center p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-[#222] group cursor-pointer"
                 onClick={() => void signOut()}>
                   <BsBoxArrowLeft />
                   <span className="flex-1 whitespace-nowrap ml-3">Sign Out</span>

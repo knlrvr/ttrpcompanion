@@ -204,14 +204,14 @@ export const CharacterCard = ({
     return (
         <>
         <div className="bg-white dark:bg-[#222] rounded-lg shadow-md p-4 grid">
-            <div className="">
+            <div className={isExpanded ? "" : "cursor-pointer"}
+                onClick={() => setIsExpanded(!isExpanded)}>
                     <div className="text-lg tracking-wide font-bold flex items-center justify-between py-4">
                         <div className="flex items-center text-xl text-[#222] dark:text-white">
                             <span>{character.title}</span>
                         </div>
                         <button 
                             className="text-[#222] dark:text-white"
-                            onClick={() => setIsExpanded(!isExpanded)}
                         >
                             {isExpanded ? <BsDashLg /> : <BsPlusLg />}
                         </button>
