@@ -228,33 +228,35 @@ export const CharacterCard = ({
                                         <div
                                             className={`border-l-4 ${getBorderColorLevel(
                                             editedStats?.level ?? 0
-                                            )} p-4 flex flex-col justify-between bg-gray-50 dark:bg-[#333] rounded-r-lg`}
+                                            )} p-4 flex flex-col justify-between bg-gray-50 dark:bg-[#333] dark:bg-opacity-25 rounded-r-lg dark:text-white`}
                                         >
-                                            <p className="text-xs font-light">Level</p>
-                                            <input
-                                                type="number"
-                                                value={editedStats.level?.toString() ?? ""}
-                                                onChange={(e) =>
-                                                    setEditedStats((prevState) => ({
-                                                    ...prevState,
-                                                    level: parseInt(e.target.value),
-                                                    }))
-                                                }
-                                                className="font-semibold text-lg md:text-2xl w-1/2"
-                                            />
+                                            <p className="text-xs font-light text-[#222] dark:text-white">Level</p>
+                                            <div className="flex justify-end">
+                                                <input
+                                                    type="number"
+                                                    value={editedStats.level?.toString() ?? ""}
+                                                    onChange={(e) =>
+                                                        setEditedStats((prevState) => ({
+                                                        ...prevState,
+                                                        level: parseInt(e.target.value),
+                                                        }))
+                                                    }
+                                                    className="font-semibold text-lg md:text-2xl w-1/2 rounded-full px-3 text-right dark:bg-[#444] dark:text-white"
+                                                />
+                                            </div>
                                         </div>
-                                        <div className={`border-l-4 ${getBorderColorRace(stat.charRace)} p-4 flex flex-col justify-between bg-gray-50 rounded-r-lg`}>
+                                        <div className={`border-l-4 ${getBorderColorRace(stat.charRace)} p-4 flex flex-col justify-between bg-gray-50 dark:bg-[#333] dark:bg-opacity-25 rounded-r-lg dark:text-white`}>
                                             <p className="text-xs font-light">Race</p>
                                             <span className="text-lg md:text-2xl font-semibold text-right">{stat.charRace}</span>
                                         </div>
-                                        <div className={`border-l-4 ${getBorderColorClass(stat.charClass)} p-4 flex flex-col justify-between bg-gray-50 rounded-r-lg`}>
+                                        <div className={`border-l-4 ${getBorderColorClass(stat.charClass)} p-4 flex flex-col justify-between bg-gray-50 dark:bg-[#333] dark:bg-opacity-25 rounded-r-lg dark:text-white`}>
                                             <p className="text-xs font-light">Class</p>
                                             <span className="text-lg md:text-2xl font-semibold text-right">{stat.charClass}</span>
                                         </div>
                                     </div>
 
                                     <div className="grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-4 pt-4">
-                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                        <div className="border-l-4 border-[#222] dark:border-white rounded-r-lg p-4 flex flex-col space-y-2 items-end bg-gray-50 dark:bg-[#333] dark:bg-opacity-50">
                                             <input
                                                 type="number"
                                                 value={editedStats.totalSessions?.toString() ?? ""}
@@ -264,11 +266,11 @@ export const CharacterCard = ({
                                                     totalSessions: parseInt(e.target.value),
                                                     }))
                                                 }
-                                                className="font-semibold text-lg md:text-2xl w-1/2"
+                                                className="font-semibold text-lg md:text-2xl w-1/2 rounded-full px-3 text-right dark:bg-[#444] dark:text-white"
                                             />                                            
-                                            <p className="text-xs font-light text-right">Sessions</p>
+                                            <p className="text-xs font-light text-right dark:text-white">Sessions</p>
                                         </div>
-                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                        <div className="border-l-4 border-[#222] dark:border-white rounded-r-lg p-4 flex flex-col space-y-2 items-end bg-gray-50 dark:bg-[#333] dark:bg-opacity-50">
                                             <input
                                                 type="number"
                                                 value={editedStats.totalTime?.toString() ?? ""}
@@ -278,11 +280,11 @@ export const CharacterCard = ({
                                                     totalTime: parseInt(e.target.value),
                                                     }))
                                                 }
-                                                className="font-semibold text-lg md:text-2xl w-1/2"
+                                                className="font-semibold text-lg md:text-2xl w-1/2 rounded-full px-3 text-right dark:bg-[#444] dark:text-white"
                                             />                                             
-                                            <p className="text-xs font-light text-right">Time Played</p>
+                                            <p className="text-xs font-light text-right dark:text-white">Time Played</p>
                                         </div>
-                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                        <div className="border-l-4 border-[#222] dark:border-white rounded-r-lg p-4 flex flex-col space-y-2 items-end bg-gray-50 dark:bg-[#333] dark:bg-opacity-50">
                                         <input
                                                 type="number"
                                                 value={editedStats.totalXp?.toString() ?? ""}
@@ -292,13 +294,13 @@ export const CharacterCard = ({
                                                     totalXp: parseInt(e.target.value),
                                                     }))
                                                 }
-                                                className="font-semibold text-lg md:text-2xl w-1/2"
+                                                className="font-semibold text-lg md:text-2xl w-1/2 rounded-full px-3 text-right dark:bg-[#444] dark:text-white"
                                             />                                             
-                                            <p className="text-xs font-light text-right">XP</p>
+                                            <p className="text-xs font-light text-right dark:text-white">XP</p>
                                         </div>
 
                                         {/* stats */}
-                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                        <div className="border-l-4 border-[#888] rounded-r-lg p-4 flex flex-col space-y-2 items-end bg-gray-50 dark:bg-[#333] dark:bg-opacity-50">
                                             <input
                                                 type="number"
                                                 value={editedStats.dmgTaken?.toString() ?? ""}
@@ -308,11 +310,11 @@ export const CharacterCard = ({
                                                     dmgTaken: parseInt(e.target.value),
                                                     }))
                                                 }
-                                                className="font-semibold text-lg md:text-2xl w-1/2"
+                                                className="font-semibold text-lg md:text-2xl w-1/2 rounded-full px-3 text-right dark:bg-[#444] dark:text-white"
                                             />                                             
-                                            <p className="text-xs font-light text-right">Damage Taken</p>
+                                            <p className="text-xs font-light text-right dark:text-white">Damage Taken</p>
                                         </div>
-                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                        <div className="border-l-4 border-[#888] rounded-r-lg p-4 flex flex-col space-y-2 items-end bg-gray-50 dark:bg-[#333] dark:bg-opacity-50">
                                             <input
                                                 type="number"
                                                 value={editedStats.dmgDealt?.toString() ?? ""}
@@ -322,11 +324,11 @@ export const CharacterCard = ({
                                                     dmgDealt: parseInt(e.target.value),
                                                     }))
                                                 }
-                                                className="font-semibold text-lg md:text-2xl w-1/2"
+                                                className="font-semibold text-lg md:text-2xl w-1/2 rounded-full px-3 text-right dark:bg-[#444] dark:text-white"
                                             />                                             
-                                            <p className="text-xs font-light text-right">Damage Dealt</p>
+                                            <p className="text-xs font-light text-right dark:text-white">Damage Dealt</p>
                                         </div>
-                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                        <div className="border-l-4 border-[#888] rounded-r-lg p-4 flex flex-col space-y-2 items-end bg-gray-50 dark:bg-[#333] dark:bg-opacity-50">
                                             <input
                                                 type="number"
                                                 value={editedStats.totalKills?.toString() ?? ""}
@@ -336,11 +338,11 @@ export const CharacterCard = ({
                                                     totalKills: parseInt(e.target.value),
                                                     }))
                                                 }
-                                                className="font-semibold text-lg md:text-2xl w-1/2"
+                                                className="font-semibold text-lg md:text-2xl w-1/2 rounded-full px-3 text-right dark:bg-[#444] dark:text-white"
                                             />                                             
-                                            <p className="text-xs font-light text-right">Kills</p>
+                                            <p className="text-xs font-light text-right dark:text-white">Kills</p>
                                         </div>
-                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                        <div className="border-l-4 border-[#888] rounded-r-lg p-4 flex flex-col space-y-2 items-end bg-gray-50 dark:bg-[#333] dark:bg-opacity-50">
                                             <input
                                                 type="number"
                                                 value={editedStats.critHits?.toString() ?? ""}
@@ -350,11 +352,11 @@ export const CharacterCard = ({
                                                     critHits: parseInt(e.target.value),
                                                     }))
                                                 }
-                                                className="font-semibold text-lg md:text-2xl w-1/2"
+                                                className="font-semibold text-lg md:text-2xl w-1/2 rounded-full px-3 text-right dark:bg-[#444] dark:text-white"
                                             />                                             
-                                            <p className="text-xs font-light text-right">Critical Hits</p>
+                                            <p className="text-xs font-light text-right dark:text-white">Critical Hits</p>
                                         </div>
-                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                        <div className="border-l-4 border-[#888] rounded-r-lg p-4 flex flex-col space-y-2 items-end bg-gray-50 dark:bg-[#333] dark:bg-opacity-50">
                                             <input
                                                 type="number"
                                                 value={editedStats.totalDeaths?.toString() ?? ""}
@@ -364,11 +366,11 @@ export const CharacterCard = ({
                                                     totalDeaths: parseInt(e.target.value),
                                                     }))
                                                 }
-                                                className="font-semibold text-lg md:text-2xl w-1/2"
+                                                className="font-semibold text-lg md:text-2xl w-1/2 rounded-full px-3 text-right dark:bg-[#444] dark:text-white"
                                             />                                             
-                                            <p className="text-xs font-light text-right">Deaths</p>
+                                            <p className="text-xs font-light text-right dark:text-white">Deaths</p>
                                         </div>
-                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                        <div className="border-l-4 border-[#888] rounded-r-lg p-4 flex flex-col space-y-2 items-end bg-gray-50 dark:bg-[#333] dark:bg-opacity-50">
                                             <input
                                                 type="number"
                                                 value={editedStats.totalKo?.toString() ?? ""}
@@ -378,11 +380,11 @@ export const CharacterCard = ({
                                                     totalKo: parseInt(e.target.value),
                                                     }))
                                                 }
-                                                className="font-semibold text-lg md:text-2xl w-1/2"
+                                                className="font-semibold text-lg md:text-2xl w-1/2 rounded-full px-3 text-right dark:bg-[#444] dark:text-white"
                                             />                                             
-                                            <p className="text-xs font-light text-right">Times Unconscious</p>
+                                            <p className="text-xs font-light text-right dark:text-white">Times Unconscious</p>
                                         </div>
-                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                        <div className="border-l-4 border-[#888] rounded-r-lg p-4 flex flex-col space-y-2 items-end bg-gray-50 dark:bg-[#333] dark:bg-opacity-50">
                                             <input
                                                 type="number"
                                                 value={editedStats.spellsCast?.toString() ?? ""}
@@ -392,11 +394,11 @@ export const CharacterCard = ({
                                                     spellsCast: parseInt(e.target.value),
                                                     }))
                                                 }
-                                                className="font-semibold text-lg md:text-2xl w-1/2"
+                                                className="font-semibold text-lg md:text-2xl w-1/2 rounded-full px-3 text-right dark:bg-[#444] dark:text-white"
                                             />                                                  
-                                            <p className="text-xs font-light text-right">Spells Cast</p>
+                                            <p className="text-xs font-light text-right dark:text-white">Spells Cast</p>
                                         </div>
-                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                        <div className="border-l-4 border-[#888] rounded-r-lg p-4 flex flex-col space-y-2 items-end bg-gray-50 dark:bg-[#333] dark:bg-opacity-50">
                                             <input
                                                 type="number"
                                                 value={editedStats.turnsNoDmg?.toString() ?? ""}
@@ -406,11 +408,11 @@ export const CharacterCard = ({
                                                     turnsNoDmg: parseInt(e.target.value),
                                                     }))
                                                 }
-                                                className="font-semibold text-lg md:text-2xl w-1/2"
+                                                className="font-semibold text-lg md:text-2xl w-1/2 rounded-full px-3 text-right dark:bg-[#444] dark:text-white"
                                             />                                                  
-                                            <p className="text-xs font-light text-right">Avg. Turns Without Damage</p>
+                                            <p className="text-xs font-light text-right dark:text-white">Avg. Turns Without Damage</p>
                                         </div>
-                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                        <div className="border-l-4 border-[#888] rounded-r-lg p-4 flex flex-col space-y-2 items-end bg-gray-50 dark:bg-[#333] dark:bg-opacity-50">
                                             <input
                                                 type="number"
                                                 value={editedStats.combatTime?.toString() ?? ""}
@@ -420,11 +422,11 @@ export const CharacterCard = ({
                                                     combatTime: parseInt(e.target.value),
                                                     }))
                                                 }
-                                                className="font-semibold text-lg md:text-2xl w-1/2"
+                                                className="font-semibold text-lg md:text-2xl w-1/2 rounded-full px-3 text-right dark:bg-[#444] dark:text-white"
                                             />                                                  
-                                            <p className="text-xs font-light text-right">Time In Combat</p>
+                                            <p className="text-xs font-light text-right dark:text-white">Time In Combat</p>
                                         </div>
-                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                        <div className="border-l-4 border-[#888] rounded-r-lg p-4 flex flex-col space-y-2 items-end bg-gray-50 dark:bg-[#333] dark:bg-opacity-50">
                                             <input
                                                 type="number"
                                                 value={editedStats.totalHealingOthers?.toString() ?? ""}
@@ -434,11 +436,11 @@ export const CharacterCard = ({
                                                     totalHealingOthers: parseInt(e.target.value),
                                                     }))
                                                 }
-                                                className="font-semibold text-lg md:text-2xl w-1/2"
+                                                className="font-semibold text-lg md:text-2xl w-1/2 rounded-full px-3 text-right dark:bg-[#444] dark:text-white"
                                             />                                                  
-                                            <p className="text-xs font-light text-right">Total HP Healed (Others)</p>
+                                            <p className="text-xs font-light text-right dark:text-white">Total HP Healed (Others)</p>
                                         </div>
-                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                        <div className="border-l-4 border-[#888] rounded-r-lg p-4 flex flex-col space-y-2 items-end bg-gray-50 dark:bg-[#333] dark:bg-opacity-50">
                                             <input
                                                 type="number"
                                                 value={editedStats.totalHealingSelf?.toString() ?? ""}
@@ -448,11 +450,11 @@ export const CharacterCard = ({
                                                     totalHealingSelf: parseInt(e.target.value),
                                                     }))
                                                 }
-                                                className="font-semibold text-lg md:text-2xl w-1/2"
+                                                className="font-semibold text-lg md:text-2xl w-1/2 rounded-full px-3 text-right dark:bg-[#444] dark:text-white"
                                             />                                                  
-                                            <p className="text-xs font-light text-right">Total HP Healed (Self)</p>
+                                            <p className="text-xs font-light text-right dark:text-white">Total HP Healed (Self)</p>
                                         </div>
-                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                        <div className="border-l-4 border-[#888] rounded-r-lg p-4 flex flex-col space-y-2 items-end bg-gray-50 dark:bg-[#333] dark:bg-opacity-50">
                                             <input
                                                 type="number"
                                                 value={editedStats.natTwenty?.toString() ?? ""}
@@ -462,11 +464,11 @@ export const CharacterCard = ({
                                                     natTwenty: parseInt(e.target.value),
                                                     }))
                                                 }
-                                                className="font-semibold text-lg md:text-2xl w-1/2"
+                                                className="font-semibold text-lg md:text-2xl w-1/2 rounded-full px-3 text-right dark:bg-[#444] dark:text-white"
                                             />                                                  
-                                            <p className="text-xs font-light text-right">Nat 20&apos;s Rolled</p>
+                                            <p className="text-xs font-light text-right dark:text-white">Nat 20&apos;s Rolled</p>
                                         </div>
-                                        <div className="rounded-lg p-4 flex flex-col space-y-2 items-end bg-gray-50">
+                                        <div className="border-l-4 border-[#888] rounded-r-lg p-4 flex flex-col space-y-2 items-end bg-gray-50 dark:bg-[#333] dark:bg-opacity-50">
                                             <input
                                                 type="number"
                                                 value={editedStats.natOne?.toString() ?? ""}
@@ -476,9 +478,9 @@ export const CharacterCard = ({
                                                     natOne: parseInt(e.target.value),
                                                     }))
                                                 }
-                                                className="font-semibold text-lg md:text-2xl w-1/2"
+                                                className="font-semibold text-lg md:text-2xl w-1/2 rounded-full px-3 text-right dark:bg-[#444] dark:text-white"
                                             />                                                  
-                                            <p className="text-xs font-light text-right">Nat 1&apos;s Rolled</p>
+                                            <p className="text-xs font-light text-right dark:text-white">Nat 1&apos;s Rolled</p>
                                         </div>
                                     </div>
                                 </div>
