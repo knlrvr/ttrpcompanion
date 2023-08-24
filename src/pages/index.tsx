@@ -342,23 +342,25 @@ const Content: React.FC = () => {
                   <BsExclamation 
                     className="text-red-300" />
               </li>
-              <li className="text-sm flex items-center p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-[#222] group cursor-pointer"
+              <li className="text-sm flex items-center p-2 pb-6 rounded-lg hover:bg-gray-50 dark:hover:bg-[#222] group cursor-pointer"
                 onClick={() => void signOut()}>
                   <BsBoxArrowLeft />
                   <span className="flex-1 whitespace-nowrap ml-3">Sign Out</span>
               </li>
-              <li className="px-2">
-              {theme === "light" ? (
-                <button
-                  onClick={handleThemeChange}
-                  className="cursor-pointer text-sm"
-                >dark</button>
-                ) : (
-                <button
-                  onClick={handleThemeChange}
-                  className="cursor-pointer text-sm"
-                >light</button>
-              )}
+              <li className={theme === 'dark' ? 'dark ml-2' : 'ml-2'}>
+                <label className="relative inline-flex items-center cursor-pointer">
+                  <input
+                    type="checkbox"
+                    value=""
+                    className="sr-only peer"
+                    onChange={handleThemeChange}
+                    checked={theme === "dark"}
+                  />
+                  <div className="w-11 h-6 bg-gray-300 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-gray-400"></div>
+                  <span className="ml-3 text-sm font-light text-gray-900 dark:text-gray-300">
+                    {theme === "dark" ? "Dark" : "Light"} Theme
+                  </span>
+                </label>
               </li>
             </ul>
           </div>
