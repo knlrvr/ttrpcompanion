@@ -171,7 +171,7 @@ const Content: React.FC = () => {
   return (
     <>
     {!sessionData?.user && (
-    <div className="bg-gray-100 dark:bg-[#111]">
+    <div className="bg-gray-100">
       <div className="max-w-7xl mx-auto min-h-screen flex justify-center items-center px-4">
         
       <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 px-16 border rounded-lg bg-gray-50 mb-16 shadow-md place-items-center py-8 md:py-4">
