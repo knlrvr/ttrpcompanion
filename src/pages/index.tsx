@@ -10,6 +10,8 @@ import { CharacterEditor } from "@/components/CharacterEditor";
 import { CharacterCard } from "@/components/CharacterCard";
 import CampaignTotals from "@/components/CampaignTotals";
 
+import useDarkMode from "@/components/utils/Theme";
+
 import { 
   BsExclamationCircle, 
   BsTrash, 
@@ -161,11 +163,15 @@ const Content: React.FC = () => {
 
   const characterStatsArray = charactersData ?? [];
 
+  const [theme, toggleTheme] = useDarkMode();
+  const handleThemeChange = () => {
+    toggleTheme();
+  };
 
   return (
     <>
     {!sessionData?.user && (
-    <div className="bg-gray-100">
+    <div className="bg-gray-100 dark:bg-[#111]">
       <div className="max-w-7xl mx-auto min-h-screen flex justify-center items-center px-4">
         
       <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 px-16 border rounded-lg bg-gray-50 mb-16 shadow-md place-items-center py-8 md:py-4">
@@ -202,13 +208,13 @@ const Content: React.FC = () => {
     )}
 
     {sessionData?.user && (
-    <div className="bg-gray-100 min-h-screen relative">
+    <div className="bg-gray-100 dark:bg-[#111] min-h-screen relative">
       <button
         data-drawer-target="default-sidebar"
         data-drawer-toggle="default-sidebar"
         aria-controls="default-sidebar"
         type="button"
-        className="inline-flex items-center p-2 mt-2 ml-3 text-sm text-black rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+        className="inline-flex items-center p-2 mt-2 ml-3 text-sm text-[#222] dark:text-white rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
         onClick={toggleSidebar}
       >
         <span className="sr-only">Open sidebar</span>
@@ -223,7 +229,7 @@ const Content: React.FC = () => {
         aria-label="Sidebar"
       >
       <button
-          className="sm:hidden absolute top-2 right-2 p-2 text-[#222] rounded-lg focus:outline-none focus:ring focus:ring-gray-200"
+          className="sm:hidden absolute top-2 right-2 p-2 text-[#222] dark:text-white rounded-lg focus:outline-none focus:ring focus:ring-gray-200"
           onClick={handleCloseSidebar}
         >
           <span className="sr-only">Close sidebar</span>
@@ -231,7 +237,7 @@ const Content: React.FC = () => {
             className="text-3xl" />
         </button>
         {/* Sidebar content here */}
-        <div className="min-h-screen flex flex-col justify-between px-2 py-4 overflow-y-auto bg-gray-100 pt-14 sm:pt-4 border-r-2 border-gray-400 sm:border-none">
+        <div className="min-h-screen flex flex-col justify-between px-2 py-4 overflow-y-auto bg-gray-100 dark:bg-[#111] pt-14 sm:pt-4 border-r-2 border-gray-400 dark:border-[#333] sm:border-none text-[#222] dark:text-white">
           <div className="h-fit">
             <ul className="font-light m-2 space-y-2">
               <li className="flex items-center justify-between pb-2 mb-4">
@@ -245,19 +251,19 @@ const Content: React.FC = () => {
                   /> */}
               </li>
               <li>
-                <div className={`flex items-center p-2 rounded-lg hover:bg-gray-50 group cursor-pointer
-                  ${isCampaignDropdownOpen ? 'bg-gray-50 rounded-b-none' : ''}`}
+                <div className={`flex items-center p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-[#222] group cursor-pointer
+                  ${isCampaignDropdownOpen ? 'bg-gray-50 dark:bg-[#222] rounded-b-none' : ''}`}
                   onClick={toggleCampaignDropdown}>
                   <BsHouse />
                   <span className="flex-1 whitespace-nowrap ml-3">Active Campaigns</span>
                   {isCampaignDropdownOpen ? <BsChevronUp /> : <BsChevronDown />}
                 </div>
                 {isCampaignDropdownOpen && (
-                  <ul className="pl-9 bg-gray-50 rounded-b-lg p-2">
+                  <ul className="pl-9 bg-gray-50 dark:bg-[#222] rounded-b-lg p-2">
                     {campaigns?.map((campaign) => (
                       <li key={campaign.id}
                         className={`mb-2 px-3 w-full text-sm
-                          ${isCampaignSelected(campaign.id, selectedCampaign) ? "border-l-2 font-semibold border-[#222]" : "ml-0.5"}`}>
+                          ${isCampaignSelected(campaign.id, selectedCampaign) ? "border-l-2 font-semibold border-[#222] dark:border-white" : "ml-0.5"}`}>
                         <Link   
                           href="#"
                           className="flex justify-start"
@@ -273,20 +279,20 @@ const Content: React.FC = () => {
                 )}
               </li>
               <li>
-                <div className={`flex items-center p-2 rounded-lg hover:bg-gray-50 group cursor-pointer
-                  ${isAddDropdownOpen ? 'bg-gray-50 rounded-b-none' : ''}`}
+                <div className={`flex items-center p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-[#222] group cursor-pointer
+                  ${isAddDropdownOpen ? 'bg-gray-50 dark:bg-[#222] rounded-b-none' : ''}`}
                   onClick={toggleAddDropdown}>
                   <BsPlusLg />
                   <span className="flex-1 whitespace-nowrap ml-3">Add Campaign</span>
                   {isAddDropdownOpen ? <BsChevronUp /> : <BsChevronDown />}
                 </div>
                 {isAddDropdownOpen && (
-                  <div className="bg-gray-50 p-2 flex flex-col justify-center items-end gap-2 pb-6 rounded-b-lg">
+                  <div className="bg-gray-50 dark:bg-[#222] p-2 flex flex-col justify-center items-end gap-2 pb-6 rounded-b-lg">
                     <input 
                       id="campaign"
                       type="text"
                       placeholder="New Campaign"
-                      className="border rounded-full px-4 py-[0.2rem] flex justify-center w-[98%] bg-gray-50"
+                      className="border rounded-full px-4 py-[0.2rem] flex justify-center w-[98%] bg-gray-50 dark:bg-[#222]"
                       onKeyDown={(e) => {
                         if (e.key === "Enter") {
                           createCampaign.mutate({
@@ -312,8 +318,8 @@ const Content: React.FC = () => {
                 )}
               </li>
               <li className=""
-                >
-              <div className={`flex items-center p-2 rounded-lg group text-gray-300`}>
+                > 
+              <div className={`flex items-center p-2 rounded-lg group text-[#888]`}>
                   <BsBook />
                   <span className="flex-1 whitespace-nowrap ml-3">Characters</span>
                   <BsExclamation 
@@ -324,7 +330,7 @@ const Content: React.FC = () => {
           </div>
           <div className="">
             <ul>
-              <li className="text-sm flex items-center p-2 rounded-lg group text-gray-300">
+              <li className="text-sm flex items-center p-2 rounded-lg group text-[#888]">
                 <Image
                     src={sessionData?.user.image ?? ""}
                     alt={sessionData?.user.name ?? ""}
@@ -341,24 +347,37 @@ const Content: React.FC = () => {
                   <BsBoxArrowLeft />
                   <span className="flex-1 whitespace-nowrap ml-3">Sign Out</span>
               </li>
+              <li className="px-2">
+              {theme === "light" ? (
+                <button
+                  onClick={handleThemeChange}
+                  className="cursor-pointer text-sm"
+                >dark</button>
+                ) : (
+                <button
+                  onClick={handleThemeChange}
+                  className="cursor-pointer text-sm"
+                >light</button>
+              )}
+              </li>
             </ul>
           </div>
         </div>
       </aside>
 
-      <div className="m-4 sm:ml-64 rounded-xl bg-gray-50 min-h-screen flex flex-col justify-between">
+      <div className="m-4 sm:ml-64 rounded-xl bg-gray-50 dark:bg-[#222] dark:bg-opacity-25 min-h-screen flex flex-col justify-between">
         <div>
           {sessionData?.user && campaigns && campaigns.length > 0 && selectedCampaign !== null && (
           <div className="px-4 pt-4 flex items-center justify-between">
-            <p className="text-xs text-gray-400 uppercase">Current Campaign:</p>
-            <span className="text-xs text-gray-500">{selectedCampaign?.title}</span>
+            <p className="text-xs text-[#888] uppercase">Current Campaign:</p>
+            <span className="text-xs text-[#888]">{selectedCampaign?.title}</span>
           </div>
           )}
 
           {sessionData?.user && campaigns && campaigns.length > 0 && selectedCampaign !== undefined && (
             <div className="">
               <CampaignTotals characters={characterStatsArray}/>
-              <p className="text-gray-400 uppercase text-xs pt-4 px-4 pb-2">Characters</p>
+              <p className="text-[#888] uppercase text-xs pt-4 px-4 pb-2">Characters</p>
               <div className="px-4 pb-4 grid grid-cols-1 gap-4">
                 {charactersData?.map((character) => (
                   <div key={character.id} className="">
@@ -405,7 +424,7 @@ const Content: React.FC = () => {
         <div className="p-4 flex justify-end">
           <button 
             onClick={() => void signOut()}
-            className="text-xs text-gray-400 flex items-center space-x-2"
+            className="text-xs text-[#888] flex items-center space-x-2"
           >
             <BsBoxArrowLeft />
             <span>Sign Out</span>

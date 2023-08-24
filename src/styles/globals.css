@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+.light {
+    --bg: #f3f4f6;
+}
+
+.dark {
+    --bg: #111;
+}
+
 body {
-    background-color: #f3f4f6;
+    background-color: var(--bg);
 }
