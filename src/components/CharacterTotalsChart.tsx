@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-
-import { api, type RouterOutputs } from "@/utils/api";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -37,7 +35,14 @@ type CharacterStats = {
     stats: Stats[];
 }
 
-export function CharacterTotalsChart({ statData, chartLabels, backgroundColors, borderColors }: any){
+type CharacterTotalsChartProps = {
+    statData: number[];
+    chartLabels: string[];
+    backgroundColors: string[];
+    borderColors: string[];
+  };
+
+export function CharacterTotalsChart({ statData, chartLabels, backgroundColors, borderColors }: CharacterTotalsChartProps){
     const chartData = {
         labels: chartLabels,
         datasets: [

@@ -126,7 +126,7 @@ export default function CharacterTotals({ characters }: { characters: CharacterS
                 <div className="flex flex-col items-center space-y-2">
                     <CharacterTotalsChart
                         statData={characters.map(character => character.stats[0]?.dmgDealt ?? 0)}
-                        chartLabels={characters.map(character => character.title)}
+                        chartLabels={characters.map(character => character.title ?? "")}
                         backgroundColors={[
                         '#f87171',
                         '#3b82f6',
@@ -150,8 +150,8 @@ export default function CharacterTotals({ characters }: { characters: CharacterS
             {displayDmgTaken && (     
                 <div className="flex flex-col items-center space-y-2">
                     <CharacterTotalsChart
-                        statData={characters.map(character => character.stats[0]?.dmgTaken)}
-                        chartLabels={characters.map(character => character.title)}
+                        statData={characters.map(character => character.stats[0]?.dmgTaken ?? 0)}
+                        chartLabels={characters.map(character => character.title ?? "")}
                         backgroundColors={[
                         '#f87171',
                         '#3b82f6',
@@ -175,8 +175,8 @@ export default function CharacterTotals({ characters }: { characters: CharacterS
             {displayTotalKills && (
                 <div className="flex flex-col items-center space-y-2">
                     <CharacterTotalsChart
-                        statData={characters.map(character => character.stats[0]?.totalKills)}
-                        chartLabels={characters.map(character => character.title)}
+                        statData={characters.map(character => character.stats[0]?.totalKills ?? 0)}
+                        chartLabels={characters.map(character => character.title ?? "")}
                         backgroundColors={[
                         '#f87171',
                         '#3b82f6',
@@ -200,8 +200,8 @@ export default function CharacterTotals({ characters }: { characters: CharacterS
             {displayTotalDeaths && (
                 <div className="flex flex-col items-center space-y-2">
                     <CharacterTotalsChart
-                        statData={characters.map(character => character.stats[0]?.totalDeaths)}
-                        chartLabels={characters.map(character => character.title)}
+                        statData={characters.map(character => character.stats[0]?.totalDeaths ?? 0)}
+                        chartLabels={characters.map(character => character.title ?? "")}
                         backgroundColors={[
                         '#f87171',
                         '#3b82f6',
@@ -225,8 +225,8 @@ export default function CharacterTotals({ characters }: { characters: CharacterS
             {displayTotalNatTwenty && (
                 <div className="flex flex-col items-center space-y-2">
                     <CharacterTotalsChart
-                        statData={characters.map(character => character.stats[0]?.natTwenty)}
-                        chartLabels={characters.map(character => character.title)}
+                        statData={characters.map(character => character.stats[0]?.natTwenty ?? 0)}
+                        chartLabels={characters.map(character => character.title ?? "")}
                         backgroundColors={[
                         '#f87171',
                         '#3b82f6',
@@ -250,8 +250,8 @@ export default function CharacterTotals({ characters }: { characters: CharacterS
             {displayTotalNatOne && (
                 <div className="flex flex-col items-center space-y-2">
                     <CharacterTotalsChart
-                        statData={characters.map(character => character.stats[0]?.natOne)}
-                        chartLabels={characters.map(character => character.title)}
+                        statData={characters.map(character => character.stats[0]?.natOne ?? 0)}
+                        chartLabels={characters.map(character => character.title ?? "")}
                         backgroundColors={[
                         '#f87171',
                         '#3b82f6',
