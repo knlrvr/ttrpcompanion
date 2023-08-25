@@ -116,16 +116,16 @@ const CampaignTotals: React.FC<{ characters: CharacterStats[] }> = ({ characters
 
   return (
 
-    <div className="p-4 grid grid-cols-2 xl:grid-cols-4 gap-4">
-      <div className='border-l-4 border-green-500 p-4 flex flex-col justify-between bg-white dark:bg-[#222] text-[#222] dark:text-white rounded-r-lg space-y-4'>
+    <div className="p-4 grid grid-cols-2 gap-4">
+      <div className='border-l-4 border-red-400 p-4 flex flex-col justify-between bg-white dark:bg-[#222] text-[#222] dark:text-white rounded-r-lg space-y-4'>
         <p className="text-sm font-light">Total Sessions</p>
         <span className="text-xl md:text-3xl font-semibold text-right">{totalStats.totalSessions}</span>
       </div>
-      <div className='border-l-4 border-yellow-400 p-4 flex flex-col justify-between bg-white dark:bg-[#222] text-[#222] dark:text-white rounded-r-lg space-y-4'>
+      <div className='border-l-4 border-blue-500 p-4 flex flex-col justify-between bg-white dark:bg-[#222] text-[#222] dark:text-white rounded-r-lg space-y-4'>
         <p className="text-sm font-light">Total Time Played</p>
         <span className="text-xl md:text-3xl font-semibold text-right">{totalStats.totalTime} hrs</span>
       </div>
-      <div className='border-l-4 border-cyan-500 p-4 flex flex-col justify-between bg-white dark:bg-[#222] text-[#222] dark:text-white rounded-r-lg space-y-4'>
+      {/* <div className='border-l-4 border-cyan-500 p-4 flex flex-col justify-between bg-white dark:bg-[#222] text-[#222] dark:text-white rounded-r-lg space-y-4'>
         <p className="text-sm font-light">Total Damage Dealt</p>
         <span className="text-xl md:text-3xl font-semibold text-right">{totalStats.dmgDealt}</span>
       </div>
@@ -148,7 +148,7 @@ const CampaignTotals: React.FC<{ characters: CharacterStats[] }> = ({ characters
       <div className='border-l-4 border-rose-400 p-4 flex flex-col justify-between bg-white dark:bg-[#222] text-[#222] dark:text-white rounded-r-lg space-y-4'>
         <p className="text-sm font-light">Nat 1&apos;s Rolled</p>
         <span className="text-xl md:text-3xl font-semibold text-right">{totalStats.natOne}</span>
-      </div>
+      </div> */}
       {/* Add other stats accordingly */}
     </div>
   );

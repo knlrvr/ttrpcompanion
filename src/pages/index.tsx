@@ -33,6 +33,7 @@ import {
 } from 'react-icons/hi'
 
 import Modal from 'react-modal'
+import CharacterTotals from "@/components/CharacterTotals";
 
 Modal.setAppElement('main')
 
@@ -260,7 +261,7 @@ const Content: React.FC = () => {
                 </div>
                 {isCampaignDropdownOpen && (
                   <ul className="pl-9 bg-gray-50 dark:bg-[#222] rounded-b-lg p-2">
-                    {campaigns?.map((campaign) => (
+                    {campaigns?.map((campaign: any) => (
                       <li key={campaign.id}
                         className={`mb-2 px-3 w-full text-sm
                           ${isCampaignSelected(campaign.id, selectedCampaign) ? "border-l-2 font-semibold border-[#222] dark:border-white" : "ml-0.5"}`}>
@@ -378,7 +379,8 @@ const Content: React.FC = () => {
 
           {sessionData?.user && campaigns && campaigns.length > 0 && selectedCampaign !== undefined && (
             <div className="">
-              <CampaignTotals characters={characterStatsArray}/>
+              <CampaignTotals characters={characterStatsArray} />
+              <CharacterTotals characters={characterStatsArray} />
               <p className="text-[#888] uppercase text-xs pt-4 px-4 pb-2">Characters</p>
               <div className="px-4 pb-4 grid grid-cols-1 gap-4">
                 {charactersData?.map((character) => (
