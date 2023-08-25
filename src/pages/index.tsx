@@ -23,8 +23,6 @@ import {
   BsPlus,
   BsBoxArrowLeft,
   BsBook,
-  BsPerson,
-
   BsExclamation
 } from "react-icons/bs";
 
@@ -261,7 +259,7 @@ const Content: React.FC = () => {
                 </div>
                 {isCampaignDropdownOpen && (
                   <ul className="pl-9 bg-gray-50 dark:bg-[#222] rounded-b-lg p-2">
-                    {campaigns?.map((campaign: any) => (
+                    {campaigns?.map((campaign) => (
                       <li key={campaign.id}
                         className={`mb-2 px-3 w-full text-sm
                           ${isCampaignSelected(campaign.id, selectedCampaign) ? "border-l-2 font-semibold border-[#222] dark:border-white" : "ml-0.5"}`}>
