@@ -240,7 +240,7 @@ const Content: React.FC = () => {
           <div className="h-fit">
             <ul className="font-light m-2 space-y-2">
               <li className="flex items-center justify-between pb-2 mb-4">
-                  <span className="font-extrabold text-xl">TTRPCompanion</span>
+                  <span className="font-extrabold text-xl pl-2">TTRPCompanion</span>
                   {/* <Image
                     src={sessionData?.user.image ?? ""}
                     alt={sessionData?.user.name ?? ""}

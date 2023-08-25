@@ -40,7 +40,7 @@ type CharacterTotalsChartProps = {
     chartLabels: string[];
     backgroundColors: string[];
     borderColors: string[];
-  };
+};
 
 export function CharacterTotalsChart({ statData, chartLabels, backgroundColors, borderColors }: CharacterTotalsChartProps){
     const chartData = {
@@ -60,11 +60,15 @@ export function CharacterTotalsChart({ statData, chartLabels, backgroundColors, 
             legend: {
                 display: false,
             },
+            textCenter: {
+                display: true,
+                text: `oi`
+            }
         },
     };
 
     return (
-        <div className="flex justify-center max-h-[10rem]">
+        <div className="flex justify-center max-h-[10rem] lg:max-h-[12rem]">
             <Doughnut data={chartData} options={chartOptions} />
         </div>
     );

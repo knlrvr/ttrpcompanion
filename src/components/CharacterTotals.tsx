@@ -39,7 +39,29 @@ type Stats = {
 export default function CharacterTotals({ characters }: { characters: CharacterStats[] }) {
 
     const [isLoading, setIsLoading] = useState(true);
-    const [totalStats, setTotalStats] = useState<Stats>();
+
+    const [totalStats, setTotalStats] = useState<Stats>({
+        characterId: "campaignTotal",
+        level: 0,
+        charClass: "",
+        charRace: "",
+        totalSessions: 0,
+        totalTime: 0,
+        totalXp: 0,
+        dmgDealt: 0,
+        dmgTaken: 0,
+        critHits: 0,
+        totalKills: 0,
+        spellsCast: 0,
+        totalHealingOthers: 0,
+        totalHealingSelf: 0,
+        totalDeaths: 0,
+        turnsNoDmg: 0,
+        combatTime: 0,
+        natTwenty: 0,
+        natOne: 0,
+        totalKo: 0,
+      });
   
     useEffect(() => {
       // Fetch the stats here and update the state
@@ -121,7 +143,7 @@ export default function CharacterTotals({ characters }: { characters: CharacterS
     );
 
     return (
-        <div className="p-4 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-8">
+        <div className="p-4 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-8 py-8">
             {displayDmgDealt && (
                 <div className="flex flex-col items-center space-y-2">
                     <CharacterTotalsChart
@@ -144,7 +166,7 @@ export default function CharacterTotals({ characters }: { characters: CharacterS
                         '#065f46',
                         ]}
                     />
-                    <span className="text-[#888] text-xs">Damage Dealt</span>
+                    <p className="text-[#888] text-xs">Damage Dealt &mdash; <span className="font-bold text-[#555] dark:text-white font-mono">{totalStats.dmgDealt} hp</span></p>
                 </div>
             )}    
             {displayDmgTaken && (     
@@ -169,7 +191,7 @@ export default function CharacterTotals({ characters }: { characters: CharacterS
                         '#065f46',
                         ]}
                     />
-                    <span className="text-[#888] text-xs">Damage Taken</span>
+                    <p className="text-[#888] text-xs">Damage Taken &mdash; <span className="font-bold text-[#555] dark:text-white font-mono">{totalStats.dmgTaken} hp</span></p>
                 </div>
             )} 
             {displayTotalKills && (
@@ -194,7 +216,7 @@ export default function CharacterTotals({ characters }: { characters: CharacterS
                         '#065f46',
                         ]}
                     />
-                    <span className="text-[#888] text-xs">Total Kills</span>
+                    <p className="text-[#888] text-xs">Total Kills &mdash; <span className="font-bold text-[#555] dark:text-white font-mono">{totalStats.totalKills}</span> </p>
                 </div>
             )}
             {displayTotalDeaths && (
@@ -219,7 +241,7 @@ export default function CharacterTotals({ characters }: { characters: CharacterS
                         '#065f46',
                         ]}
                     />
-                    <span className="text-[#888] text-xs">Total Deaths</span>
+                    <p className="text-[#888] text-xs">Total Deaths &mdash; <span className="font-bold text-[#555] dark:text-white font-mono">{totalStats.totalDeaths}</span> </p>
                 </div>
             )}
             {displayTotalNatTwenty && (
@@ -244,7 +266,7 @@ export default function CharacterTotals({ characters }: { characters: CharacterS
                         '#065f46',
                         ]}
                     />
-                    <span className="text-[#888] text-xs">Natural 20&apos;s</span>
+                    <p className="text-[#888] text-xs">Natural 20&apos;s &mdash; <span className="font-bold text-[#555] dark:text-white font-mono">{totalStats.natTwenty}</span> </p>
                 </div>
             )}
             {displayTotalNatOne && (
@@ -269,7 +291,7 @@ export default function CharacterTotals({ characters }: { characters: CharacterS
                         '#065f46',
                         ]}
                     />
-                    <span className="text-[#888] text-xs">Natural 1&apos;s</span>
+                    <p className="text-[#888] text-xs">Natural 1&apos;s &mdash; <span className="font-bold text-[#555] dark:text-white font-mono">{totalStats.natOne}</span> </p>
                 </div>
             )}
         </div>
