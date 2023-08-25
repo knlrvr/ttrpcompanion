@@ -24,6 +24,8 @@ With the rise of D&D's popularity, tools like D&DBeyond are incredibly reliable 
 Features that can be expected in the coming weeks/months are: 
 - Create & track individual characters outside of campaigns, in case you only want to track your own 
 - Profile page with overview of activity (characters & campaigns)
+- Campaign totals displayed in a more easy-to-read way
+- 'Top' characters (based on highest/lowest stats)
 - & more!
 
 ## Notes 
