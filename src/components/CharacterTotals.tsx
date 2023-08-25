@@ -14,7 +14,6 @@ type CharacterStats = {
 
 type Stats = {
     id?: string;
-    title: string;
     characterId: string;
     level: number;
     charClass: string;
@@ -50,7 +49,6 @@ export default function CharacterTotals({ characters }: { characters: CharacterS
           const campaignStats: Stats = {
             characterId: "campaignTotal",
             level: 0,
-            title: "",
             charClass: "",
             charRace: "",
             totalSessions: 0,
