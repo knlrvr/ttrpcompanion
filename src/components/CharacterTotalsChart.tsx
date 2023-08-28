@@ -68,7 +68,7 @@ export function CharacterTotalsChart({ statData, chartLabels, backgroundColors, 
     };
 
     return (
-        <div className="flex justify-center max-h-[10rem] lg:max-h-[12rem]">
+        <div className="flex justify-center max-h-[10rem]">
             <Doughnut data={chartData} options={chartOptions} />
         </div>
     );
