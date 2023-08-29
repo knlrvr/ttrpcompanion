@@ -1,5 +1,7 @@
 <h2 align="center"> TTRPCompanion </h2>
 
+![ttrpc-brand-2](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/d567f93b-5135-47a8-a6f9-eba00e26fc58)
+
 ## Description
 A full stack app designed to track character stats throughout multiple campaigns. All stats can be updated after creation, except for class & race. Stats include total XP, total time in combat, total damage taken & more!  Border colors for level, race and class are dependent on input for those fields. There is no limit to the number of created campaigns or characters. Once a character's stats are created/updated, the campaign totals will update as well, reflecting the totals of all characters in the campaign.
 
@@ -19,14 +21,6 @@ With the rise of D&D's popularity, tools like D&DBeyond are incredibly reliable 
 - [tRPC](https://trpc.io/docs/quickstart)
 - [Supabase](https://supabase.com/) (postgres)
 - [Playwright](https://playwright.dev/docs/intro) (E2E Testing) 
-
-## The Future of TTRPCompanion
-Features that can be expected in the coming weeks/months are: 
-- Create & track individual characters outside of campaigns, in case you only want to track your own 
-- Profile page with overview of activity (characters & campaigns)
-- Campaign totals displayed in a more easy-to-read way
-- 'Top' characters (based on highest/lowest stats)
-- & more!
 
 ## Notes 
 > This is an ongoing project! If anyone comes across this, please let me know what you think! I'm also open to community suggestions, so let me know if there's any other functionality you'd like to see in this tool! This app will also be undergoing gradual restyling. 
