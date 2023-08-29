@@ -11,7 +11,7 @@
 
 
 ## The Future of TTRPCompanion
-As the number of users grows, I will do my best to accomodate any suggestions for this app! Feel free to reach out with any comments or suggestions for what you'd like to see! 
+As the number of users grows, I will do my best to accomodate any suggestions for this app! Feel free to reach out with any comments or suggestions for any features you'd like to see! 
 
 ## Purpose
 With the rise of D&D's popularity, tools like D&DBeyond are incredibly reliable in tracking typical character stats like strength & dexterity, or proficiencies and languages. They track stats specific to who, why and what your character is, but they don't have any tools for tracking game related stats, like total Nat 20's rolled or total sessions played, or other character specific stats like total damage dealt, or total time in combat. I think it's important to have tools that bridge the gap between you and your character. So I made one. 
