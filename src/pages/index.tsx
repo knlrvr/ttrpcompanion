@@ -171,39 +171,39 @@ const Content: React.FC = () => {
     <>
     {!sessionData?.user && (
     <div className="bg-gray-100">
-      <div className="max-w-7xl mx-auto min-h-screen flex justify-center items-center px-4">
-        
-      <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 px-16 border rounded-lg bg-gray-50 mb-16 shadow-md place-items-center py-8 md:py-4">
-        <div className="hidden md:block h-full w-full row-span-2 rounded-l-md overflow-hidden">
-          <Image
-            src="https://images.unsplash.com/photo-1628160634750-a81a2a780805"
-            alt="table top"
-            width={1000}
-            height={1000}
-            className="p-8"
-          />
-        </div>
-        <div className="flex flex-col">
-          <p className="text-2xl md:text-3xl font-light uppercase">
-            welcome to
-          </p>
-          <h1 className="font-bold text-4xl md:text-5xl">
-            TTRPCompanion
-          </h1>
-          <p className="font-semibold text-gray-500 pt-10 text-xl">
-            Sign in now to get started on tracking stats for your characters throughout your campaign!
-          </p>
-        </div>
-        <div className="flex justify-start">
-          <button 
-            className="bg-blue-400 px-4 py-2 rounded-full text-white hover:bg-blue-500 transition duration-200"
-            onClick={() => void signIn()}
-          > Sign In </button>
-        </div>
-      </div>
+    <div className="max-w-7xl mx-auto min-h-screen flex justify-center items-center px-4">
       
+    <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 p-12 border rounded-lg bg-gray-50 mb-16 shadow-md place-items-center py-8 md:py-4">
+      <div className="h-full w-full row-span-2">
+        <Image
+          src="https://images.unsplash.com/photo-1636728557326-5d78e0abfe13"
+          alt="table top"
+          width={1000}
+          height={1000}
+          className="h-full rounded-t-lg md:rounded-tr-none md:rounded-l-lg"
+        />
+      </div>
+      <div className="flex flex-col">
+        <p className="text-2xl md:text-3xl font-light uppercase">
+          welcome to
+        </p>
+        <h1 className="font-bold text-4xl md:text-5xl">
+          TTRPCompanion
+        </h1>
+        <p className="font-semibold text-gray-500 pt-10 text-xl">
+          Sign in now to get started on tracking stats for your characters throughout your campaign!
+        </p>
+      </div>
+      <div className="flex justify-start">
+        <button 
+          className="bg-blue-400 px-4 py-2 rounded-full text-white hover:bg-blue-500 transition duration-200"
+          onClick={() => void signIn()}
+        > Sign In </button>
       </div>
     </div>
+    
+    </div>
+  </div>
     )}
 
     {sessionData?.user && (
