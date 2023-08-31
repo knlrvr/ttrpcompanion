@@ -1,47 +1,50 @@
 <h2 align="center"> TTRPCompanion </h2>
 
-## Description
-A full stack app designed to track character stats throughout multiple campaigns. All stats can be updated after creation, except for class & race. Stats include total XP, total time in combat, total damage taken & more!  Border colors for level, race and class are dependent on input for those fields. There is no limit to the number of created campaigns or characters. Once a character's stats are created/updated, the campaign totals will update as well, reflecting the totals of all characters in the campaign.
+![ttrpc-brand-2](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/d567f93b-5135-47a8-a6f9-eba00e26fc58)
 
+
+## Table of Contents
+- [Releases](#releases)
+- [The Future of TTRPCompanion](#the-future-of-ttrpcompanion)
+- [Purpose](#purpose)
+- [View](#view)
+- [Built With](#built-with)
+- [Gallery](#gallery)
+
+<a name="releases"></a>
+## Releases
+![v1.0](https://img.shields.io/badge/version-1.0-38bdf8) ![date](https://img.shields.io/badge/Aug%207%202023-informational) ![description](https://img.shields.io/badge/Initial_Release_+_How_To_Use-grey)
+> Users must sign in via Google. Users signing in for the first time, or users who have not created any campaigns, will see a prompt to ```create``` or ```select``` a campaign in order to view character stats. Once a campaign has been created, two default campaign totals will appear, ```total sessions``` and ```time played```. These will default to 0. There will also be an expandable form to create a character & input any stats. Once a character has been created, there are 6 more campaign totals, displayed in doughnut charts reflecting each character, that will render conditionally depending on the values provided for the character. (For example, if total damage dealt for each character is 0, no chart will display. If only one character has dealt damage, only their stat will appear.) All character information can be updated as needed via the ```edit``` button on the bottom of the character cards. Any updated values, or new entries, will reflect immediately within the conditionally rendered campaign totals. Users may deleted characters or campaigns as needed. If users have no campaigns, they will be prompted to create one. 
+
+![v1.1](https://img.shields.io/badge/version-1.1-success) ![date](https://img.shields.io/badge/Aug%2029%202023-informational) ![description](https://img.shields.io/badge/Login_Updates-grey)
+> Users may now sign in via Discord.
+
+
+<a name="the-future-of-ttrpcompanion"></a>
+## The Future of TTRPCompanion
+As the number of users grows, I will do my best to accomodate any suggestions for this app! Feel free to reach out with any comments or suggestions for any features you'd like to see! 
+
+![description](https://img.shields.io/badge/Upcoming_Features-grey)
+> - Profile pages
+> - Character pages (view every character created regardless of campaign attachment)
+> - & more! Please stay tuned! 
+
+
+<a name="purpose"></a>
 ## Purpose
 With the rise of D&D's popularity, tools like D&DBeyond are incredibly reliable in tracking typical character stats like strength & dexterity, or proficiencies and languages. They track stats specific to who, why and what your character is, but they don't have any tools for tracking game related stats, like total Nat 20's rolled or total sessions played, or other character specific stats like total damage dealt, or total time in combat. I think it's important to have tools that bridge the gap between you and your character. So I made one. 
 
+
+<a name="view"></a>
 ## View
 [View Live](https://ttrpg-char-stats-v2.vercel.app/)
 
+
+<a name="built-with"></a>
 ## Built With
-- [T3](https://create.t3.gg/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Next](https://nextjs.org/docs)
-- [Tailwind](https://tailwindcss.com/docs/installation)
-- [NextAuth](https://next-auth.js.org/) (Login via Google)
-- [Prisma](https://www.prisma.io/)
-- [tRPC](https://trpc.io/docs/quickstart)
-- [Supabase](https://supabase.com/) (postgres)
-- [Playwright](https://playwright.dev/docs/intro) (E2E Testing) 
+[![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/) [![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)](https://react.dev/) [![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/) [![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/docs/installation) [![Prisma](https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white)](https://www.prisma.io/) [![tRPC](https://img.shields.io/badge/trpc-blue.svg?style=for-the-badge&logoColor=white)](https://trpc.io/docs/quickstart) [![NextAuth](https://img.shields.io/badge/NextAuth-black.svg?style=for-the-badge&logoColor=white)](https://next-auth.js.org/) [![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)](https://supabase.com/) [![Playwright](https://img.shields.io/badge/Playwright-45ba4b?style=for-the-badge&logo=Playwright&logoColor=white)](https://playwright.dev/docs/intro)
 
-## The Future of TTRPCompanion
-Features that can be expected in the coming weeks/months are: 
-- Create & track individual characters outside of campaigns, in case you only want to track your own 
-- Profile page with overview of activity (characters & campaigns)
-- Campaign totals displayed in a more easy-to-read way
-- 'Top' characters (based on highest/lowest stats)
-- & more!
 
-## Notes 
-> This is an ongoing project! If anyone comes across this, please let me know what you think! I'm also open to community suggestions, so let me know if there's any other functionality you'd like to see in this tool! This app will also be undergoing gradual restyling. 
-
+<a name="gallery"></a>
 ## Gallery
-![ttrpc-no-auth](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/33879a59-4250-4a32-b611-cd844f5afc71)
-![ttrpc-no-camp](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/2b658233-d2a7-408b-b3f8-66db9c785d47)
-![ttrpc-no-char](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/4bb37c62-e65d-4400-8f05-54f001bddf76)
-![ttrpc-create](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/fd229b0e-c69f-4655-8786-3a336a06d695)
-![ttrpc-card](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/0016c714-85d6-4467-9150-4d7467661adc)
-![ttrpc-camp-overview](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/f0fb6fa8-0677-476c-9c3c-3644b3ca9ec3)
-
-![ttrpc-mobile-1](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/32578af0-082d-4eaf-a54e-5f0136388ed3)
-![ttrpc-mobile-2](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/9b9c2445-7a3a-41cb-8627-c5fecc496ddb)
-
-
-
-
+> to be updated
