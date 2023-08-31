@@ -9,7 +9,7 @@
 - [Purpose](#purpose)
 - [View](#view)
 - [Built With](#built-with)
-
+- [Gallery](#gallery)
 
 <a name="releases"></a>
 ## Releases
@@ -43,3 +43,8 @@ With the rise of D&D's popularity, tools like D&DBeyond are incredibly reliable 
 <a name="built-with"></a>
 ## Built With
 [![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/) [![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)](https://react.dev/) [![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/) [![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/docs/installation) [![Prisma](https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white)](https://www.prisma.io/) [![tRPC](https://img.shields.io/badge/trpc-blue.svg?style=for-the-badge&logoColor=white)](https://trpc.io/docs/quickstart) [![NextAuth](https://img.shields.io/badge/NextAuth-black.svg?style=for-the-badge&logoColor=white)](https://next-auth.js.org/) [![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)](https://supabase.com/) [![Playwright](https://img.shields.io/badge/Playwright-45ba4b?style=for-the-badge&logo=Playwright&logoColor=white)](https://playwright.dev/docs/intro)
+
+
+<a name="gallery"></a>
+## Gallery
+> to be updated
