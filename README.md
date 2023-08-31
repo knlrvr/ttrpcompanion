@@ -24,10 +24,10 @@
 ## The Future of TTRPCompanion
 As the number of users grows, I will do my best to accomodate any suggestions for this app! Feel free to reach out with any comments or suggestions for any features you'd like to see! 
 
-**New features currently under construction**:
-- Profile pages
-- Character pages (view every character created regardless of campaign attachment)
-- & more! Please stay tuned! 
+![description](https://img.shields.io/badge/Upcoming_Features-grey)
+> - Profile pages
+> - Character pages (view every character created regardless of campaign attachment)
+> - & more! Please stay tuned! 
 
 
 <a name="purpose"></a>
