@@ -11,6 +11,7 @@
 - [View](#view)
 - [Built With](#built-with)
 - [Gallery](#gallery)
+- [Notes](#notes)
 
 <a name="releases"></a>
 ## Releases
@@ -54,3 +55,8 @@ With the rise of D&D's popularity, tools like D&DBeyond are incredibly reliable 
 <a name="gallery"></a>
 ## Gallery
 > to be updated
+>
+
+<a name="notes"></a>
+## Notes
+> This is getting a complete overhaul in it's design and features. Repo will change and this will be archived.  
