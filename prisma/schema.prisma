@@ -47,18 +47,6 @@ model Session {
     user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
-model User {
-    id            String        @id @default(cuid())
-    name          String?
-    email         String?       @unique
-    emailVerified DateTime?
-    image         String?
-    accounts      Account[]
-    sessions      Session[]
-    ownedCamp     Campaign[]    @relation("CampaignOwner")
-    // joinedCamp    Campaign[]    @relation("CampaignMember")
-}
-
 model VerificationToken {
     identifier String
     token      String   @unique
@@ -67,17 +55,35 @@ model VerificationToken {
     @@unique([identifier, token])
 }
 
+model User {
+    id            String        @id @default(cuid())
+    name          String?
+    email         String?       @unique
+    emailVerified DateTime?
+    image         String?
+    accounts      Account[]
+    sessions      Session[]
+
+    characters    Character[]         // One to many
+
+    ownedCamp     Campaign[]    @relation("CampaignOwner")
+    joinedCamp    Campaign[]    @relation("CampaignMember")
+    
+    invitationsSent     Invitation[] @relation("SenderInvitation")
+    invitationsReceived Invitation[] @relation("RecipientInvitation")
+}
 
 model Campaign {
-    id                  String              @id @default(cuid())
-    createdAt           DateTime            @default(now())
-    updatedAt           DateTime            @updatedAt
-    title               String
-    characters          Character[]         // One to many
-    owner               User                @relation("CampaignOwner", fields: [ownerId], references: [id])
-    ownerId             String              // Foreign key to associate Campaign with Owner
-    // joined              User                @relation("CampaignMember", fields: [joinedId], references: [id])
-    // joinedId            String              // Foreign key to associate Campaign with Joined players
+  id                  String        @id @default(cuid())
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime      @updatedAt
+  title               String
+  owner               User          @relation("CampaignOwner", fields: [ownerId], references: [id])
+  ownerId             String        // Foreign key to associate Campaign with Owner
+  members             User?         @relation("CampaignMember", fields: [memberId], references: [id])
+  memberId            String?
+  characters          Character[]
+  invitations         Invitation[] 
 }
 
 model Character {
@@ -85,8 +91,10 @@ model Character {
     createdAt           DateTime            @default(now())
     updatedAt           DateTime            @updatedAt
     title               String
-    campaign            Campaign?           @relation(fields: [campaignId], references: [id], onDelete: Cascade)
-    campaignId          String?             // Foreign key to associate Character with Campaign
+    user                User?               @relation(fields: [userId], references: [id])
+    userId              String?             // Foreign key to associate Character with User
+    campaign            Campaign?           @relation(fields: [campaignId], references: [id])
+    campaignId          String              // Foreign key to associate Character with Campaign
     stats               CharacterStats[]    // One to many
 }
 
@@ -119,7 +127,13 @@ model CharacterStats {
 
 }
 
-// model CampaignStats {
-//     id                  String              @id @default(cuid())
-// }
-
+model Invitation {
+  id                  String        @id @default(cuid())
+  createdAt           DateTime      @default(now())
+  campaign            Campaign      @relation(fields: [campaignId], references: [id])
+  campaignId          String
+  sender              User          @relation("SenderInvitation", fields: [senderId], references: [id])
+  senderId            String
+  recipient           User          @relation("RecipientInvitation", fields: [recipientId], references: [id])
+  recipientId         String
+}

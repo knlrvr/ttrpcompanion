@@ -1,10 +1,9 @@
 import { useState } from 'react'
-
 import { BsPlusLg, BsDashLg } from 'react-icons/bs'
-
-import { api } from '@/utils/api'
-
+import { api, type RouterOutputs } from '@/utils/api'
 import Modal from 'react-modal'
+import { useSession } from 'next-auth/react'
+
 
 interface Stats {
   id?: string;
@@ -24,7 +23,6 @@ interface Stats {
   totalHealingSelf: number;
   totalDeaths: number;
   turnsNoDmg: number;
-  // added
   combatTime: number;
   natTwenty: number;
   natOne: number;
@@ -156,13 +154,18 @@ const getBorderColorClass = (charClass: string): string => {
     return classBorderColor;
 };
 
-export const CharacterCard = ({
+type Campaign = RouterOutputs["campaign"]["getAll"][0];
+
+
+export const CampCharacterCard = ({
     character, 
     onDelete,
 }: {
     character: CharacterStats;
     onDelete: () => void;
 }) => {
+
+    const { data: sessionData } = useSession();
 
     const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
@@ -200,6 +203,50 @@ export const CharacterCard = ({
     const closeDelCharModal = () => {
         setDelCharModalOpen(false);
     };
+
+    const [selectedCampaign, setSelectedCampaign] = useState<Campaign | null>(null);
+
+    const { data: charactersData, refetch: refetchCharacters } = api.character.getAllCampaign.useQuery(
+        {
+          campaignId: selectedCampaign?.id ?? "",
+        },
+        {
+          enabled: sessionData?.user !== undefined,
+        }
+    );
+
+    const { data: campaigns, refetch: refetchCampaigns } = api.campaign.getAll.useQuery(
+        undefined, // no input
+        {
+          enabled: sessionData?.user !== undefined,
+          onSuccess: (data) => {
+            setSelectedCampaign(selectedCampaign ?? data[0] ?? null);
+          }
+        }
+    );
+
+    const removeCharFromCamp = api.removeCharFromCampRouter.removeChararacterFromCampaign.useMutation({
+        onSuccess: () => {
+            void refetchCharacters();
+        }
+    });
+
+    const addCharacterToUser = api.addCharacterToUserRouter.addCharacterToUser.useMutation({
+        onSuccess: () => {
+            void refetchCharacters();
+        }
+    })
+
+    const removeCharacterFromCamp = () => {
+        removeCharFromCamp.mutate({
+            characterId: character.id,
+            campaignId: selectedCampaign?.id || "",
+        });
+        addCharacterToUser.mutate({
+            characterId: character.id,
+            userId: sessionData?.user.id || "",
+        })
+    }
 
     return (
         <>
@@ -591,7 +638,7 @@ export const CharacterCard = ({
                                 )}
                                 {isEditMode ? (
                                 <button 
-                                    className="text-xs uppercase text-white bg-yellow-400 px-4 py-2 rounded-full"
+                                    className="text-xs uppercase text-white bg-blue-500 px-4 py-2 rounded-full"
                                     onClick={() => {
                                         setIsEditMode(false);
                                         // Reset the editedStats to the original stats when canceling edit
@@ -604,6 +651,11 @@ export const CharacterCard = ({
                                     onClick={openDelCharModal}
                                 > delete </button>
                                 )}
+                                {/* change button below to 'remove' option */}
+                                <button 
+                                    className="text-xs uppercase text-white bg-yellow-400 px-[1.1rem] py-2 rounded-full"
+                                    onClick={() => removeCharacterFromCamp()}
+                                > Remove </button>
                             </div>
                         </div>
                     </div>

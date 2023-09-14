@@ -4,7 +4,6 @@ import {
   protectedProcedure,
 } from "@/server/api/trpc";
 
-
 export const updateCharacterStatsInput = z.object({
     id: z.string(),
     stats: z.object({
@@ -35,7 +34,7 @@ export const characterRouter = createTRPCRouter({
     .input(
         z.object({ 
             title: z.string(), 
-            campaignId: z.string(),
+            userId: z.string(),
             stats: z.object({
                 level: z.number(),
                 charClass: z.string(),
@@ -52,7 +51,6 @@ export const characterRouter = createTRPCRouter({
                 totalHealingSelf: z.number(),
                 totalDeaths: z.number(),
                 turnsNoDmg: z.number(),
-                // added 
                 combatTime: z.number(),
                 natTwenty: z.number(),
                 natOne: z.number(),
@@ -65,7 +63,7 @@ export const characterRouter = createTRPCRouter({
         return ctx.prisma.character.create({
             data: {
                 title: input.title,
-                campaignId: input.campaignId,
+                userId: input.userId,
                 stats: {
                     create: {
                         level: input.stats.level,
@@ -83,7 +81,6 @@ export const characterRouter = createTRPCRouter({
                         totalHealingSelf: input.stats.totalHealingSelf,
                         totalDeaths: input.stats.totalDeaths,
                         turnsNoDmg: input.stats.turnsNoDmg,
-                        // added
                         combatTime: input.stats.combatTime,
                         natTwenty: input.stats.natTwenty,
                         natOne: input.stats.natOne,
@@ -118,7 +115,7 @@ export const characterRouter = createTRPCRouter({
         });
     }),
 
-    getAll: protectedProcedure
+    getAllCampaign: protectedProcedure
     .input(z.object({ campaignId: z.string() }))
     .query(({ ctx, input }) => {
         return ctx.prisma.character.findMany({
@@ -130,4 +127,17 @@ export const characterRouter = createTRPCRouter({
             }
         });
     }),
+
+    getAllUser: protectedProcedure
+    .input(z.object({ userId: z.string() }))
+    .query(({ ctx, input }) => {
+        return ctx.prisma.character.findMany({
+            where: {
+                userId: input.userId,
+            },
+            include: {
+                stats: true,
+            }
+        })
+    })
 });

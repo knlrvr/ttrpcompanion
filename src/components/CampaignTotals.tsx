@@ -30,9 +30,13 @@ interface CharacterStats {
   stats: Stats[];
 }
 
+interface TotalStats extends Stats {
+  totalPlayers: number;
+}
+
 const CampaignTotals: React.FC<{ characters: CharacterStats[] }> = ({ characters }) => {
   const [isLoading, setIsLoading] = useState(true);
-  const [totalStats, setTotalStats] = useState<Stats>({
+  const [totalStats, setTotalStats] = useState<TotalStats>({
     characterId: "campaignTotal",
     level: 0,
     charClass: "",
@@ -53,6 +57,7 @@ const CampaignTotals: React.FC<{ characters: CharacterStats[] }> = ({ characters
     natTwenty: 0,
     natOne: 0,
     totalKo: 0,
+    totalPlayers: 0, // Add totalPlayers property here
   });
 
   useEffect(() => {
@@ -83,9 +88,10 @@ const CampaignTotals: React.FC<{ characters: CharacterStats[] }> = ({ characters
           totalKo: 0,
         };
 
+        let totalPlayers = 0; // Initialize the player count
+
         characters.forEach((character) => {
           character.stats.forEach((characterStats) => {
-            // same stats
             campaignStats.totalSessions = characterStats.totalSessions;
             campaignStats.totalTime = characterStats.totalTime;
             campaignStats.dmgDealt += characterStats.dmgDealt;
@@ -94,12 +100,20 @@ const CampaignTotals: React.FC<{ characters: CharacterStats[] }> = ({ characters
             campaignStats.natOne += characterStats.natOne;
             campaignStats.totalKills += characterStats.totalKills;
             campaignStats.totalDeaths += characterStats.totalDeaths;
-            // Add other stats accordingly
+
+            // Increment player count for each unique characterId
+            if (campaignStats.characterId !== characterStats.characterId) {
+              totalPlayers++;
+              campaignStats.characterId = characterStats.characterId; // Set it to the latest characterId
+            }
           });
         });
 
         // Set the campaign totals
-        setTotalStats(campaignStats);
+        setTotalStats({
+          ...campaignStats,
+          totalPlayers, // Add the totalPlayers count to the stats object
+        });
         setIsLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -115,8 +129,7 @@ const CampaignTotals: React.FC<{ characters: CharacterStats[] }> = ({ characters
   }
 
   return (
-
-    <div className="p-4 grid grid-cols-2 gap-4">
+    <div className="p-2 sm:p-4 grid grid-cols-1 sm:grid-cols-3 gap-4">
       <div className='border-l-4 border-red-400 p-4 flex flex-col justify-between bg-white dark:bg-[#222] text-[#222] dark:text-white rounded-r-lg space-y-4'>
         <p className="text-sm font-light">Total Sessions</p>
         <span className="text-xl md:text-3xl font-semibold text-right">{totalStats.totalSessions}</span>
@@ -125,34 +138,14 @@ const CampaignTotals: React.FC<{ characters: CharacterStats[] }> = ({ characters
         <p className="text-sm font-light">Total Time Played</p>
         <span className="text-xl md:text-3xl font-semibold text-right">{totalStats.totalTime} hrs</span>
       </div>
-      {/* <div className='border-l-4 border-cyan-500 p-4 flex flex-col justify-between bg-white dark:bg-[#222] text-[#222] dark:text-white rounded-r-lg space-y-4'>
-        <p className="text-sm font-light">Total Damage Dealt</p>
-        <span className="text-xl md:text-3xl font-semibold text-right">{totalStats.dmgDealt}</span>
-      </div>
-      <div className='border-l-4 border-orange-500 p-4 flex flex-col justify-between bg-white dark:bg-[#222] text-[#222] dark:text-white rounded-r-lg space-y-4'>
-        <p className="text-sm font-light">Total Damage Taken</p>
-        <span className="text-xl md:text-3xl font-semibold text-right">{totalStats.dmgTaken}</span>
-      </div>
-      <div className='border-l-4 border-blue-500 p-4 flex flex-col justify-between bg-white dark:bg-[#222] text-[#222] dark:text-white rounded-r-lg space-y-4'>
-        <p className="text-sm font-light">Total Kills</p>
-        <span className="text-xl md:text-3xl font-semibold text-right">{totalStats.totalKills}</span>
-      </div>
-      <div className='border-l-4 border-red-500 p-4 flex flex-col justify-between bg-white dark:bg-[#222] text-[#222] dark:text-white rounded-r-lg space-y-4'>
-        <p className="text-sm font-light">Total Deaths</p>
-        <span className="text-xl md:text-3xl font-semibold text-right">{totalStats.totalDeaths}</span>
-      </div>
       <div className='border-l-4 border-purple-500 p-4 flex flex-col justify-between bg-white dark:bg-[#222] text-[#222] dark:text-white rounded-r-lg space-y-4'>
-        <p className="text-sm font-light">Nat 20&apos;s Rolled</p>
-        <span className="text-xl md:text-3xl font-semibold text-right">{totalStats.natTwenty}</span>
+        <p className="text-sm font-light">Total Players</p>
+        <span className="text-xl md:text-3xl font-semibold text-right">{totalStats.totalPlayers}</span>
       </div>
-      <div className='border-l-4 border-rose-400 p-4 flex flex-col justify-between bg-white dark:bg-[#222] text-[#222] dark:text-white rounded-r-lg space-y-4'>
-        <p className="text-sm font-light">Nat 1&apos;s Rolled</p>
-        <span className="text-xl md:text-3xl font-semibold text-right">{totalStats.natOne}</span>
-      </div> */}
-      {/* Add other stats accordingly */}
     </div>
   );
 };
 
 export default CampaignTotals;
+
 
