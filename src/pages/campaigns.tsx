@@ -1,11 +1,10 @@
-import { signIn, signOut, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import { useState } from "react";
 import { api, type RouterOutputs } from "@/utils/api";
 
 import CampaignTotals from "@/components/CampaignTotals";
 import CharacterTotals from "@/components/CharacterTotals";
 import { CampCharacterCard } from "@/components/CampCharacterCard";
-import { CharacterEditor } from "@/components/CharacterEditor";
 
 import Head from "next/head";
 import Link from "next/link";

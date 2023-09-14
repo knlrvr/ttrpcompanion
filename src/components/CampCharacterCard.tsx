@@ -240,11 +240,11 @@ export const CampCharacterCard = ({
     const removeCharacterFromCamp = () => {
         removeCharFromCamp.mutate({
             characterId: character.id,
-            campaignId: selectedCampaign?.id || "",
+            campaignId: selectedCampaign?.id ?? "",
         });
         addCharacterToUser.mutate({
             characterId: character.id,
-            userId: sessionData?.user.id || "",
+            userId: sessionData?.user.id ?? "",
         })
     }
 
