@@ -5,11 +5,13 @@
 
 ## Table of Contents
 - [Releases](#releases)
+- [Description](#description)
 - [The Future of TTRPCompanion](#the-future-of-ttrpcompanion)
 - [Purpose](#purpose)
 - [View](#view)
 - [Built With](#built-with)
 - [Gallery](#gallery)
+- [Notes](#notes)
 
 <a name="releases"></a>
 ## Releases
@@ -18,6 +20,11 @@
 
 ![v1.1](https://img.shields.io/badge/version-1.1-success) ![date](https://img.shields.io/badge/Aug%2029%202023-informational) ![description](https://img.shields.io/badge/Login_Updates-grey)
 > Users may now sign in via Discord.
+
+
+<a name="description"></a>
+## Description
+TTRPCompanion is a gaming utility app that allows users to track their character's stats in D&D Campaigns. Typically, other tools carry on the basic stats of characters, while TTRPCompanion allows users to track stats that blur the lines between player & character. These stats include total sessions, total time played, total damage dealt, & more! TTRPCompanion allows you to immerse yourself in your own gameplay, without taking you away from your character.
 
 
 <a name="the-future-of-ttrpcompanion"></a>
@@ -48,3 +55,8 @@ With the rise of D&D's popularity, tools like D&DBeyond are incredibly reliable 
 <a name="gallery"></a>
 ## Gallery
 > to be updated
+>
+
+<a name="notes"></a>
+## Notes
+> This is getting a complete overhaul in it's design and features. Repo will change and this will be archived.  
