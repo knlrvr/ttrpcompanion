@@ -206,7 +206,7 @@ export const UserCharacterCard = ({
 
     const { data: charactersData, refetch: refetchCharacters } = api.character.getAllUser.useQuery(
         {
-          userId: sessionData?.user.id || "",
+          userId: sessionData?.user.id ?? "",
         },
         {
           enabled: sessionData?.user !== undefined,
