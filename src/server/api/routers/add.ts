@@ -53,7 +53,7 @@ export const removeCharFromCampRouter = createTRPCRouter({
         return ctx.prisma.character.update({
             where: { id: input.characterId },
             data: {
-                campaignId: null,
+                campaignId: null as string | null,
             },
         });
     }),
@@ -71,7 +71,7 @@ export const removeCharFromUserRouter = createTRPCRouter({
         return ctx.prisma.character.update({
             where: { id: input.characterId },
             data: {
-                userId: null, 
+                userId: null as string | null, 
             },
         });
     }),
