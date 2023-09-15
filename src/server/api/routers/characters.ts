@@ -65,7 +65,7 @@ export const characterRouter = createTRPCRouter({
             data: {
                 title: input.title,
                 userId: input.userId,
-                campaignId: '' ?? null,
+                campaignId: null,
                 stats: {
                     create: {
                         level: input.stats.level,
