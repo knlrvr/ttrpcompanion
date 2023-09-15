@@ -32,7 +32,7 @@ const Content: React.FC = () => {
     {!sessionData?.user && (
       <div className="">
         <div className="max-w-7xl mx-auto min-h-screen flex justify-center items-center px-4">
-          <span>hey</span>
+          <span>unauth home</span>
         </div>
       </div>
     )}
