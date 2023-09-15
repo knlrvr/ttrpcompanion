@@ -40,9 +40,10 @@ export const addCharacterToUserRouter = createTRPCRouter({
     }),
 });
 
+
 export const removeCharacterFromCampaign = z.object({
     characterId: z.string(),
-    campaignId: z.string().nullish(),
+    campaignId: z.nullable(z.string()),
 });
 
 export const removeCharFromCampRouter = createTRPCRouter({
@@ -60,7 +61,7 @@ export const removeCharFromCampRouter = createTRPCRouter({
 
 export const removeCharacterFromUser = z.object({
     characterId: z.string(),
-    userId: z.string().nullish(),
+    userId: z.nullable(z.string()),
 });
 
 export const removeCharFromUserRouter = createTRPCRouter({
