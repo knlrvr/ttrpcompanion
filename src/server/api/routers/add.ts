@@ -52,11 +52,11 @@ export const removeCharFromCampRouter = createTRPCRouter({
         return ctx.prisma.character.update({
             where: { id: input.characterId },
             data: {
-                campaignId: '',
-            }
-        })
-    })
-})
+                campaignId: null,
+            },
+        });
+    }),
+});
 
 export const removeCharacterFromUser = z.object({
     characterId: z.string(),
@@ -68,10 +68,10 @@ export const removeCharFromUserRouter = createTRPCRouter({
     .input(removeCharacterFromUser)
     .mutation(async ({ ctx, input }) => {
         return ctx.prisma.character.update({
-            where: { id: input. characterId },
+            where: { id: input.characterId },
             data: {
-                userId: '',
-            }
-        })
-    })
-})
+                userId: null,
+            },
+        });
+    }),
+});

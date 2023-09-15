@@ -225,28 +225,18 @@ export const CampCharacterCard = ({
         }
     );
 
+    
+    // switch from camp to user
     const removeCharFromCamp = api.removeCharFromCampRouter.removeChararacterFromCampaign.useMutation({
         onSuccess: () => {
             void refetchCharacters();
         }
     });
-
     const addCharacterToUser = api.addCharacterToUserRouter.addCharacterToUser.useMutation({
         onSuccess: () => {
             void refetchCharacters();
         }
     })
-
-    const removeCharacterFromCamp = () => {
-        removeCharFromCamp.mutate({
-            characterId: character.id,
-            campaignId: selectedCampaign?.id ?? "",
-        });
-        addCharacterToUser.mutate({
-            characterId: character.id,
-            userId: sessionData?.user.id ?? "",
-        })
-    }
 
     return (
         <>
@@ -654,7 +644,16 @@ export const CampCharacterCard = ({
                                 {/* change button below to 'remove' option */}
                                 <button 
                                     className="text-xs uppercase text-white bg-yellow-400 px-[1.1rem] py-2 rounded-full"
-                                    onClick={() => removeCharacterFromCamp()}
+                                    onClick={() => {
+                                        removeCharFromCamp.mutate({
+                                            characterId: character.id,
+                                            campaignId: selectedCampaign?.id ?? "",
+                                        });
+                                        addCharacterToUser.mutate({
+                                            characterId: character.id,
+                                            userId: sessionData?.user.id ?? '',
+                                        })
+                                    }}
                                 > Remove </button>
                             </div>
                         </div>

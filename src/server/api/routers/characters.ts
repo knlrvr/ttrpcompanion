@@ -63,7 +63,6 @@ export const characterRouter = createTRPCRouter({
         return ctx.prisma.character.create({
             data: {
                 title: input.title,
-                campaignId: '',
                 userId: input.userId,
                 stats: {
                     create: {

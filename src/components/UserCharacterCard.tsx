@@ -242,30 +242,18 @@ export const UserCharacterCard = ({
         }
     });
 
+
+    // switch from user to camp 
     const removeCharFromUser = api.removeCharFromUserRouter.removeCharacterFromUser.useMutation({
         onSuccess: () => {
             void refetchCharacters();
         }
     });
-
     const addCharacterToCamp = api.addCharacterToCampaignRouter.addCharacterToCampaign.useMutation({
         onSuccess: () => {
             void refetchCharacters();
         }
     })
-
-    const removeCharacterFromUser = () => {
-        removeCharFromUser.mutate({
-            characterId: character.id,
-            userId: sessionData?.user.id ?? "",
-        });
-        addCharacterToCamp.mutate({
-            characterId: character.id,
-            campaignId: selectedCampaign?.id ?? "",
-        })
-    }
-
-
 
     return (
         <>
@@ -686,10 +674,15 @@ export const UserCharacterCard = ({
                                                   : ""
                                               }`}
                                               onClick={() => {
-                                                // Handle campaign selection here
                                                 setSelectedCampaign(campaign);
-                                                // Add the character to the selected campaign
-                                                removeCharacterFromUser();
+                                                removeCharFromUser.mutate({
+                                                    characterId: character.id,
+                                                    userId: sessionData?.user.id ?? "",
+                                                });
+                                                addCharacterToCamp.mutate({
+                                                    characterId: character.id,
+                                                    campaignId: selectedCampaign?.id ?? "",
+                                                })
                                                 setCampaignMenuOpen(false);
                                               }}
                                             >
