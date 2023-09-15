@@ -35,6 +35,7 @@ export const characterRouter = createTRPCRouter({
         z.object({ 
             title: z.string(), 
             userId: z.string(),
+            campaignId: z.string().nullish(),
             stats: z.object({
                 level: z.number(),
                 charClass: z.string(),
@@ -64,6 +65,7 @@ export const characterRouter = createTRPCRouter({
             data: {
                 title: input.title,
                 userId: input.userId,
+                campaignId: '' ?? null,
                 stats: {
                     create: {
                         level: input.stats.level,
