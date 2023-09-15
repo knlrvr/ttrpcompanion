@@ -165,7 +165,7 @@ const Content: React.FC = () => {
             </div>
           </div>
           <CampaignTotals characters={characterStatsArray} />
-          <div className="bg-white dark:bg-[#222] m-2 sm:m-4 mt-6 py-4 rounded-lg shadow-md relative">
+          <div className="bg-white dark:bg-[#222] m-2 sm:m-4 mt-6 p-4 rounded-lg shadow-md relative">
             <CharacterTotals characters={characterStatsArray} />
 
             <div className="absolute -top-4 left-[1rem] md:-left-2 rounded-full w-8 h-8 bg-blue-500 flex justify-center items-center shadow-md">

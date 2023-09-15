@@ -658,8 +658,8 @@ export const UserCharacterCard = ({
 
                                 {isCampaignMenuOpen && (
                                     <div>
-                                        <div className="absolute h-4 w-4 bg-neutral-500 top-10 right-8 rotate-45"></div>
-                                        <div className="absolute top-12 -right-2 sm:-right-4 bg-neutral-500 rounded-xl flex flex-col">
+                                        <div className="absolute h-4 w-4 bg-neutral-200 dark:bg-[#333] top-10 right-8 rotate-45"></div>
+                                        <div className="absolute top-12 -right-2 sm:-right-4 bg-neutral-200 dark:bg-[#333] rounded-xl flex flex-col p-2 dark:text-neutral-100">
                                             {campaigns?.map((campaign) => (
                                                 <button
                                                     key={campaign.id}
