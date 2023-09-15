@@ -12,8 +12,8 @@ const MyApp: AppType<{ session: Session | null }> = ({
   return (
     <SessionProvider session={session}>
       <Sidebar />
-      <div className="p-2 bg-neutral-100 dark:bg-[#111]">
-        <div className="sm:ml-64 min-h-screen rounded-xl bg-neutral-50 dark:bg-[#222] dark:text-neutral-200 dark:bg-opacity-50">
+      <div className="sm:ml-64 p-2 bg-neutral-100 dark:bg-[#111]">
+        <div className="min-h-screen rounded-xl bg-neutral-50 dark:bg-[#222] dark:text-neutral-200 dark:bg-opacity-50">
           <Component {...pageProps} />
         </div>
       </div>
