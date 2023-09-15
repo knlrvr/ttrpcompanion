@@ -1,6 +1,8 @@
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useState } from "react";
 
+import ToggleTheme from "@/components/ThemeToggle";
+
 
 import Head from "next/head";
 import Image from 'next/image'
@@ -64,10 +66,14 @@ const Content: React.FC = () => {
 
     {sessionData?.user && (
       <div className="p-4">
-        <div className="flex flex-col pb-4">
-          <span className="font-semibold text-3xl md:text-5xl">Hello, {sessionData.user.name}</span>
-          <span className="pt-2 font-light tracking-wide">Welcome back!</span>
+        <div className="flex justify-between items-center">
+          <div className="flex flex-col pb-4">
+            <span className="font-semibold text-3xl md:text-5xl">Hello, {sessionData.user.name}</span>
+            <span className="pt-2 font-light tracking-wide">Welcome back!</span>
+          </div>
+          <ToggleTheme />
         </div>
+
 
         <div className="grid grid-cols-1 md:grid-cols-2">
 
