@@ -203,8 +203,8 @@ const Content: React.FC = () => {
       isOpen={isDelCampModalOpen}
       onRequestClose={closeDelCampModal}
       contentLabel="Confirm Delete"
-      overlayClassName="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center px-8"
-      className="bg-white p-4 py-12 rounded-lg sm:ml-64"
+      overlayClassName="modal-overlay fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center px-8"
+      className="bg-white dark:bg-[#222] dark:text-neutral-100 p-4 py-12 rounded-lg sm:ml-64"
     >
     <div className="text-center flex flex-col justify-between space-y-8">
       <p className="text-sm">Are you sure you want to delete this campaign? This action cannot be undone.</p>
@@ -233,8 +233,8 @@ const Content: React.FC = () => {
       isOpen={isChangeCampModalOpen}
       onRequestClose={closeChangeCampModal}
       contentLabel="Confirm Change"
-      overlayClassName="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center px-8"
-      className="bg-white p-4 py-12 rounded-lg sm:ml-64"
+      overlayClassName="modal-overlay fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center px-8"
+      className="bg-white dark:bg-[#222] dark:text-neutral-100 p-4 py-12 rounded-lg sm:ml-64"
     >
     <div className="text-center flex flex-col justify-between space-y-8 px-12">
       <p className="text-sm">Select the campaign you would like to view.</p>

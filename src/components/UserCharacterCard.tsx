@@ -231,11 +231,6 @@ export const UserCharacterCard = ({
         return selectedCampaign ? campaignId === selectedCampaign.id : false;
     }
 
-    const [isCampaignMenuOpen, setCampaignMenuOpen] = useState<boolean>(false);
-    const toggleCampaignMenu = () => {
-        setCampaignMenuOpen(!isCampaignMenuOpen);
-    };
-
     // switch from user to camp 
     const removeCharFromUser = api.removeCharFromUserRouter.removeCharacterFromUser.useMutation({
         onSuccess: () => {
@@ -247,6 +242,14 @@ export const UserCharacterCard = ({
             void refetchCharacters();
         }
     })
+
+    const [isCampaignModalOpen, setCampaignModalOpen] = useState<boolean>(false);
+    const openCampaignModal = () => {
+      setCampaignModalOpen(true);
+    }
+    const closeCampaignModal = () => {
+      setCampaignModalOpen(false);
+    }
 
     return (
         <>
@@ -653,41 +656,8 @@ export const UserCharacterCard = ({
                                 )}
                                 <button 
                                     className="text-xs uppercase text-white bg-green-500 px-[1.1rem] py-2 rounded-full"
-                                    onClick={toggleCampaignMenu}
+                                    onClick={() => openCampaignModal()}
                                 > Add To </button>
-
-                                {isCampaignMenuOpen && (
-                                    <div>
-                                        <div className="absolute h-4 w-4 bg-neutral-200 dark:bg-[#333] top-10 right-8 rotate-45"></div>
-                                        <div className="absolute top-12 -right-2 sm:-right-4 bg-neutral-200 dark:bg-[#333] rounded-xl flex flex-col p-2 dark:text-neutral-100">
-                                            {campaigns?.map((campaign) => (
-                                                <button
-                                                    key={campaign.id}
-                                                    className={`px-4 py-2 text-left ${
-                                                        isCampaignSelected(campaign.id, selectedCampaign)
-                                                        ? ""
-                                                        : ""
-                                                    }`}
-                                                    onClick={() => {
-                                                        const currentCampaign = campaign;
-                                                        setSelectedCampaign(currentCampaign);
-                                                        removeCharFromUser.mutate({
-                                                            characterId: character.id,
-                                                            userId: sessionData?.user.id ?? "",
-                                                        });
-                                                        addCharacterToCamp.mutate({
-                                                            characterId: character.id,
-                                                            campaignId: currentCampaign.id ?? "",
-                                                        });
-                                                        setCampaignMenuOpen(false);
-                                                    }}
-                                                    >
-                                                    {campaign.title}
-                                                </button>
-                                            ))}
-                                        </div> 
-                                    </div>
-                                )}
                             </div>
                         </div>
                     </div>
@@ -725,6 +695,45 @@ export const UserCharacterCard = ({
                 </div>
             </div>
         </Modal>
+
+        <Modal
+        isOpen={isCampaignModalOpen}
+        onRequestClose={closeCampaignModal}
+        contentLabel="Confirm Change"
+        overlayClassName="modal-overlay fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center px-8"
+        className="bg-white dark:bg-[#222] dark:text-neutral-100 p-4 py-12 rounded-lg sm:ml-64"
+      >
+        <div className="text-center flex flex-col justify-between space-y-8 px-12">
+          <p className="text-sm">Select the campaign you'd like to <span className="font-semibold">{character.title}</span> to.</p>
+            <div className="flex flex-col">
+                {campaigns?.map((campaign) => (
+                    <button
+                        key={campaign.id}
+                        className={`px-4 py-2 text-left w-fit ${
+                            isCampaignSelected(campaign.id, selectedCampaign)
+                                ? ""
+                                : ""
+                            }`}
+                        onClick={() => {
+                            const currentCampaign = campaign;
+                            setSelectedCampaign(currentCampaign);
+                                removeCharFromUser.mutate({
+                                    characterId: character.id,
+                                    userId: sessionData?.user.id ?? "",
+                                });
+                                addCharacterToCamp.mutate({
+                                    characterId: character.id,
+                                    campaignId: currentCampaign.id ?? "",
+                                });
+                            setCampaignModalOpen(false);
+                        }}
+                    >
+                        {campaign.title}
+                    </button>
+                ))}
+          </div>
+        </div>
+      </Modal>
         </>
     )
 };

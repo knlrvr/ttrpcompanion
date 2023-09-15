@@ -5,6 +5,8 @@ import { api, type RouterOutputs } from "@/utils/api";
 import ToggleTheme from "@/components/ThemeToggle";
 import AddCampaign from "@/components/addCampaign";
 
+import Modal from 'react-modal'
+
 import Head from "next/head";
 
 export default function Home() {
