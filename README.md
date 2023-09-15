@@ -63,7 +63,7 @@ With the rise of D&D's popularity, tools like D&DBeyond are incredibly reliable 
 
 <a name="notes"></a>
 ## Notes
-> TTRPCompanion is currently undergoing a massive redo in design & functionality. The first look into this is available in v2.0. 
+> TTRPCompanion is currently undergoing a massive redo in design & functionality. The first look into this is available in v2.0, with MUCH more to come. Stay tuned!
 
 <a name="acknowledgements"></a>
 ## Acknowledgements
