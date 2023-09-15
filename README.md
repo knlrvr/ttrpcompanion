@@ -36,7 +36,6 @@ As the number of users grows, I will do my best to accomodate any suggestions fo
 
 ![description](https://img.shields.io/badge/Upcoming_Features-grey)
 > - Profile pages
-> - Character pages (view every character created regardless of campaign attachment)
 > - In-game time tracking
 > - & more! Please stay tuned! 
 
