@@ -1,4 +1,4 @@
-import { ZodNull, z } from "zod";
+import { z } from "zod";
 import {
   createTRPCRouter,
   protectedProcedure,
@@ -53,7 +53,7 @@ export const removeCharFromCampRouter = createTRPCRouter({
         return ctx.prisma.character.update({
             where: { id: input.characterId },
             data: {
-                campaignId: '',
+                campaignId: '' as string | null,
             },
         });
     }),
@@ -71,7 +71,7 @@ export const removeCharFromUserRouter = createTRPCRouter({
         return ctx.prisma.character.update({
             where: { id: input.characterId },
             data: {
-                userId: '', 
+                userId: '' as string | null, 
             },
         });
     }),
