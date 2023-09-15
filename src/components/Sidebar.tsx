@@ -122,7 +122,7 @@ const Sidebar = () => {
                         {items.map((item) => (
                             <li key={item.href} onClick={() => handleCloseSidebar()} className="">
                                 <Link href={item.href}
-                                    className="flex items-center justify-start space-x-4 px-4 py-2 rounded-lg hover:bg-neutral-200 dark:hover:bg-[#444] transition duration-200 relative">
+                                    className="flex items-center justify-start space-x-4 px-4 py-2 rounded-lg hover:bg-blue-300 transition duration-200 relative dark:hover:text-[#222]">
                                         <span className="text-3xl">
                                             {item.icon}
                                         </span>

@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
 
+import {
+  BsPeople,
+  BsClock,
+  BsSlash
+} from 'react-icons/bs'
+
 interface Stats {
   id?: string;
   characterId: string;
@@ -129,19 +135,34 @@ const CampaignTotals: React.FC<{ characters: CharacterStats[] }> = ({ characters
   }
 
   return (
-    <div className="p-2 sm:p-4 grid grid-cols-1 sm:grid-cols-3 gap-4">
-      <div className='border-l-4 border-red-400 p-4 flex flex-col justify-between bg-white dark:bg-[#222] text-[#222] dark:text-white rounded-r-lg space-y-4'>
-        <p className="text-sm font-light">Total Sessions</p>
-        <span className="text-xl md:text-3xl font-semibold text-right">{totalStats.totalSessions}</span>
+    <div className="p-2 sm:p-4 grid grid-cols-3 gap-4 mb-4 mt-8">
+      <div className='flex flex-col sm:flex-row justify-start sm:items-end sm:space-x-2 p-4 pt-6 rounded-xl shadow-md bg-white dark:bg-[#222] relative'>
+        <span className="text-3xl md:text-7xl">{totalStats.totalSessions}</span>
+        <p className="mb-1 mt-3 sm:mt-0">Total <br /> Sessions</p>
+
+        <div className="absolute -top-4 left-1/3 md:-left-4 rounded-full w-8 h-8 bg-orange-300 flex justify-center items-center shadow-md">
+          <BsSlash className="text-3xl text-[#222]" />
+        </div>
       </div>
-      <div className='border-l-4 border-blue-500 p-4 flex flex-col justify-between bg-white dark:bg-[#222] text-[#222] dark:text-white rounded-r-lg space-y-4'>
-        <p className="text-sm font-light">Total Time Played</p>
-        <span className="text-xl md:text-3xl font-semibold text-right">{totalStats.totalTime} hrs</span>
+
+      <div className='flex flex-col sm:flex-row justify-start sm:items-end sm:space-x-2 p-4 pt-6 rounded-xl shadow-md bg-white dark:bg-[#222] relative'>
+        <span className="text-3xl md:text-7xl">{totalStats.totalTime}</span>
+        <p className="mb-1 mt-3 sm:mt-0">Total <br /> Hours</p>
+
+        <div className="absolute -top-4 left-1/3 md:-left-4 rounded-full w-8 h-8 bg-red-400 flex justify-center items-center shadow-md">
+          <BsClock className="text-xl text-[#222]" />
+        </div>
       </div>
-      <div className='border-l-4 border-purple-500 p-4 flex flex-col justify-between bg-white dark:bg-[#222] text-[#222] dark:text-white rounded-r-lg space-y-4'>
-        <p className="text-sm font-light">Total Players</p>
-        <span className="text-xl md:text-3xl font-semibold text-right">{totalStats.totalPlayers}</span>
+
+      <div className='flex flex-col sm:flex-row justify-start sm:items-end sm:space-x-2 p-4 pt-6 rounded-xl shadow-md bg-white dark:bg-[#222] relative'>
+        <span className="text-3xl md:text-7xl">{totalStats.totalSessions}</span>
+        <p className="mb-1 mt-3 sm:mt-0">Total <br /> Players</p>
+
+        <div className="absolute -top-4 left-1/3 md:-left-4 rounded-full w-8 h-8 bg-blue-300 flex justify-center items-center shadow-md">
+          <BsPeople className="text-xl text-[#222]" />
+        </div>
       </div>
+
     </div>
   );
 };

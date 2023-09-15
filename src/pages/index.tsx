@@ -65,20 +65,24 @@ const Content: React.FC = () => {
     )}
 
     {sessionData?.user && (
-      <div className="p-4">
-        <div className="flex justify-between items-center">
+      <div className="p-4 relative">
+        <div className="flex justify-between items-start">
           <div className="flex flex-col pb-4">
             <span className="font-semibold text-3xl md:text-5xl">Hello, {sessionData.user.name}</span>
-            <span className="pt-2 font-light tracking-wide">Welcome back!</span>
+            <span className="py-4 font-light tracking-wide">Welcome back!</span>
+
+            {/* theme not persisting. pls solve before uncommenting (: */}
+            {/* <ToggleTheme /> */}
+            
           </div>
-          <ToggleTheme />
         </div>
 
 
         <div className="grid grid-cols-1 md:grid-cols-2">
-
+          <div className=""></div>
 
         </div>
+
       </div>
     )}
 
