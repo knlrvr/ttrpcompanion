@@ -47,9 +47,9 @@ const AddCampaign = () => {
     <>
       <div>
         <div className="">
-          <div className="bg-neutral-200 dark:bg-[#222] text-[#222] dark:text-neutral-100 flex flex-col space-y-4 gap-2 p-6 rounded-lg bg-opacity-50 shadow-md">
+          <div className="bg-neutral-200 dark:bg-[#222] text-[#222] dark:text-neutral-100 flex flex-col space-y-4 gap-2 p-4 rounded-lg bg-opacity-50 shadow-md">
             <div className="text-left">
-              <span className="font-thin text-5xl">New <br /> Campaign</span>
+              <span className="font-thin text-2xl">New Campaign</span>
             </div>
             <div className="text-3xl text-right">
               <button 

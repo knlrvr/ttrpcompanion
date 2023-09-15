@@ -12,6 +12,7 @@
 
 body {
     background-color: var(--bg-color);
+    overscroll-behavior: none !important;
 }
 
 .highlight {

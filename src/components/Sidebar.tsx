@@ -153,7 +153,7 @@ const Sidebar = () => {
         )}
 
         {!sessionData?.user && (
-            <div className="relative bg-neutral-100 dark:bg-[#111]">
+            <div className="relative bg-neutral-100 dark:bg-[#111] empty-sidebar">
                 <button
                     data-drawer-target="default-sidebar"
                     data-drawer-toggle="default-sidebar"
