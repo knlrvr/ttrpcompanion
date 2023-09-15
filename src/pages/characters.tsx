@@ -48,6 +48,7 @@ const Characters = () => {
             onSave={({ title, stats }) => {
             void createCharacter.mutate({
               title,
+              campaignId: null,
               userId: sessionData?.user.id ?? "",
               stats,
               });
