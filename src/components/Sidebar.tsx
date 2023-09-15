@@ -3,8 +3,9 @@
 import React, { useState } from 'react'
 import { useSession } from 'next-auth/react';
 
+import { signIn, signOut } from 'next-auth/react';
+
 import { usePathname } from 'next/navigation'
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 
 import { api, type RouterOutputs } from '@/utils/api';
@@ -12,7 +13,8 @@ import { api, type RouterOutputs } from '@/utils/api';
 import { 
     BsChevronBarLeft, 
     BsBoxArrowLeft,
-    BsGear
+    BsGear,
+    BsExclamationCircle
 } from "react-icons/bs";
 
 import {
@@ -81,71 +83,138 @@ const Sidebar = () => {
     }
 
   return (
-    <div className="relative bg-neutral-100">
-        <button
-            data-drawer-target="default-sidebar"
-            data-drawer-toggle="default-sidebar"
-            aria-controls="default-sidebar"
-            type="button"
-            className="inline-flex items-center p-2 mt-2 text-sm text-[#222] dark:text-white rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
-            onClick={toggleSidebar}
-        >
-            <span className="sr-only">Open sidebar</span>
-            <HiOutlineMenuAlt2 
-                className="text-3xl" 
-            />
-        </button>
-        <aside
-            id="default-sidebar"
-            className={`fixed top-0 left-0 z-40 w-full sm:w-64 h-screen transition-transform ${
-            isSidebarOpen ? "" : "-translate-x-full sm:translate-x-0"
-            }`}
-            aria-label="Sidebar"
-        >
-            <button
-                className="sm:hidden absolute top-2 right-2 p-2 text-[#333] rounded-lg focus:outline-none focus:ring focus:ring-gray-200"
-                onClick={handleCloseSidebar}
-            >
-                <span className="sr-only">Close sidebar</span>
-                <BsChevronBarLeft 
-                    className="text-3xl" />
-            </button>
+    <>
+        {sessionData?.user && (
+            <div className="relative bg-neutral-100 dark:bg-[#111]">
+                <button
+                    data-drawer-target="default-sidebar"
+                    data-drawer-toggle="default-sidebar"
+                    aria-controls="default-sidebar"
+                    type="button"
+                    className="inline-flex items-center p-2 mt-2 text-sm text-[#222] dark:text-white rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+                    onClick={toggleSidebar}
+                >
+                    <span className="sr-only">Open sidebar</span>
+                    <HiOutlineMenuAlt2 
+                        className="text-3xl" 
+                    />
+                </button>
+                <aside
+                    id="default-sidebar"
+                    className={`fixed top-0 left-0 z-40 w-full sm:w-64 h-screen transition-transform ${
+                    isSidebarOpen ? "" : "-translate-x-full sm:translate-x-0"
+                    }`}
+                    aria-label="Sidebar"
+                >
+                    <button
+                        className="sm:hidden absolute top-2 right-2 p-2 text-[#333] rounded-lg focus:outline-none focus:ring focus:ring-gray-200"
+                        onClick={handleCloseSidebar}
+                    >
+                        <span className="sr-only">Close sidebar</span>
+                        <BsChevronBarLeft 
+                            className="text-3xl" />
+                    </button>
 
-            {/* Sidebar content here */}
-            <div className="min-h-screen flex flex-col justify-between px-2 py-4 overflow-y-auto pt-14 sm:pt-4 text-[#333] dark:text-neutral-200 bg-neutral-100 dark:bg-[#111]">
-                <div className="h-fit">
-                    <div className="flex flex-col items-center space-y-6 mb-8">
-                        <span className="font-extrabold text-5xl">LO <br /> GO</span>
-                        <span className="font-extrabold text-xl">TTRPCompanion</span>
+                    {/* Sidebar content here */}
+                    <div className="min-h-screen flex flex-col justify-between px-2 py-4 overflow-y-auto pt-14 sm:pt-4 text-[#333] dark:text-neutral-200 bg-neutral-100 dark:bg-[#111]">
+                        <div className="h-fit">
+                            <div className="flex flex-col items-center space-y-6 mb-8">
+                                <span className="font-extrabold text-5xl">LO <br /> GO</span>
+                                <span className="font-extrabold text-xl">TTRPCompanion</span>
+                            </div>
+                            <ul className="font-light m-2 flex flex-col space-y-6">
+                                {items.map((item) => (
+                                    <li key={item.href} onClick={() => handleCloseSidebar()} className="">
+                                        <Link href={item.href}
+                                            className="flex items-center justify-start space-x-4 px-4 py-2 rounded-lg hover:bg-blue-300 transition duration-200 relative dark:hover:text-[#222] hover:shadow-md">
+                                                <span className="text-3xl">
+                                                    {item.icon}
+                                                </span>
+                                                <span className="">
+                                                    {item.label}
+                                                </span>
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                        {/* <div className="">
+                            <ul>
+                                <li className="text-sm flex items-center p-4 mb-6"
+                                    >
+                                    <BsBoxArrowLeft />
+                                    <span className="flex-1 whitespace-nowrap ml-3">Sign Out</span>
+                                </li>
+                            </ul>
+                        </div> */}
                     </div>
-                    <ul className="font-light m-2 flex flex-col space-y-6">
-                        {items.map((item) => (
-                            <li key={item.href} onClick={() => handleCloseSidebar()} className="">
-                                <Link href={item.href}
-                                    className="flex items-center justify-start space-x-4 px-4 py-2 rounded-lg hover:bg-blue-300 transition duration-200 relative dark:hover:text-[#222] hover:shadow-md">
-                                        <span className="text-3xl">
-                                            {item.icon}
-                                        </span>
-                                        <span className="">
-                                            {item.label}
-                                        </span>
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-                {/* <div className="">
-                    <ul>
-                        <li className="text-sm flex items-center p-4 mb-6"
-                            >
-                            <BsBoxArrowLeft />
-                            <span className="flex-1 whitespace-nowrap ml-3">Sign Out</span>
-                        </li>
-                    </ul>
-                </div> */}
+                </aside>
             </div>
-        </aside>
-    </div>
+        )}
+
+        {!sessionData?.user && (
+            <div className="relative bg-neutral-100 dark:bg-[#111]">
+                <button
+                    data-drawer-target="default-sidebar"
+                    data-drawer-toggle="default-sidebar"
+                    aria-controls="default-sidebar"
+                    type="button"
+                    className="inline-flex items-center p-2 mt-2 text-sm text-[#222] dark:text-white rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+                    onClick={toggleSidebar}
+                >
+                    <span className="sr-only">Open sidebar</span>
+                    <HiOutlineMenuAlt2 
+                        className="text-3xl" 
+                    />
+                </button>
+                <aside
+                    id="default-sidebar"
+                    className={`fixed top-0 left-0 z-40 w-full sm:w-64 h-screen transition-transform ${
+                    isSidebarOpen ? "" : "-translate-x-full sm:translate-x-0"
+                    }`}
+                    aria-label="Sidebar"
+                >
+                    <button
+                        className="sm:hidden absolute top-2 right-2 p-2 text-[#333] rounded-lg focus:outline-none focus:ring focus:ring-gray-200"
+                        onClick={handleCloseSidebar}
+                    >
+                        <span className="sr-only">Close sidebar</span>
+                        <BsChevronBarLeft 
+                            className="text-3xl" />
+                    </button>
+
+                    {/* Sidebar content here */}
+                    <div className="min-h-screen flex flex-col justify-between px-2 py-4 overflow-y-auto pt-14 sm:pt-4 text-[#333] dark:text-neutral-200 bg-neutral-100 dark:bg-[#111]">
+                        <div className="h-fit">
+                            <div className="flex flex-col items-center space-y-6 mb-8">
+                                <span className="font-extrabold text-5xl">LO <br /> GO</span>
+                                <span className="font-extrabold text-xl">TTRPCompanion</span>
+                            </div>
+                            <div className="pt-24 pb-8 flex flex-col justify-center items-center text-center space-y-2">
+                                <BsExclamationCircle className="text-xl" />
+                                <span className="font-semibold">Please sign in to view your dashboard</span>
+                            </div>
+                            <div className="flex justify-center">
+                                <button
+                                    onClick={() => void signIn()}
+                                    className="bg-orange-300 px-4 py-2 rounded-xl uppercase text-xs"
+                                > sign in </button>
+                            </div>
+                        </div>
+                        {/* <div className="">
+                            <ul>
+                                <li className="text-sm flex items-center p-4 mb-6"
+                                    >
+                                    <BsBoxArrowLeft />
+                                    <span className="flex-1 whitespace-nowrap ml-3">Sign Out</span>
+                                </li>
+                            </ul>
+                        </div> */}
+                    </div>
+                </aside>
+            </div>
+        )}
+    </>
   )
 }
 

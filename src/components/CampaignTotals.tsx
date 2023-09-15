@@ -137,28 +137,28 @@ const CampaignTotals: React.FC<{ characters: CharacterStats[] }> = ({ characters
   return (
     <div className="p-2 sm:p-4 grid grid-cols-3 gap-4 mb-4 mt-8">
       <div className='flex flex-col sm:flex-row justify-start sm:items-end sm:space-x-2 p-4 pt-6 rounded-xl shadow-md bg-white dark:bg-[#222] relative'>
-        <span className="text-3xl md:text-7xl">{totalStats.totalSessions}</span>
+        <span className="text-3xl md:text-6xl">{totalStats.totalSessions}</span>
         <p className="mb-1 mt-3 sm:mt-0">Total <br /> Sessions</p>
 
-        <div className="absolute -top-4 left-1/3 md:-left-4 rounded-full w-8 h-8 bg-orange-300 flex justify-center items-center shadow-md">
+        <div className="absolute -top-4 left-[1rem] md:-left-4 rounded-full w-8 h-8 bg-orange-300 flex justify-center items-center shadow-md">
           <BsSlash className="text-3xl text-[#222]" />
         </div>
       </div>
 
       <div className='flex flex-col sm:flex-row justify-start sm:items-end sm:space-x-2 p-4 pt-6 rounded-xl shadow-md bg-white dark:bg-[#222] relative'>
-        <span className="text-3xl md:text-7xl">{totalStats.totalTime}</span>
+        <span className="text-3xl md:text-6xl">{totalStats.totalTime}</span>
         <p className="mb-1 mt-3 sm:mt-0">Total <br /> Hours</p>
 
-        <div className="absolute -top-4 left-1/3 md:-left-4 rounded-full w-8 h-8 bg-red-400 flex justify-center items-center shadow-md">
+        <div className="absolute -top-4 left-[1rem] md:-left-4 rounded-full w-8 h-8 bg-red-400 flex justify-center items-center shadow-md">
           <BsClock className="text-xl text-[#222]" />
         </div>
       </div>
 
       <div className='flex flex-col sm:flex-row justify-start sm:items-end sm:space-x-2 p-4 pt-6 rounded-xl shadow-md bg-white dark:bg-[#222] relative'>
-        <span className="text-3xl md:text-7xl">{totalStats.totalSessions}</span>
+        <span className="text-3xl md:text-6xl">{totalStats.totalPlayers}</span>
         <p className="mb-1 mt-3 sm:mt-0">Total <br /> Players</p>
 
-        <div className="absolute -top-4 left-1/3 md:-left-4 rounded-full w-8 h-8 bg-blue-300 flex justify-center items-center shadow-md">
+        <div className="absolute -top-4 left-[1rem] md:-left-4 rounded-full w-8 h-8 bg-blue-300 flex justify-center items-center shadow-md">
           <BsPeople className="text-xl text-[#222]" />
         </div>
       </div>

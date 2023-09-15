@@ -9,7 +9,9 @@ import { CampCharacterCard } from "@/components/CampCharacterCard";
 import Head from "next/head";
 import Link from "next/link";
 
-import { BsTrash } from "react-icons/bs";
+import { BsTrash, BsBarChart, BsPlus } from "react-icons/bs";
+
+import Modal from "react-modal";
 
 export default function Campaigns() {
   return (
@@ -94,6 +96,14 @@ const Content: React.FC = () => {
     }
   };
 
+  const [isChangeCampModalOpen, setChangeCampModalOpen] = useState(false);
+  const openChangeCampModal = () => {
+    setChangeCampModalOpen(true);
+  }
+  const closeChangeCampModal = () => {
+    setChangeCampModalOpen(false);
+  }
+
   function isCampaignSelected(campaignId: string, selectedCampaign: Campaign | null): boolean {
     return selectedCampaign ? campaignId === selectedCampaign.id : false;
   }
@@ -123,8 +133,9 @@ const Content: React.FC = () => {
   const characterStatsArray = charactersData ?? [];
 
   return (
+    <>
     <div>
-      <ul className="px-2 sm:px-4 bg-gray-50 dark:bg-[#222] rounded-t-lg p-2">
+      {/* <ul className="px-2 sm:px-4 bg-gray-50 dark:bg-[#222] rounded-t-lg p-2">
         {campaigns?.map((campaign) => (
           <li key={campaign.id}
             className={`mb-2 px-3 w-full text-sm
@@ -140,11 +151,27 @@ const Content: React.FC = () => {
             </Link>
           </li>
         ))}
-      </ul>
+      </ul> */}
       {sessionData?.user && campaigns && campaigns.length > 0 && selectedCampaign !== undefined && (
         <div className="">
+          <div className="px-4 pt-4 flex items-center justify-between">
+            <p className="text-xs text-[#888] uppercase">Current Campaign:</p>
+            <div className="flex items-center space-x-1">
+              <span className="text-xs text-[#888]">{selectedCampaign?.title}</span>
+              <button 
+                onClick={() => openChangeCampModal()}
+                className="text-xs font-mono text-blue-300"
+              > (change) </button>
+            </div>
+          </div>
           <CampaignTotals characters={characterStatsArray} />
-          <CharacterTotals characters={characterStatsArray} />
+          <div className="bg-white dark:bg-[#222] m-2 sm:m-4 mt-6 py-4 rounded-lg shadow-md relative">
+            <CharacterTotals characters={characterStatsArray} />
+
+            <div className="absolute -top-4 left-[1rem] md:-left-2 rounded-full w-8 h-8 bg-blue-500 flex justify-center items-center shadow-md">
+              <BsBarChart className="text-xl text-[#222]" />
+            </div>
+          </div>
           <p className="text-neutral-500 uppercase text-xs pt-4 px-4 pb-2">Characters</p>
           <div className="px-2 md:px-4 pb-4 grid grid-cols-1 gap-4">
             {charactersData?.map((character) => (
@@ -169,5 +196,70 @@ const Content: React.FC = () => {
         </div>
       )}
     </div>
+
+
+    {/* Modal for delete campaign confirmation */}
+    <Modal
+      isOpen={isDelCampModalOpen}
+      onRequestClose={closeDelCampModal}
+      contentLabel="Confirm Delete"
+      overlayClassName="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center px-8"
+      className="bg-white p-4 py-12 rounded-lg sm:ml-64"
+    >
+    <div className="text-center flex flex-col justify-between space-y-8">
+      <p className="text-sm">Are you sure you want to delete this campaign? This action cannot be undone.</p>
+        <div className="mt-6 flex justify-center space-x-12">
+          <button
+            className="bg-blue-500 text-white px-4 py-2 rounded-full text-xs uppercase"
+            onClick={closeDelCampModal}
+          >
+            Cancel
+          </button>
+          <button
+            className="bg-red-500 text-white px-4 py-2 rounded-full text-xs uppercase"
+            onClick={() => {
+              if (selectedCampaign) {
+                deleteCampaign.mutate({ id: selectedCampaign.id });
+              }
+            }}
+          >
+            Delete Campaign
+          </button>
+        </div>
+      </div>
+    </Modal>
+
+    <Modal
+      isOpen={isChangeCampModalOpen}
+      onRequestClose={closeChangeCampModal}
+      contentLabel="Confirm Change"
+      overlayClassName="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center px-8"
+      className="bg-white p-4 py-12 rounded-lg sm:ml-64"
+    >
+    <div className="text-center flex flex-col justify-between space-y-8 px-12">
+      <p className="text-sm">Select the campaign you would like to view.</p>
+        <div className="flex justify-start">
+          <ul className="">
+            {campaigns?.map((campaign) => (
+              <li key={campaign.id}
+                className={`py-2 px-3 w-full text-sm
+                ${isCampaignSelected(campaign.id, selectedCampaign) ? "border-l-2 font-semibold border-[#222] dark:border-white" : "ml-0.5"}`}>
+                <Link   
+                  href="#"
+                  className="flex justify-start"
+                  onClick={(evt) => {
+                  evt.preventDefault();
+                  setSelectedCampaign(campaign); 
+                  closeChangeCampModal();
+                  }}
+                  ><span>{campaign.title}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </Modal>
+    </>
   );
 };
