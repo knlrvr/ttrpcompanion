@@ -216,10 +216,12 @@ export const UserCharacterCard = ({
     const { data: campaigns, refetch: refetchCampaigns } = api.campaign.getAll.useQuery(
         undefined, // no input
         {
-          enabled: sessionData?.user !== undefined,
-          onSuccess: (data) => {
-            setSelectedCampaign(selectedCampaign ?? data[0] ?? null);
-          }
+            enabled: sessionData?.user !== undefined,
+            onSuccess: (data) => {
+                if (selectedCampaign === null && data.length > 0) {
+                    setSelectedCampaign(data[0]!); // Add the non-null assertion operator here
+                }
+            }
         }
     );
 
@@ -233,15 +235,6 @@ export const UserCharacterCard = ({
     const toggleCampaignMenu = () => {
         setCampaignMenuOpen(!isCampaignMenuOpen);
     };
-
-
-
-    const addCharacter = api.addCharacterToCampaignRouter.addCharacterToCampaign.useMutation({
-        onSuccess: () => {
-          void refetchCharacters();
-        }
-    });
-
 
     // switch from user to camp 
     const removeCharFromUser = api.removeCharFromUserRouter.removeCharacterFromUser.useMutation({
@@ -631,21 +624,21 @@ export const UserCharacterCard = ({
                         ))}
                         <div className="mt-8 flex flex-col items-end space-y-2 md:space-y-0 md:flex-row justify-between text-sm uppercase">
                             <span className="text-gray-300">{character.title}&apos;s Stats</span>
-                            <div className="flex space-x-8">
+                            <div className="flex relative">
                                 {isEditMode ? (
                                 <button 
-                                    className="text-xs uppercase text-white bg-green-500 px-4 py-2 rounded-full"
+                                    className="mr-4 text-xs uppercase text-white bg-green-500 px-4 py-2 rounded-full"
                                     onClick={handleUpdateClick}
                                 > save </button>
                                 ) : (
                                 <button 
-                                    className="text-xs uppercase text-white bg-blue-500 px-[1.1rem] py-2 rounded-full"
+                                    className="mr-4 text-xs uppercase text-white bg-blue-500 px-[1.1rem] py-2 rounded-full"
                                     onClick={handleEditClick}
                                 > edit </button>
                                 )}
                                 {isEditMode ? (
                                 <button 
-                                    className="text-xs uppercase text-white bg-yellow-400 px-4 py-2 rounded-full"
+                                    className="mr-4 text-xs uppercase text-white bg-yellow-400 px-4 py-2 rounded-full"
                                     onClick={() => {
                                         setIsEditMode(false);
                                         // Reset the editedStats to the original stats when canceling edit
@@ -654,7 +647,7 @@ export const UserCharacterCard = ({
                                 > cancel </button>
                                 ) : (
                                 <button 
-                                    className="text-xs uppercase text-white bg-red-500 px-[1.1rem] py-2 rounded-full"
+                                    className="mr-4 text-xs uppercase text-white bg-red-500 px-[1.1rem] py-2 rounded-full"
                                     onClick={openDelCharModal}
                                 > delete </button>
                                 )}
@@ -664,32 +657,36 @@ export const UserCharacterCard = ({
                                 > Add To </button>
 
                                 {isCampaignMenuOpen && (
-                                    <div className="">
-                                        {campaigns?.map((campaign) => (
-                                            <button
-                                              key={campaign.id}
-                                              className={`block px-4 py-2 ${
-                                                isCampaignSelected(campaign.id, selectedCampaign)
-                                                  ? "bg-blue-200"
-                                                  : ""
-                                              }`}
-                                              onClick={() => {
-                                                setSelectedCampaign(campaign);
-                                                removeCharFromUser.mutate({
-                                                    characterId: character.id,
-                                                    userId: sessionData?.user.id ?? "",
-                                                });
-                                                addCharacterToCamp.mutate({
-                                                    characterId: character.id,
-                                                    campaignId: selectedCampaign?.id ?? "",
-                                                })
-                                                setCampaignMenuOpen(false);
-                                              }}
-                                            >
-                                              {campaign.title}
-                                            </button>
-                                        ))}
-                                    </div> 
+                                    <div>
+                                        <div className="absolute h-4 w-4 bg-neutral-500 top-10 right-8 rotate-45"></div>
+                                        <div className="absolute top-12 -right-2 sm:-right-4 bg-neutral-500 rounded-xl flex flex-col">
+                                            {campaigns?.map((campaign) => (
+                                                <button
+                                                    key={campaign.id}
+                                                    className={`px-4 py-2 text-left ${
+                                                        isCampaignSelected(campaign.id, selectedCampaign)
+                                                        ? ""
+                                                        : ""
+                                                    }`}
+                                                    onClick={() => {
+                                                        const currentCampaign = campaign;
+                                                        setSelectedCampaign(currentCampaign);
+                                                        removeCharFromUser.mutate({
+                                                            characterId: character.id,
+                                                            userId: sessionData?.user.id ?? "",
+                                                        });
+                                                        addCharacterToCamp.mutate({
+                                                            characterId: character.id,
+                                                            campaignId: currentCampaign.id ?? "",
+                                                        });
+                                                        setCampaignMenuOpen(false);
+                                                    }}
+                                                    >
+                                                    {campaign.title}
+                                                </button>
+                                            ))}
+                                        </div> 
+                                    </div>
                                 )}
                             </div>
                         </div>
