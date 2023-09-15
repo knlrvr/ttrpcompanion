@@ -21,6 +21,8 @@
 ![v1.1](https://img.shields.io/badge/version-1.1-success) ![date](https://img.shields.io/badge/Aug%2029%202023-informational) ![description](https://img.shields.io/badge/Login_Updates-grey)
 > Users may now sign in via Discord.
 
+![v1.2](https://img.shields.io/badge/version-1.1-fb923c) ![date](https://img.shields.io/badge/Sep%2014%202023-informational) ![description](https://img.shields.io/badge/App_Overhaul_&_Function_Updates-grey)
+
 
 <a name="description"></a>
 ## Description
