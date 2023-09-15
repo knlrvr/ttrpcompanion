@@ -94,7 +94,7 @@ model Character {
     user                User?               @relation(fields: [userId], references: [id])
     userId              String?             // Foreign key to associate Character with User
     campaign            Campaign?           @relation(fields: [campaignId], references: [id])
-    campaignId          String              // Foreign key to associate Character with Campaign
+    campaignId          String?             // Foreign key to associate Character with Campaign
     stats               CharacterStats[]    // One to many
 }
 
