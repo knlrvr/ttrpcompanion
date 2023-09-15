@@ -704,7 +704,7 @@ export const UserCharacterCard = ({
         className="bg-white dark:bg-[#222] dark:text-neutral-100 p-4 py-12 rounded-lg sm:ml-64"
       >
         <div className="text-center flex flex-col justify-between space-y-8 px-12">
-          <p className="text-sm">Select the campaign you'd like to <span className="font-semibold">{character.title}</span> to.</p>
+          <p className="text-sm">Select the campaign you would like to <span className="font-semibold">{character.title}</span> to.</p>
             <div className="flex flex-col">
                 {campaigns?.map((campaign) => (
                     <button
