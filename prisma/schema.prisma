@@ -84,6 +84,30 @@ model Campaign {
   memberId            String?
   characters          Character[]
   invitations         Invitation[] 
+  quests              Quests[]
+  days                Days[]
+}
+
+model Quests {
+    id                String       @id @default(cuid())
+    createdAt         DateTime     @default(now())
+    updatedAt         DateTime     @updatedAt
+    campaign          Campaign[]
+    campaignId        String?
+
+    title             String
+    body              String
+
+    completed         Boolean
+
+}
+
+model Days {
+    id                String      @id @default(cuid())
+    campaign          Campaign[]
+    campaignId        String?
+
+    totalDays         Int         @default(0)
 }
 
 model Character {
