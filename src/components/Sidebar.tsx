@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import { useSession } from 'next-auth/react';
 
-import { signIn, signOut } from 'next-auth/react';
+import { signIn } from 'next-auth/react';
 
 import { usePathname } from 'next/navigation'
 import Link from 'next/link';
@@ -13,7 +13,6 @@ import { api, type RouterOutputs } from '@/utils/api';
 
 import { 
     BsChevronBarLeft, 
-    BsBoxArrowLeft,
     BsGear,
     BsExclamationCircle
 } from "react-icons/bs";

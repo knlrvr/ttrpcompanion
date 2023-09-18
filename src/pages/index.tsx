@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Link from 'next/link'
 import { signIn, useSession } from "next-auth/react";
 import ToggleTheme from "@/components/ThemeToggle";

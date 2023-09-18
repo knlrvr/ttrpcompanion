@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import { api, type RouterOutputs } from '@/utils/api'
+import React from 'react'
 
 const CampMemberList = () => {
   return (

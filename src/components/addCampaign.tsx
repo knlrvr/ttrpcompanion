@@ -32,12 +32,6 @@ const AddCampaign = () => {
     };
 
     const [isCreateCampModalOpen, setCreateCampModalOpen] = useState<boolean>(false);
-    const openCreateCampModal = () => {
-      setCreateCampModalOpen(true);
-    }
-    const closeCreateCampModal = () => {
-      setCreateCampModalOpen(false);
-    }
 
   return (
     <>

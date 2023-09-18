@@ -1,14 +1,12 @@
-import { api, type RouterOutputs } from '@/utils/api';
+import { api } from '@/utils/api';
 import React, { useState } from 'react'
 
 import { useSession } from 'next-auth/react';
 
 const JoinCampaign = () => {
     const [campaignId, setCampaignId] = useState('');
-    const [joinMessage, setJoinMessage] = useState('');
 
     const { data: sessionData } = useSession();
-
     const { data: campaigns, refetch: refetchCampaigns } = api.campaign.getAll.useQuery(
         undefined, // no input
         {

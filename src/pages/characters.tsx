@@ -1,5 +1,5 @@
 import React from 'react'
-import { api, type RouterOutputs } from "@/utils/api";
+import { api } from "@/utils/api";
 import { useSession } from "next-auth/react";
 
 import { UserCharacterCard } from '@/components/UserCharacterCard';

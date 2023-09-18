@@ -57,9 +57,6 @@ const Content: React.FC = () => {
       setSelectedCampaign(data);
     }
   });
-  const handleCreateCampaign = (title: string) => {
-    createCampaign.mutate({ title });
-  };
 
   // to delete campaign
   const [isDelCampModalOpen, setDelCampModalOpen] = useState(false);
@@ -204,7 +201,7 @@ const Content: React.FC = () => {
               )}
               <p>
                 Share this code with anyone that would like to join your campaign. 
-                Simply enter the code in the campaign selector in the field marked 'Join New Campaign'.
+                Simply enter the code in the campaign selector in the field marked &apos;Join New Campaign&apos;.
               </p>
 
             </div>

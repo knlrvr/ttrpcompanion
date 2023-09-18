@@ -5,8 +5,6 @@ import { api } from "@/utils/api";
 import "@/styles/globals.css";
 import Sidebar from "@/components/Sidebar";
 
-import { useSession } from "next-auth/react";
-
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
   pageProps: { session, ...pageProps },
