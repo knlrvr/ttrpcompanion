@@ -3,6 +3,7 @@ import { BsPlusLg, BsDashLg } from 'react-icons/bs'
 import { api, type RouterOutputs } from '@/utils/api'
 import Modal from 'react-modal'
 import { useSession } from 'next-auth/react'
+import { MdPerson } from 'react-icons/md'
 
 
 interface Stats {
@@ -240,7 +241,12 @@ export const CampCharacterCard = ({
 
     return (
         <>
-        <div className="bg-white dark:bg-[#222] rounded-lg shadow-md p-4 grid">
+        <div className="bg-white dark:bg-[#222] rounded-lg shadow-md p-4 grid relative mt-2">
+            
+            <div className="rounded-full bg-[#222] dark:bg-neutral-100 text-white dark:text-[#111] absolute -top-3 left-[1rem] sm:-left-2 p-1 shadow-md">
+                <MdPerson />
+            </div>
+
             <div className="">
                     <div className="text-lg tracking-wide font-bold flex items-center justify-between py-4">
                         <div className="flex items-center text-xl text-[#222] dark:text-white">
@@ -670,7 +676,7 @@ export const CampCharacterCard = ({
             overlayClassName="modal-overlay fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center px-8"
             className="bg-white dark:bg-[#333] p-8 rounded-lg sm:ml-64"
         >
-            <div className="text-center flex flex-col justify-between space-y-8">
+            <div className="text-center flex flex-col justify-between space-y-8 px-2">
                 <p className="text-sm text-[#222] dark:text-white">
                     Are you sure you want to delete <span className="font-semibold">{character.title}</span>? This action cannot be undone.
                 </p>
@@ -688,7 +694,7 @@ export const CampCharacterCard = ({
                             onDelete();
                             closeDelCharModal();
                         }}
-                    > Delete Character</button>
+                    > Delete</button>
                 </div>
             </div>
         </Modal>

@@ -1,29 +1,14 @@
 import React, { useState } from "react";
 import Link from 'next/link'
 import { signIn, useSession } from "next-auth/react";
-import { api, type RouterOutputs } from "@/utils/api";
-
 import ToggleTheme from "@/components/ThemeToggle";
-import AddCampaign from "@/components/addCampaign";
 
-import Modal from 'react-modal'
 
 import Head from "next/head";
 
 import {
-  BsPeople,
-  BsClock,
-  BsSlash,
   BsGear
 } from 'react-icons/bs'
-
-import {
-  HiOutlineMenuAlt2,
-} from 'react-icons/hi'
-
-import {
-  HiOutlineSquares2X2
-} from 'react-icons/hi2'
 
 import {
   PiTent
@@ -71,7 +56,7 @@ const Content: React.FC = () => {
     )}
 
     {sessionData?.user && (
-      <div className="p-4 relative min-h-screen flex flex-col justify-between">
+      <div className="p-4 relative flex flex-col justify-between">
         <div className="flex justify-between items-start">
           <div className="flex flex-col pb-4">
             <span className="font-semibold text-3xl md:text-5xl">Hello, {sessionData.user.name}</span>
@@ -84,15 +69,15 @@ const Content: React.FC = () => {
 
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div className="col-span-2">
-            <AddCampaign />
-          </div>
 
           <div className="col-span-2">
             <Link href="/campaigns" className="">
               <div className="bg-neutral-200 dark:bg-[#222] text-[#222] dark:text-neutral-100 flex flex-col space-y-4 gap-2 p-4 rounded-lg bg-opacity-50 shadow-md">
                 <div className="text-left">
                   <span className="font-thin text-2xl">Campaigns</span>
+                  <p className="font-light text-xs">
+                    View your active campaigns
+                  </p>
                 </div>
                 <div className="text-4xl flex justify-end">
                   <PiTent />
@@ -101,11 +86,14 @@ const Content: React.FC = () => {
             </Link>
           </div>
 
-          <div>
+          <div className="col-span-2">
             <Link href="/characters" className="">
               <div className="bg-neutral-200 dark:bg-[#222] text-[#222] dark:text-neutral-100 flex flex-col space-y-4 gap-2 p-4 rounded-lg bg-opacity-50 shadow-md">
                 <div className="text-left">
                   <span className="font-thin text-2xl">Characters</span>
+                  <p className="font-light text-xs">
+                    View your active characters
+                  </p>
                 </div>
                 <div className="text-4xl flex justify-end">
                   <MdOutlinePeopleAlt />
@@ -119,6 +107,9 @@ const Content: React.FC = () => {
               <div className="bg-neutral-200 dark:bg-[#222] text-[#222] dark:text-neutral-100 flex flex-col space-y-4 gap-2 p-4 rounded-lg bg-opacity-50 shadow-md">
                 <div className="text-left">
                   <span className="font-thin text-2xl">Profile</span>
+                  <p className="font-light text-xs">
+                    View your profile
+                  </p>
                 </div>
                 <div className="text-4xl flex justify-end">
                   <MdOutlinePerson />
@@ -132,6 +123,9 @@ const Content: React.FC = () => {
               <div className="bg-neutral-200 dark:bg-[#222] text-[#222] dark:text-neutral-100 flex flex-col space-y-4 gap-2 p-4 rounded-lg bg-opacity-50 shadow-md">
                 <div className="text-left">
                   <span className="font-thin text-2xl">Settings</span>
+                  <p className="font-light text-xs">
+                    All settings
+                  </p>
                 </div>
                 <div className="text-4xl flex justify-end">
                   <BsGear />
@@ -140,13 +134,14 @@ const Content: React.FC = () => {
             </Link>
           </div>
 
+          {/* Theme not persisting. Fix before uncommenting. */}
           <div>
             <div>
               <div className="bg-neutral-200 dark:bg-[#222] text-[#222] dark:text-neutral-100 flex flex-col space-y-4 gap-2 p-4 rounded-lg bg-opacity-50 shadow-md">
-                <div className="text-left">
-                  <span className="font-thin text-2xl">Theme</span>
+                <div className="text-left flex flex-col">
+                  <span className="font-thin text-2xl mb-4">Theme</span>
                 </div>
-                <div className="text-4xl flex justify-start py-1.5">
+                <div className="text-4xl flex justify-end py-1.5">
                   <ToggleTheme />
                 </div>
               </div>

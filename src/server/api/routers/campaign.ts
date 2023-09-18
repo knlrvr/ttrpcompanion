@@ -6,10 +6,21 @@ import {
 
 export const campaignRouter = createTRPCRouter({
     getAll: protectedProcedure
-        .query(({ ctx }) => {
-            return ctx.prisma.campaign.findMany({
-                where: {
-                    ownerId: ctx.session.user.id,
+    .query(async ({ ctx }) => {
+        return ctx.prisma.campaign.findMany({
+            where: {
+                OR: [
+                    {
+                        ownerId: ctx.session.user.id,
+                    },
+                    {
+                        members: {
+                            some: {
+                                id: ctx.session.user.id,
+                            },
+                        },
+                    },
+                ],
             },
         });
     }),
@@ -25,48 +36,63 @@ export const campaignRouter = createTRPCRouter({
         });
     }),
 
+    join: protectedProcedure
+    .input(z.object({ campaignId: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+        const { user } = ctx.session;
+        const campaign = await ctx.prisma.campaign.findUnique({
+            where: {
+                id: input.campaignId,
+            },
+        });
+
+        if (!campaign) {
+            throw new Error("Campaign not found!")
+        }
+
+        // already a member?
+
+        await ctx.prisma.campaign.update({
+            where: {
+                id: input.campaignId,
+            },
+            data: {
+                members: {
+                    connect: {
+                        id: user.id,
+                    },
+                },
+            },
+        });
+
+        return "Joined campaign successfully!";
+    }),
+
+    getMembers: protectedProcedure
+    .input(z.object({ campaignId: z.string() })) // Input takes the campaignId
+    .query(async ({ ctx, input }) => {
+        const campaign = await ctx.prisma.campaign.findUnique({
+            where: {
+                id: input.campaignId,
+            },
+            include: {
+                members: true, // Include the members of the campaign
+            },
+        });
+
+        if (!campaign) {
+            throw new Error("Campaign not found!");
+        }
+
+        return campaign.members;
+    }),
+
     delete: protectedProcedure 
     .input(z.object({ id: z.string() }))
     .mutation(async ({ ctx, input }) => {
         return ctx.prisma.campaign.delete({
             where: {
                 id: input.id,
-            },
-        });
-    }),
-})
-
-export const addCharacterToCampaign = z.object({
-    characterId: z.string(),
-    campaignId: z.string(),
-});
-
-export const addCharacterToCampaignRouter = createTRPCRouter({
-    addCharacterToCampaign: protectedProcedure
-    .input(addCharacterToCampaign)
-    .mutation(async ({ ctx, input }) => {
-        return ctx.prisma.character.update({
-            where: { id: input.characterId},
-            data: {
-                campaignId: input.campaignId,
-            },
-        });
-    }),
-});
-
-export const addCharacterToUser = z.object({
-    characterId: z.string(),
-    userId: z.string(),
-});
-
-export const addCharacterToUserRouter = createTRPCRouter({
-    addCharacterToUser: protectedProcedure
-    .input(addCharacterToUser)
-    .mutation(async ({ ctx, input }) => {
-        return ctx.prisma.character.update({
-            where: { id: input.characterId},
-            data: {
-                userId: input.userId,
             },
         });
     }),

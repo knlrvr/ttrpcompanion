@@ -7,6 +7,7 @@ import { signIn, signOut } from 'next-auth/react';
 
 import { usePathname } from 'next/navigation'
 import Link from 'next/link';
+import Image from 'next/image';
 
 import { api, type RouterOutputs } from '@/utils/api';
 
@@ -116,11 +117,27 @@ const Sidebar = () => {
                     </button>
 
                     {/* Sidebar content here */}
-                    <div className="min-h-screen flex flex-col justify-between px-2 py-4 overflow-y-auto pt-14 sm:pt-4 text-[#333] dark:text-neutral-200 bg-neutral-100 dark:bg-[#111]">
+                    <div className="min-h-screen flex flex-col justify-between px-2 py-4 overflow-y-auto pt-8 sm:pt-4 text-[#333] dark:text-neutral-200 bg-neutral-100 dark:bg-[#111]">
                         <div className="h-fit">
-                            <div className="flex flex-col items-center space-y-6 mb-8">
-                                <span className="font-extrabold text-5xl">LO <br /> GO</span>
-                                <span className="font-extrabold text-xl">TTRPCompanion</span>
+                            <div className="flex flex-col items-center">
+                                {/* i would put the svg directly in but i feel like it's just too much */}
+                                {/* dark logo */}
+                                <Image
+                                    src="/logo-dark.svg"
+                                    alt="logo"
+                                    width="1000"
+                                    height="1000"
+                                    className="hidden dark:block rounded-full h-80 sm:h-56"
+                                />
+                                {/* light logo */}
+                                <Image
+                                    src="/logo-light.svg"
+                                    alt="logo"
+                                    width="1000"
+                                    height="1000"
+                                    className="dark:hidden rounded-full h-80 sm:h-56"
+                                />
+                                {/* <span className="font-extrabold text-3xl sm:text-2xl tracking-widest">TTRPCompanion</span> */}
                             </div>
                             <ul className="font-light m-2 flex flex-col space-y-6">
                                 {items.map((item) => (

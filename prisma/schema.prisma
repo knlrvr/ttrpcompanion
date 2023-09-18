@@ -56,36 +56,31 @@ model VerificationToken {
 }
 
 model User {
-    id            String        @id @default(cuid())
-    name          String?
-    email         String?       @unique
-    emailVerified DateTime?
-    image         String?
-    accounts      Account[]
-    sessions      Session[]
+    id              String              @id @default(cuid())
+    name            String?
+    email           String?             @unique
+    emailVerified   DateTime?
+    image           String?
+    accounts        Account[]
+    sessions        Session[]
+    characters      Character[]         // One to many
 
-    characters    Character[]         // One to many
-
-    ownedCamp     Campaign[]    @relation("CampaignOwner")
-    joinedCamp    Campaign[]    @relation("CampaignMember")
-    
-    invitationsSent     Invitation[] @relation("SenderInvitation")
-    invitationsReceived Invitation[] @relation("RecipientInvitation")
+    ownedCamp       Campaign[]          @relation("CampaignOwner")
+    joinedCamp      Campaign[]          @relation("CampaignMember")    
 }
 
 model Campaign {
-  id                  String        @id @default(cuid())
-  createdAt           DateTime      @default(now())
-  updatedAt           DateTime      @updatedAt
-  title               String
-  owner               User          @relation("CampaignOwner", fields: [ownerId], references: [id])
-  ownerId             String        // Foreign key to associate Campaign with Owner
-  members             User?         @relation("CampaignMember", fields: [memberId], references: [id])
-  memberId            String?
-  characters          Character[]
-  invitations         Invitation[] 
-  quests              Quests[]
-  days                Days[]
+    id                  String        @id @default(cuid())
+    createdAt           DateTime      @default(now())
+    updatedAt           DateTime      @updatedAt
+    title               String
+    owner               User          @relation("CampaignOwner", fields: [ownerId], references: [id])
+    ownerId             String        // Foreign key to associate Campaign with Owner
+    members             User[]        @relation("CampaignMember")
+
+    characters          Character[]
+    quests              Quests[]
+    days                Days[]
 }
 
 model Quests {
@@ -149,15 +144,4 @@ model CharacterStats {
     natOne              Int                 @default(0)
     totalKo             Int                 @default(0)
 
-}
-
-model Invitation {
-  id                  String        @id @default(cuid())
-  createdAt           DateTime      @default(now())
-  campaign            Campaign      @relation(fields: [campaignId], references: [id])
-  campaignId          String
-  sender              User          @relation("SenderInvitation", fields: [senderId], references: [id])
-  senderId            String
-  recipient           User          @relation("RecipientInvitation", fields: [recipientId], references: [id])
-  recipientId         String
 }
