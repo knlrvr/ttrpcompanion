@@ -2,7 +2,6 @@ import React from "react";
 import Link from 'next/link'
 import Image from 'next/image'
 import { signIn, useSession } from "next-auth/react";
-import ToggleTheme from "@/components/ThemeToggle";
 
 import PageLayout from "@/components/PageLayout";
 
@@ -86,7 +85,7 @@ const Content: React.FC = () => {
 
             <div className="pt-16 flex justify-between sm:justify-evenly w-full">
               <button 
-                onClick={() => void signIn}
+                onClick={() => void signIn()}
                 className="bg-red-500 rounded-xl px-8 py-2 text-neutral-100 text-sm"
               > Sign In </button>
               <Link href="https://github.com/knlrvr/ttrpcompanion"
