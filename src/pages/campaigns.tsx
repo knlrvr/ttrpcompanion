@@ -205,7 +205,7 @@ const Content: React.FC = () => {
             </div>
           
             <div className="py-4 pb-24 sm:pb-16 mx-2 sm:mx-4">
-              <p className="text-neutral-500 uppercase text-xs pb-4">players</p>
+              <p className="text-neutral-500 uppercase text-xs pb-4">participants</p>
               <ul className="flex relative">
                 {campaignOwner?.image && (
                   <li>
