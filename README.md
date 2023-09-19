@@ -51,7 +51,7 @@ With the rise of D&D's popularity, tools like D&DBeyond are incredibly reliable 
 
 <a name="view"></a>
 ## View
-[View Live](https://ttrpg-char-stats-v2.vercel.app/)
+[View Live](https://ttrpcompanion.vercel.app/)
 
 
 <a name="built-with"></a>
