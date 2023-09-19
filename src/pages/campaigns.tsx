@@ -214,7 +214,7 @@ const Content: React.FC = () => {
                       alt={`${campaignOwner?.name}'s profile picture`}
                       height="1000"
                       width="1000"
-                      className="w-14 h-14 rounded-full absolute border-2 border-neutral-50"
+                      className="w-14 h-14 rounded-full border-2 border-neutral-50"
                     />
                   </li>
                 )}
@@ -225,7 +225,7 @@ const Content: React.FC = () => {
                       alt={`${member.name}'s profile picture`}
                       height="1000"
                       width="1000"
-                      className="w-14 h-14 rounded-full ml-10 border-2 border-neutral-50"
+                      className="w-14 h-14 rounded-full border-2 border-neutral-50"
                     />
                   </li>
                 ))}
