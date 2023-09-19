@@ -25,7 +25,7 @@
 ![v2.0](https://img.shields.io/badge/version-2.0-fb923c) ![date](https://img.shields.io/badge/Sep_14_2023-informational) ![description](https://img.shields.io/badge/App_Overhaul_&_Function_Updates-grey)
 > Complete design overhaul. Added total players to default campaign stats. Users will now create characters under the `Characters` tab and assign them to campaigns after creation. When assigned to a campaign, the character is removed from the `Characters` tab and placed into the chosen `Campaign`, which they can then view in the `Campaigns` tab. Users can also remove characters from campaigns, which will place them back in their `Characters` tab. Characters under the `Characters` tab are considered inactive since they're not associated with a campaign, but you can still edit their information and view them as you would if they were associated with a campaign.
 
-![v2.1](https://img.shields.io/badge/version-2.0-0d9488) ![date](https://img.shields.io/badge/Sep_19_2023-informational) ![description](https://img.shields.io/badge/UI_Updates-grey)
+![v2.1](https://img.shields.io/badge/version-2.1-0d9488) ![date](https://img.shields.io/badge/Sep_19_2023-informational) ![description](https://img.shields.io/badge/UI_Updates-grey)
 > Users can now join campaigns using the `campaign code` provided at the bottom of each campaign. When users enter this campaign code on the campaign selector modal, the campaign will populate in their `campaigns` list. All campaign `participants` are now listed at the bottom of each campaign, including the `owner` and any `member` that has joined via code. 
 
 
