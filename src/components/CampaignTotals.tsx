@@ -135,7 +135,7 @@ const CampaignTotals: React.FC<{ characters: CharacterStats[] }> = ({ characters
   }
 
   return (
-    <div className="p-2 sm:p-4 grid grid-cols-3 gap-4 mb-4 mt-8">
+    <div className="py-4 grid grid-cols-3 gap-4 mb-4 mt-8">
       <div className='flex flex-col sm:flex-row justify-start sm:items-end sm:space-x-2 p-4 pt-6 rounded-xl shadow-md bg-white dark:bg-[#222] relative'>
         <span className="text-3xl md:text-6xl">{totalStats.totalSessions}</span>
         <p className="mb-1 mt-3 sm:mt-0">Total <br /> Sessions</p>

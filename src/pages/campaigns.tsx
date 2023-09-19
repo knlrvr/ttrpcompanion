@@ -2,6 +2,8 @@ import { useSession } from "next-auth/react";
 import { useState } from "react";
 import { api, type RouterOutputs } from "@/utils/api";
 
+import PageLayout from "@/components/PageLayout";
+
 import CampaignTotals from "@/components/CampaignTotals";
 import CharacterTotals from "@/components/CharacterTotals";
 import { CampCharacterCard } from "@/components/CampCharacterCard";
@@ -159,7 +161,7 @@ const Content: React.FC = () => {
   );
 
   return (
-    <>
+    <PageLayout>
       <div>
         {sessionData?.user && campaigns?.length === 0 && (
           <div className="flex items-center space-x-1 p-2 sm:p-4">
@@ -172,7 +174,7 @@ const Content: React.FC = () => {
         {sessionData?.user && campaigns && campaigns.length > 0 && selectedCampaign !== undefined && (
           <div className="">
             
-            <div className="px-4 pt-4 flex items-center justify-between">
+            <div className="pt-4 flex items-center justify-between">
               <p className="text-xs text-[#888] uppercase">Current Campaign:</p>
               <div className="flex items-center space-x-1">
                 <span className="text-xs text-[#888]">{selectedCampaign?.title}</span>
@@ -183,17 +185,17 @@ const Content: React.FC = () => {
               </div>
             </div>
             <CampaignTotals characters={characterStatsArray} />
-            <div className="bg-white dark:bg-[#222] m-2 sm:m-4 mt-6 p-4 rounded-lg shadow-md relative">
+            <div className="bg-white dark:bg-[#222] my-6 p-4 rounded-lg shadow-md relative">
               <CharacterTotals characters={characterStatsArray} />
 
               <div className="absolute -top-4 left-[1rem] md:-left-2 rounded-full w-8 h-8 bg-blue-500 flex justify-center items-center shadow-md">
                 <BsBarChart className="text-xl text-[#222]" />
               </div>
             </div>
-            <p className="text-neutral-500 uppercase text-xs pt-6 px-2 sm:px-4 pb-4">Characters</p>
+            <p className="text-neutral-500 uppercase text-xs pt-6 pb-4">Characters</p>
             
 
-            <div className="px-2 md:px-4 pb-4 grid grid-cols-1 gap-4">
+            <div className="pb-4 grid grid-cols-1 gap-4">
               {charactersData?.map((character) => (
                 <div key={character.id} className="">
                   <CampCharacterCard
@@ -204,7 +206,7 @@ const Content: React.FC = () => {
               ))}
             </div>
           
-            <div className="py-4 pb-24 sm:pb-16 mx-2 sm:mx-4">
+            <div className="py-4 pb-24 sm:pb-16">
               <p className="text-neutral-500 uppercase text-xs pb-4">participants</p>
               <ul className="flex relative">
                 {campaignOwner?.image && (
@@ -232,7 +234,7 @@ const Content: React.FC = () => {
               </ul>
             </div>
 
-            <div className="mx-2 sm:mx-4 text-xs text-neutral-500 flex flex-col space-y-1">
+            <div className="text-xs text-neutral-500 flex flex-col space-y-1">
               <p className="text-neutral-500 uppercase text-xs pb-1">Campaign Code</p>
               {isCodeShown ? (
                 <div className="flex items-center space-x-2">
@@ -341,6 +343,6 @@ const Content: React.FC = () => {
       </Modal>
 
       
-    </>
+    </PageLayout>
   );
 };

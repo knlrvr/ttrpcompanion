@@ -154,15 +154,6 @@ const Sidebar = () => {
                                 ))}
                             </ul>
                         </div>
-                        {/* <div className="">
-                            <ul>
-                                <li className="text-sm flex items-center p-4 mb-6"
-                                    >
-                                    <BsBoxArrowLeft />
-                                    <span className="flex-1 whitespace-nowrap ml-3">Sign Out</span>
-                                </li>
-                            </ul>
-                        </div> */}
                     </div>
                 </aside>
             </div>
@@ -199,31 +190,29 @@ const Sidebar = () => {
                             className="text-3xl" />
                     </button>
 
-                    {/* Sidebar content here */}
                     <div className="min-h-screen flex flex-col justify-between px-2 py-4 overflow-y-auto pt-14 sm:pt-4 text-[#333] dark:text-neutral-200 bg-neutral-100 dark:bg-[#111]">
                         <div className="h-fit">
                             <div className="flex flex-col items-center">
-                                {/* i would put the svg directly in but i feel like it's just too much */}
-                                {/* dark logo */}
                                 <Image
-                                    src="/logo-dark.svg"
+                                    src="/logo-nl-dark.svg"
                                     alt="logo"
                                     width="1000"
                                     height="1000"
-                                    className="hidden dark:block rounded-full h-80 sm:h-56"
+                                    className="hidden dark:block rounded-full h-80 sm:h-64"
                                 />
-                                {/* light logo */}
                                 <Image
-                                    src="/logo-light.svg"
+                                    src="/logo-nl-light.svg"
                                     alt="logo"
                                     width="1000"
                                     height="1000"
-                                    className="dark:hidden rounded-full h-80 sm:h-56"
+                                    className="dark:hidden rounded-full h-80 sm:h-64"
                                 />
                             </div>
-                            <div className="pt-24 pb-8 flex flex-col justify-center items-center text-center space-y-2">
-                                <BsExclamationCircle className="text-xl" />
-                                <span className="font-semibold">Please sign in to view your dashboard</span>
+                            <div className="pt-12 pb-8 flex flex-col justify-center items-center text-center space-y-2">
+                                <span className="font-semibold">Welcome to TTRPCompanion!</span>
+                                <p>
+                                    Sign in now to begin tracking your tabletop stats!
+                                </p>
                             </div>
                             <div className="flex justify-center">
                                 <button
@@ -232,19 +221,11 @@ const Sidebar = () => {
                                 > sign in </button>
                             </div>
                         </div>
-                        {/* <div className="">
-                            <ul>
-                                <li className="text-sm flex items-center p-4 mb-6"
-                                    >
-                                    <BsBoxArrowLeft />
-                                    <span className="flex-1 whitespace-nowrap ml-3">Sign Out</span>
-                                </li>
-                            </ul>
-                        </div> */}
                     </div>
                 </aside>
             </div>
         )}
+       
     </>
   )
 }
