@@ -83,9 +83,27 @@ export const campaignRouter = createTRPCRouter({
         if (!campaign) {
             throw new Error("Campaign not found!");
         }
-
         return campaign.members;
     }),
+
+    getOwner: protectedProcedure
+    .input(z.object({ campaignId: z.string() }))
+    .query(async ({ ctx, input }) => {
+        const campaign = await ctx.prisma.campaign.findUnique({
+            where: {
+                id: input.campaignId,
+            },
+            include: {
+                owner: true, 
+            },
+        });
+
+        if (!campaign) {
+            throw new Error("Campaign not found!");
+        }
+        return campaign.owner;
+    }),
+
 
     delete: protectedProcedure 
     .input(z.object({ id: z.string() }))

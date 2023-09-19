@@ -8,12 +8,12 @@ import { CampCharacterCard } from "@/components/CampCharacterCard";
 
 import Head from "next/head";
 import Link from "next/link";
+import Image from 'next/image'
 
 import { BsTrash, BsBarChart, BsEye, BsEyeSlash } from "react-icons/bs";
 
 import Modal from "react-modal";
 import AddCampaign from "@/components/addCampaign";
-import CampMemberList from "@/components/CampMemberList";
 import JoinCampaign from "@/components/joinCampaign";
 
 Modal.setAppElement('main');
@@ -138,6 +138,26 @@ const Content: React.FC = () => {
 
   const characterStatsArray = charactersData ?? [];
 
+  // owner
+  const { data: campaignOwner, refetch: refetchCampaignOwner } = api.campaign.getOwner.useQuery(
+    {
+      campaignId: selectedCampaign?.id ?? "",
+    },
+    {
+      enabled: selectedCampaign !== null,
+    }
+  );
+
+  // members
+  const { data: campaignMembers, refetch: refetchCampaignMembers } = api.campaign.getMembers.useQuery(
+    {
+      campaignId: selectedCampaign?.id ?? "",
+    },
+    {
+      enabled: selectedCampaign !== null,
+    }
+  );
+
   return (
     <>
       <div>
@@ -184,10 +204,32 @@ const Content: React.FC = () => {
               ))}
             </div>
           
-
-
-            <div className="py-4 pb-12">
-              <CampMemberList />
+            <div className="py-4 pb-24 sm:pb-16 mx-2 sm:mx-4">
+              <p className="text-neutral-500 uppercase text-xs pb-4">players</p>
+              <ul className="flex relative">
+                {campaignOwner?.image && (
+                  <li>
+                    <Image 
+                      src={campaignOwner?.image ?? ''}
+                      alt={`${campaignOwner?.name}'s profile picture`}
+                      height="1000"
+                      width="1000"
+                      className="w-14 h-14 rounded-full absolute border-2 border-neutral-50"
+                    />
+                  </li>
+                )}
+                {campaignMembers?.map((member) => (
+                  <li key={member.id}>
+                    <Image 
+                      src={member.image ?? ''}
+                      alt={`${member.name}'s profile picture`}
+                      height="1000"
+                      width="1000"
+                      className="w-14 h-14 rounded-full ml-10 border-2 border-neutral-50"
+                    />
+                  </li>
+                ))}
+              </ul>
             </div>
 
             <div className="mx-2 sm:mx-4 text-xs text-neutral-500 flex flex-col space-y-1">
