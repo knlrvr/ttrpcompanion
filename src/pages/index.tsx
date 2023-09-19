@@ -42,7 +42,7 @@ const Content: React.FC = () => {
     <>
     {!sessionData?.user && (
       <div className="">
-        <div className="p-4 pt-8 max-w-5xl mx-auto flex flex-col justify-center items-start sm:items-start px-4">
+        <div className="p-4 pt-8 flex flex-col justify-center items-start sm:items-start px-4">
           {/* <span className="font-semibold tracking-widest text-sm sm:text-base md:text-lg lg:text-xl">Welcome To</span>
           <span className="font-semiabold tracking-wide leading-tight text-xl sm:text-2xl md:text-3xl lg:text-4xl">TTRPCompanion</span> */}
 
