@@ -190,7 +190,7 @@ const Content: React.FC = () => {
                 <BsBarChart className="text-xl text-[#222]" />
               </div>
             </div>
-            <p className="text-neutral-500 uppercase text-xs pt-6 px-4 pb-4">Characters</p>
+            <p className="text-neutral-500 uppercase text-xs pt-6 px-2 sm:px-4 pb-4">Characters</p>
             
 
             <div className="px-2 md:px-4 pb-4 grid grid-cols-1 gap-4">
