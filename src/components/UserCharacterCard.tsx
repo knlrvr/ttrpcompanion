@@ -158,7 +158,6 @@ const getBorderColorClass = (charClass: string): string => {
 
 type Campaign = RouterOutputs["campaign"]["getAll"][0];
 
-
 export const UserCharacterCard = ({
     character, 
     onDelete,

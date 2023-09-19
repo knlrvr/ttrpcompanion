@@ -34,7 +34,6 @@ export default function Home() {
   );
 }
 
-
 const Content: React.FC = () => {
 
   const { data: sessionData } = useSession();
@@ -142,7 +141,8 @@ const Content: React.FC = () => {
                   <span className="font-thin text-2xl mb-4">Theme</span>
                 </div>
                 <div className="text-4xl flex justify-end py-1.5">
-                  <ToggleTheme />
+                  {/* <ToggleTheme /> */}
+                  <p className="text-xs font-extralight py-1">disabled</p>
                 </div>
               </div>
             </div>

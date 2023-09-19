@@ -16,6 +16,8 @@ import AddCampaign from "@/components/addCampaign";
 import CampMemberList from "@/components/CampMemberList";
 import JoinCampaign from "@/components/joinCampaign";
 
+Modal.setAppElement('main');
+
 export default function Campaigns() {
   return (
     <>
@@ -269,8 +271,8 @@ const Content: React.FC = () => {
         overlayClassName="modal-overlay fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center px-8"
         className="bg-white dark:bg-[#222] dark:text-neutral-100 p-4 py-12 rounded-lg sm:ml-64"
       >
-      <div className="text-center flex flex-col justify-between space-y-8 px-4">
-        <p className="text-sm">Select the campaign you would like to view.</p>
+        <div className="text-center flex flex-col justify-between space-y-8 px-4">
+          <p className="text-sm">Select the campaign you would like to view.</p>
           <div className="flex justify-start">
             <ul className="text-left">
               {campaigns?.map((campaign) => (
