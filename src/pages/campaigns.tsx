@@ -57,6 +57,9 @@ const Content: React.FC = () => {
       setSelectedCampaign(data);
     }
   });
+  const handleCreateCampaign = (title: string) => {
+    createCampaign.mutate({ title });
+  };
 
   // to delete campaign
   const [isDelCampModalOpen, setDelCampModalOpen] = useState(false);
@@ -136,11 +139,17 @@ const Content: React.FC = () => {
   return (
     <>
       <div>
+        {sessionData?.user && campaigns?.length === 0 && (
+          <div className="flex items-center space-x-1 p-2 sm:p-4">
+            <button 
+              onClick={() => openChangeCampModal()}
+              className="text-xs font-mono text-blue-300"
+            > Create Or Join A Campaign Now!</button>
+          </div>
+        )}
         {sessionData?.user && campaigns && campaigns.length > 0 && selectedCampaign !== undefined && (
           <div className="">
             
-
-
             <div className="px-4 pt-4 flex items-center justify-between">
               <p className="text-xs text-[#888] uppercase">Current Campaign:</p>
               <div className="flex items-center space-x-1">
@@ -201,7 +210,7 @@ const Content: React.FC = () => {
               )}
               <p>
                 Share this code with anyone that would like to join your campaign. 
-                Simply enter the code in the campaign selector in the field marked &apos;Join New Campaign&apos;.
+                Simply enter the code in the campaign selector in the field marked 'Join New Campaign'.
               </p>
 
             </div>
