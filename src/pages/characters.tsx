@@ -36,7 +36,7 @@ const Characters = () => {
   return (
     <PageLayout>
       <div className="">
-        <p className="text-[#888] uppercase text-xs pb-2">bench</p>
+        <p className="text-[#888] uppercase text-xs pb-2">inactive characters</p>
         <div className="pb-4 grid grid-cols-1 gap-2">
           {charactersData?.map((character) => (
             <div key={character.id} className="">

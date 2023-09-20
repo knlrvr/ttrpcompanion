@@ -140,6 +140,7 @@ export const characterRouter = createTRPCRouter({
             include: {
                 stats: true,
             }
-        })
-    })
+        });
+    }),
+    
 });

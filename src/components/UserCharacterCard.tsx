@@ -6,7 +6,6 @@ import { useSession } from 'next-auth/react'
 
 import { MdPerson } from 'react-icons/md'
 
-
 interface Stats {
   id?: string;
   characterId: string;
@@ -169,35 +168,36 @@ export const UserCharacterCard = ({
     const { data: sessionData } = useSession();
 
     const [isExpanded, setIsExpanded] = useState<boolean>(false);
+    const [selectedCampaign, setSelectedCampaign] = useState<Campaign | null>(null);
 
-    // update character 
     const [isEditMode, setIsEditMode] = useState<boolean>(false);
+    const [isDelCharModalOpen, setDelCharModalOpen] = useState(false);
+
     const [editedStats, setEditedStats] = useState<Partial<Stats>>({
         level: 0,
-    }); // Use Partial<Stats> for editedStats
+    }); 
+
     const updateCharacterStats = api.character.update.useMutation({
         onSuccess: () => {
-            window.location.reload();
+            void refetchCharacters();
         },
     });
     const handleEditClick = () => {
         setIsEditMode(true);
-        // Clone the stats object when entering edit mode
         setEditedStats({ ...character.stats[0] });
     };
     const handleUpdateClick = () => {
         if (editedStats?.id) {
-          // Pass the editedStats state to the mutate function
             void updateCharacterStats.mutateAsync({
                 id: character.stats[0]?.id ?? "",
-                stats: editedStats as Stats, // Cast editedStats to Stats
+                stats: editedStats as Stats, 
             });
-            setIsEditMode(false); // Close the edit mode
+            setIsEditMode(false); 
         }
     };
 
+
     // to delete character
-    const [isDelCharModalOpen, setDelCharModalOpen] = useState(false);
     const openDelCharModal = () => {
         setDelCharModalOpen(true);
     };
@@ -215,22 +215,21 @@ export const UserCharacterCard = ({
     );
 
     const { data: campaigns, refetch: refetchCampaigns } = api.campaign.getAll.useQuery(
-        undefined, // no input
+        undefined, 
         {
             enabled: sessionData?.user !== undefined,
             onSuccess: (data) => {
                 if (selectedCampaign === null && data.length > 0) {
-                    setSelectedCampaign(data[0]!); // Add the non-null assertion operator here
+                    setSelectedCampaign(data[0]!);
                 }
             }
         }
     );
 
-    const [selectedCampaign, setSelectedCampaign] = useState<Campaign | null>(null);
-
     function isCampaignSelected(campaignId: string, selectedCampaign: Campaign | null): boolean {
         return selectedCampaign ? campaignId === selectedCampaign.id : false;
     }
+    
 
     // switch from user to camp 
     const removeCharFromUser = api.removeCharFromUserRouter.removeCharacterFromUser.useMutation({
@@ -647,7 +646,7 @@ export const UserCharacterCard = ({
                                 )}
                                 {isEditMode ? (
                                 <button 
-                                    className="mr-4 text-xs uppercase text-white bg-yellow-400 px-4 py-2 rounded-full"
+                                    className="mr-4 text-xs uppercase text-white bg-blue-500 px-4 py-2 rounded-full"
                                     onClick={() => {
                                         setIsEditMode(false);
                                         // Reset the editedStats to the original stats when canceling edit
@@ -661,7 +660,7 @@ export const UserCharacterCard = ({
                                 > delete </button>
                                 )}
                                 <button 
-                                    className="text-xs uppercase text-white bg-green-500 px-[1.1rem] py-2 rounded-full"
+                                    className="text-xs uppercase text-white bg-yellow-500 px-[1.1rem] py-2 rounded-full"
                                     onClick={() => openCampaignModal()}
                                 > Add To </button>
                             </div>

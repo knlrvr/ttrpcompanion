@@ -3,8 +3,8 @@ import { BsPlusLg, BsDashLg } from 'react-icons/bs'
 import { api, type RouterOutputs } from '@/utils/api'
 import Modal from 'react-modal'
 import { useSession } from 'next-auth/react'
-import { MdPerson } from 'react-icons/md'
 
+import { MdPerson } from 'react-icons/md'
 
 interface Stats {
   id?: string;
@@ -157,7 +157,6 @@ const getBorderColorClass = (charClass: string): string => {
 
 type Campaign = RouterOutputs["campaign"]["getAll"][0];
 
-
 export const CampCharacterCard = ({
     character, 
     onDelete,
@@ -169,35 +168,43 @@ export const CampCharacterCard = ({
     const { data: sessionData } = useSession();
 
     const [isExpanded, setIsExpanded] = useState<boolean>(false);
+    const [selectedCampaign, setSelectedCampaign] = useState<Campaign | null>(null);
 
-    // update character 
     const [isEditMode, setIsEditMode] = useState<boolean>(false);
+    const [isDelCharModalOpen, setDelCharModalOpen] = useState(false);
+
     const [editedStats, setEditedStats] = useState<Partial<Stats>>({
         level: 0,
-    }); // Use Partial<Stats> for editedStats
+    }); 
+
     const updateCharacterStats = api.character.update.useMutation({
         onSuccess: () => {
-            window.location.reload();
+            void refetchCharacters();
+
+            // i need to figure out the latency in this mutation.
+            // it's pretty much the same as UserChar, but doesn't take effect.
+            // consistent across campaigns and users. 
+            // you have to either change pages or reload for the changes to show. 
+            // and i'm not sure why yet. 
+            // window.location.reload();
         },
     });
     const handleEditClick = () => {
         setIsEditMode(true);
-        // Clone the stats object when entering edit mode
         setEditedStats({ ...character.stats[0] });
     };
     const handleUpdateClick = () => {
         if (editedStats?.id) {
-          // Pass the editedStats state to the mutate function
             void updateCharacterStats.mutateAsync({
                 id: character.stats[0]?.id ?? "",
-                stats: editedStats as Stats, // Cast editedStats to Stats
+                stats: editedStats as Stats, 
             });
-            setIsEditMode(false); // Close the edit mode
+            setIsEditMode(false);
         }
     };
 
+
     // to delete character
-    const [isDelCharModalOpen, setDelCharModalOpen] = useState(false);
     const openDelCharModal = () => {
         setDelCharModalOpen(true);
     };
@@ -205,28 +212,32 @@ export const CampCharacterCard = ({
         setDelCharModalOpen(false);
     };
 
-    const [selectedCampaign, setSelectedCampaign] = useState<Campaign | null>(null);
-
     const { data: charactersData, refetch: refetchCharacters } = api.character.getAllCampaign.useQuery(
         {
-          campaignId: selectedCampaign?.id ?? "",
+          campaignId: selectedCampaign?.id ?? '',
         },
         {
-          enabled: sessionData?.user !== undefined,
+          enabled: selectedCampaign?.id !== undefined,
         }
     );
 
-    const { data: campaigns, refetch: refetchCampaigns } = api.campaign.getAll.useQuery(
-        undefined, // no input
-        {
-          enabled: sessionData?.user !== undefined,
-          onSuccess: (data) => {
-            setSelectedCampaign(selectedCampaign ?? data[0] ?? null);
-          }
-        }
-    );
+    // const { data: campaigns, refetch: refetchCampaigns } = api.campaign.getAll.useQuery(
+    //     undefined, 
+    //     {
+    //         enabled: sessionData?.user !== undefined,
+    //         onSuccess: (data) => {
+    //             if (selectedCampaign === null && data.length > 0) {
+    //                 setSelectedCampaign(data[0]!);
+    //             }
+    //         }
+    //     }
+    // );
+    //
+    // function isCampaignSelected(campaignId: string, selectedCampaign: Campaign | null): boolean {
+    //     return selectedCampaign ? campaignId === selectedCampaign.id : false;
+    // }
 
-    
+
     // switch from camp to user
     const removeCharFromCamp = api.removeCharFromCampRouter.removeChararacterFromCampaign.useMutation({
         onSuccess: () => {
@@ -279,6 +290,21 @@ export const CampCharacterCard = ({
                                                     type="number"
                                                     value={editedStats.level?.toString() ?? ""}
                                                     onChange={(e) =>
+                                                    setEditedStats((prevState) => ({
+                                                        ...prevState,
+                                                        level: (prevState.level ?? 0) + parseInt(e.target.value),
+                                                    }))
+                                                    }
+                                                    className="font-semibold text-lg md:text-2xl w-1/2 rounded-full px-3 text-right dark:bg-[#444] dark:text-white"
+                                                />
+                                            </div>
+
+
+                                            {/* <div className="flex justify-end">
+                                                <input
+                                                    type="number"
+                                                    value={editedStats.level?.toString() ?? ""}
+                                                    onChange={(e) =>
                                                         setEditedStats((prevState) => ({
                                                         ...prevState,
                                                         level: parseInt(e.target.value),
@@ -286,7 +312,7 @@ export const CampCharacterCard = ({
                                                     }
                                                     className="font-semibold text-lg md:text-2xl w-1/2 rounded-full px-3 text-right dark:bg-[#444] dark:text-white"
                                                 />
-                                            </div>
+                                            </div> */}
                                         </div>
                                         <div className={`border-l-4 ${getBorderColorRace(stat.charRace)} p-4 flex flex-col justify-between bg-gray-50 dark:bg-[#333] dark:bg-opacity-25 rounded-r-lg dark:text-white`}>
                                             <p className="text-xs font-light">Race</p>
