@@ -90,7 +90,9 @@ const Profile = () => {
 
           <div className="pt-8">
             <p className="font-semibold text-lg tracking-wide">
-              <span className="font-light">{sessionData?.user.name}&apos;s</span> Active Campaigns
+              <span className="font-light">{sessionData?.user.name}&apos;s </span> 
+              Active Campaigns
+              <span className="font-light text-neutral-500"> ({campaigns?.length})</span>
             </p>
             <p className="text-xs font-light pb-4">Campaigns that you have created or joined are displayed below. You can also find your <span className="font-semibold">active</span> characters within that campaign.</p>
             <ul className="text-left text-base font-light bg-white dark:bg-[#222] rounded-xl p-4 shadow-md">
@@ -105,7 +107,10 @@ const Profile = () => {
 
           <div className="pt-8">
             <p className="font-semibold text-lg tracking-wide">
-              <span className="font-light">{sessionData?.user.name}&apos;s</span> Inactive Characters
+              <span className="font-light">{sessionData?.user.name}&apos;s </span> 
+              Inactive Characters 
+              <span className="font-light text-neutral-500"> ({charactersData?.length})</span>
+            
             </p>
             <p className="text-xs font-light pb-4">Characters that have not been assigned to a campaign are shown below.</p>
 

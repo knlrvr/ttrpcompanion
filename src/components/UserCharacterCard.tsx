@@ -48,7 +48,6 @@ const getBorderColorLevel = (level: number): string => {
     }
 };
 
-// probably would've been easier to assign a race to a group in the db lol
 type RaceGroup = "Beastfolk" | "Draconian" | "Fae" | "Giantkin" | "Mech" | "Mundane" | "Planar" ;
 
 const getBorderColorRace = (race:string): string => {

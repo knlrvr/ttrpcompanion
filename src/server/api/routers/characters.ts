@@ -64,8 +64,8 @@ export const characterRouter = createTRPCRouter({
         return ctx.prisma.character.create({
             data: {
                 title: input.title,
-                userId: input.userId,
-                campaignId: null,
+                userId: input?.userId,
+                campaignId: input?.campaignId,
                 stats: {
                     create: {
                         level: input.stats.level,
@@ -99,7 +99,7 @@ export const characterRouter = createTRPCRouter({
       const { id, stats } = input;
       return ctx.prisma.characterStats.update({
         where: { 
-            id
+            id,
          },
         data: {
             ...stats,
@@ -117,6 +117,7 @@ export const characterRouter = createTRPCRouter({
         });
     }),
 
+
     getAllCampaign: protectedProcedure
     .input(z.object({ campaignId: z.string() }))
     .query(({ ctx, input }) => {
@@ -126,7 +127,7 @@ export const characterRouter = createTRPCRouter({
             },
             include: {
                 stats: true,
-            }
+            },
         });
     }),
 
@@ -139,8 +140,8 @@ export const characterRouter = createTRPCRouter({
             },
             include: {
                 stats: true,
-            }
+            },
         });
     }),
     
-});
+}); 

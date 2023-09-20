@@ -44,7 +44,7 @@ const AddCampaign = () => {
                 id="addCampaign"
                 type="text"
                 placeholder="New Campaign Name"
-                className="text-sm border rounded-full px-2 py-[0.2rem] flex justify-center w-full bg-gray-50 dark:bg-[#222] placeholder:text-neutral-500"
+                className="text-sm rounded-full px-2 py-[0.2rem] border border-neutral-500 flex justify-center w-full bg-gray-50 dark:bg-[#222] placeholder:text-neutral-500"
                 onKeyDown={(e) => {
                   if (e.key === "Enter") {
                     createCampaign.mutate({
@@ -55,16 +55,18 @@ const AddCampaign = () => {
                 }}
               />
               <button
-                className="bg-blue-500 text-white p-1.5 px-5 rounded-full text-lg w-fit flex"
-                onClick={() => {
-                  const titleInput = document.getElementById("campaign") as HTMLInputElement;
+                className="bg-blue-500 text-white p-1.5 px-5 rounded-full text-xs uppercase w-fit flex"
+                onClick={(e) => {
+                  const titleInput = document.getElementById("addCampaign") as HTMLInputElement;
                   if (titleInput) {
-                    handleCreateCampaign(titleInput.value);
-                    titleInput.value = "";
+                    createCampaign.mutate({
+                      title: titleInput.value,
+                    });
+                    titleInput.value = '';
                   }
                 }}
               >
-                <p className="uppercase text-xs">create</p>
+                create
               </button>
             </div>
             

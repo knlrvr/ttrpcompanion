@@ -68,6 +68,7 @@ export const campaignRouter = createTRPCRouter({
         return "Joined campaign successfully!";
     }),
 
+
     getMembers: protectedProcedure
     .input(z.object({ campaignId: z.string() })) // Input takes the campaignId
     .query(async ({ ctx, input }) => {

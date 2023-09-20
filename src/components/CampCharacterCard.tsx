@@ -48,7 +48,6 @@ const getBorderColorLevel = (level: number): string => {
     }
 };
 
-// probably would've been easier to assign a race to a group in the db lol
 type RaceGroup = "Beastfolk" | "Draconian" | "Fae" | "Giantkin" | "Mech" | "Mundane" | "Planar" ;
 
 const getBorderColorRace = (race:string): string => {
@@ -180,13 +179,6 @@ export const CampCharacterCard = ({
     const updateCharacterStats = api.character.update.useMutation({
         onSuccess: () => {
             void refetchCharacters();
-
-            // i need to figure out the latency in this mutation.
-            // it's pretty much the same as UserChar, but doesn't take effect.
-            // consistent across campaigns and users. 
-            // you have to either change pages or reload for the changes to show. 
-            // and i'm not sure why yet. 
-            // window.location.reload();
         },
     });
     const handleEditClick = () => {
@@ -236,7 +228,6 @@ export const CampCharacterCard = ({
     // function isCampaignSelected(campaignId: string, selectedCampaign: Campaign | null): boolean {
     //     return selectedCampaign ? campaignId === selectedCampaign.id : false;
     // }
-
 
     // switch from camp to user
     const removeCharFromCamp = api.removeCharFromCampRouter.removeChararacterFromCampaign.useMutation({

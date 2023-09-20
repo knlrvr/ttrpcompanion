@@ -84,14 +84,19 @@ model Campaign {
 }
 
 model Quests {
-    id                String       @id @default(cuid())
-    createdAt         DateTime     @default(now())
-    updatedAt         DateTime     @updatedAt
-    campaign          Campaign[]
+    id                String            @id @default(cuid())
+    createdAt         DateTime          @default(now())
+    updatedAt         DateTime          @updatedAt
+    campaign          Campaign?         @relation(fields: [campaignId], references: [id])
     campaignId        String?
 
     title             String
+    type              String
     body              String
+    assigned          String
+    
+    gpReward          Int          @default(0)
+    invReward         String
 
     completed         Boolean
 

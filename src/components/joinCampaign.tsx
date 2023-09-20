@@ -36,7 +36,7 @@ const JoinCampaign = () => {
                 id="joinCampaign"
                 type="text"
                 placeholder="Enter Campaign ID"
-                className="text-sm border rounded-full px-2 py-[0.2rem] flex justify-center w-full bg-gray-50 dark:bg-[#222] placeholder:text-neutral-500"
+                className="text-sm border border-neutral-500 rounded-full px-2 py-[0.2rem] flex justify-center w-full bg-gray-50 dark:bg-[#222] placeholder:text-neutral-500"
                 value={campaignId}
                 onChange={(e) => setCampaignId(e.target.value)}
                 onKeyDown={(e) => {

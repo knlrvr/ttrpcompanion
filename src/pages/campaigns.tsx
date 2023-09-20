@@ -12,11 +12,21 @@ import Head from "next/head";
 import Link from "next/link";
 import Image from 'next/image'
 
-import { BsTrash, BsBarChart, BsEye, BsEyeSlash } from "react-icons/bs";
+import { 
+  BsTrash, 
+  BsBarChart, 
+  BsEye, 
+  BsEyeSlash,
+  BsColumnsGap,
+  BsFilterCircle,
+  BsFlag
+} from "react-icons/bs";
 
 import Modal from "react-modal";
 import AddCampaign from "@/components/addCampaign";
 import JoinCampaign from "@/components/joinCampaign";
+import QuestCreator from "@/components/QuestCreator";
+import QuestList from "@/components/QuestList";
 
 Modal.setAppElement('main');
 
@@ -36,13 +46,21 @@ export default function Campaigns() {
 }
 
 type Campaign = RouterOutputs["campaign"]["getAll"][0];
+type Quest = RouterOutputs["questRouter"]["getAll"][0]
 
 const Content: React.FC = () => {
 
   const { data: sessionData } = useSession();
 
   const [selectedCampaign, setSelectedCampaign] = useState<Campaign | null>(null);
+
   const [newCampaigns, setNewCampaigns] = useState<Campaign[] | null>([]);
+  const [isDelCampModalOpen, setDelCampModalOpen] = useState(false);
+
+  const [isChangeCampModalOpen, setChangeCampModalOpen] = useState(false);
+  const [isDelQuestModalOpen, setDelQuestModalOpen] = useState(false);
+
+
 
   const { data: campaigns, refetch: refetchCampaigns } = api.campaign.getAll.useQuery(
     undefined, // no input
@@ -66,7 +84,6 @@ const Content: React.FC = () => {
   };
 
   // to delete campaign
-  const [isDelCampModalOpen, setDelCampModalOpen] = useState(false);
   const openDelCampModal = () => {
     setDelCampModalOpen(true);
   };
@@ -104,7 +121,6 @@ const Content: React.FC = () => {
     }
   };
 
-  const [isChangeCampModalOpen, setChangeCampModalOpen] = useState(false);
   const openChangeCampModal = () => {
     setChangeCampModalOpen(true);
   }
@@ -160,6 +176,36 @@ const Content: React.FC = () => {
     }
   );
 
+  // quests
+  const { data: quests, refetch: refetchQuests } = api.questRouter.getAll.useQuery(
+    { 
+    campaignId: selectedCampaign?.id ?? '' 
+    },
+  );
+
+  function isQuestSelected(questId: string, selectedQuest: Quest | null): boolean {
+    return selectedQuest ? questId === selectedQuest.id : false;
+  }
+
+  const createQuest = api.questRouter.create.useMutation({
+    onSuccess: () => {
+      void refetchQuests();
+    }
+  })
+
+  const openDelQuestModal = () => {
+    setDelQuestModalOpen(true);
+  };
+  const closeDelQuestModal = () => {
+    setDelQuestModalOpen(false);
+  };
+
+  const deleteQuest = api.questRouter.delete.useMutation({
+    onSuccess: () => {
+      void refetchQuests();
+    }
+  })
+
   return (
     <PageLayout>
       <div>
@@ -181,22 +227,118 @@ const Content: React.FC = () => {
                 <button 
                   onClick={() => openChangeCampModal()}
                   className="text-xs font-mono text-blue-300"
-                > (change) </button>
+                > (Change) </button>
               </div>
             </div>
 
-            <p className="text-neutral-500 uppercase text-xs pt-6">Campaign Totals</p>
-            {characterStatsArray.length > 0 ? ( 
-            <CampaignTotals characters={characterStatsArray} />
-            ) : (
-              <p className="text-neutral-400 dark:text-[#555] font-light mt-4 text-xs">
-                Campaign Totals will populate here once a character is added to this campaign. 
-                Visit the characters tab to create a character or add an existing character to this campaign.
+            <div className="pt-6 pb-4">
+              <ul className="flex relative -space-x-8 -ml-2">
+                {campaignOwner?.image && (
+                  <li>
+                    <Image 
+                      src={campaignOwner?.image ?? ''}
+                      alt={`${campaignOwner?.name}'s profile picture`}
+                      height="1000"
+                      width="1000"
+                      className="w-16 h-16 rounded-full border-8 border-neutral-50 dark:border-[#191919]"
+                    />
+                  </li>
+                )}
+                {campaignMembers?.map((member) => (
+                  <li key={member.id} className="">
+                    <Image 
+                      src={member.image ?? ''}
+                      alt={`${member.name}'s profile picture`}
+                      height="1000"
+                      width="1000"
+                      className="w-16 h-16 rounded-full border-8 border-neutral-50 dark:border-[#191919]"
+                    />
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="pt-6 pb-4">
+              <p className="text-neutral-500 uppercase text-xs">Campaign</p>
+              {characterStatsArray.length > 0 ? ( 
+              <CampaignTotals characters={characterStatsArray} />
+              ) : (
+                <p className="text-neutral-400 dark:text-[#555] font-light mt-4 text-xs">
+                  Campaign Totals will populate here once a character is added to this campaign. 
+                  Visit the characters tab to create a character or add an existing character to this campaign.
+                </p>
+              )}
+            </div>
+
+
+            {/* migrate to component soon */}
+            <div className="pt-6 pb-4">
+              <p className="text-neutral-500 uppercase text-xs pb-4">active quests <span>({quests?.length})</span></p>
+              {quests?.length !== undefined && quests?.length > 0 ? (
+              <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 bg-white dark:bg-[#222] rounded-2xl p-4 mb-4 shadow-md">
+                {quests?.map((quest) => (
+                <li key={quest.id}
+                    className='bg-neutral-100 dark:bg-[#333] dark:bg-opacity-50 font-normal rounded-lg p-4 flex flex-col justify-between'>
+                    <div className="flex flex-col">
+                        <span className="text-sm tracking-wide font-semibold">{quest.title}</span>
+                        <span className="text-xs text-neutral-500 tracking-wide">{quest.type}</span>
+                        <p className="text-xs text-[#222] dark:text-neutral-100 py-2">{quest.body}</p>
+                    </div>
+
+                    <div className="flex flex-col space-y-1 pt-4">
+                        <div className="flex justify-between">
+                            <p className="text-xs uppercase text-neutral-500">from:</p>
+                            <span className="text-right text-xs ">{quest.assigned}</span>
+                        </div>
+                        {quest.gpReward && (
+                        <div className="flex justify-between">
+                            <p className="text-xs uppercase text-neutral-500">reward:</p>
+                            <span className="text-right text-xs ">{quest.gpReward} gp</span>
+                        </div>
+                        )}
+                        {quest.invReward && (
+                        <div className="flex justify-between">
+                            <p className="text-xs uppercase text-neutral-500">reward:</p>
+                            <span className="text-right text-xs ">{quest.invReward}</span>
+                        </div>
+                        )}
+                        {/* <div className="flex justify-end pt-4">
+                        <button 
+                            className="w-fit text-xs uppercase text-white bg-red-500 px-[1.1rem] p-1 rounded-full"
+                            onClick={() => {
+                              setSelectedQuest(selectedQuest);
+                              openDelQuestModal();
+                            }}
+                        > <BsTrash /> </button>
+                        </div> */}
+                    </div>
+                </li>
+                ))}
+              </ul>
+              ) : ( 
+              <p className="text-neutral-400 dark:text-[#555] font-light text-xs">
+                No active quests at this time.
               </p>
-            )}
+              )}
+              <QuestCreator 
+                onSave={({ title, type, body, assigned, gpReward, invReward, completed }) => {
+                  void createQuest.mutate({
+                    campaignId: selectedCampaign?.id ?? '', 
+                    title, 
+                    type, 
+                    body,
+                    assigned,
+                    gpReward,
+                    invReward,
+                    completed,
+                  });
+                }}
+              />
+              
+            </div>
 
 
-            <p className="text-neutral-500 uppercase text-xs pt-6 pb-4">Party Totals</p>
+            <p className="text-neutral-500 uppercase text-xs pt-6 pb-4">Party</p>
             {charactersData && characterStatsArray.length > 0 ? ( 
             <div className="bg-white dark:bg-[#222] mb-6 mt-2 p-4 rounded-lg shadow-md relative">
                 <CharacterTotals characters={characterStatsArray} />
@@ -212,7 +354,7 @@ const Content: React.FC = () => {
               </p>
             )}
 
-            <p className="text-neutral-500 uppercase text-xs pt-6 pb-4">Characters</p>
+            <p className="text-neutral-500 uppercase text-xs pt-6 pb-4">Characters ({charactersData?.length})</p>
             {charactersData && characterStatsArray.length > 0 ? ( 
             <div className="pb-4 grid grid-cols-1 gap-4">
               {charactersData?.map((character) => (
@@ -231,35 +373,7 @@ const Content: React.FC = () => {
               </p>
             )}
           
-            <div className="pt-6 pb-8">
-              <p className="text-neutral-500 uppercase text-xs pb-2">participants</p>
-              <ul className="flex relative -space-x-10 -ml-2">
-                {campaignOwner?.image && (
-                  <li>
-                    <Image 
-                      src={campaignOwner?.image ?? ''}
-                      alt={`${campaignOwner?.name}'s profile picture`}
-                      height="1000"
-                      width="1000"
-                      className="w-20 h-20 rounded-full border-8 border-neutral-50 dark:border-[#191919]"
-                    />
-                  </li>
-                )}
-                {campaignMembers?.map((member) => (
-                  <li key={member.id} className="">
-                    <Image 
-                      src={member.image ?? ''}
-                      alt={`${member.name}'s profile picture`}
-                      height="1000"
-                      width="1000"
-                      className="w-20 h-20 rounded-full border-8 border-neutral-50 dark:border-[#191919]"
-                    />
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="text-xs text-neutral-500 flex flex-col space-y-1 mb-4">
+            <div className="text-xs text-neutral-500 flex flex-col space-y-1 mb-4 pt-6 pb-4">
               <p className="text-neutral-500 uppercase text-xs pb-1">Campaign Code</p>
               {isCodeShown ? (
                 <div className="flex items-center space-x-2">
@@ -367,7 +481,34 @@ const Content: React.FC = () => {
         </div>
       </Modal>
 
-      
+      {/* <Modal
+        isOpen={isDelQuestModalOpen}
+        onRequestClose={closeDelQuestModal}
+        contentLabel="Confirm Change"
+        overlayClassName="modal-overlay fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center px-8"
+        className="bg-white dark:bg-[#222] dark:text-neutral-100 p-4 py-12 rounded-lg sm:ml-64"
+      >
+        <div className="text-center flex flex-col justify-between space-y-8 px-4">
+          <p className="text-sm">Marking this quest as completed will remove it from your active quests. Are you sure you want to mark {selectedQuest?.title} as completed?</p>
+          <div className="mt-6 flex justify-center space-x-12">
+            <button
+              className="bg-blue-500 text-white px-4 py-2 rounded-full text-xs uppercase font-light"
+              onClick={closeDelQuestModal}
+            >
+              Cancel
+            </button>
+            <button
+              className="bg-green-500 text-white px-4 py-2 rounded-full text-xs uppercase font-light"
+              onClick={() => {
+                deleteQuest.mutate({
+                  id: selectedQuest?.id ?? '',
+                })
+              }}
+            > Mark Complete </button>
+          </div>
+        </div>
+      </Modal> */}
+
     </PageLayout>
   );
 };

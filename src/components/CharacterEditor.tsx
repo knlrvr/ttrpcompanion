@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 
 import { BsPlusLg, BsDashLg } from 'react-icons/bs'
 
@@ -137,11 +137,11 @@ export const CharacterEditor = ({
     const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
     return (
-        <div className="py-6 border border-[#888] p-4 rounded-lg">
+        <div className="py-6 border border-neutral-500 p-4 rounded-lg">
             <div className="flex justify-between">
-                <span className="text-[#888] uppercase text-sm py-3">Create Character</span>
+                <span className="text-neutral-500 uppercase text-sm py-3">Create Character</span>
                 <button 
-                    className="text-[#888]"
+                    className="text-neutral-500"
                     onClick={() => setIsExpanded(!isExpanded)}>
                         {isExpanded ? <BsDashLg /> : <BsPlusLg />}
                 </button>
@@ -152,14 +152,14 @@ export const CharacterEditor = ({
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="flex flex-col space-y-2">
                         <label htmlFor='name'
-                            className="text-xs uppercase text-[#888]">
+                            className="text-xs uppercase text-neutral-500">
                                 name
                         </label>
                         <input
                             id="name"
                             type="text"
                             placeholder='Character Name'
-                            className="rounded-full px-3 py-[0.1rem] w-full bg-gray-50 dark:bg-[#222] placeholder:text-[#888] text-[#222] dark:text-white"
+                            className="rounded-full px-3 py-[0.1rem] w-full bg-gray-50 dark:bg-[#222] placeholder:text-neutral-500 text-[#222] dark:text-white"
                             value={title}
                             onChange={(e) => setTitle(e.currentTarget.value)}
                         />
@@ -167,13 +167,13 @@ export const CharacterEditor = ({
 
                     <div className="flex flex-col space-y-2">
                         <label htmlFor='level'
-                                className="text-xs uppercase text-[#888]"
+                                className="text-xs uppercase text-neutral-500"
                             > level </label>
                         <input
                             id="level"
                             type="number"
                             placeholder='Level'
-                            className="rounded-full px-3 py-[0.1rem] bg-gray-50 dark:bg-[#222] placeholder:text-[#888] text-[#222] dark:text-white"
+                            className="rounded-full px-3 py-[0.1rem] bg-gray-50 dark:bg-[#222] placeholder:text-neutral-500 text-[#222] dark:text-white"
                             value={level}
                             onChange={(e) => setLevel(e.currentTarget.valueAsNumber)}
                         />
@@ -181,12 +181,12 @@ export const CharacterEditor = ({
 
                     <div className="flex flex-col space-y-2">
                         <label htmlFor='race'
-                            className="text-xs uppercase text-[#888]">
+                            className="text-xs uppercase text-neutral-500">
                             race
                         </label>
                         <select 
                             id="race"
-                            className="rounded-full px-2 py-1 w-full bg-gray-50 dark:bg-[#222] placeholder:text-[#888] text-[#222] dark:text-white"
+                            className="rounded-full px-2 py-1 w-full bg-gray-50 dark:bg-[#222] placeholder:text-neutral-500 text-[#222] dark:text-white"
                             value={charRace}
                             onChange={(e) => setCharRace(e.currentTarget.value)}
                         >
@@ -200,11 +200,11 @@ export const CharacterEditor = ({
 
                     <div className="flex flex-col space-y-2">
                         <label htmlFor='class'
-                            className="text-xs uppercase text-[#888]"
+                            className="text-xs uppercase text-neutral-500"
                         > class </label>
                         <select
                             id="class"
-                            className="rounded-full px-2 py-1 w-full bg-gray-50 dark:bg-[#222] placeholder:text-[#888] text-[#222] dark:text-white"
+                            className="rounded-full px-2 py-1 w-full bg-gray-50 dark:bg-[#222] placeholder:text-neutral-500 text-[#222] dark:text-white"
                             value={charClass}
                             onChange={(e) => setCharClass(e.currentTarget.value)}
                         >
@@ -217,7 +217,7 @@ export const CharacterEditor = ({
                     </div>
                 </div>
 
-                <div className="pt-8 pb-4 font-semibold text-sm text-[#999]">
+                <div className="pt-8 pb-4 font-semibold text-sm text-neutral-500">
                     Please use total amounts in the fields below.
                 </div>
 
@@ -225,13 +225,13 @@ export const CharacterEditor = ({
 
                     <div className="flex flex-col space-y-2">
                         <label htmlFor='level'
-                                className="text-xs uppercase text-[#888]"
+                                className="text-xs uppercase text-neutral-500"
                             > sessions </label> 
                         <input 
                             id="sessions"
                             type="number"
                             placeholder="Sessions"
-                            className="rounded-full px-3 py-1 bg-gray-50 dark:bg-[#222] placeholder:text-[#888] text-[#222] dark:text-white"
+                            className="rounded-full px-3 py-1 bg-gray-50 dark:bg-[#222] placeholder:text-neutral-500 text-[#222] dark:text-white"
                             value={totalSessions}
                             onChange={(e) => setTotalSessions(e.currentTarget.valueAsNumber)}
                         />
@@ -239,13 +239,13 @@ export const CharacterEditor = ({
 
                     <div className="flex flex-col space-y-2">
                         <label htmlFor='level'
-                                className="text-xs uppercase text-[#888]"
+                                className="text-xs uppercase text-neutral-500"
                             > time (hrs)</label> 
                         <input 
                             id="time"
                             type="number"
                             placeholder="Time"
-                            className="rounded-full px-3 py-1 bg-gray-50 dark:bg-[#222] placeholder:text-[#888] text-[#222] dark:text-white"
+                            className="rounded-full px-3 py-1 bg-gray-50 dark:bg-[#222] placeholder:text-neutral-500] text-[#222] dark:text-white"
                             value={totalTime}
                             onChange={(e) => setTotalTime(e.currentTarget.valueAsNumber)}
                         />
@@ -253,13 +253,13 @@ export const CharacterEditor = ({
 
                     <div className="flex flex-col space-y-2">
                         <label htmlFor='level'
-                                className="text-xs uppercase text-[#888]"
+                                className="text-xs uppercase text-neutral-500"
                             > xp </label> 
                         <input 
                             id="time"
                             type="number"
                             placeholder="Time"
-                            className="rounded-full px-3 py-1 bg-gray-50 dark:bg-[#222] placeholder:text-[#888] text-[#222] dark:text-white"
+                            className="rounded-full px-3 py-1 bg-gray-50 dark:bg-[#222] placeholder:text-neutral-500 text-[#222] dark:text-white"
                             value={totalXp}
                             onChange={(e) => setTotalXp(e.currentTarget.valueAsNumber)}
                         />
@@ -267,12 +267,12 @@ export const CharacterEditor = ({
 
                     <div className="flex flex-col space-y-2">
                         <label htmlFor='dmgTaken'
-                                className="text-xs uppercase text-[#888]"
+                                className="text-xs uppercase text-neutral-500"
                             > damage taken </label> 
                         <input 
                             type="number"
                             placeholder="Damage Taken"
-                            className="rounded-full px-3 py-1 bg-gray-50 dark:bg-[#222] placeholder:text-[#888] text-[#222] dark:text-white"
+                            className="rounded-full px-3 py-1 bg-gray-50 dark:bg-[#222] placeholder:text-neutral-500 text-[#222] dark:text-white"
                             value={dmgTaken}
                             onChange={(e) => setDmgTaken(e.currentTarget.valueAsNumber)}
                         />
@@ -280,13 +280,13 @@ export const CharacterEditor = ({
 
                     <div className="flex flex-col space-y-2">
                         <label htmlFor='dmgDealt'
-                                className="text-xs uppercase text-[#888]"
+                                className="text-xs uppercase text-neutral-500"
                             > damage dealt </label> 
                         <input 
                             id="dmgDealt"
                             type="number"
                             placeholder="Damage Dealt"
-                            className="rounded-full px-3 py-1 bg-gray-50 dark:bg-[#222] placeholder:text-[#888] text-[#222] dark:text-white"
+                            className="rounded-full px-3 py-1 bg-gray-50 dark:bg-[#222] placeholder:text-neutral-500 text-[#222] dark:text-white"
                             value={dmgDealt}
                             onChange={(e) => setDmgDealt(e.currentTarget.valueAsNumber)}
                         />
@@ -294,13 +294,13 @@ export const CharacterEditor = ({
 
                     <div className="flex flex-col space-y-2">
                         <label htmlFor='totalKills'
-                                className="text-xs uppercase text-[#888]"
+                                className="text-xs uppercase text-neutral-500"
                             > Kills </label> 
                         <input 
                             id="totalKills"
                             type="number"
                             placeholder="Total Kills"
-                            className="rounded-full px-3 py-1 bg-gray-50 dark:bg-[#222] placeholder:text-[#888] text-[#222] dark:text-white"
+                            className="rounded-full px-3 py-1 bg-gray-50 dark:bg-[#222] placeholder:text-neutral-500 text-[#222] dark:text-white"
                             value={totalKills}
                             onChange={(e) => setTotalKills(e.currentTarget.valueAsNumber)}
                         />
@@ -308,13 +308,13 @@ export const CharacterEditor = ({
 
                     <div className="flex flex-col space-y-2">
                         <label htmlFor='critHits'
-                                className="text-xs uppercase text-[#888]"
+                                className="text-xs uppercase text-neutral-500"
                             > Critical Hits </label> 
                         <input 
                             id="critHits"
                             type="number"
                             placeholder="Critical Hits"
-                            className="rounded-full px-3 py-1 bg-gray-50 dark:bg-[#222] placeholder:text-[#888] text-[#222] dark:text-white"
+                            className="rounded-full px-3 py-1 bg-gray-50 dark:bg-[#222] placeholder:text-neutral-500 text-[#222] dark:text-white"
                             value={critHits}
                             onChange={(e) => setCritHits(e.currentTarget.valueAsNumber)}
                         />
@@ -322,13 +322,13 @@ export const CharacterEditor = ({
 
                     <div className="flex flex-col space-y-2">
                         <label htmlFor='totalDeaths'
-                                className="text-xs uppercase text-[#888]"
+                                className="text-xs uppercase text-neutral-500"
                             > deaths </label> 
                         <input 
                             id="totalDeaths"
                             type="number"
                             placeholder="Deaths"
-                            className="rounded-full px-3 py-1 bg-gray-50 dark:bg-[#222] placeholder:text-[#888] text-[#222] dark:text-white"
+                            className="rounded-full px-3 py-1 bg-gray-50 dark:bg-[#222] placeholder:text-neutral-500] text-[#222] dark:text-white"
                             value={totalDeaths}
                             onChange={(e) => setTotalDeaths(e.currentTarget.valueAsNumber)}
                         />
@@ -336,13 +336,13 @@ export const CharacterEditor = ({
 
                     <div className="flex flex-col space-y-2">
                         <label htmlFor='totalKo'
-                                className="text-xs uppercase text-[#888]"
+                                className="text-xs uppercase text-neutral-500"
                             > times unconscious </label> 
                         <input 
                             id="totalKo"
                             type="number"
                             placeholder="Knockouts"
-                            className="rounded-full px-3 py-1 bg-gray-50 dark:bg-[#222] placeholder:text-[#888] text-[#222] dark:text-white"
+                            className="rounded-full px-3 py-1 bg-gray-50 dark:bg-[#222] placeholder:text-neutral-500 text-[#222] dark:text-white"
                             value={totalKo}
                             onChange={(e) => setTotalKo(e.currentTarget.valueAsNumber)}
                         />
@@ -350,13 +350,13 @@ export const CharacterEditor = ({
 
                     <div className="flex flex-col space-y-2">
                         <label htmlFor='spellsCast'
-                                className="text-xs uppercase text-[#888]"
+                                className="text-xs uppercase text-neutral-500"
                             > spells cast </label> 
                         <input 
                             id="spellsCast"
                             type="number"
                             placeholder="Spells Cast"
-                            className="rounded-full px-3 py-1 bg-gray-50 dark:bg-[#222] placeholder:text-[#888] text-[#222] dark:text-white"
+                            className="rounded-full px-3 py-1 bg-gray-50 dark:bg-[#222] placeholder:text-neutral-500 text-[#222] dark:text-white"
                             value={spellsCast}
                             onChange={(e) => setSpellsCast(e.currentTarget.valueAsNumber)}
                         />
@@ -364,13 +364,13 @@ export const CharacterEditor = ({
 
                     <div className="flex flex-col space-y-2">
                         <label htmlFor='turnsNoDmg'
-                                className="text-xs uppercase text-[#888]"
+                                className="text-xs uppercase text-neutral-500"
                             > turns </label> 
                         <input 
                             id="turnsNoDmg"
                             type="number"
                             placeholder="Turns Without Damage"
-                            className="rounded-full px-3 py-1 bg-gray-50 dark:bg-[#222] placeholder:text-[#888] text-[#222] dark:text-white"
+                            className="rounded-full px-3 py-1 bg-gray-50 dark:bg-[#222] placeholder:text-neutral-500 text-[#222] dark:text-white"
                             value={turnsNoDmg}
                             onChange={(e) => setTurnsNoDmg(e.currentTarget.valueAsNumber)}
                         />
@@ -378,13 +378,13 @@ export const CharacterEditor = ({
 
                     <div className="flex flex-col space-y-2">
                         <label htmlFor='combatTime'
-                                className="text-xs uppercase text-[#888]"
+                                className="text-xs uppercase text-neutral-500"
                             > combat time </label> 
                         <input 
                             id="combatTime"
                             type="number"
                             placeholder="Combat Time"
-                            className="rounded-full px-3 py-1 bg-gray-50 dark:bg-[#222] placeholder:text-[#888] text-[#222] dark:text-white"
+                            className="rounded-full px-3 py-1 bg-gray-50 dark:bg-[#222] placeholder:text-neutral-500 text-[#222] dark:text-white"
                             value={combatTime}
                             onChange={(e) => setCombatTime(e.currentTarget.valueAsNumber)}
                         />
@@ -392,13 +392,13 @@ export const CharacterEditor = ({
 
                     <div className="flex flex-col space-y-2">
                         <label htmlFor='totalhealingOthers'
-                                className="text-xs uppercase text-[#888]"
+                                className="text-xs uppercase text-neutral-500"
                             > HP Healed (O) </label> 
                         <input  
                             id="totalHealingOthers"
                             type="number"
                             placeholder="Healing Done"
-                            className="rounded-full px-3 py-1 bg-gray-50 dark:bg-[#222] placeholder:text-[#888] text-[#222] dark:text-white"
+                            className="rounded-full px-3 py-1 bg-gray-50 dark:bg-[#222] placeholder:text-neutral-500 text-[#222] dark:text-white"
                             value={totalHealingOthers}
                             onChange={(e) => setTotalHealingOthers(e.currentTarget.valueAsNumber)}
                         />
@@ -406,13 +406,13 @@ export const CharacterEditor = ({
 
                     <div className="flex flex-col space-y-2">
                         <label htmlFor='totalHealingSelf'
-                                className="text-xs uppercase text-[#888]"
+                                className="text-xs uppercase text-neutral-500"
                             > HP Healed (S) </label> 
                         <input 
                             id="totalHealingSelf"
                             type="number"
                             placeholder="Healing Taken"
-                            className="rounded-full px-3 py-1 bg-gray-50 dark:bg-[#222] placeholder:text-[#888] text-[#222] dark:text-white"
+                            className="rounded-full px-3 py-1 bg-gray-50 dark:bg-[#222] placeholder:text-neutral-500 text-[#222] dark:text-white"
                             value={totalHealingSelf}
                             onChange={(e) => setTotalHealingSelf(e.currentTarget.valueAsNumber)}
                         />
@@ -420,13 +420,13 @@ export const CharacterEditor = ({
 
                     <div className="flex flex-col space-y-2">
                         <label htmlFor='natTwenty'
-                                className="text-xs uppercase text-[#888]"
+                                className="text-xs uppercase text-neutral-500"
                             > Nat 20s </label> 
                         <input 
                             id="natTwenty"
                             type="number"
                             placeholder="Nat 20s"
-                            className="rounded-full px-3 py-1 bg-gray-50 dark:bg-[#222] placeholder:text-[#888] text-[#222] dark:text-white"
+                            className="rounded-full px-3 py-1 bg-gray-50 dark:bg-[#222] placeholder:text-neutral-500 text-[#222] dark:text-white"
                             value={natTwenty}
                             onChange={(e) => setNatTwenty(e.currentTarget.valueAsNumber)}
                         />
@@ -434,13 +434,13 @@ export const CharacterEditor = ({
 
                     <div className="flex flex-col space-y-2">
                         <label htmlFor='natOne'
-                                className="text-xs uppercase text-[#888]"
+                                className="text-xs uppercase text-neutral-500"
                             > Nat 1s </label> 
                         <input 
                             id="natOne"
                             type="number"
                             placeholder="Nat 1s"
-                            className="rounded-full px-3 py-1 bg-gray-50 dark:bg-[#222] placeholder:text-[#888] text-[#222] dark:text-white"
+                            className="rounded-full px-3 py-1 bg-gray-50 dark:bg-[#222] placeholder:text-neutral-500 text-[#222] dark:text-white"
                             value={natOne}
                             onChange={(e) => setNatOne(e.currentTarget.valueAsNumber)}
                         />

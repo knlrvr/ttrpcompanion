@@ -7,6 +7,8 @@ import { addCharacterToUserRouter } from "./routers/add";
 import { removeCharFromCampRouter } from "./routers/add";
 import { removeCharFromUserRouter } from "./routers/add";
 
+import { questRouter } from "./routers/quests";
+
 
 /**
  * This is the primary router for your server.
@@ -22,6 +24,7 @@ export const appRouter = createTRPCRouter({
     removeCharFromCampRouter: removeCharFromCampRouter,
     removeCharFromUserRouter: removeCharFromUserRouter,
 
+    questRouter: questRouter,
 });
 
 // export type definition of API
