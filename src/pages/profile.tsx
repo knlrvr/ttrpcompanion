@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import { useSession } from 'next-auth/react';
+import { useSession, signOut } from 'next-auth/react';
 import Link from 'next/link'
 
 import PageLayout from '@/components/PageLayout';
 import { api } from '@/utils/api';
 
-import { BsExclamationCircle } from 'react-icons/bs';
+import { BsBoxArrowLeft } from 'react-icons/bs';
 import Image from 'next/image';
 
 import {
@@ -54,38 +54,6 @@ const Profile = () => {
             </div>
           </div>
 
-          <div className="pt-8">
-            <p className="font-semibold text-lg tracking-wide">
-              <span className="font-light">{sessionData?.user.name}&apos;s</span> Active Campaigns
-            </p>
-            <p className="text-xs font-light pb-4">Campaigns that you have created or joined are displayed below. You can also find your <span className="font-semibold">active</span> characters within that campaign.</p>
-            <ul className="text-left text-base font-light bg-white dark:bg-[#222] rounded-xl p-4 shadow-md">
-              {campaigns?.map((campaign) => (
-                <li key={campaign.id}
-                  className='py-2 font-normal'>
-                  <span>{campaign.title}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="pt-8">
-            <p className="font-semibold text-lg tracking-wide">
-              <span className="font-light">{sessionData?.user.name}&apos;s</span> Inactive Characters
-            </p>
-            <p className="text-xs font-light pb-4">Characters that have not been assigned to a campaign are shown below.</p>
-
-            <ul className="text-left text-base font-light bg-white dark:bg-[#222] rounded-xl p-4 shadow-md">
-              {charactersData?.map((character) => (
-                <li key={character.id} 
-                  className="py-2 font-normal">
-                  <span>{character.title}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-
           <div className="grid grid-cols-4 gap-4 pt-16">
             <div className="col-span-2">
               <Link href="/campaigns" className="">
@@ -118,6 +86,48 @@ const Profile = () => {
                 </div>
               </Link>
             </div>
+          </div>
+
+          <div className="pt-8">
+            <p className="font-semibold text-lg tracking-wide">
+              <span className="font-light">{sessionData?.user.name}&apos;s</span> Active Campaigns
+            </p>
+            <p className="text-xs font-light pb-4">Campaigns that you have created or joined are displayed below. You can also find your <span className="font-semibold">active</span> characters within that campaign.</p>
+            <ul className="text-left text-base font-light bg-white dark:bg-[#222] rounded-xl p-4 shadow-md">
+              {campaigns?.map((campaign) => (
+                <li key={campaign.id}
+                  className='py-2 font-normal'>
+                  <span>{campaign.title}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="pt-8">
+            <p className="font-semibold text-lg tracking-wide">
+              <span className="font-light">{sessionData?.user.name}&apos;s</span> Inactive Characters
+            </p>
+            <p className="text-xs font-light pb-4">Characters that have not been assigned to a campaign are shown below.</p>
+
+            <ul className="text-left text-base font-light bg-white dark:bg-[#222] rounded-xl p-4 shadow-md">
+              {charactersData?.map((character) => (
+                <li key={character.id} 
+                  className="py-2 font-normal">
+                  <span>{character.title}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+
+          <div className="pt-16 pb-4">
+            <button 
+              onClick={() => void signOut({ callbackUrl: `${window.location.origin}/`})}
+              className="text-base font-light flex items-center space-x-2"
+            >
+              <BsBoxArrowLeft />
+              <p>Sign Out</p>
+            </button>
           </div>
         </div>
       )}

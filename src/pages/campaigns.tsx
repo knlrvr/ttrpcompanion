@@ -175,26 +175,45 @@ const Content: React.FC = () => {
           <div className="">
             
             <div className="pt-4 flex items-center justify-between">
-              <p className="text-xs text-[#888] uppercase">Current Campaign:</p>
+              <p className="text-xs text-neutral-500 uppercase">Current Campaign</p>
               <div className="flex items-center space-x-1">
-                <span className="text-xs text-[#888]">{selectedCampaign?.title}</span>
+                <span className="text-xs text-neutral-500">{selectedCampaign?.title}</span>
                 <button 
                   onClick={() => openChangeCampModal()}
                   className="text-xs font-mono text-blue-300"
                 > (change) </button>
               </div>
             </div>
+
+            <p className="text-neutral-500 uppercase text-xs pt-6">Campaign Totals</p>
+            {characterStatsArray.length > 0 ? ( 
             <CampaignTotals characters={characterStatsArray} />
-            <div className="bg-white dark:bg-[#222] my-6 p-4 rounded-lg shadow-md relative">
-              <CharacterTotals characters={characterStatsArray} />
+            ) : (
+              <p className="text-neutral-400 dark:text-[#555] font-light mt-4 text-xs">
+                Campaign Totals will populate here once a character is added to this campaign. 
+                Visit the characters tab to create a character or add an existing character to this campaign.
+              </p>
+            )}
+
+
+            <p className="text-neutral-500 uppercase text-xs pt-6 pb-4">Party Totals</p>
+            {charactersData && characterStatsArray.length > 0 ? ( 
+            <div className="bg-white dark:bg-[#222] mb-6 mt-2 p-4 rounded-lg shadow-md relative">
+                <CharacterTotals characters={characterStatsArray} />
 
               <div className="absolute -top-4 left-[1rem] md:-left-2 rounded-full w-8 h-8 bg-blue-500 flex justify-center items-center shadow-md">
                 <BsBarChart className="text-xl text-[#222]" />
               </div>
             </div>
-            <p className="text-neutral-500 uppercase text-xs pt-6 pb-4">Characters</p>
-            
+            ) : ( 
+              <p className="text-neutral-400 dark:text-[#555] font-light text-xs">
+                Party Totals will populate here once a character is added to this campaign.
+                Visit the characters tab to create a character or add an existing character to this campaign.
+              </p>
+            )}
 
+            <p className="text-neutral-500 uppercase text-xs pt-6 pb-4">Characters</p>
+            {charactersData && characterStatsArray.length > 0 ? ( 
             <div className="pb-4 grid grid-cols-1 gap-4">
               {charactersData?.map((character) => (
                 <div key={character.id} className="">
@@ -205,10 +224,16 @@ const Content: React.FC = () => {
                 </div>
               ))}
             </div>
+            ) : (
+              <p className="text-neutral-400 dark:text-[#555] font-light text-xs">
+                Characters will populate here once they are added to this campaign.
+                Visit the characters tab to create a character or add an existing character to this campaign.
+              </p>
+            )}
           
-            <div className="py-4 pb-24 sm:pb-16">
-              <p className="text-neutral-500 uppercase text-xs pb-4">participants</p>
-              <ul className="flex relative">
+            <div className="pt-6 pb-8">
+              <p className="text-neutral-500 uppercase text-xs pb-2">participants</p>
+              <ul className="flex relative -space-x-10 -ml-2">
                 {campaignOwner?.image && (
                   <li>
                     <Image 
@@ -216,25 +241,25 @@ const Content: React.FC = () => {
                       alt={`${campaignOwner?.name}'s profile picture`}
                       height="1000"
                       width="1000"
-                      className="w-14 h-14 rounded-full border-2 border-neutral-50"
+                      className="w-20 h-20 rounded-full border-8 border-neutral-50 dark:border-[#191919]"
                     />
                   </li>
                 )}
                 {campaignMembers?.map((member) => (
-                  <li key={member.id}>
+                  <li key={member.id} className="">
                     <Image 
                       src={member.image ?? ''}
                       alt={`${member.name}'s profile picture`}
                       height="1000"
                       width="1000"
-                      className="w-14 h-14 rounded-full border-2 border-neutral-50"
+                      className="w-20 h-20 rounded-full border-8 border-neutral-50 dark:border-[#191919]"
                     />
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div className="text-xs text-neutral-500 flex flex-col space-y-1">
+            <div className="text-xs text-neutral-500 flex flex-col space-y-1 mb-4">
               <p className="text-neutral-500 uppercase text-xs pb-1">Campaign Code</p>
               {isCodeShown ? (
                 <div className="flex items-center space-x-2">

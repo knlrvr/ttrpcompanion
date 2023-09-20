@@ -164,7 +164,10 @@ const Content: React.FC = () => {
             </Link>
           </div>
 
-          <div>
+
+          {/* As noted in settings.tsx, there's just not a lot of settings to configure yet. And by not a lot, I mean none at all. */}
+          
+          {/* <div>
             <Link href="/settings" className="">
               <div className="bg-white dark:bg-[#222] text-[#222] dark:text-neutral-100 flex flex-col space-y-4 gap-2 p-4 rounded-lg bg-opacity-50 shadow-md">
                 <div className="text-left">
@@ -178,22 +181,7 @@ const Content: React.FC = () => {
                 </div>
               </div>
             </Link>
-          </div>
-
-          {/* Theme not persisting. Fix before uncommenting. */}
-          <div>
-            <div>
-              <div className="bg-white dark:bg-[#222] text-[#222] dark:text-neutral-100 flex flex-col space-y-4 gap-2 p-4 rounded-lg bg-opacity-50 shadow-md">
-                <div className="text-left flex flex-col">
-                  <span className="font-thin text-2xl mb-4">Theme</span>
-                </div>
-                <div className="text-4xl flex justify-end py-1.5">
-                  {/* <ToggleTheme /> */}
-                  <p className="text-xs font-extralight py-1">disabled</p>
-                </div>
-              </div>
-            </div>
-          </div>
+          </div> */}
 
         </div>
 

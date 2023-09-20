@@ -44,7 +44,7 @@ const AddCampaign = () => {
                 id="addCampaign"
                 type="text"
                 placeholder="New Campaign Name"
-                className="text-sm border rounded-full px-2 py-[0.2rem] flex justify-center w-full bg-gray-50 dark:bg-[#222]"
+                className="text-sm border rounded-full px-2 py-[0.2rem] flex justify-center w-full bg-gray-50 dark:bg-[#222] placeholder:text-neutral-500"
                 onKeyDown={(e) => {
                   if (e.key === "Enter") {
                     createCampaign.mutate({

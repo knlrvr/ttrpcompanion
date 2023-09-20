@@ -39,7 +39,6 @@ const items = [
     { label: 'Campaigns', href: '/campaigns', icon: <PiTent /> },
     { label: 'Characters', href: '/characters', icon: <MdOutlinePeopleAlt /> },
     { label: 'Profile', href: '/profile', icon: <MdOutlinePerson /> },
-    { label: 'Settings', href: '/settings', icon: <BsGear /> }
 ]
 
 type Campaign = RouterOutputs["campaign"]["getAll"][0];

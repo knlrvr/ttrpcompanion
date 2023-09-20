@@ -37,7 +37,7 @@ const Characters = () => {
     <PageLayout>
       <div className="">
         <p className="text-[#888] uppercase text-xs pb-2">bench</p>
-        <div className="pb-4 grid grid-cols-1 gap-4">
+        <div className="pb-4 grid grid-cols-1 gap-2">
           {charactersData?.map((character) => (
             <div key={character.id} className="">
               <UserCharacterCard
@@ -46,7 +46,7 @@ const Characters = () => {
               />
             </div>
           ))}
-          <div className="flex flex-col">
+          <div className="flex flex-col pt-4">
             <CharacterEditor
               onSave={({ title, stats }) => {
               void createCharacter.mutate({
