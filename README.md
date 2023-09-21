@@ -31,7 +31,7 @@
 ![v2.0.2](https://img.shields.io/badge/version-2.0.2-facc15) ![date](https://img.shields.io/badge/Sep_20_2023-informational) ![description](https://img.shields.io/badge/Function_Updates-grey)
 > Introduced quest tracking. `Quests` take in a title, type, body, assigner, and reward (gold or other). When a quest is completed, it can be marked completed, removing it from the campaign. Introduced toast notifications for successful actions that reiterate the action performed.
 > 
-> ![bugs](https://img.shields.io/badge/Bugs-grey)
+> ![bugs](https://img.shields.io/badge/Bugs-grey)  
 > When a character is updated from the campaign screen, the action *is* performed, but the results of the action do not render unless you navigate away from the page, or reload. This bug *will* be removed before the next version. 
 
 
