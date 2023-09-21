@@ -5,8 +5,6 @@
 
 ## Table of Contents
 - [Releases](#releases)
-      * [v1.0.0](version1)
-      *
 - [Description](#description)
 - [The Future of TTRPCompanion](#the-future-of-ttrpcompanion)
 - [Purpose](#purpose)
@@ -18,7 +16,6 @@
 
 <a name="releases"></a>
 ## Releases
-<a name="version1"></a>
 ![v1.0.0](https://img.shields.io/badge/version-1.0.0-38bdf8) ![date](https://img.shields.io/badge/Aug_7_2023-informational) ![description](https://img.shields.io/badge/Initial_Release_+_How_To_Use-grey)
 > Users must sign in via Google. Users signing in for the first time, or users who have not created any campaigns, will see a prompt to `create` or `select` a campaign in order to view character stats. Once a campaign has been created, two default campaign totals will appear, `total sessions` and `time played`. These will default to 0. There will also be an expandable form to create a character & input any stats. Once a character has been created, there are 6 more campaign totals, displayed in doughnut charts reflecting each character, that will render conditionally depending on the values provided for the character. (For example, if total damage dealt for each character is 0, no chart will display. If only one character has dealt damage, only their stat will appear.) All character information can be updated as needed via the `edit` button on the bottom of the character cards. Any updated values, or new entries, will reflect immediately within the conditionally rendered campaign totals. Users may deleted characters or campaigns as needed. If users have no campaigns, they will be prompted to create one. 
 
