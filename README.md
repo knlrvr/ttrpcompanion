@@ -28,7 +28,7 @@
 ![v2.0.1](https://img.shields.io/badge/version-2.1-0d9488) ![date](https://img.shields.io/badge/Sep_19_2023-informational) ![description](https://img.shields.io/badge/UI_Updates-grey)
 > Users can now join campaigns using the `campaign code` provided at the bottom of each campaign. When users enter this campaign code on the campaign selector modal, the campaign will populate in their `campaigns` list. All campaign `participants` are now listed at the bottom of each campaign, including the `owner` and any `member` that has joined via code.
 
-![v2.0.2](https://img.shields.io/badge/version-2.1-facc15) ![date](https://img.shields.io/badge/Sep_20_2023-informational) ![description](https://img.shields.io/badge/UI_Updates-grey)
+![v2.0.2](https://img.shields.io/badge/version-2.1-facc15) ![date](https://img.shields.io/badge/Sep_20_2023-informational) ![description](https://img.shields.io/badge/Function_Updates-grey)
 > Introduced quest tracking. `Quests` take in a title, type, body, assigner, and reward (gold or other). When a quest is completed, it can be marked completed, removing it from the campaign. 
 
 
