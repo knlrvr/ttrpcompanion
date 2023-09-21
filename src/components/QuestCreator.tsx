@@ -52,12 +52,12 @@ const QuestCreator = ({
 
   return (
     <>
-        <div className="flex flex-col w-full">
+        <div className="flex justify-end w-full">
 
 
             <button
               onClick={openQuestModal}
-              className="text-sm flex items-center justify-end space-x-2 text-blue-300"
+              className="w-fit text-sm flex items-center justify-end space-x-2 text-blue-300"
             >
               <span className="text-xs font-mono">New Quest</span>
               <BsPlusLg />

@@ -19,14 +19,14 @@ import {
   BsEyeSlash,
   BsColumnsGap,
   BsFilterCircle,
-  BsFlag
+  BsFlag,
+  BsCheckCircle
 } from "react-icons/bs";
 
 import Modal from "react-modal";
 import AddCampaign from "@/components/addCampaign";
 import JoinCampaign from "@/components/joinCampaign";
 import QuestCreator from "@/components/QuestCreator";
-import QuestList from "@/components/QuestList";
 
 Modal.setAppElement('main');
 
@@ -59,8 +59,8 @@ const Content: React.FC = () => {
 
   const [isChangeCampModalOpen, setChangeCampModalOpen] = useState(false);
   const [isDelQuestModalOpen, setDelQuestModalOpen] = useState(false);
-
-
+  
+  const [selectedQuest, setSelectedQuest] = useState<string | null>(null);
 
   const { data: campaigns, refetch: refetchCampaigns } = api.campaign.getAll.useQuery(
     undefined, // no input
@@ -193,7 +193,8 @@ const Content: React.FC = () => {
     }
   })
 
-  const openDelQuestModal = () => {
+  const openDelQuestModal = (questId: string) => {
+    setSelectedQuest(questId);
     setDelQuestModalOpen(true);
   };
   const closeDelQuestModal = () => {
@@ -290,7 +291,7 @@ const Content: React.FC = () => {
                             <p className="text-xs uppercase text-neutral-500">from:</p>
                             <span className="text-right text-xs ">{quest.assigned}</span>
                         </div>
-                        {quest.gpReward && (
+                        {quest.gpReward > 0 && (
                         <div className="flex justify-between">
                             <p className="text-xs uppercase text-neutral-500">reward:</p>
                             <span className="text-right text-xs ">{quest.gpReward} gp</span>
@@ -299,18 +300,17 @@ const Content: React.FC = () => {
                         {quest.invReward && (
                         <div className="flex justify-between">
                             <p className="text-xs uppercase text-neutral-500">reward:</p>
-                            <span className="text-right text-xs ">{quest.invReward}</span>
+                            <span className="text-right text-xs ">{quest.invReward}</span> 
                         </div>
                         )}
-                        {/* <div className="flex justify-end pt-4">
-                        <button 
-                            className="w-fit text-xs uppercase text-white bg-red-500 px-[1.1rem] p-1 rounded-full"
-                            onClick={() => {
-                              setSelectedQuest(selectedQuest);
-                              openDelQuestModal();
-                            }}
-                        > <BsTrash /> </button>
-                        </div> */}
+                        <div className="flex justify-end pt-4">
+                          <button 
+                              className="w-fit text-lg uppercase bg-orange-300 px-[1.1rem] p-1.5 rounded-full text-[#222]"
+                              onClick={() => {
+                                openDelQuestModal(quest.id);
+                              }}
+                          > <BsCheckCircle /> </button>
+                        </div>
                     </div>
                 </li>
                 ))}
@@ -334,7 +334,6 @@ const Content: React.FC = () => {
                   });
                 }}
               />
-              
             </div>
 
 
@@ -354,7 +353,7 @@ const Content: React.FC = () => {
               </p>
             )}
 
-            <p className="text-neutral-500 uppercase text-xs pt-6 pb-4">Characters ({charactersData?.length})</p>
+            <p className="text-neutral-500 uppercase text-xs pt-10 pb-4">Characters ({charactersData?.length})</p>
             {charactersData && characterStatsArray.length > 0 ? ( 
             <div className="pb-4 grid grid-cols-1 gap-4">
               {charactersData?.map((character) => (
@@ -373,7 +372,7 @@ const Content: React.FC = () => {
               </p>
             )}
           
-            <div className="text-xs text-neutral-500 flex flex-col space-y-1 mb-4 pt-6 pb-4">
+            <div className="text-xs text-neutral-500 flex flex-col space-y-1 mb-4 pt-10 pb-4">
               <p className="text-neutral-500 uppercase text-xs pb-1">Campaign Code</p>
               {isCodeShown ? (
                 <div className="flex items-center space-x-2">
@@ -481,7 +480,7 @@ const Content: React.FC = () => {
         </div>
       </Modal>
 
-      {/* <Modal
+      <Modal
         isOpen={isDelQuestModalOpen}
         onRequestClose={closeDelQuestModal}
         contentLabel="Confirm Change"
@@ -489,7 +488,7 @@ const Content: React.FC = () => {
         className="bg-white dark:bg-[#222] dark:text-neutral-100 p-4 py-12 rounded-lg sm:ml-64"
       >
         <div className="text-center flex flex-col justify-between space-y-8 px-4">
-          <p className="text-sm">Marking this quest as completed will remove it from your active quests. Are you sure you want to mark {selectedQuest?.title} as completed?</p>
+          <p className="text-sm">Marking this quest as completed will remove it from your active quests. Are you sure you want to mark this quest as completed?</p>
           <div className="mt-6 flex justify-center space-x-12">
             <button
               className="bg-blue-500 text-white px-4 py-2 rounded-full text-xs uppercase font-light"
@@ -501,13 +500,14 @@ const Content: React.FC = () => {
               className="bg-green-500 text-white px-4 py-2 rounded-full text-xs uppercase font-light"
               onClick={() => {
                 deleteQuest.mutate({
-                  id: selectedQuest?.id ?? '',
+                  id: selectedQuest ?? '',
                 })
+                closeDelQuestModal();
               }}
             > Mark Complete </button>
           </div>
         </div>
-      </Modal> */}
+      </Modal>
 
     </PageLayout>
   );
