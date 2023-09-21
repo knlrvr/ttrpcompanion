@@ -156,6 +156,8 @@ const getBorderColorClass = (charClass: string): string => {
 
 type Campaign = RouterOutputs["campaign"]["getAll"][0];
 
+import { toast } from 'react-toastify'
+
 export const CampCharacterCard = ({
     character, 
     onDelete,
@@ -163,6 +165,18 @@ export const CampCharacterCard = ({
     character: CharacterStats;
     onDelete: () => void;
 }) => {
+
+    const campCharRemoved = () => toast.info('Character has been removed from campaign! This character is now available in your character list.', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored',
+        className: ''
+    });
 
     const { data: sessionData } = useSession();
 
@@ -676,6 +690,7 @@ export const CampCharacterCard = ({
                                             characterId: character.id,
                                             userId: sessionData?.user.id ?? '',
                                         })
+                                        campCharRemoved();
                                     }}
                                 > Remove </button>
                             </div>

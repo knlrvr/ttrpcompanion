@@ -2,9 +2,23 @@ import React, { useState } from 'react'
 import { useSession } from 'next-auth/react';
 import { api, type RouterOutputs } from '@/utils/api';
 
+import { toast } from 'react-toastify';
+
 type Campaign = RouterOutputs["campaign"]["getAll"][0];
 
 const AddCampaign = () => {
+
+    const campCreated = () => toast.success('New campaign created! This campaign can now be selected from the campaign list.', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'colored',
+      className: ''
+    });
 
     const { data: sessionData } = useSession();
 
@@ -45,14 +59,14 @@ const AddCampaign = () => {
                 type="text"
                 placeholder="New Campaign Name"
                 className="text-sm rounded-full px-2 py-[0.2rem] border border-neutral-500 flex justify-center w-full bg-gray-50 dark:bg-[#222] placeholder:text-neutral-500"
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") {
-                    createCampaign.mutate({
-                    title: e.currentTarget.value,
-                    });
-                    e.currentTarget.value = "";
-                  }
-                }}
+                // onKeyDown={(e) => {
+                //   if (e.key === "Enter") {
+                //     createCampaign.mutate({
+                //     title: e.currentTarget.value,
+                //     });
+                //     e.currentTarget.value = "";
+                //   }
+                // }}
               />
               <button
                 className="bg-blue-500 text-white p-1.5 px-5 rounded-full text-xs uppercase w-fit flex"
@@ -64,6 +78,7 @@ const AddCampaign = () => {
                     });
                     titleInput.value = '';
                   }
+                  campCreated();
                 }}
               >
                 create

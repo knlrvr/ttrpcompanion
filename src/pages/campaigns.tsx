@@ -26,6 +26,8 @@ import AddCampaign from "@/components/addCampaign";
 import JoinCampaign from "@/components/joinCampaign";
 import QuestCreator from "@/components/QuestCreator";
 
+import { toast } from "react-toastify";
+
 Modal.setAppElement('main');
 
 export default function Campaigns() {
@@ -47,6 +49,42 @@ type Campaign = RouterOutputs["campaign"]["getAll"][0];
 type Quest = RouterOutputs["questRouter"]["getAll"][0]
 
 const Content: React.FC = () => {
+
+  const questCreated = () => toast.success('New quest created! This quest is now visible in your active quest list.', {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: 'colored',
+    className: ''
+  });
+
+  const questCompleted = () => toast.info('Quest marked complete! This quest is no longer visible in your quest list.', {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: 'colored',
+    className: ''
+  });
+
+  const campCharDeleted = () => toast.error('Character has been deleted! This character is no longer available in your character list.', {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: 'colored',
+    className: ''
+  });
 
   const { data: sessionData } = useSession();
 
@@ -336,6 +374,7 @@ const Content: React.FC = () => {
                     invReward,
                     completed,
                   });
+                  questCreated();
                 }}
               />
             </div>
@@ -364,7 +403,10 @@ const Content: React.FC = () => {
                 <div key={character.id} className="">
                   <CampCharacterCard
                     character={character}
-                    onDelete={() => void deleteCharacter.mutate({ id: character.id })}
+                    onDelete={() => {
+                      void deleteCharacter.mutate({ id: character.id });
+                      campCharDeleted();
+                    }}
                   />
                 </div>
               ))}
@@ -507,6 +549,7 @@ const Content: React.FC = () => {
                   id: selectedQuest ?? '',
                 })
                 closeDelQuestModal();
+                questCompleted();
               }}
             > Mark Complete </button>
           </div>

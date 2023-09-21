@@ -156,6 +156,8 @@ const getBorderColorClass = (charClass: string): string => {
 
 type Campaign = RouterOutputs["campaign"]["getAll"][0];
 
+import { toast } from 'react-toastify'
+
 export const UserCharacterCard = ({
     character, 
     onDelete,
@@ -163,6 +165,18 @@ export const UserCharacterCard = ({
     character: CharacterStats;
     onDelete: () => void;
 }) => {
+
+    const userCharAdded = () => toast.info('Character has been added to selected campaign! This character is no longer available in your character list.', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored',
+        className: ''
+    });
 
     const { data: sessionData } = useSession();
 
@@ -730,6 +744,7 @@ export const UserCharacterCard = ({
                                     campaignId: currentCampaign.id ?? "",
                                 });
                             setCampaignModalOpen(false);
+                            userCharAdded();
                         }}
                     >
                         {campaign.title}

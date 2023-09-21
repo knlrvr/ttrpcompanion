@@ -7,7 +7,33 @@ import PageLayout from '@/components/PageLayout';
 import { UserCharacterCard } from '@/components/UserCharacterCard';
 import { CharacterEditor } from '@/components/CharacterEditor';
 
+import { toast } from 'react-toastify';
+
 const Characters = () => {
+
+  const userCharCreated = () => toast.success('New character created! This character is now available in your character list.', {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: 'colored',
+    className: ''
+  });
+
+  const userCharDeleted = () => toast.error('Character has been deleted! This character is no longer available to view.', {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: 'colored',
+    className: ''
+  });
 
   const { data: sessionData } = useSession();
 
@@ -42,7 +68,10 @@ const Characters = () => {
             <div key={character.id} className="">
               <UserCharacterCard
                 character={character}
-                onDelete={() => void deleteCharacter.mutate({ id: character.id })}
+                onDelete={() => {
+                  void deleteCharacter.mutate({ id: character.id })
+                  userCharDeleted();
+                }}
               />
             </div>
           ))}
@@ -55,6 +84,7 @@ const Characters = () => {
                 userId: sessionData?.user.id ?? "",
                 stats,
                 });
+              userCharCreated();
               }}
             />
           </div>

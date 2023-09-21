@@ -160,6 +160,7 @@ export const CharacterEditor = ({
                             type="text"
                             placeholder='Character Name'
                             className="rounded-full px-3 py-[0.1rem] w-full bg-gray-50 dark:bg-[#222] placeholder:text-neutral-500 text-[#222] dark:text-white"
+                            autoComplete='off'
                             value={title}
                             onChange={(e) => setTitle(e.currentTarget.value)}
                         />
@@ -256,7 +257,7 @@ export const CharacterEditor = ({
                                 className="text-xs uppercase text-neutral-500"
                             > xp </label> 
                         <input 
-                            id="time"
+                            id="xp"
                             type="number"
                             placeholder="Time"
                             className="rounded-full px-3 py-1 bg-gray-50 dark:bg-[#222] placeholder:text-neutral-500 text-[#222] dark:text-white"
@@ -270,6 +271,7 @@ export const CharacterEditor = ({
                                 className="text-xs uppercase text-neutral-500"
                             > damage taken </label> 
                         <input 
+                            id="dmgTaken"
                             type="number"
                             placeholder="Damage Taken"
                             className="rounded-full px-3 py-1 bg-gray-50 dark:bg-[#222] placeholder:text-neutral-500 text-[#222] dark:text-white"
@@ -391,7 +393,7 @@ export const CharacterEditor = ({
                     </div>
 
                     <div className="flex flex-col space-y-2">
-                        <label htmlFor='totalhealingOthers'
+                        <label htmlFor='totalHealingOthers'
                                 className="text-xs uppercase text-neutral-500"
                             > HP Healed (O) </label> 
                         <input  
