@@ -274,7 +274,7 @@ const Content: React.FC = () => {
             <div className="pt-6 pb-4">
               <p className="text-neutral-500 uppercase text-xs pb-6">active quests <span>({quests?.length})</span> &mdash;</p>
               {quests?.length !== undefined && quests?.length > 0 ? (
-              <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 bg-white dark:bg-[#222] rounded-2xl p-4 pt-8 mb-4 shadow-md relative">
+              <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 bg-white dark:bg-[#222] rounded-lg p-4 pt-8 mb-4 shadow-md relative">
                 
                 {/* icon */}
                 <div className="absolute -top-4 left-[1rem] md:-left-2 rounded-full w-8 h-8 bg-red-400 flex justify-center items-center shadow-md">
@@ -283,7 +283,7 @@ const Content: React.FC = () => {
 
                 {quests?.map((quest) => (
                 <li key={quest.id}
-                    className='bg-neutral-100 dark:bg-[#333] dark:bg-opacity-50 font-normal rounded-lg p-4 flex flex-col justify-between'>
+                    className='bg-neutral-100 dark:bg-[#333] dark:bg-opacity-50 font-normal rounded-md p-4 flex flex-col justify-between'>
                     <div className="flex flex-col">
                         <span className="text-sm tracking-wide font-semibold">{quest.title}</span>
                         <span className="text-xs text-neutral-500 tracking-wide">{quest.type}</span>
