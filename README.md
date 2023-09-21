@@ -29,8 +29,10 @@
 > Users can now join campaigns using the `campaign code` provided at the bottom of each campaign. When users enter this campaign code on the campaign selector modal, the campaign will populate in their `campaigns` list. All campaign `participants` are now listed at the bottom of each campaign, including the `owner` and any `member` that has joined via code.
 
 ![v2.0.2](https://img.shields.io/badge/version-2.0.2-facc15) ![date](https://img.shields.io/badge/Sep_20_2023-informational) ![description](https://img.shields.io/badge/Function_Updates-grey)
-> Introduced quest tracking. `Quests` take in a title, type, body, assigner, and reward (gold or other). When a quest is completed, it can be marked completed, removing it from the campaign. Introduced toast notifications for successful actions that reiterates the action performed.  
-> ![bugs](https://img.shields.io/badge/Bugs-grey) 
+> Introduced quest tracking. `Quests` take in a title, type, body, assigner, and reward (gold or other). When a quest is completed, it can be marked completed, removing it from the campaign. Introduced toast notifications for successful actions that reiterate the action performed.
+> 
+> ![bugs](https://img.shields.io/badge/Bugs-grey)
+> When a character is updated from the campaign screen, the action *is* performed, but the results of the action do not render unless you navigate away from the page, or reload. This bug *will* be removed before the next version. 
 
 
 <a name="description"></a>
