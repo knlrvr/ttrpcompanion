@@ -17,9 +17,7 @@ import {
   BsBarChart, 
   BsEye, 
   BsEyeSlash,
-  BsColumnsGap,
   BsFilterCircle,
-  BsFlag,
   BsCheckCircle
 } from "react-icons/bs";
 
@@ -222,7 +220,7 @@ const Content: React.FC = () => {
           <div className="">
             
             <div className="pt-4 flex items-center justify-between">
-              <p className="text-xs text-neutral-500 uppercase">Current Campaign</p>
+              <p className="text-xs text-neutral-500 uppercase">Current Campaign &mdash;</p>
               <div className="flex items-center space-x-1">
                 <span className="text-xs text-neutral-500">{selectedCampaign?.title}</span>
                 <button 
@@ -260,7 +258,7 @@ const Content: React.FC = () => {
             </div>
 
             <div className="pt-6 pb-4">
-              <p className="text-neutral-500 uppercase text-xs">Campaign</p>
+              <p className="text-neutral-500 uppercase text-xs">Campaign &mdash;</p>
               {characterStatsArray.length > 0 ? ( 
               <CampaignTotals characters={characterStatsArray} />
               ) : (
@@ -274,9 +272,15 @@ const Content: React.FC = () => {
 
             {/* migrate to component soon */}
             <div className="pt-6 pb-4">
-              <p className="text-neutral-500 uppercase text-xs pb-4">active quests <span>({quests?.length})</span></p>
+              <p className="text-neutral-500 uppercase text-xs pb-6">active quests <span>({quests?.length})</span> &mdash;</p>
               {quests?.length !== undefined && quests?.length > 0 ? (
-              <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 bg-white dark:bg-[#222] rounded-2xl p-4 mb-4 shadow-md">
+              <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 bg-white dark:bg-[#222] rounded-2xl p-4 pt-8 mb-4 shadow-md relative">
+                
+                {/* icon */}
+                <div className="absolute -top-4 left-[1rem] md:-left-2 rounded-full w-8 h-8 bg-red-400 flex justify-center items-center shadow-md">
+                  <BsFilterCircle className="text-lg text-[#222]" />
+                </div>
+
                 {quests?.map((quest) => (
                 <li key={quest.id}
                     className='bg-neutral-100 dark:bg-[#333] dark:bg-opacity-50 font-normal rounded-lg p-4 flex flex-col justify-between'>
@@ -337,7 +341,7 @@ const Content: React.FC = () => {
             </div>
 
 
-            <p className="text-neutral-500 uppercase text-xs pt-6 pb-4">Party</p>
+            <p className="text-neutral-500 uppercase text-xs pt-6 pb-4">Party &mdash;</p>
             {charactersData && characterStatsArray.length > 0 ? ( 
             <div className="bg-white dark:bg-[#222] mb-6 mt-2 p-4 rounded-lg shadow-md relative">
                 <CharacterTotals characters={characterStatsArray} />
@@ -353,7 +357,7 @@ const Content: React.FC = () => {
               </p>
             )}
 
-            <p className="text-neutral-500 uppercase text-xs pt-10 pb-4">Characters ({charactersData?.length})</p>
+            <p className="text-neutral-500 uppercase text-xs pt-10 pb-4">Characters ({charactersData?.length}) &mdash;</p>
             {charactersData && characterStatsArray.length > 0 ? ( 
             <div className="pb-4 grid grid-cols-1 gap-4">
               {charactersData?.map((character) => (
@@ -373,7 +377,7 @@ const Content: React.FC = () => {
             )}
           
             <div className="text-xs text-neutral-500 flex flex-col space-y-1 mb-4 pt-10 pb-4">
-              <p className="text-neutral-500 uppercase text-xs pb-1">Campaign Code</p>
+              <p className="text-neutral-500 uppercase text-xs pb-1">Campaign Code &mdash;</p>
               {isCodeShown ? (
                 <div className="flex items-center space-x-2">
                   <button 
