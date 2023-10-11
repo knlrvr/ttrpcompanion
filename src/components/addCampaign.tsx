@@ -70,7 +70,7 @@ const AddCampaign = () => {
               />
               <button
                 className="bg-blue-500 text-white p-1.5 px-5 rounded-full text-xs uppercase w-fit flex"
-                onClick={(e) => {
+                onClick={() => {
                   const titleInput = document.getElementById("addCampaign") as HTMLInputElement;
                   if (titleInput) {
                     createCampaign.mutate({

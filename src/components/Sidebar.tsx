@@ -13,8 +13,6 @@ import { api, type RouterOutputs } from '@/utils/api';
 
 import { 
     BsChevronBarLeft, 
-    BsGear,
-    BsExclamationCircle
 } from "react-icons/bs";
 
 import {

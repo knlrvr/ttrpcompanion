@@ -29,11 +29,11 @@ type Stats = {
     totalKo: number;
 }
   
-type CharacterStats = {
-    id?: string;
-    characterId?: string;
-    stats: Stats[];
-}
+// type CharacterStats = {
+//     id?: string;
+//     characterId?: string;
+//     stats: Stats[];
+// }
 
 type CharacterTotalsChartProps = {
     statData: number[];

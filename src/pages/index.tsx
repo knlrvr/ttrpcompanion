@@ -9,10 +9,6 @@ import PageLayout from "@/components/PageLayout";
 import Head from "next/head";
 
 import {
-  BsGear
-} from 'react-icons/bs'
-
-import {
   PiTent
 } from 'react-icons/pi'
 

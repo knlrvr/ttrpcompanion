@@ -1,9 +1,6 @@
-import { signOut } from 'next-auth/react'
-import { BsBoxArrowLeft } from 'react-icons/bs'
 import React from 'react'
 
 import PageLayout from '@/components/PageLayout'
-import ToggleTheme from '@/components/ThemeToggle'
 
 const Settings = () => {
   return (
