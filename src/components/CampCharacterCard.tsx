@@ -166,7 +166,19 @@ export const CampCharacterCard = ({
     onDelete: () => void;
 }) => {
 
-    const campCharRemoved = () => toast.info('Character has been removed from campaign! This character is now available in your character list.', {
+    const campCharRemoved = () => toast.success('Character has been removed from campaign! This character is now available in your character list.', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored',
+        className: ''
+    });
+
+    const campCharUpdated = () => toast.success('Character has been updated!', {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -655,7 +667,10 @@ export const CampCharacterCard = ({
                                 {isEditMode ? (
                                 <button 
                                     className="text-xs uppercase text-white bg-green-500 px-4 py-2 rounded-full"
-                                    onClick={handleUpdateClick}
+                                    onClick={() => {
+                                        handleUpdateClick();
+                                        campCharUpdated();
+                                    }}
                                 > save </button>
                                 ) : (
                                 <button 
