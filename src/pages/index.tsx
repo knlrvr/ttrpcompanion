@@ -101,8 +101,8 @@ const Content: React.FC = () => {
       <div className="relative flex flex-col justify-between">
         <div className="flex justify-between items-start">
           <div className="flex flex-col pb-4">
-            <span className="font-semibold text-3xl md:text-5xl">Hello, {sessionData.user.name}</span>
-            <span className="pb-4 font-light tracking-wide">Welcome back!</span>
+            <span className="font-semibold tracking-wide text-3xl md:text-5xl">Hello, {sessionData.user.name}</span>
+            <span className="pb-4 pt-2 font-light tracking-wide text-neutral-500">Welcome back to TTRPCompanion!</span>
 
 
             {/* ????? */}

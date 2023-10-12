@@ -95,14 +95,22 @@ const Profile = () => {
               <span className="font-light text-neutral-500"> ({campaigns?.length})</span>
             </p>
             <p className="text-xs font-light pb-4">Campaigns that you have created or joined are displayed below. You can also find your <span className="font-semibold">active</span> characters within that campaign.</p>
-            <ul className="text-left text-base font-light bg-white dark:bg-[#222] rounded-xl p-4 shadow-md">
-              {campaigns?.map((campaign) => (
-                <li key={campaign.id}
-                  className='py-2 font-normal'>
-                  <span>{campaign.title}</span>
-                </li>
-              ))}
-            </ul>
+            
+            {campaigns?.length !== undefined && campaigns?.length < 0 ? (
+              <p className="text-neutral-400 dark:text-[#555] font-light text-xs">
+                No campaigns to display at this time. Visit the campaign page to create or join a new campaign.
+              </p>
+            ) : (
+              <ul className="text-left text-base font-light bg-white dark:bg-[#222] rounded-xl p-4 shadow-md">
+                {campaigns?.map((campaign) => (
+                  <li key={campaign.id}
+                    className='py-2 font-light text-sm'>
+                    <span>{campaign.title}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+
           </div>
 
           <div className="pt-8">
@@ -114,14 +122,20 @@ const Profile = () => {
             </p>
             <p className="text-xs font-light pb-4">Characters that have not been assigned to a campaign are shown below.</p>
 
+            {charactersData?.length !== undefined && charactersData?.length < 0 ? ( 
+            <p className="text-neutral-400 dark:text-[#555] font-light text-xs">
+              No characters to display at this time. Visit the character page to create a new character.
+            </p>
+            ) : (
             <ul className="text-left text-base font-light bg-white dark:bg-[#222] rounded-xl p-4 shadow-md">
               {charactersData?.map((character) => (
                 <li key={character.id} 
-                  className="py-2 font-normal">
+                  className="py-2 font-light text-sm">
                   <span>{character.title}</span>
                 </li>
               ))}
             </ul>
+            )}
           </div>
 
 

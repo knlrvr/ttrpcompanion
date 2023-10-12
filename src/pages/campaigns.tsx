@@ -269,9 +269,9 @@ const Content: React.FC = () => {
             </div>
 
             <div className="pt-6 pb-4">
-              <ul className="flex relative -space-x-8 -ml-2">
+              <ul className="flex relative -ml-2 flex-wrap">
                 {campaignOwner?.image && (
-                  <li>
+                  <li className="-mr-6">
                     <Image 
                       src={campaignOwner?.image ?? ''}
                       alt={`${campaignOwner?.name}'s profile picture`}
@@ -282,7 +282,7 @@ const Content: React.FC = () => {
                   </li>
                 )}
                 {campaignMembers?.map((member) => (
-                  <li key={member.id} className="">
+                  <li key={member.id} className="-mr-6">
                     <Image 
                       src={member.image ?? ''}
                       alt={`${member.name}'s profile picture`}
@@ -293,7 +293,7 @@ const Content: React.FC = () => {
                   </li>
                 ))}
               </ul>
-            </div>
+            </div> 
 
             <div className="pt-6 pb-4">
               <p className="text-neutral-500 uppercase text-xs">Campaign &mdash;</p>
@@ -321,7 +321,7 @@ const Content: React.FC = () => {
 
                 {quests?.map((quest) => (
                 <li key={quest.id}
-                    className='bg-neutral-100 dark:bg-[#333] dark:bg-opacity-50 font-normal rounded-md p-4 flex flex-col justify-between'>
+                    className='bg-white border shadow-md dark:border-none dark:shadow-none dark:bg-[#333] dark:bg-opacity-50 font-normal rounded-md p-4 flex flex-col justify-between'>
                     <div className="flex flex-col">
                         <span className="text-sm tracking-wide font-semibold">{quest.title}</span>
                         <span className="text-xs text-neutral-500 tracking-wide">{quest.type}</span>

@@ -74,7 +74,7 @@ const QuestCreator = ({
         <div className="text-center flex flex-col justify-between space-y-4 px-4">
           <div className="flex flex-col space-y-1 pb-8">
             <span className="flex justify-start text-sm">Add New Quest &mdash;</span>
-            <p className="text-xs text-neutral-500">Please fill out the details of the quest you would like to add.</p>
+            <p className="text-xs text-neutral-500 text-left">Please fill out the details of the quest you would like to add.</p>
           </div>
           <div className="flex flex-col items-start space-y-2">
             <label htmlFor='questTitle' className="text-xs text-neutral-500">
