@@ -52,7 +52,7 @@ const QuestCreator = ({
 
   return (
     <>
-        <div className="flex justify-end w-full">
+        <div className="absolute bottom-4 right-4">
 
 
             <button

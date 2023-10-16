@@ -62,7 +62,7 @@ const Content: React.FC = () => {
     className: ''
   });
 
-  const questCompleted = () => toast.info('Quest marked complete! This quest is no longer visible in your quest list.', {
+  const questCompleted = () => toast.success('Quest marked complete! This quest is no longer visible in your quest list.', {
     position: "top-right",
     autoClose: 5000,
     hideProgressBar: false,
@@ -312,7 +312,7 @@ const Content: React.FC = () => {
             <div className="pt-6 pb-4">
               <p className="text-neutral-500 uppercase text-xs pb-6">active quests <span>({quests?.length})</span> &mdash;</p>
               {quests?.length !== undefined && quests?.length > 0 ? (
-              <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 bg-white dark:bg-[#222] rounded-lg p-4 pt-8 mb-4 shadow-md relative">
+              <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 bg-white dark:bg-[#222] rounded-lg p-4 pt-10 mb-4 pb-12 shadow-md relative">
                 
                 {/* icon */}
                 <div className="absolute -top-4 left-[1rem] md:-left-2 rounded-full w-8 h-8 bg-red-400 flex justify-center items-center shadow-md">
@@ -356,14 +356,8 @@ const Content: React.FC = () => {
                     </div>
                 </li>
                 ))}
-              </ul>
-              ) : ( 
-              <p className="text-neutral-400 dark:text-[#555] font-light text-xs">
-                No active quests at this time.
-              </p>
-              )}
-              <QuestCreator 
-                onSave={({ title, type, body, assigned, gpReward, invReward, completed }) => {
+                <QuestCreator 
+                  onSave={({ title, type, body, assigned, gpReward, invReward, completed }) => {
                   void createQuest.mutate({
                     campaignId: selectedCampaign?.id ?? '', 
                     title, 
@@ -375,8 +369,14 @@ const Content: React.FC = () => {
                     completed,
                   });
                   questCreated();
-                }}
-              />
+                  }}
+                />
+              </ul>
+              ) : ( 
+              <p className="text-neutral-400 dark:text-[#555] font-light text-xs">
+                No active quests at this time.
+              </p>
+              )}
             </div>
 
 
