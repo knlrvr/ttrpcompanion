@@ -21,7 +21,8 @@ import {
   BsCheckCircle,
   BsBoxArrowLeft, 
   BsChevronRight, 
-  BsDashLg
+  BsDashLg,
+  BsPlusLg
 } from "react-icons/bs";
 
 import Modal from "react-modal";
@@ -320,7 +321,7 @@ const Content: React.FC = () => {
                 <span className="text-xs text-neutral-500">{selectedCampaign?.title}</span>
                 <button 
                   onClick={() => openChangeCampModal()}
-                  className="text-xs font-mono text-blue-300"
+                  className="text-xs font-mono text-blue-500"
                 > (Change) </button>
               </div>
             </div>
@@ -367,10 +368,10 @@ const Content: React.FC = () => {
 
             {/* migrate to component soon */}
             <div className="pt-6 pb-4">
-              <p className="text-neutral-500 uppercase text-xs pb-6">active quests <span>({quests?.length})</span> &mdash;</p>
+              <p className="text-neutral-500 uppercase text-xs pb-4">active quests <span>({quests?.length})</span> &mdash;</p>
               {displayedQuests?.length !== undefined && displayedQuests?.length > 0 ? (
               <div>
-                <ul className={`grid grid-cols-1 sm:grid-cols-2 gap-4 bg-white dark:bg-[#222] p-4 pt-8 pb-8 shadow-md relative
+                <ul className={`grid grid-cols-1 sm:grid-cols-2 gap-4 bg-white dark:bg-[#222] p-4 pt-8 pb-8 relative mt-2
                 ${quests?.length !== undefined && quests.length < 2 ? 'rounded-xl' : 'rounded-t-xl' }
                 `}>
                   {/* icon */}
@@ -422,6 +423,38 @@ const Content: React.FC = () => {
                   </li>
                   ))}
                 </ul>
+                {quests?.length && quests?.length > 2 && (
+                  <button onClick={toggleShowAllQuests} className="font-light tracking-wide text-xs flex justify-between p-3 px-4 bg-white dark:bg-[#222] w-full text-blue-400 border-t border-neutral-300 dark:border-neutral-500 shadow-md">
+                    <span>{showAllQuests ? 'Show Less' : `All Quests (${quests?.length})`}</span>
+                    <span>{showAllQuests ? <BsDashLg /> : <BsChevronRight /> }</span>
+                  </button>
+                )}
+              </div>
+              ) : ( 
+              <p className="text-neutral-400 dark:text-[#555] font-light text-xs">
+                No active quests at this time.
+              </p>
+              )}
+              {quests?.length !== undefined && quests.length < 1 ? ( 
+                <div className="mt-3 text-blue-400">
+                  <QuestCreator 
+                    onSave={({ title, type, body, assigned, gpReward, invReward, completed }) => {
+                      void createQuest.mutate({
+                        campaignId: selectedCampaign?.id ?? '', 
+                        title, 
+                        type, 
+                        body,
+                        assigned,
+                        gpReward,
+                        invReward,
+                        completed,
+                      });
+                      questCreated();
+                    }}
+                  />
+                </div>
+              ) : (
+              <div className="font-light tracking-wide text-xs flex justify-between p-3 px-4 bg-white dark:bg-[#222] w-full text-blue-400 border-t border-neutral-300 dark:border-neutral-500 shadow-md rounded-b-xl">
                 <QuestCreator 
                   onSave={({ title, type, body, assigned, gpReward, invReward, completed }) => {
                     void createQuest.mutate({
@@ -437,24 +470,14 @@ const Content: React.FC = () => {
                     questCreated();
                   }}
                 />
-                {quests?.length && quests?.length > 2 && (
-                  <button onClick={toggleShowAllQuests} className="font-light tracking-wide text-xs flex justify-between rounded-b-xl p-3 px-4 bg-white dark:bg-[#222] w-full text-blue-400 border-t border-neutral-300 dark:border-neutral-500 shadow-md">
-                    <span>{showAllQuests ? 'Show Less' : `All Quests (${quests?.length})`}</span>
-                    <span>{showAllQuests ? <BsDashLg /> : <BsChevronRight /> }</span>
-                  </button>
-                )}
               </div>
-              ) : ( 
-              <p className="text-neutral-400 dark:text-[#555] font-light text-xs">
-                No active quests at this time.
-              </p>
               )}
             </div>
 
 
             <p className="text-neutral-500 uppercase text-xs pt-6 pb-4">Party &mdash;</p>
             {charactersData && characterStatsArray.length > 0 ? ( 
-            <div className="bg-white dark:bg-[#222] mb-6 mt-2 p-4 rounded-lg shadow-md relative">
+            <div className="bg-white dark:bg-[#222] mb-6 mt-2 p-4 pb-3 rounded-lg shadow-md relative">
                 <CharacterTotals characters={characterStatsArray} />
 
               <div className="absolute -top-4 left-[1rem] md:-left-2 rounded-full w-8 h-8 bg-blue-500 flex justify-center items-center shadow-md">
@@ -468,11 +491,11 @@ const Content: React.FC = () => {
               </p>
             )}
 
-            <p className="text-neutral-500 uppercase text-xs pt-10 pb-4">Characters ({charactersData?.length}) &mdash;</p>
+            <p className="text-neutral-500 uppercase text-xs pt-10 pb-5">Characters ({charactersData?.length}) &mdash;</p>
             {charactersData && characterStatsArray.length > 0 ? ( 
-            <div className="pb-4 grid grid-cols-1 gap-4">
+            <div className="grid grid-cols-1 bg-white dark:bg-[#222] rounded-t-xl">
               {charactersData?.map((character) => (
-                <div key={character.id} className="">
+                <div key={character.id} className="mx-4 border-b last:border-b-0">
                   <CampCharacterCard
                     character={character}
                     onDelete={() => {
@@ -488,6 +511,17 @@ const Content: React.FC = () => {
                 Characters will populate here once they are added to this campaign.
                 Visit the characters tab to create a character or add an existing character to this campaign.
               </p>
+            )}
+            {charactersData?.length !== undefined && charactersData?.length === 0 ? ( 
+              <Link href="/characters" className="flex justify-between items-center font-light text-blue-400 mt-3">
+                <span className="text-xs">Add Character</span>
+                <BsPlusLg />
+              </Link>
+            ) : (
+              <Link href="/characters" className="text-xs flex justify-between items-center font-light text-blue-400 bg-white dark:bg-[#222] px-4 py-3 border-t rounded-b-xl shadow-md">
+                <span className="text-xs">Add Character</span>
+                <BsPlusLg />
+              </Link>
             )}
           
             <div className="text-xs text-neutral-500 flex flex-col space-y-1 mb-4 pt-10 pb-4">

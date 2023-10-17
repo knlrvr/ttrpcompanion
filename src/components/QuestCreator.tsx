@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
-import { BsPlusLg } from 'react-icons/bs';
+
+import { 
+  BsPlusLg 
+} from 'react-icons/bs';
 
 import Modal from 'react-modal'
 
@@ -51,15 +54,12 @@ const QuestCreator = ({
 
   return (
     <>
-        <div className="">
-            <button
-              onClick={openQuestModal}
-              className="font-light tracking-wide text-xs flex justify-between p-3 px-4 bg-white dark:bg-[#222] w-full text-blue-400 border-t border-neutral-300 dark:border-neutral-500 shadow-md"
-            >
-              <span className="text-xs font-light">New Quest</span>
-              <BsPlusLg />
-            </button>
-        </div>
+        <button
+          onClick={openQuestModal}
+          className={`flex justify-between w-full`}>
+          <span className="text-xs font-light">New Quest</span>
+          <BsPlusLg />
+        </button>
 
       <Modal
         isOpen={isQuestModalOpen}

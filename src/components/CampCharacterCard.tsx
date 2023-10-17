@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { BsPlusLg, BsDashLg } from 'react-icons/bs'
+import { BsPlusLg, BsDashLg, BsChevronRight, BsChevronDown, BsChevronUp } from 'react-icons/bs'
 import { api, type RouterOutputs } from '@/utils/api'
 import Modal from 'react-modal'
 import { useSession } from 'next-auth/react'
@@ -269,26 +269,21 @@ export const CampCharacterCard = ({
 
     return (
         <>
-        <div className="bg-white dark:bg-[#222] rounded-lg shadow-md p-4 grid relative mt-2">
-            
-            <div className="rounded-full bg-[#222] dark:bg-neutral-100 text-white dark:text-[#111] absolute -top-3 left-[1rem] sm:-left-2 p-1 shadow-md">
+        <div className="py-4 grid relative">
+
+            {/* <div className="rounded-full bg-[#222] dark:bg-neutral-100 text-white dark:text-[#111] absolute -top-3 left-[1rem] sm:-left-2 p-1 shadow-md">
                 <MdPerson />
-            </div>
+            </div> */}
 
-            <div className="">
-                    <div className="text-lg tracking-wide font-bold flex items-center justify-between py-4">
-                        <div className="flex items-center text-xl text-[#222] dark:text-white">
-                            <span>{character.title}</span>
-                        </div>
-                        <button 
-                            className="text-[#222] dark:text-white"
-                            onClick={() => setIsExpanded(!isExpanded)}
-                        >
-                            {isExpanded ? <BsDashLg /> : <BsPlusLg />}
-                        </button>
-                    </div>
+            <div className="flex flex-col w-full">
+                <button onClick={() => setIsExpanded(!isExpanded)}
+                    className="flex justify-between items-center w-full py-3"
+                >
+                    <span>{character.title}</span>
+                    {isExpanded ? <BsChevronUp /> : <BsChevronRight />}
+                </button>
 
-                    {isExpanded && (
+                {isExpanded && (
                     <div className="">
                         {character.stats.map((stat) => (
                             <div key={stat.id}>

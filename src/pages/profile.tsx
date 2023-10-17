@@ -139,7 +139,7 @@ const Profile = () => {
                 </ul>
                 {campaigns?.length !== undefined && campaigns?.length > 3 && (
                   <button onClick={toggleShowAllCamps} className="font-light tracking-wide text-xs flex justify-between p-3 px-4 bg-white dark:bg-[#222] w-full rounded-b-xl text-blue-400 border-t border-neutral-300 dark:border-neutral-500 shadow-md">
-                    <span>{showAllCamps ? 'Show Less' : `All Characters (${campaigns?.length})`}</span>
+                    <span>{showAllCamps ? 'Show Less' : `All Campaigns (${campaigns?.length})`}</span>
                     <span>{showAllCamps ? <BsDashLg /> : <BsChevronRight /> }</span>
                   </button>
                 )}
@@ -156,7 +156,7 @@ const Profile = () => {
             </p>
             <p className="text-xs font-light pb-4 text-neutral-500">Characters that have not been assigned to a campaign are shown below.</p>
 
-            {charactersData?.length !== undefined && charactersData?.length < 0 ? ( 
+            {charactersData?.length !== undefined && charactersData?.length === 0 ? ( 
             <p className="text-neutral-400 dark:text-[#555] font-light text-xs">
               No characters to display at this time. Visit the character page to create a new character.
             </p>
