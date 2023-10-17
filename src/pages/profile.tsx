@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 import PageLayout from '@/components/PageLayout';
 
-import { BsBoxArrowLeft, BsChevronLeft, BsDashLg } from 'react-icons/bs';
+import { BsBoxArrowLeft, BsChevronRight, BsDashLg } from 'react-icons/bs';
 import Image from 'next/image';
 
 import { api, type RouterOutputs } from "@/utils/api";
@@ -17,9 +17,6 @@ import { api, type RouterOutputs } from "@/utils/api";
 //   MdOutlinePeopleAlt
 // } from 'react-icons/md'
 
-import {
-  BsChevronRight
-} from 'react-icons/bs'
 
 const Profile = () => {
 
@@ -130,22 +127,16 @@ const Profile = () => {
               </p>
             ) : (
               <div>
-              <ul className={`text-left text-base font-light bg-white dark:bg-[#222] px-4 py-2 shadow-md
-                ${campaigns?.length !== undefined && campaigns?.length > 3 ? 'rounded-t-xl' : 'rounded-xl'}
-              `}>
-                {displayedCampaigns?.map((campaign) => (
-                  <li key={campaign.id}
-                    className='py-3 font-light text-sm border-b last:border-b-0 border-neutral-300 dark:border-neutral-500'>
-                    <span>{campaign.title}</span>
-                  </li>
-                ))}
-              </ul>
-              {campaigns?.length && campaigns?.length > 3 && (
-                <button onClick={toggleShowAllCamps} className="font-light tracking-wide text-xs flex justify-between p-3 px-4 bg-white dark:bg-[#222] w-full rounded-b-xl text-blue-400 border-t border-neutral-300 dark:border-neutral-500 shadow-md">
-                  <span>{showAllCamps ? 'Show Less' : `All Campaigns (${campaigns.length})`}</span>
-                  <span>{showAllCamps ? <BsDashLg /> : <BsChevronRight /> }</span>
-                </button>
-              )}
+                <ul className={`text-left text-base font-light bg-white dark:bg-[#222] px-4 py-2 shadow-md
+                  ${campaigns?.length !== undefined && campaigns?.length > 3 ? 'rounded-t-xl' : 'rounded-xl'}
+                `}>
+                  {displayedCampaigns?.map((campaign) => (
+                    <li key={campaign.id}
+                      className='py-3 font-light text-sm border-b last:border-b-0 border-neutral-300 dark:border-neutral-500'>
+                      <span>{campaign.title}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             )}
           </div>

@@ -18,7 +18,10 @@ import {
   BsEye, 
   BsEyeSlash,
   BsFilterCircle,
-  BsCheckCircle
+  BsCheckCircle,
+  BsBoxArrowLeft, 
+  BsChevronRight, 
+  BsDashLg
 } from "react-icons/bs";
 
 import Modal from "react-modal";
@@ -46,7 +49,37 @@ export default function Campaigns() {
 }
 
 type Campaign = RouterOutputs["campaign"]["getAll"][0];
-type Quest = RouterOutputs["questRouter"]["getAll"][0]
+type Quest = RouterOutputs["questRouter"]["getAll"][0];
+
+const categoryColors: { [key: string]: string } = {
+  'Bounty': 'text-red-400',
+  'Defense': 'text-blue-500',
+  'Delivery': 'text-yellow-400',
+  'Destroy': 'text-orange-400',
+  'Escort': 'text-teal-400',
+  'Fetch': 'text-violet-500',
+  'Gather': 'text-green-500',
+  'Investigation': 'text-cyan-500',
+  'Kill': 'text-red-500',
+  'Protect': 'text-indigo-500',
+  'Survival': 'text-green-500',
+  'Talk To': 'text-neutral-500',
+};
+
+const categoryBorders: { [key: string]: string } = {
+  'Bounty': 'border-red-400',
+  'Defense': 'border-blue-500',
+  'Delivery': 'border-yellow-400',
+  'Destroy': 'border-orange-400',
+  'Escort': 'border-teal-400',
+  'Fetch': 'border-violet-500',
+  'Gather': 'border-green-500',
+  'Investigation': 'border-cyan-500',
+  'Kill': 'border-red-500',
+  'Protect': 'border-indigo-500',
+  'Survival': 'border-green-500',
+  'Talk To': 'border-neutral-500',
+}
 
 const Content: React.FC = () => {
 
@@ -86,9 +119,12 @@ const Content: React.FC = () => {
     className: ''
   });
 
+
   const { data: sessionData } = useSession();
 
   const [selectedCampaign, setSelectedCampaign] = useState<Campaign | null>(null);
+  const [showAllQuests, setShowAllQuests] = useState(false);
+
 
   const [newCampaigns, setNewCampaigns] = useState<Campaign[] | null>([]);
   const [isDelCampModalOpen, setDelCampModalOpen] = useState(false);
@@ -243,6 +279,12 @@ const Content: React.FC = () => {
     }
   })
 
+  const displayedQuests = showAllQuests ? quests : quests?.slice(0, 2);
+
+  const toggleShowAllQuests = () => {
+    setShowAllQuests(!showAllQuests);
+  };
+
   return (
     <PageLayout>
       <div>
@@ -311,67 +353,81 @@ const Content: React.FC = () => {
             {/* migrate to component soon */}
             <div className="pt-6 pb-4">
               <p className="text-neutral-500 uppercase text-xs pb-6">active quests <span>({quests?.length})</span> &mdash;</p>
-              {quests?.length !== undefined && quests?.length > 0 ? (
-              <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 bg-white dark:bg-[#222] rounded-lg p-4 pt-10 mb-4 pb-12 shadow-md relative">
-                
-                {/* icon */}
-                <div className="absolute -top-4 left-[1rem] md:-left-2 rounded-full w-8 h-8 bg-red-400 flex justify-center items-center shadow-md">
-                  <BsFilterCircle className="text-lg text-[#222]" />
-                </div>
+              {displayedQuests?.length !== undefined && displayedQuests?.length > 0 ? (
+              <div>
+                <ul className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 bg-white dark:bg-[#222] p-4 pt-8 pb-8 shadow-md relative
+                ${quests?.length !== undefined && quests.length < 2 ? 'rounded-xl' : 'rounded-t-xl' }
+                `}>
+                  {/* icon */}
+                  <div className="absolute -top-4 left-[1rem] md:-left-2 rounded-full w-8 h-8 bg-red-400 flex justify-center items-center shadow-md">
+                    <BsFilterCircle className="text-lg text-[#222]" />
+                  </div>
 
-                {quests?.map((quest) => (
-                <li key={quest.id}
-                    className='bg-white border shadow-md dark:border-none dark:shadow-none dark:bg-[#333] dark:bg-opacity-50 font-normal rounded-md p-4 flex flex-col justify-between'>
-                    <div className="flex flex-col">
-                        <span className="text-sm tracking-wide font-semibold">{quest.title}</span>
-                        <span className="text-xs text-neutral-500 tracking-wide">{quest.type}</span>
-                        <p className="text-xs text-[#222] dark:text-neutral-100 py-2">{quest.body}</p>
-                    </div>
+                  {displayedQuests?.map((quest) => (
+                  <li key={quest.id}
+                      className='bg-white border shadow-md dark:border-none dark:shadow-none dark:bg-[#333] dark:bg-opacity-50 font-normal rounded-md p-4 flex flex-col justify-between'>
+                      <div className="flex flex-col">
+                          <span className="text-sm tracking-wide font-semibold">{quest.title}</span>
+                          <span className={`text-xs font-light tracking-wide border w-fit px-2 my-2 rounded-full
+                            ${categoryColors[quest.type] || `neutral-500`}
+                            ${categoryBorders[quest.type] || `neutral-500`}
+                          `}>
+                            {quest.type}
+                          </span>
+                          <p className="text-xs text-[#222] dark:text-neutral-100 py-2">{quest.body}</p>
+                      </div>
 
-                    <div className="flex flex-col space-y-1 pt-4">
-                        <div className="flex justify-between">
-                            <p className="text-xs uppercase text-neutral-500">from:</p>
-                            <span className="text-right text-xs ">{quest.assigned}</span>
-                        </div>
-                        {quest.gpReward > 0 && (
-                        <div className="flex justify-between">
-                            <p className="text-xs uppercase text-neutral-500">reward:</p>
-                            <span className="text-right text-xs ">{quest.gpReward} gp</span>
-                        </div>
-                        )}
-                        {quest.invReward && (
-                        <div className="flex justify-between">
-                            <p className="text-xs uppercase text-neutral-500">reward:</p>
-                            <span className="text-right text-xs ">{quest.invReward}</span> 
-                        </div>
-                        )}
-                        <div className="flex justify-end pt-4">
-                          <button 
-                              className="w-fit text-lg uppercase bg-orange-300 px-[1.1rem] p-1.5 rounded-full text-[#222]"
-                              onClick={() => {
-                                openDelQuestModal(quest.id);
-                              }}
-                          > <BsCheckCircle /> </button>
-                        </div>
-                    </div>
-                </li>
-                ))}
+                      <div className="flex flex-col space-y-1 pt-4">
+                          <div className="flex justify-between">
+                              <p className="text-xs uppercase text-neutral-500">from:</p>
+                              <span className="text-right text-xs ">{quest.assigned}</span>
+                          </div>
+                          {quest.gpReward > 0 && (
+                          <div className="flex justify-between">
+                              <p className="text-xs uppercase text-neutral-500">reward:</p>
+                              <span className="text-right text-xs ">{quest.gpReward} gp</span>
+                          </div>
+                          )}
+                          {quest.invReward && (
+                          <div className="flex justify-between">
+                              <p className="text-xs uppercase text-neutral-500">reward:</p>
+                              <span className="text-right text-xs ">{quest.invReward}</span> 
+                          </div>
+                          )}
+                          <div className="flex justify-end pt-4">
+                            <button 
+                                className="w-fit text-lg uppercase bg-orange-300 px-[1.1rem] p-1.5 rounded-full text-[#222]"
+                                onClick={() => {
+                                  openDelQuestModal(quest.id);
+                                }}
+                            > <BsCheckCircle /> </button>
+                          </div>
+                      </div>
+                  </li>
+                  ))}
+                </ul>
                 <QuestCreator 
                   onSave={({ title, type, body, assigned, gpReward, invReward, completed }) => {
-                  void createQuest.mutate({
-                    campaignId: selectedCampaign?.id ?? '', 
-                    title, 
-                    type, 
-                    body,
-                    assigned,
-                    gpReward,
-                    invReward,
-                    completed,
-                  });
-                  questCreated();
+                    void createQuest.mutate({
+                      campaignId: selectedCampaign?.id ?? '', 
+                      title, 
+                      type, 
+                      body,
+                      assigned,
+                      gpReward,
+                      invReward,
+                      completed,
+                    });
+                    questCreated();
                   }}
                 />
-              </ul>
+                {quests?.length && quests?.length > 2 && (
+                  <button onClick={toggleShowAllQuests} className="font-light tracking-wide text-xs flex justify-between rounded-b-xl p-3 px-4 bg-white dark:bg-[#222] w-full text-blue-400 border-t border-neutral-300 dark:border-neutral-500 shadow-md">
+                    <span>{showAllQuests ? 'Show Less' : `All Quests (${campaigns.length})`}</span>
+                    <span>{showAllQuests ? <BsDashLg /> : <BsChevronRight /> }</span>
+                  </button>
+                )}
+              </div>
               ) : ( 
               <p className="text-neutral-400 dark:text-[#555] font-light text-xs">
                 No active quests at this time.

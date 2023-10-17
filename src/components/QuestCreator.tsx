@@ -41,7 +41,6 @@ const QuestCreator = ({
         'Talk To'
     ]
 
-
     const [isQuestModalOpen, setQuestModalOpen] = useState(false);
     const openQuestModal = () => {
       setQuestModalOpen(true);
@@ -52,14 +51,12 @@ const QuestCreator = ({
 
   return (
     <>
-        <div className="absolute bottom-4 right-4">
-
-
+        <div className="">
             <button
               onClick={openQuestModal}
-              className="w-fit text-sm flex items-center justify-end space-x-2 text-blue-300"
+              className="font-light tracking-wide text-xs flex justify-between p-3 px-4 bg-white dark:bg-[#222] w-full text-blue-400 border-t border-neutral-300 dark:border-neutral-500 shadow-md"
             >
-              <span className="text-xs font-mono">New Quest</span>
+              <span className="text-xs font-light">New Quest</span>
               <BsPlusLg />
             </button>
         </div>

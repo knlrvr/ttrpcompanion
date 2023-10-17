@@ -44,13 +44,13 @@ const Content: React.FC = () => {
         <div className="hidden sm:block w-full h-full">
           <div className="h-full flex flex-col justify-center items-center">
             <span className="uppercase font-semibold tracking-widest text-xl md:text-2xl lg:text-3xl xl:text-4xl">welcome to</span>
-            <Image
+            {/* <Image
               src="logo-nl-light.svg"
               alt="ttrpcompanion logo"
               width="1000"
               height="1000"
               className="w-3/4"
-            />
+            /> */}
             <span className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight tracking-widest">TTRPCompanion</span>
           </div>
 
@@ -62,13 +62,13 @@ const Content: React.FC = () => {
 
             <div className="sm:hidden">
               <span className="flex justify-center font-bold text-[2.6rem]">TTRPCompanion</span>
-              <Image
+              {/* <Image
                 src="logo-light.svg"
                 alt="ttrpcompanion logo"
                 width="1000"
                 height="1000"
                 className=""
-              />
+              /> */}
             </div>
 
             <p className="text-neutral-500 text-lg">
