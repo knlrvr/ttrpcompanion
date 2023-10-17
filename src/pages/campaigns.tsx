@@ -424,7 +424,7 @@ const Content: React.FC = () => {
                   ))}
                 </ul>
                 {quests?.length && quests?.length > 2 && (
-                  <button onClick={toggleShowAllQuests} className="font-light tracking-wide text-xs flex justify-between p-3 px-4 bg-white dark:bg-[#222] w-full text-blue-400 border-t border-neutral-300 dark:border-neutral-500 shadow-md">
+                  <button onClick={toggleShowAllQuests} className="font-light tracking-wide text-xs flex justify-between p-3 px-4 bg-white dark:bg-[#222] w-full text-blue-400 border-t border-neutral-300 dark:border-neutral-500">
                     <span>{showAllQuests ? 'Show Less' : `All Quests (${quests?.length})`}</span>
                     <span>{showAllQuests ? <BsDashLg /> : <BsChevronRight /> }</span>
                   </button>
@@ -454,7 +454,7 @@ const Content: React.FC = () => {
                   />
                 </div>
               ) : (
-              <div className="font-light tracking-wide text-xs flex justify-between p-3 px-4 bg-white dark:bg-[#222] w-full text-blue-400 border-t border-neutral-300 dark:border-neutral-500 shadow-md rounded-b-xl">
+              <div className="font-light tracking-wide text-xs flex justify-between p-3 px-4 bg-white dark:bg-[#222] w-full text-blue-400 border-t border-neutral-300 dark:border-neutral-500 rounded-b-xl">
                 <QuestCreator 
                   onSave={({ title, type, body, assigned, gpReward, invReward, completed }) => {
                     void createQuest.mutate({
@@ -477,7 +477,7 @@ const Content: React.FC = () => {
 
             <p className="text-neutral-500 uppercase text-xs pt-6 pb-4">Party &mdash;</p>
             {charactersData && characterStatsArray.length > 0 ? ( 
-            <div className="bg-white dark:bg-[#222] mb-6 mt-2 p-4 pb-3 rounded-lg shadow-md relative">
+            <div className="bg-white dark:bg-[#222] mb-6 mt-2 p-4 pb-3 rounded-lg relative">
                 <CharacterTotals characters={characterStatsArray} />
 
               <div className="absolute -top-4 left-[1rem] md:-left-2 rounded-full w-8 h-8 bg-blue-500 flex justify-center items-center shadow-md">
@@ -518,7 +518,7 @@ const Content: React.FC = () => {
                 <BsPlusLg />
               </Link>
             ) : (
-              <Link href="/characters" className="text-xs flex justify-between items-center font-light text-blue-400 bg-white dark:bg-[#222] px-4 py-3 border-t rounded-b-xl shadow-md">
+              <Link href="/characters" className="text-xs flex justify-between items-center font-light text-blue-400 bg-white dark:bg-[#222] px-4 py-3 border-t rounded-b-xl">
                 <span className="text-xs">Add Character</span>
                 <BsPlusLg />
               </Link>

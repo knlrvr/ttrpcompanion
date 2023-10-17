@@ -180,7 +180,7 @@ export default function CharacterTotals({ characters }: { characters: CharacterS
                             '#ea580c',
                         ]}
                     />
-                    <p className="text-[#888] text-xs">Damage Dealt &mdash; <span className="font-bold text-[#555] dark:text-white font-mono">{totalStats.dmgDealt} hp</span></p>
+                    <p className="text-neutral-500 font-light text-xs">Damage Dealt &mdash; <span className="font-semibold text-neutral-500 dark:text-neutral-300">{totalStats.dmgDealt} hp</span></p>
                 </div>
             )}    
             {displayDmgTaken && (     
@@ -205,7 +205,7 @@ export default function CharacterTotals({ characters }: { characters: CharacterS
                             '#ea580c',
                         ]}
                     />
-                    <p className="text-[#888] text-xs">Damage Taken &mdash; <span className="font-bold text-[#555] dark:text-white font-mono">{totalStats.dmgTaken} hp</span></p>
+                    <p className="text-neutral-500 font-light text-xs">Damage Taken &mdash; <span className="font-semibold text-neutral-500 dark:text-neutral-300">{totalStats.dmgTaken} hp</span></p>
                 </div>
             )} 
             {displayTotalKills && (
@@ -230,7 +230,7 @@ export default function CharacterTotals({ characters }: { characters: CharacterS
                             '#ea580c',
                         ]}
                     />
-                    <p className="text-[#888] text-xs">Total Kills &mdash; <span className="font-bold text-[#555] dark:text-white font-mono">{totalStats.totalKills}</span> </p>
+                    <p className="text-neutral-500 font-light text-xs">Total Kills &mdash; <span className="font-semibold text-neutral-500 dark:text-neutral-300">{totalStats.totalKills}</span> </p>
                 </div>
             )}
             {displayTotalDeaths && (
@@ -255,7 +255,7 @@ export default function CharacterTotals({ characters }: { characters: CharacterS
                             '#ea580c',
                         ]}
                     />
-                    <p className="text-[#888] text-xs">Total Deaths &mdash; <span className="font-bold text-[#555] dark:text-white font-mono">{totalStats.totalDeaths}</span> </p>
+                    <p className="text-neutral-500 font-light text-xs">Total Deaths &mdash; <span className="font-semibold text-neutral-500 dark:text-neutral-300">{totalStats.totalDeaths}</span> </p>
                 </div>
             )}
             {displayTotalNatTwenty && (
@@ -280,7 +280,7 @@ export default function CharacterTotals({ characters }: { characters: CharacterS
                             '#ea580c',
                         ]}
                     />
-                    <p className="text-[#888] text-xs">Natural 20&apos;s &mdash; <span className="font-bold text-[#555] dark:text-white font-mono">{totalStats.natTwenty}</span> </p>
+                    <p className="text-neutral-500 font-light text-xs">Natural 20&apos;s &mdash; <span className="font-semibold text-neutral-500 dark:text-neutral-300">{totalStats.natTwenty}</span> </p>
                 </div>
             )}
             {displayTotalNatOne && (
@@ -305,7 +305,7 @@ export default function CharacterTotals({ characters }: { characters: CharacterS
                             '#ea580c',
                         ]}
                     />
-                    <p className="text-[#888] text-xs">Natural 1&apos;s &mdash; <span className="font-bold text-[#555] dark:text-white font-mono">{totalStats.natOne}</span> </p>
+                    <p className="text-neutral-500 font-light text-xs">Natural 1&apos;s &mdash; <span className="font-semibold text-neutral-500 dark:text-neutral-300">{totalStats.natOne}</span> </p>
                 </div>
             )}
         </div>

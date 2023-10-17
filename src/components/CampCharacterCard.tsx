@@ -279,7 +279,7 @@ export const CampCharacterCard = ({
                 <button onClick={() => setIsExpanded(!isExpanded)}
                     className="flex justify-between items-center w-full py-3"
                 >
-                    <span>{character.title}</span>
+                    <span className="font-light leading-tight tracking-wider">{character.title}</span>
                     {isExpanded ? <BsChevronUp /> : <BsChevronRight />}
                 </button>
 
