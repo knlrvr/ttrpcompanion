@@ -1,22 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSession, signOut } from 'next-auth/react';
 import Link from 'next/link'
 
 import PageLayout from '@/components/PageLayout';
-import { api } from '@/utils/api';
 
-import { BsBoxArrowLeft } from 'react-icons/bs';
+import { BsBoxArrowLeft, BsChevronLeft, BsDashLg } from 'react-icons/bs';
 import Image from 'next/image';
 
-import {
-  PiTent
-} from 'react-icons/pi'
+import { api, type RouterOutputs } from "@/utils/api";
+
+// import {
+//   PiTent
+// } from 'react-icons/pi'
+
+// import {
+//   MdOutlinePeopleAlt
+// } from 'react-icons/md'
 
 import {
-  MdOutlinePeopleAlt
-} from 'react-icons/md'
+  BsChevronRight
+} from 'react-icons/bs'
+
+type Campaign = RouterOutputs["campaign"]["getAll"][0];
 
 const Profile = () => {
+
+  const [showAllCamps, setShowAllCamps] = useState(false);
+  const [showAllChars, setShowAllChars] = useState(false);
 
   const { data: sessionData } = useSession();
 
@@ -36,11 +46,24 @@ const Profile = () => {
     }
   );
 
+  const displayedCampaigns = showAllCamps ? campaigns : campaigns?.slice(0, 3);
+
+  const toggleShowAllCamps = () => {
+    setShowAllCamps(!showAllCamps);
+  };
+
+  const displayedCharacters = showAllChars ? charactersData : charactersData?.slice(0, 3);
+
+  const toggleShowAllChars = () => {
+    setShowAllChars(!showAllChars);
+  };
+
   return (
     <PageLayout>
       {sessionData?.user && (
         <div className="flex flex-col">
-          <div className="flex items-end justify-between space-x-3">
+
+          <div className="flex flex-col items-center pt-4">
             <Image
               src={sessionData?.user.image ?? ''}
               alt={`${sessionData?.user.name}'s profile picture` ?? ''}
@@ -48,13 +71,20 @@ const Profile = () => {
               height="1000"
               className="h-32 w-32 rounded-full"
             />
-            <div className="flex flex-col text-right">
+            <div className="flex flex-col pt-3 text-center">
               <span className="text-xs uppercase font-light tracking-wide">signed in as</span>
-              <span className="text-3xl font-extralight tracking-wide">{sessionData.user.name ?? ''}</span>
+              <span className="text-2xl font-extralight tracking-wide">{sessionData.user.name ?? ''}</span>
+
+              <div className="flex space-x-2">
+                {/* change between google & discord */}
+                <span className="text-xs text-neutral-500">Google &nbsp;&bull;</span>
+                <span className="text-xs text-neutral-500">{sessionData.user.email}</span>
+              </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-4 gap-4 pt-16">
+
+          {/* <div className="grid grid-cols-4 gap-4 pt-8">
             <div className="col-span-2">
               <Link href="/campaigns" className="">
                 <div className="bg-white dark:bg-[#222] text-[#222] dark:text-neutral-100 flex flex-col space-y-4 gap-2 p-4 rounded-lg bg-opacity-50 shadow-md">
@@ -86,55 +116,70 @@ const Profile = () => {
                 </div>
               </Link>
             </div>
-          </div>
+          </div> */}
 
           <div className="pt-8">
             <p className="font-semibold text-lg tracking-wide">
-              <span className="font-light">{sessionData?.user.name}&apos;s </span> 
+              <span className="font-thin">Your </span> 
               Active Campaigns
               <span className="font-light text-neutral-500"> ({campaigns?.length})</span>
             </p>
-            <p className="text-xs font-light pb-4">Campaigns that you have created or joined are displayed below. You can also find your <span className="font-semibold">active</span> characters within that campaign.</p>
+            <p className="text-xs font-light pb-4 text-neutral-500">Campaigns that you have created or joined are displayed below. You can also find your <span className="font-semibold">active</span> characters within that campaign.</p>
             
             {campaigns?.length !== undefined && campaigns?.length < 0 ? (
               <p className="text-neutral-400 dark:text-[#555] font-light text-xs">
                 No campaigns to display at this time. Visit the campaign page to create or join a new campaign.
               </p>
             ) : (
-              <ul className="text-left text-base font-light bg-white dark:bg-[#222] rounded-xl p-4 shadow-md">
-                {campaigns?.map((campaign) => (
+              <div>
+              <ul className="text-left text-base font-light bg-white dark:bg-[#222] rounded-t-xl px-4 py-2 shadow-md">
+                {displayedCampaigns?.map((campaign) => (
                   <li key={campaign.id}
-                    className='py-2 font-light text-sm'>
+                    className='py-3 font-light text-sm border-b last:border-b-0 border-neutral-300 dark:border-neutral-500'>
                     <span>{campaign.title}</span>
                   </li>
                 ))}
               </ul>
+              {campaigns?.length && campaigns?.length > 3 && (
+                <button onClick={toggleShowAllCamps} className="font-light tracking-wide text-xs flex justify-between p-3 px-4 bg-white dark:bg-[#222] w-full rounded-b-xl text-blue-400 border-t border-neutral-300 dark:border-neutral-500">
+                  <span>{showAllCamps ? 'Show Less' : `All Campaigns (${campaigns.length})`}</span>
+                  <span>{showAllCamps ? <BsDashLg /> : <BsChevronRight /> }</span>
+                </button>
+              )}
+              </div>
             )}
-
           </div>
 
           <div className="pt-8">
             <p className="font-semibold text-lg tracking-wide">
-              <span className="font-light">{sessionData?.user.name}&apos;s </span> 
+              <span className="font-thin">Your </span> 
               Inactive Characters 
               <span className="font-light text-neutral-500"> ({charactersData?.length})</span>
             
             </p>
-            <p className="text-xs font-light pb-4">Characters that have not been assigned to a campaign are shown below.</p>
+            <p className="text-xs font-light pb-4 text-neutral-500">Characters that have not been assigned to a campaign are shown below.</p>
 
             {charactersData?.length !== undefined && charactersData?.length < 0 ? ( 
             <p className="text-neutral-400 dark:text-[#555] font-light text-xs">
               No characters to display at this time. Visit the character page to create a new character.
             </p>
             ) : (
-            <ul className="text-left text-base font-light bg-white dark:bg-[#222] rounded-xl p-4 shadow-md">
-              {charactersData?.map((character) => (
-                <li key={character.id} 
-                  className="py-2 font-light text-sm">
-                  <span>{character.title}</span>
-                </li>
-              ))}
-            </ul>
+            <div>
+              <ul className="text-left text-base font-light bg-white dark:bg-[#222] rounded-t-xl px-4 py-2 shadow-md">
+                {displayedCharacters?.map((character) => (
+                  <li key={character.id} 
+                    className="py-3 font-light text-sm border-b last:border-b-0 border-neutral-300 dark:border-neutral-500">
+                    <span>{character.title}</span>
+                  </li>
+                ))}
+              </ul>
+              {charactersData?.length !== undefined && charactersData?.length > 3 && (
+                <button onClick={toggleShowAllChars} className="font-light tracking-wide text-xs flex justify-between p-3 px-4 bg-white dark:bg-[#222] w-full rounded-b-xl text-blue-400 border-t border-neutral-300 dark:border-neutral-500">
+                  <span>{showAllChars ? 'Show Less' : `All Characters (${charactersData?.length})`}</span>
+                  <span>{showAllChars ? <BsDashLg /> : <BsChevronRight /> }</span>
+                </button>
+              )}
+            </div>
             )}
           </div>
 
