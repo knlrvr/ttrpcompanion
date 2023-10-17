@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { BsPlusLg, BsDashLg } from 'react-icons/bs'
+import { BsPlusLg, BsDashLg, BsChevronUp, BsChevronDown } from 'react-icons/bs'
 import { api, type RouterOutputs } from '@/utils/api'
 import Modal from 'react-modal'
 import { useSession } from 'next-auth/react'
@@ -280,22 +280,19 @@ export const UserCharacterCard = ({
         <>
         <div className="bg-white dark:bg-[#222] rounded-lg shadow-md p-4 grid relative mt-4">
             
-            <div className="rounded-full bg-[#222] dark:bg-neutral-100 text-white dark:text-[#111] absolute -top-2 -left-2 p-1 shadow-md">
-                <MdPerson />
-            </div>
 
-            <div className="">
-                    <div className="text-lg tracking-wide font-bold flex items-center justify-between py-4">
-                        <div className="ml-4 flex items-center text-xl text-[#222] dark:text-white">
-                            <span>{character.title}</span>
-                        </div>
-                        <button 
-                            className="text-[#222] dark:text-white"
-                            onClick={() => setIsExpanded(!isExpanded)}
-                        >
-                            {isExpanded ? <BsDashLg /> : <BsPlusLg />}
-                        </button>
-                    </div>
+            {/* <div className="rounded-full bg-[#222] dark:bg-neutral-100 text-white dark:text-[#111] absolute -top-3 left-[1rem] sm:-left-2 p-1 shadow-md">
+                <MdPerson />
+            </div> */}
+
+            <div className="flex flex-col w-full">
+                <button onClick={() => setIsExpanded(!isExpanded)}
+                    className="flex justify-between items-center w-full py-4"
+                >
+                    <span className="font-light leading-tight tracking-wider">{character.title}</span>
+                    {isExpanded ? <BsChevronUp /> : <BsChevronDown />}
+                </button>
+
 
                     {isExpanded && (
                     <div className="">

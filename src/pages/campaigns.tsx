@@ -477,7 +477,7 @@ const Content: React.FC = () => {
 
             <p className="text-neutral-500 uppercase text-xs pt-6 pb-4">Party &mdash;</p>
             {charactersData && characterStatsArray.length > 0 ? ( 
-            <div className="bg-white dark:bg-[#222] mb-6 mt-2 p-4 pb-3 rounded-lg relative">
+            <div className="bg-white dark:bg-[#222] mb-6 mt-2 p-4 rounded-lg relative">
                 <CharacterTotals characters={characterStatsArray} />
 
               <div className="absolute -top-4 left-[1rem] md:-left-2 rounded-full w-8 h-8 bg-blue-500 flex justify-center items-center shadow-md">
@@ -509,7 +509,7 @@ const Content: React.FC = () => {
             ) : (
               <p className="text-neutral-400 dark:text-[#555] font-light text-xs">
                 Characters will populate here once they are added to this campaign.
-                Visit the characters tab to create a character or add an existing character to this campaign.
+                Visit the characters tab or click the button below to create a character or add an existing character to this campaign. 
               </p>
             )}
             {charactersData?.length !== undefined && charactersData?.length === 0 ? ( 
@@ -532,13 +532,13 @@ const Content: React.FC = () => {
                     className="text-xl"
                     onClick={() => handleShowCode()
                     }
-                  > <BsEyeSlash className="dark:text-neutral-700"/> </button>
-                  <p className="text-sm dark:text-neutral-700"> {selectedCampaign?.id}</p>
+                  > <BsEyeSlash className="dark:text-neutral-500"/> </button>
+                  <p className="text-xs dark:text-neutral-500 tracking-wide font-mono"> {selectedCampaign?.id}</p>
                 </div>
               ) : (
                 <div className="flex">
                   <button 
-                    className="text-xl dark:text-neutral-700"
+                    className="text-xl dark:text-neutral-500"
                     onClick={() => handleShowCode()
                     }
                   > <BsEye /> </button>

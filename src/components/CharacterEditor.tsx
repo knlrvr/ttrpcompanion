@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { BsPlusLg, BsDashLg } from 'react-icons/bs'
+import { BsPlusLg, BsDashLg, BsChevronUp, BsChevronDown } from 'react-icons/bs'
 
 export const CharacterEditor = ({
     onSave,
@@ -138,12 +138,16 @@ export const CharacterEditor = ({
 
     return (
         <div className="py-6 border border-neutral-500 p-4 rounded-lg">
-            <div className="flex justify-between">
-                <span className="text-neutral-500 uppercase text-sm py-3">Create Character</span>
-                <button 
-                    className="text-neutral-500"
-                    onClick={() => setIsExpanded(!isExpanded)}>
-                        {isExpanded ? <BsDashLg /> : <BsPlusLg />}
+            {/* <div className="rounded-full bg-[#222] dark:bg-neutral-100 text-white dark:text-[#111] absolute -top-3 left-[1rem] sm:-left-2 p-1 shadow-md">
+                <MdPerson />
+            </div> */}
+
+            <div className="flex flex-col w-full">
+                <button onClick={() => setIsExpanded(!isExpanded)}
+                    className="flex justify-between items-center w-full py-2"
+                >
+                    <span className="font-light leading-tight tracking-wider">Create Character</span>
+                    {isExpanded ? <BsChevronUp /> : <BsChevronDown />}
                 </button>
             </div>
 
