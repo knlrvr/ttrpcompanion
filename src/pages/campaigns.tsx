@@ -426,13 +426,13 @@ const Content: React.FC = () => {
                     className="text-xl"
                     onClick={() => handleShowCode()
                     }
-                  > <BsEyeSlash className="text-[#222] dark:text-neutral-700"/> </button>
-                  <p className="text-sm"> {selectedCampaign?.id}</p>
+                  > <BsEyeSlash className="dark:text-neutral-700"/> </button>
+                  <p className="text-sm dark:text-neutral-700"> {selectedCampaign?.id}</p>
                 </div>
               ) : (
                 <div className="flex">
                   <button 
-                    className="text-xl"
+                    className="text-xl dark:text-neutral-700"
                     onClick={() => handleShowCode()
                     }
                   > <BsEye /> </button>
