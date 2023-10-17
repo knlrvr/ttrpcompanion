@@ -66,7 +66,7 @@ const QuestCreator = ({
         onRequestClose={closeQuestModal}
         contentLabel="Confirm Change"
         overlayClassName="modal-overlay fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center px-8"
-        className="bg-white dark:bg-[#222] dark:text-neutral-100 p-4 py-12 rounded-lg sm:ml-64"
+        className="bg-white dark:bg-[#222] dark:text-neutral-100 p-4 py-8 rounded-lg sm:ml-64"
       >
         <div className="text-center flex flex-col justify-between space-y-4 px-4">
           <div className="flex flex-col space-y-1 pb-8">
