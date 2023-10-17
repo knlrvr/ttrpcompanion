@@ -423,7 +423,7 @@ const Content: React.FC = () => {
                 />
                 {quests?.length && quests?.length > 2 && (
                   <button onClick={toggleShowAllQuests} className="font-light tracking-wide text-xs flex justify-between rounded-b-xl p-3 px-4 bg-white dark:bg-[#222] w-full text-blue-400 border-t border-neutral-300 dark:border-neutral-500 shadow-md">
-                    <span>{showAllQuests ? 'Show Less' : `All Quests (${campaigns.length})`}</span>
+                    <span>{showAllQuests ? 'Show Less' : `All Quests (${quests?.length})`}</span>
                     <span>{showAllQuests ? <BsDashLg /> : <BsChevronRight /> }</span>
                   </button>
                 )}
