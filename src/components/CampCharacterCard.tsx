@@ -280,7 +280,7 @@ export const CampCharacterCard = ({
                     className="flex justify-between items-center w-full py-3"
                 >
                     <span className="font-light leading-tight tracking-wider">{character.title}</span>
-                    {isExpanded ? <BsChevronUp /> : <BsChevronRight />}
+                    {isExpanded ? <BsChevronUp /> : <BsChevronDown />}
                 </button>
 
                 {isExpanded && (
