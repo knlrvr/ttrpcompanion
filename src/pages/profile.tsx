@@ -21,8 +21,6 @@ import {
   BsChevronRight
 } from 'react-icons/bs'
 
-type Campaign = RouterOutputs["campaign"]["getAll"][0];
-
 const Profile = () => {
 
   const [showAllCamps, setShowAllCamps] = useState(false);
@@ -132,7 +130,9 @@ const Profile = () => {
               </p>
             ) : (
               <div>
-              <ul className="text-left text-base font-light bg-white dark:bg-[#222] rounded-t-xl px-4 py-2 shadow-md">
+              <ul className={`text-left text-base font-light bg-white dark:bg-[#222] px-4 py-2 shadow-md
+                ${campaigns?.length !== undefined && campaigns?.length > 3 ? 'rounded-t-xl' : 'rounded-xl'}
+              `}>
                 {displayedCampaigns?.map((campaign) => (
                   <li key={campaign.id}
                     className='py-3 font-light text-sm border-b last:border-b-0 border-neutral-300 dark:border-neutral-500'>
@@ -165,7 +165,9 @@ const Profile = () => {
             </p>
             ) : (
             <div>
-              <ul className="text-left text-base font-light bg-white dark:bg-[#222] rounded-t-xl px-4 py-2 shadow-md">
+              <ul className={`text-left text-base font-light bg-white dark:bg-[#222] rounded-t-xl px-4 py-2 shadow-md
+              ${charactersData?.length !== undefined && charactersData?.length > 3 ? 'rounded-t-xl' : 'rounded-xl'}
+              `}>
                 {displayedCharacters?.map((character) => (
                   <li key={character.id} 
                     className="py-3 font-light text-sm border-b last:border-b-0 border-neutral-300 dark:border-neutral-500">
