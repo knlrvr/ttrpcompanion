@@ -127,7 +127,7 @@ const Profile = () => {
               </p>
             ) : (
               <div>
-                <ul className={`text-left text-base font-light bg-white dark:bg-[#222] px-4 py-2 shadow-md
+                <ul className={`text-left text-base font-light bg-white dark:bg-[#222] px-4 py-2
                   ${campaigns?.length !== undefined && campaigns?.length > 3 ? 'rounded-t-xl' : 'rounded-xl'}
                 `}>
                   {displayedCampaigns?.map((campaign) => (
@@ -138,7 +138,7 @@ const Profile = () => {
                   ))}
                 </ul>
                 {campaigns?.length !== undefined && campaigns?.length > 3 && (
-                  <button onClick={toggleShowAllCamps} className="font-light tracking-wide text-xs flex justify-between p-3 px-4 bg-white dark:bg-[#222] w-full rounded-b-xl text-blue-400 border-t border-neutral-300 dark:border-neutral-500 shadow-md">
+                  <button onClick={toggleShowAllCamps} className="font-light tracking-wide text-xs flex justify-between p-3 px-4 bg-white dark:bg-[#222] w-full rounded-b-xl text-blue-400 border-t border-neutral-300 dark:border-neutral-500">
                     <span>{showAllCamps ? 'Show Less' : `All Campaigns (${campaigns?.length})`}</span>
                     <span>{showAllCamps ? <BsDashLg /> : <BsChevronRight /> }</span>
                   </button>
@@ -162,7 +162,7 @@ const Profile = () => {
             </p>
             ) : (
             <div>
-              <ul className={`text-left text-base font-light bg-white dark:bg-[#222] rounded-t-xl px-4 py-2 shadow-md
+              <ul className={`text-left text-base font-light bg-white dark:bg-[#222] rounded-t-xl px-4 py-2
               ${charactersData?.length !== undefined && charactersData?.length > 3 ? 'rounded-t-xl' : 'rounded-xl'}
               `}>
                 {displayedCharacters?.map((character) => (
@@ -173,7 +173,7 @@ const Profile = () => {
                 ))}
               </ul>
               {charactersData?.length !== undefined && charactersData?.length > 3 && (
-                <button onClick={toggleShowAllChars} className="font-light tracking-wide text-xs flex justify-between p-3 px-4 bg-white dark:bg-[#222] w-full rounded-b-xl text-blue-400 border-t border-neutral-300 dark:border-neutral-500 shadow-md">
+                <button onClick={toggleShowAllChars} className="font-light tracking-wide text-xs flex justify-between p-3 px-4 bg-white dark:bg-[#222] w-full rounded-b-xl text-blue-400 border-t border-neutral-300 dark:border-neutral-500">
                   <span>{showAllChars ? 'Show Less' : `All Characters (${charactersData?.length})`}</span>
                   <span>{showAllChars ? <BsDashLg /> : <BsChevronRight /> }</span>
                 </button>
