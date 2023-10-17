@@ -51,35 +51,50 @@ export default function Campaigns() {
 type Campaign = RouterOutputs["campaign"]["getAll"][0];
 type Quest = RouterOutputs["questRouter"]["getAll"][0];
 
-const categoryColors: { [key: string]: string } = {
-  'Bounty': 'text-red-400',
-  'Defense': 'text-blue-500',
-  'Delivery': 'text-yellow-400',
-  'Destroy': 'text-orange-400',
-  'Escort': 'text-teal-400',
-  'Fetch': 'text-violet-500',
-  'Gather': 'text-green-500',
-  'Investigation': 'text-cyan-500',
-  'Kill': 'text-red-500',
-  'Protect': 'text-indigo-500',
-  'Survival': 'text-green-500',
-  'Talk To': 'text-neutral-500',
+type QuestType = "Select Quest Type" | "Bounty" | "Defense" | "Delivery" | "Destroy" | "Escort" | "Fetch" | "Gather" | "Investigation" | "Kill" | "Protect" | "Survival" | "Talk To";
+
+const categoryText = (questType: string): string => {
+    const questTextColors: Record<QuestType, string> = {
+      'Select Quest Type': 'text-neutral-500',
+      'Bounty': 'text-red-400',
+      'Defense': 'text-blue-500',
+      'Delivery': 'text-yellow-400',
+      'Destroy': 'text-orange-400',
+      'Escort': 'text-teal-400',
+      'Fetch': 'text-violet-500',
+      'Gather': 'text-green-500',
+      'Investigation': 'text-cyan-500',
+      'Kill': 'text-red-500',
+      'Protect': 'text-indigo-500',
+      'Survival': 'text-green-500',
+      'Talk To': 'text-neutral-500',
+    };
+
+    const questTextColor = questTextColors[questType as QuestType] || "text-neutral-500";
+    return questTextColor;
 };
 
-const categoryBorders: { [key: string]: string } = {
-  'Bounty': 'border-red-400',
-  'Defense': 'border-blue-500',
-  'Delivery': 'border-yellow-400',
-  'Destroy': 'border-orange-400',
-  'Escort': 'border-teal-400',
-  'Fetch': 'border-violet-500',
-  'Gather': 'border-green-500',
-  'Investigation': 'border-cyan-500',
-  'Kill': 'border-red-500',
-  'Protect': 'border-indigo-500',
-  'Survival': 'border-green-500',
-  'Talk To': 'border-neutral-500',
-}
+const categoryBorder = (questType: string): string => {
+  const questBorderColors: Record<QuestType, string> = {
+    'Select Quest Type': 'border-neutral-500',
+    'Bounty': 'border-red-400',
+    'Defense': 'border-blue-500',
+    'Delivery': 'border-yellow-400',
+    'Destroy': 'border-orange-400',
+    'Escort': 'border-teal-400',
+    'Fetch': 'border-violet-500',
+    'Gather': 'border-green-500',
+    'Investigation': 'border-cyan-500',
+    'Kill': 'border-red-500',
+    'Protect': 'border-indigo-500',
+    'Survival': 'border-green-500',
+    'Talk To': 'border-neutral-500',
+  };
+
+  const questBorderColor = questBorderColors[questType as QuestType] || "text-neutral-500";
+  return questBorderColor;
+};
+
 
 const Content: React.FC = () => {
 
@@ -369,8 +384,9 @@ const Content: React.FC = () => {
                       <div className="flex flex-col">
                           <span className="text-sm tracking-wide font-semibold">{quest.title}</span>
                           <span className={`text-xs font-light tracking-wide border w-fit px-2 my-2 rounded-full
-                            ${categoryColors[quest.type] || `neutral-500`}
-                            ${categoryBorders[quest.type] || `neutral-500`}
+                            ${categoryText(quest.type) || `neutral-500`}
+                            
+                            ${categoryBorder(quest.type) || `neutral-500`}
                           `}>
                             {quest.type}
                           </span>
