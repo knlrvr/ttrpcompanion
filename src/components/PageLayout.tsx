@@ -31,7 +31,10 @@ export default function PageLayout({
               </div>
               <div className="flex items-center justify-between pb-4 pt-6">
                 <ToggleTheme />
-                <span className="text-neutral-500 text-xs"> &copy; 2023 TTRPCompanion.</span>
+                <p className="text-neutral-500 text-xs"> 
+                &copy; 2023 TTRPCompanion.&nbsp;
+                <span className="hidden sm:inline-flex"> All Rights Reserved.</span>
+                </p>
               </div>
             </main>
         </>
