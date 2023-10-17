@@ -137,6 +137,12 @@ const Profile = () => {
                     </li>
                   ))}
                 </ul>
+                {campaigns?.length !== undefined && campaigns?.length > 3 && (
+                  <button onClick={toggleShowAllCamps} className="font-light tracking-wide text-xs flex justify-between p-3 px-4 bg-white dark:bg-[#222] w-full rounded-b-xl text-blue-400 border-t border-neutral-300 dark:border-neutral-500 shadow-md">
+                    <span>{showAllCamps ? 'Show Less' : `All Characters (${campaigns?.length})`}</span>
+                    <span>{showAllCamps ? <BsDashLg /> : <BsChevronRight /> }</span>
+                  </button>
+                )}
               </div>
             )}
           </div>

@@ -370,7 +370,7 @@ const Content: React.FC = () => {
               <p className="text-neutral-500 uppercase text-xs pb-6">active quests <span>({quests?.length})</span> &mdash;</p>
               {displayedQuests?.length !== undefined && displayedQuests?.length > 0 ? (
               <div>
-                <ul className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 bg-white dark:bg-[#222] p-4 pt-8 pb-8 shadow-md relative
+                <ul className={`grid grid-cols-1 sm:grid-cols-2 gap-4 bg-white dark:bg-[#222] p-4 pt-8 pb-8 shadow-md relative
                 ${quests?.length !== undefined && quests.length < 2 ? 'rounded-xl' : 'rounded-t-xl' }
                 `}>
                   {/* icon */}
