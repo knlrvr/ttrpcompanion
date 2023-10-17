@@ -655,8 +655,8 @@ export const UserCharacterCard = ({
                                 )}
                             </div>
                         ))}
-                        <div className="mt-8 flex flex-col items-end space-y-2 md:space-y-0 md:flex-row justify-between text-sm uppercase">
-                            <span className="text-neutral-500">{character.title}&apos;s Stats</span>
+                        <div className="mt-12 flex flex-col items-center space-y-2 md:space-y-0 md:flex-row justify-between text-sm uppercase">
+                            <span className="text-neutral-500 text-xs">{character.title}&apos;s Stats</span>
                             <div className="flex relative">
                                 {isEditMode ? (
                                 <button 
