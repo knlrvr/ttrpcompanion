@@ -381,7 +381,7 @@ const Content: React.FC = () => {
 
                   {displayedQuests?.map((quest) => (
                   <li key={quest.id}
-                      className='bg-white border shadow-md dark:border-none dark:shadow-none dark:bg-[#333] dark:bg-opacity-50 font-normal rounded-md p-4 flex flex-col justify-between'>
+                      className='bg-white border border-neutral-300 dark:border-neutral-500 shadow-md dark:border-none dark:shadow-none dark:bg-[#333] dark:bg-opacity-50 font-normal rounded-md p-4 flex flex-col justify-between'>
                       <div className="flex flex-col">
                           <span className="text-sm tracking-wide font-semibold">{quest.title}</span>
                           <span className={`text-xs font-light tracking-wide border w-fit px-2 my-2 rounded-full
@@ -495,7 +495,7 @@ const Content: React.FC = () => {
             {charactersData && characterStatsArray.length > 0 ? ( 
             <div className="grid grid-cols-1 bg-white dark:bg-[#222] rounded-t-xl">
               {charactersData?.map((character) => (
-                <div key={character.id} className="mx-4 border-b last:border-b-0">
+                <div key={character.id} className="mx-4 border-b last:border-b-0 border-neutral-300 dark:border-neutral-500">
                   <CampCharacterCard
                     character={character}
                     onDelete={() => {
@@ -518,7 +518,7 @@ const Content: React.FC = () => {
                 <BsPlusLg />
               </Link>
             ) : (
-              <Link href="/characters" className="text-xs flex justify-between items-center font-light text-blue-400 bg-white dark:bg-[#222] px-4 py-3 border-t rounded-b-xl">
+              <Link href="/characters" className="text-xs flex justify-between items-center font-light text-blue-400 bg-white dark:bg-[#222] px-4 py-3 border-t border-neutral-300 dark:border-neutral-500 rounded-b-xl">
                 <span className="text-xs">Add Character</span>
                 <BsPlusLg />
               </Link>
