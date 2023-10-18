@@ -164,20 +164,32 @@ export default function CharacterTotals({ characters }: { characters: CharacterS
                         statData={characters.map(character => character.stats[0]?.dmgDealt ?? 0)}
                         chartLabels={characters.map(character => character.title ?? "")}
                         backgroundColors={[
-                            '#93c5fd',
+                            '#60a5fa',
+                            '#fb923c',
                             '#f87171',
-                            '#fdba74',
-                            '#3b82f6',
-                            '#dc2626',
+                            '#2563eb',
                             '#ea580c',
+                            '#b91c1c',
+                            '#bfdbfe',
+                            '#fed7aa',
+                            '#fed7aa',
+                            '#93c5fd',
+                            '#fb923c',
+                            '#ef4444',
                             ]}
                         borderColors={[
-                            '#93c5fd',
+                            '#60a5fa',
+                            '#fb923c',
                             '#f87171',
-                            '#fdba74',
-                            '#3b82f6',
-                            '#dc2626',
+                            '#2563eb',
                             '#ea580c',
+                            '#b91c1c',
+                            '#bfdbfe',
+                            '#fed7aa',
+                            '#fed7aa',
+                            '#93c5fd',
+                            '#fb923c',
+                            '#ef4444',
                         ]}
                     />
                     <p className="text-neutral-500 font-light text-xs">Damage Dealt &mdash; <span className="font-semibold text-neutral-500 dark:text-neutral-300">{totalStats.dmgDealt} hp</span></p>
@@ -189,20 +201,32 @@ export default function CharacterTotals({ characters }: { characters: CharacterS
                         statData={characters.map(character => character.stats[0]?.dmgTaken ?? 0)}
                         chartLabels={characters.map(character => character.title ?? "")}
                         backgroundColors={[
-                            '#93c5fd',
+                            '#60a5fa',
+                            '#fb923c',
                             '#f87171',
-                            '#fdba74',
-                            '#3b82f6',
-                            '#dc2626',
+                            '#2563eb',
                             '#ea580c',
+                            '#b91c1c',
+                            '#bfdbfe',
+                            '#fed7aa',
+                            '#fed7aa',
+                            '#93c5fd',
+                            '#fb923c',
+                            '#ef4444',
                             ]}
                         borderColors={[
-                            '#93c5fd',
+                            '#60a5fa',
+                            '#fb923c',
                             '#f87171',
-                            '#fdba74',
-                            '#3b82f6',
-                            '#dc2626',
+                            '#2563eb',
                             '#ea580c',
+                            '#b91c1c',
+                            '#bfdbfe',
+                            '#fed7aa',
+                            '#fed7aa',
+                            '#93c5fd',
+                            '#fb923c',
+                            '#ef4444',
                         ]}
                     />
                     <p className="text-neutral-500 font-light text-xs">Damage Taken &mdash; <span className="font-semibold text-neutral-500 dark:text-neutral-300">{totalStats.dmgTaken} hp</span></p>
@@ -214,20 +238,32 @@ export default function CharacterTotals({ characters }: { characters: CharacterS
                         statData={characters.map(character => character.stats[0]?.totalKills ?? 0)}
                         chartLabels={characters.map(character => character.title ?? "")}
                         backgroundColors={[
-                            '#93c5fd',
+                            '#60a5fa',
+                            '#fb923c',
                             '#f87171',
-                            '#fdba74',
-                            '#3b82f6',
-                            '#dc2626',
+                            '#2563eb',
                             '#ea580c',
+                            '#b91c1c',
+                            '#bfdbfe',
+                            '#fed7aa',
+                            '#fed7aa',
+                            '#93c5fd',
+                            '#fb923c',
+                            '#ef4444',
                             ]}
                         borderColors={[
-                            '#93c5fd',
+                            '#60a5fa',
+                            '#fb923c',
                             '#f87171',
-                            '#fdba74',
-                            '#3b82f6',
-                            '#dc2626',
+                            '#2563eb',
                             '#ea580c',
+                            '#b91c1c',
+                            '#bfdbfe',
+                            '#fed7aa',
+                            '#fed7aa',
+                            '#93c5fd',
+                            '#fb923c',
+                            '#ef4444',
                         ]}
                     />
                     <p className="text-neutral-500 font-light text-xs">Total Kills &mdash; <span className="font-semibold text-neutral-500 dark:text-neutral-300">{totalStats.totalKills}</span> </p>
@@ -239,20 +275,32 @@ export default function CharacterTotals({ characters }: { characters: CharacterS
                         statData={characters.map(character => character.stats[0]?.totalDeaths ?? 0)}
                         chartLabels={characters.map(character => character.title ?? "")}
                         backgroundColors={[
-                            '#93c5fd',
+                            '#60a5fa',
+                            '#fb923c',
                             '#f87171',
-                            '#fdba74',
-                            '#3b82f6',
-                            '#dc2626',
+                            '#2563eb',
                             '#ea580c',
+                            '#b91c1c',
+                            '#bfdbfe',
+                            '#fed7aa',
+                            '#fed7aa',
+                            '#93c5fd',
+                            '#fb923c',
+                            '#ef4444',
                             ]}
                         borderColors={[
-                            '#93c5fd',
+                            '#60a5fa',
+                            '#fb923c',
                             '#f87171',
-                            '#fdba74',
-                            '#3b82f6',
-                            '#dc2626',
+                            '#2563eb',
                             '#ea580c',
+                            '#b91c1c',
+                            '#bfdbfe',
+                            '#fed7aa',
+                            '#fed7aa',
+                            '#93c5fd',
+                            '#fb923c',
+                            '#ef4444',
                         ]}
                     />
                     <p className="text-neutral-500 font-light text-xs">Total Deaths &mdash; <span className="font-semibold text-neutral-500 dark:text-neutral-300">{totalStats.totalDeaths}</span> </p>
@@ -264,20 +312,32 @@ export default function CharacterTotals({ characters }: { characters: CharacterS
                         statData={characters.map(character => character.stats[0]?.natTwenty ?? 0)}
                         chartLabels={characters.map(character => character.title ?? "")}
                         backgroundColors={[
-                            '#93c5fd',
+                            '#60a5fa',
+                            '#fb923c',
                             '#f87171',
-                            '#fdba74',
-                            '#3b82f6',
-                            '#dc2626',
+                            '#2563eb',
                             '#ea580c',
+                            '#b91c1c',
+                            '#bfdbfe',
+                            '#fed7aa',
+                            '#fed7aa',
+                            '#93c5fd',
+                            '#fb923c',
+                            '#ef4444',
                             ]}
                         borderColors={[
-                            '#93c5fd',
+                            '#60a5fa',
+                            '#fb923c',
                             '#f87171',
-                            '#fdba74',
-                            '#3b82f6',
-                            '#dc2626',
+                            '#2563eb',
                             '#ea580c',
+                            '#b91c1c',
+                            '#bfdbfe',
+                            '#fed7aa',
+                            '#fed7aa',
+                            '#93c5fd',
+                            '#fb923c',
+                            '#ef4444',
                         ]}
                     />
                     <p className="text-neutral-500 font-light text-xs">Natural 20&apos;s &mdash; <span className="font-semibold text-neutral-500 dark:text-neutral-300">{totalStats.natTwenty}</span> </p>
@@ -289,20 +349,32 @@ export default function CharacterTotals({ characters }: { characters: CharacterS
                         statData={characters.map(character => character.stats[0]?.natOne ?? 0)}
                         chartLabels={characters.map(character => character.title ?? "")}
                         backgroundColors={[
-                            '#93c5fd',
+                            '#60a5fa',
+                            '#fb923c',
                             '#f87171',
-                            '#fdba74',
-                            '#3b82f6',
-                            '#dc2626',
+                            '#2563eb',
                             '#ea580c',
+                            '#b91c1c',
+                            '#bfdbfe',
+                            '#fed7aa',
+                            '#fed7aa',
+                            '#93c5fd',
+                            '#fb923c',
+                            '#ef4444',
                             ]}
                         borderColors={[
-                            '#93c5fd',
+                            '#60a5fa',
+                            '#fb923c',
                             '#f87171',
-                            '#fdba74',
-                            '#3b82f6',
-                            '#dc2626',
+                            '#2563eb',
                             '#ea580c',
+                            '#b91c1c',
+                            '#bfdbfe',
+                            '#fed7aa',
+                            '#fed7aa',
+                            '#93c5fd',
+                            '#fb923c',
+                            '#ef4444',
                         ]}
                     />
                     <p className="text-neutral-500 font-light text-xs">Natural 1&apos;s &mdash; <span className="font-semibold text-neutral-500 dark:text-neutral-300">{totalStats.natOne}</span> </p>

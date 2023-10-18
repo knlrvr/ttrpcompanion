@@ -178,7 +178,7 @@ const QuestCreator = ({
                 setAssigned('');
                 setCompleted(false);
               }}
-              className="text-xs mt-8 rounded-full py-1.5 px-5 bg-green-500 text-white"
+              className="text-xs mt-8 rounded-full py-1.5 px-5 bg-blue-500 text-white"
             > Save Quest</button>
           </div>
 

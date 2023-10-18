@@ -54,20 +54,38 @@ type Quest = RouterOutputs["questRouter"]["getAll"][0];
 
 type QuestType = "Select Quest Type" | "Bounty" | "Defense" | "Delivery" | "Destroy" | "Escort" | "Fetch" | "Gather" | "Investigation" | "Kill" | "Protect" | "Survival" | "Talk To";
 
+
+  // Categories?
+  // I could put them into categories and run it based on that like with charRace & Class, 
+  // or hard code the colors to each like this.
+  // I'm just trying to establish a theme. 
+
+  // Combat/Security - red
+  // Bounty, Defense, Destroy, Kill, Protect
+
+  // Logistics - orange
+  // Delivery, Escort, Fetch, Gather
+
+  // Survival - blue
+  // Survival, Investigation
+
+  // Misc - neutral
+  // Talk To
+
 const categoryText = (questType: string): string => {
     const questTextColors: Record<QuestType, string> = {
       'Select Quest Type': 'text-neutral-500',
       'Bounty': 'text-red-400',
-      'Defense': 'text-blue-500',
-      'Delivery': 'text-yellow-400',
-      'Destroy': 'text-orange-400',
-      'Escort': 'text-teal-400',
-      'Fetch': 'text-violet-500',
-      'Gather': 'text-green-500',
-      'Investigation': 'text-cyan-500',
-      'Kill': 'text-red-500',
-      'Protect': 'text-indigo-500',
-      'Survival': 'text-green-500',
+      'Defense': 'text-red-400',
+      'Delivery': 'text-orange-400',
+      'Destroy': 'text-red-400',
+      'Escort': 'text-orange-400',
+      'Fetch': 'text-orange-400',
+      'Gather': 'text-orange-400',
+      'Investigation': 'text-blue-400',
+      'Kill': 'text-red-400',
+      'Protect': 'text-red-400',
+      'Survival': 'text-blue-400',
       'Talk To': 'text-neutral-500',
     };
 
@@ -79,16 +97,16 @@ const categoryBorder = (questType: string): string => {
   const questBorderColors: Record<QuestType, string> = {
     'Select Quest Type': 'border-neutral-500',
     'Bounty': 'border-red-400',
-    'Defense': 'border-blue-500',
-    'Delivery': 'border-yellow-400',
-    'Destroy': 'border-orange-400',
-    'Escort': 'border-teal-400',
-    'Fetch': 'border-violet-500',
-    'Gather': 'border-green-500',
-    'Investigation': 'border-cyan-500',
-    'Kill': 'border-red-500',
-    'Protect': 'border-indigo-500',
-    'Survival': 'border-green-500',
+    'Defense': 'border-red-400',
+    'Delivery': 'border-orange-400',
+    'Destroy': 'border-red-400',
+    'Escort': 'border-orange-400',
+    'Fetch': 'border-orange-400',
+    'Gather': 'border-orange-400',
+    'Investigation': 'border-blue-400',
+    'Kill': 'border-red-400',
+    'Protect': 'border-red-400',
+    'Survival': 'border-blue-400',
     'Talk To': 'border-neutral-500',
   };
 
