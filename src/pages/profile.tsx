@@ -154,7 +154,7 @@ const Profile = () => {
               <span className="font-light text-neutral-500"> ({charactersData?.length})</span>
             
             </p>
-            <p className="text-xs font-light pb-4 text-neutral-500">Characters that have not been assigned to a campaign are shown below.</p>
+            <p className="text-xs font-light pb-4 text-neutral-500">Characters that have not been assigned to a campaign are displayed below.</p>
 
             {charactersData?.length !== undefined && charactersData?.length === 0 ? ( 
             <p className="text-neutral-400 dark:text-[#555] font-light text-xs">
