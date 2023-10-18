@@ -43,15 +43,14 @@ const Content: React.FC = () => {
         
         <div className="hidden sm:block w-full h-full">
           <div className="h-full flex flex-col justify-center items-center">
-            <span className="uppercase font-semibold tracking-widest text-xl md:text-2xl lg:text-3xl xl:text-4xl">welcome to</span>
-            {/* <Image
-              src="logo-nl-light.svg"
+            <span className="uppercase font-semibold tracking-widest text-2xl md:text-3xl lg:text-4xl xl:text-4xl pb-8">welcome to</span>
+            <Image
+              src="/new-logo-2.png"
               alt="ttrpcompanion logo"
               width="1000"
               height="1000"
-              className="w-3/4"
-            /> */}
-            <span className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight tracking-widest">TTRPCompanion</span>
+              className="w-64 h-64 invert"
+            />
           </div>
 
 
@@ -61,14 +60,14 @@ const Content: React.FC = () => {
           <div className="h-full flex flex-col justify-center items-center">
 
             <div className="sm:hidden">
-              <span className="flex justify-center font-bold text-[2.6rem]">TTRPCompanion</span>
-              {/* <Image
-                src="logo-light.svg"
+              {/* <span className="flex justify-center font-bold text-[2.6rem]">TTRPCompanion</span> */}
+              <Image
+                src="/new-logo-2.png"
                 alt="ttrpcompanion logo"
                 width="1000"
                 height="1000"
-                className=""
-              /> */}
+                className="rounded-2xl w-64 h-64 mb-8"
+              />
             </div>
 
             <p className="text-neutral-500 text-lg">
@@ -76,15 +75,15 @@ const Content: React.FC = () => {
               is an all-in-one tracker for your TTRPG&apos;s. Keep tabs on your adventuring
               party, individual characters, and even the players themselves! Immerse yourself 
               like never before. <br/><br />
-              <span className="font-semibold text-[#222]">Sign in now to get started!</span>
+              <span className="font-semibold text-[#222] flex justify-center">Sign in now to get started!</span>
             </p>
 
-            <div className="pt-16 flex justify-between sm:justify-evenly w-full">
+            <div className="pt-8 flex justify-between sm:justify-evenly w-full">
               <button 
                 onClick={() => void signIn()}
                 className="bg-red-500 rounded-xl px-8 py-2 text-neutral-100 text-sm"
               > Sign In </button>
-              <Link href="https://github.com/knlrvr/ttrpcompanion"
+              <Link href="https://github.com/knlrvr/ttrpcompanion" target="_blank"
                 className="bg-blue-900 rounded-xl px-5 py-2 text-neutral-100 text-sm"
               > Learn More </Link>
             </div>

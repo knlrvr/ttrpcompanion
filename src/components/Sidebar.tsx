@@ -104,7 +104,7 @@ const Sidebar = () => {
                     aria-label="Sidebar"
                 >
                     <button
-                        className="sm:hidden absolute top-2 right-2 p-2 text-[#333] rounded-lg focus:outline-none focus:ring focus:ring-gray-200"
+                        className="sm:hidden absolute top-2 right-2 p-2 text-[#333] dark:text-neutral-200 rounded-lg focus:outline-none focus:ring focus:ring-gray-200"
                         onClick={handleCloseSidebar}
                     >
                         <span className="sr-only">Close sidebar</span>
@@ -115,9 +115,25 @@ const Sidebar = () => {
                     {/* Sidebar content here */}
                     <div className="min-h-screen flex flex-col justify-between px-2 py-4 overflow-y-auto pt-8 sm:pt-4 text-[#333] dark:text-neutral-200 bg-neutral-100 dark:bg-[#111]">
                         <div className="h-fit">
-                            <div className="flex flex-col items-center space-y-4 pb-10 pt-14 sm:pt-0">
-                                <span className="text-5xl font-bold tracking-widest leading-10">LO <br /> GO</span>
-                                <span className="font-extrabold text-3xl sm:text-2xl tracking-widest">TTRPCompanion</span>
+                            <div className="flex flex-col items-center space-y-4 pb-10 pt-12 sm:pt-2">
+                                {/* 
+                                    I thought I cropped the logos well enough but the light version is slightly higher (taller?).
+                                    Easy fix with some top margin, but I'll need to get these exact before too long. Issue opened. 
+                                */}
+                                <Image
+                                    src="/new-logo-light.png"
+                                    alt=""
+                                    width="1000"
+                                    height="1000"
+                                    className="w-36 h-36 dark:hidden mt-4"
+                                />
+                                <Image
+                                    src="/new-logo-2.png"
+                                    alt=""
+                                    width="1000"
+                                    height="1000"
+                                    className="w-36 h-36 hidden dark:block"
+                                />
                             </div>
                             <ul className="font-light m-2 flex flex-col space-y-6">
                                 {items.map((item) => (
@@ -174,20 +190,6 @@ const Sidebar = () => {
                     <div className="min-h-screen flex flex-col justify-between px-2 py-4 overflow-y-auto pt-14 sm:pt-4 text-[#333] dark:text-neutral-200 bg-neutral-100 dark:bg-[#111]">
                         <div className="h-fit">
                             <div className="flex flex-col items-center">
-                                <Image
-                                    src="/logo-nl-dark.svg"
-                                    alt="logo"
-                                    width="1000"
-                                    height="1000"
-                                    className="hidden dark:block rounded-full h-80 sm:h-64"
-                                />
-                                <Image
-                                    src="/logo-nl-light.svg"
-                                    alt="logo"
-                                    width="1000"
-                                    height="1000"
-                                    className="dark:hidden rounded-full h-80 sm:h-64"
-                                />
                             </div>
                             <div className="pt-12 pb-8 flex flex-col justify-center items-center text-center space-y-2">
                                 <span className="font-semibold">Welcome to TTRPCompanion!</span>
