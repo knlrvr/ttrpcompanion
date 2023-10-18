@@ -45,11 +45,11 @@ const Content: React.FC = () => {
           <div className="h-full flex flex-col justify-center items-center">
             <span className="uppercase font-semibold tracking-widest text-2xl md:text-3xl lg:text-4xl xl:text-4xl pb-8">welcome to</span>
             <Image
-              src="/new-logo-2.png"
+              src="/new-logo-light.png"
               alt="ttrpcompanion logo"
               width="1000"
               height="1000"
-              className="w-64 h-64 invert"
+              className="w-64 h-64"
             />
           </div>
 
