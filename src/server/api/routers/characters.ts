@@ -143,5 +143,22 @@ export const characterRouter = createTRPCRouter({
             },
         });
     }),
-    
+}); 
+
+export const assignPlayerToCharacter = z.object({
+    characterId: z.string(),
+    userId: z.string(),
+});
+
+export const assignPlayerToCharacterRouter = createTRPCRouter({
+    assignPlayerToCharacter: protectedProcedure
+    .input(assignPlayerToCharacter)
+    .mutation(async ({ ctx, input }) => {
+        return ctx.prisma.character.update({
+            where: { id: input.characterId },
+            data: {
+                userId: input.userId,
+            },
+        });
+    }),
 }); 

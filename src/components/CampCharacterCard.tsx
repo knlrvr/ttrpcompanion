@@ -202,7 +202,7 @@ export const CampCharacterCard = ({
         level: 0,
     }); 
 
-    const [member, setMember] = useState<string>("")
+    const [member, setMember] = useState<string>("");
 
     const updateCharacterStats = api.character.update.useMutation({
         onSuccess: () => {
@@ -224,8 +224,6 @@ export const CampCharacterCard = ({
         }
     };
 
-
-
     // to delete character
     const openDelCharModal = () => {
         setDelCharModalOpen(true);
@@ -240,6 +238,16 @@ export const CampCharacterCard = ({
         },
         {
           enabled: selectedCampaign?.id !== undefined,
+        }
+    );
+
+    // members
+    const { data: campaignMembers, refetch: refetchCampaignMembers } = api.campaign.getMembers.useQuery(
+        {
+        campaignId: selectedCampaign?.id ?? "",
+        },
+        {
+        enabled: selectedCampaign !== null,
         }
     );
 
@@ -271,6 +279,13 @@ export const CampCharacterCard = ({
         }
     })
 
+    // assign user to character
+    const assignUserToChar = api.assignPlayerToCharacterRouter.assignPlayerToCharacter.useMutation({
+        onSuccess: () => {
+            void refetchCharacters();
+        }
+    })
+ 
     return (
         <>
         <div className="py-4 grid relative">
@@ -657,7 +672,7 @@ export const CampCharacterCard = ({
                                             <span className="font-semibold text-lg md:text-2xl">{stat.natOne}</span>
                                             <p className="text-xs font-light text-right">Nat 1&apos;s Rolled</p>
                                         </div>
-                                    </div>
+                                    </div> 
                                 </div>
                                 )}
                             </div>

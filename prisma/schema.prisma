@@ -68,6 +68,7 @@ model User {
     ownedCamp       Campaign[]          @relation("CampaignOwner")
     joinedCamp      Campaign[]          @relation("CampaignMember")    
 
+    assignedChars   Character[]         @relation("AssignedCharacters") 
 }
 
 model Campaign {
@@ -121,6 +122,8 @@ model Character {
     campaign            Campaign?           @relation(fields: [campaignId], references: [id])
     campaignId          String?             // Foreign key to associate Character with Campaign
     stats               CharacterStats[]    // One to many
+
+    assignedTo          User[]              @relation("AssignedCharacters")
 }
 
 model CharacterStats {

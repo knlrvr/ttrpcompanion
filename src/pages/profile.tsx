@@ -127,7 +127,7 @@ const Profile = () => {
               </p>
             ) : (
               <div>
-                <ul className={`text-left text-base font-light bg-white dark:bg-[#222] px-4 py-2
+                <ul className={`text-left text-base font-light bg-white dark:bg-[#222] px-4 pt-1
                   ${campaigns?.length !== undefined && campaigns?.length > 3 ? 'rounded-t-xl' : 'rounded-xl'}
                 `}>
                   {displayedCampaigns?.map((campaign) => (
@@ -162,7 +162,7 @@ const Profile = () => {
             </p>
             ) : (
             <div>
-              <ul className={`text-left text-base font-light bg-white dark:bg-[#222] rounded-t-xl px-4 py-2
+              <ul className={`text-left text-base font-light bg-white dark:bg-[#222] rounded-t-xl px-4 pt-1
               ${charactersData?.length !== undefined && charactersData?.length > 3 ? 'rounded-t-xl' : 'rounded-xl'}
               `}>
                 {displayedCharacters?.map((character) => (

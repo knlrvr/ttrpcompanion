@@ -264,7 +264,7 @@ const Content: React.FC = () => {
   const characterStatsArray = charactersData ?? [];
 
   // owner
-  const { data: campaignOwner, refetch: refetchCampaignOwner } = api.campaign.getOwner.useQuery(
+  const { data: campaignOwner } = api.campaign.getOwner.useQuery(
     {
       campaignId: selectedCampaign?.id ?? "",
     },
@@ -274,7 +274,7 @@ const Content: React.FC = () => {
   );
 
   // members
-  const { data: campaignMembers, refetch: refetchCampaignMembers } = api.campaign.getMembers.useQuery(
+  const { data: campaignMembers } = api.campaign.getMembers.useQuery(
     {
       campaignId: selectedCampaign?.id ?? "",
     },

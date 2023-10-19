@@ -185,6 +185,7 @@ export const CharacterEditor = ({
                     </div>
 
                     <div className="flex flex-col space-y-2">
+                        
                         <label htmlFor='race'
                             className="text-xs uppercase text-neutral-500">
                             race

@@ -6,6 +6,7 @@ import { addCharacterToCampaignRouter } from "./routers/add";
 import { addCharacterToUserRouter } from "./routers/add";
 import { removeCharFromCampRouter } from "./routers/add";
 import { removeCharFromUserRouter } from "./routers/add";
+import { assignPlayerToCharacterRouter } from "./routers/characters";
 
 import { questRouter } from "./routers/quests";
 
@@ -23,7 +24,7 @@ export const appRouter = createTRPCRouter({
     addCharacterToUserRouter: addCharacterToUserRouter,
     removeCharFromCampRouter: removeCharFromCampRouter,
     removeCharFromUserRouter: removeCharFromUserRouter,
-    
+    assignPlayerToCharacterRouter: assignPlayerToCharacterRouter,
     questRouter: questRouter,
 });
 
