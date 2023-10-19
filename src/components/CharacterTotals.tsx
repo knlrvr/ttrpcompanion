@@ -149,15 +149,9 @@ export default function CharacterTotals({ characters }: { characters: CharacterS
         character.stats[0]?.totalKills !== undefined && character.stats[0]?.natOne > 0
     );
 
-    const displayedStats = showAllStats ? totalStats : characters.slice(0, 3);
-
-    const toggleShowAllStats = () => {
-      setShowAllStats(!showAllStats);
-    };
-
     return (
         <>
-        <div className="p-0 sm:p-4 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-8 py-6 mb-4">
+        <div className="p-0 sm:p-4 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-8 py-6">
             {displayDmgDealt && (
                 <div className="flex flex-col items-center space-y-2">
                     <CharacterTotalsChart

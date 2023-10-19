@@ -387,7 +387,7 @@ const Content: React.FC = () => {
             <div className="pt-6 pb-4">
               <p className="text-neutral-500 uppercase text-xs">Campaign &mdash;</p>
               {characterStatsArray.length > 0 ? ( 
-              <CampaignTotals characters={characterStatsArray} />
+                <CampaignTotals characters={characterStatsArray} />
               ) : (
                 <p className="text-neutral-400 dark:text-[#555] font-light mt-4 text-xs">
                   Campaign Totals will populate here once a character is added to this campaign. 
