@@ -22,7 +22,8 @@ import {
   BsBoxArrowLeft, 
   BsChevronRight, 
   BsDashLg,
-  BsPlusLg
+  BsPlusLg,
+  BsExclamationCircle
 } from "react-icons/bs";
 
 import Modal from "react-modal";
@@ -370,6 +371,18 @@ const Content: React.FC = () => {
                 ))}
               </ul>
             </div> 
+
+            {/* More direct add character request */}
+            {charactersData && characterStatsArray.length === 0 && ( 
+              <div className="flex justify-center mt-6 mb-12">
+                <span className="text-sm text-neutral-600 dark:text-neutral-400">
+                  <BsExclamationCircle className="inline-block mr-2 text-red-500" />
+                  You must add at least 1 character to the campaign to view campaign statistics. 
+                  Navigate to &apos;Characters&apos; or click the link in the Characters section of this
+                  page to create a character and add them to this campaign. 
+                </span>
+              </div>
+            )}
 
             <div className="pt-6 pb-4">
               <p className="text-neutral-500 uppercase text-xs">Campaign &mdash;</p>
