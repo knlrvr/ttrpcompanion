@@ -506,7 +506,7 @@ const Content: React.FC = () => {
             </div>
 
 
-            <p className="text-neutral-500 uppercase text-xs pt-6 pb-4">Party &mdash;</p>
+            <p className="text-neutral-500 uppercase text-xs pt-10 pb-4">Party &mdash;</p>
             {charactersData && characterStatsArray.length > 0 ? ( 
             <div className="bg-white dark:bg-[#222] mb-6 mt-2 p-4 rounded-lg relative">
                 <CharacterTotals characters={characterStatsArray} />
@@ -555,7 +555,7 @@ const Content: React.FC = () => {
               </Link>
             )}
           
-            <div className="text-xs text-neutral-500 flex flex-col space-y-1 mb-4 pt-10 pb-4">
+            <div className="text-xs text-neutral-500 flex flex-col space-y-1 mb-4 pt-16 pb-4">
               <p className="text-neutral-500 uppercase text-xs pb-1">Campaign Code &mdash;</p>
               {isCodeShown ? (
                 <div className="flex items-center space-x-2">
