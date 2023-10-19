@@ -67,6 +67,7 @@ model User {
 
     ownedCamp       Campaign[]          @relation("CampaignOwner")
     joinedCamp      Campaign[]          @relation("CampaignMember")    
+
 }
 
 model Campaign {

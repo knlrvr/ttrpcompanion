@@ -23,7 +23,7 @@ export const appRouter = createTRPCRouter({
     addCharacterToUserRouter: addCharacterToUserRouter,
     removeCharFromCampRouter: removeCharFromCampRouter,
     removeCharFromUserRouter: removeCharFromUserRouter,
-
+    
     questRouter: questRouter,
 });
 

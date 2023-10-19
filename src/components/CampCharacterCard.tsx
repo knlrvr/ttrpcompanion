@@ -4,7 +4,7 @@ import { api, type RouterOutputs } from '@/utils/api'
 import Modal from 'react-modal'
 import { useSession } from 'next-auth/react'
 
-import { MdPerson } from 'react-icons/md'
+import Image from 'next/image'
 
 interface Stats {
   id?: string;
@@ -202,6 +202,8 @@ export const CampCharacterCard = ({
         level: 0,
     }); 
 
+    const [member, setMember] = useState<string>("")
+
     const updateCharacterStats = api.character.update.useMutation({
         onSuccess: () => {
             void refetchCharacters();
@@ -217,9 +219,11 @@ export const CampCharacterCard = ({
                 id: character.stats[0]?.id ?? "",
                 stats: editedStats as Stats, 
             });
+            setMember("");
             setIsEditMode(false);
         }
     };
+
 
 
     // to delete character
@@ -279,7 +283,9 @@ export const CampCharacterCard = ({
                 <button onClick={() => setIsExpanded(!isExpanded)}
                     className="flex justify-between items-center w-full py-3"
                 >
+                    <div className="flex items-center space-x-4">
                     <span className="font-light leading-tight tracking-wider">{character.title}</span>
+                    </div>
                     {isExpanded ? <BsChevronUp /> : <BsChevronDown />}
                 </button>
 
