@@ -278,7 +278,7 @@ export const UserCharacterCard = ({
 
     return (
         <>
-        <div className="bg-white dark:bg-[#222] rounded-lg p-4 grid relative mt-4">
+        <div className="bg-white dark:bg-[#222] rounded-lg p-4 grid relative">
             
 
             {/* <div className="rounded-full bg-[#222] dark:bg-neutral-100 text-white dark:text-[#111] absolute -top-3 left-[1rem] sm:-left-2 p-1 shadow-md">
