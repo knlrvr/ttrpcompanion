@@ -379,7 +379,7 @@ const Content: React.FC = () => {
                   <BsExclamationCircle className="inline-block mr-2 text-red-500" />
                   You must add at least 1 character to the campaign to view campaign statistics. 
                   Navigate to &apos;Characters&apos; or click the link in the Characters section of this
-                  page to create a character and add them to this campaign. 
+                  page to create a character or add one to this campaign. 
                 </span>
               </div>
             )}
