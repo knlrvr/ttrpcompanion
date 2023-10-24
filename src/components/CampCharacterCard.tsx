@@ -236,18 +236,17 @@ export const CampCharacterCard = ({
         {
           enabled: selectedCampaign?.id !== undefined,
           onSuccess: () => {
-            void refetchCampaigns();
             setSelectedCampaign(selectedCampaign)
           }
         }
     );
 
-    const { refetch: refetchCampaigns } = api.campaign.getAll.useQuery(
-        undefined, 
-        {
-            enabled: sessionData?.user !== undefined,
-        }
-    );
+    // const { refetch: refetchCampaigns } = api.campaign.getAll.useQuery(
+    //     undefined, 
+    //     {
+    //         enabled: sessionData?.user !== undefined,
+    //     }
+    // );
 
     // switch from camp to user
     const removeCharFromCamp = api.removeCharFromCampRouter.removeChararacterFromCampaign.useMutation({

@@ -229,7 +229,7 @@ export const UserCharacterCard = ({
 
     // refetch logic
 
-    const { data: charactersData, refetch: refetchCharacters } = api.character.getAllUser.useQuery(
+    const { refetch: refetchCharacters } = api.character.getAllUser.useQuery(
         {
           userId: sessionData?.user.id ?? "",
         },
@@ -238,7 +238,7 @@ export const UserCharacterCard = ({
         }
     );
 
-    const { data: campaigns, refetch: refetchCampaigns } = api.campaign.getAll.useQuery(
+    const { data: campaigns } = api.campaign.getAll.useQuery(
         undefined, 
         {
             enabled: sessionData?.user !== undefined,

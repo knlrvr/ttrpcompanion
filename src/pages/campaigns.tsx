@@ -118,6 +118,18 @@ const categoryBorder = (questType: string): string => {
 
 const Content: React.FC = () => {
 
+  const campDeleted = () => toast.success('Campaign has been deleted! You can no longer view this campaign. You have been redirected to an active campaign.', {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: 'colored',
+    className: ''
+  });
+
   const questCreated = () => toast.success('New quest created! This quest is now visible in your active quest list.', {
     position: "top-right",
     autoClose: 5000,
@@ -160,8 +172,6 @@ const Content: React.FC = () => {
   const [selectedCampaign, setSelectedCampaign] = useState<Campaign | null>(null);
   const [showAllQuests, setShowAllQuests] = useState(false);
 
-
-  const [newCampaigns, setNewCampaigns] = useState<Campaign[] | null>([]);
   const [isDelCampModalOpen, setDelCampModalOpen] = useState(false);
 
   const [isChangeCampModalOpen, setChangeCampModalOpen] = useState(false);
@@ -175,7 +185,6 @@ const Content: React.FC = () => {
       enabled: sessionData?.user !== undefined,
       onSuccess: (data) => {
         setSelectedCampaign(selectedCampaign ?? data[0] ?? null);
-        setNewCampaigns(data);
       }
     }
   );
@@ -618,6 +627,7 @@ const Content: React.FC = () => {
                 if (selectedCampaign) {
                   deleteCampaign.mutate({ id: selectedCampaign.id });
                 }
+                campDeleted();
               }}
             >
               Delete
