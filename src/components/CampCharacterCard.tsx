@@ -237,7 +237,7 @@ export const CampCharacterCard = ({
           enabled: selectedCampaign?.id !== undefined,
           onSuccess: () => {
             void refetchCampaigns();
-            setSelectedCampaign(selectedCampaign!)
+            setSelectedCampaign(selectedCampaign)
           }
         }
     );
