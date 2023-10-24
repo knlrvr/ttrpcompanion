@@ -4,8 +4,6 @@ import { api, type RouterOutputs } from '@/utils/api'
 import Modal from 'react-modal'
 import { useSession } from 'next-auth/react'
 
-import Image from 'next/image'
-
 interface Stats {
   id?: string;
   characterId: string;
@@ -202,8 +200,6 @@ export const CampCharacterCard = ({
         level: 0,
     }); 
 
-    const [member, setMember] = useState<string>("");
-
     const updateCharacterStats = api.character.update.useMutation({
         onSuccess: () => {
             void refetchCharacters();
@@ -215,11 +211,10 @@ export const CampCharacterCard = ({
     };
     const handleUpdateClick = () => {
         if (editedStats?.id) {
-            void updateCharacterStats.mutateAsync({
+            void updateCharacterStats.mutate({
                 id: character.stats[0]?.id ?? "",
                 stats: editedStats as Stats, 
             });
-            setMember("");
             setIsEditMode(false);
         }
     };
@@ -232,40 +227,27 @@ export const CampCharacterCard = ({
         setDelCharModalOpen(false);
     };
 
-    const { data: charactersData, refetch: refetchCharacters } = api.character.getAllCampaign.useQuery(
+    // refetch logic; i think this is where the bug is, but i genuinely don't know.
+
+    const { refetch: refetchCharacters } = api.character.getAllCampaign.useQuery(
         {
           campaignId: selectedCampaign?.id ?? '',
         },
         {
           enabled: selectedCampaign?.id !== undefined,
+          onSuccess: () => {
+            void refetchCampaigns();
+            setSelectedCampaign(selectedCampaign!)
+          }
         }
     );
 
-    // members
-    const { data: campaignMembers, refetch: refetchCampaignMembers } = api.campaign.getMembers.useQuery(
+    const { refetch: refetchCampaigns } = api.campaign.getAll.useQuery(
+        undefined, 
         {
-        campaignId: selectedCampaign?.id ?? "",
-        },
-        {
-        enabled: selectedCampaign !== null,
+            enabled: sessionData?.user !== undefined,
         }
     );
-
-    // const { data: campaigns, refetch: refetchCampaigns } = api.campaign.getAll.useQuery(
-    //     undefined, 
-    //     {
-    //         enabled: sessionData?.user !== undefined,
-    //         onSuccess: (data) => {
-    //             if (selectedCampaign === null && data.length > 0) {
-    //                 setSelectedCampaign(data[0]!);
-    //             }
-    //         }
-    //     }
-    // );
-    //
-    // function isCampaignSelected(campaignId: string, selectedCampaign: Campaign | null): boolean {
-    //     return selectedCampaign ? campaignId === selectedCampaign.id : false;
-    // }
 
     // switch from camp to user
     const removeCharFromCamp = api.removeCharFromCampRouter.removeChararacterFromCampaign.useMutation({
@@ -279,13 +261,6 @@ export const CampCharacterCard = ({
         }
     })
 
-    // assign user to character
-    const assignUserToChar = api.assignPlayerToCharacterRouter.assignPlayerToCharacter.useMutation({
-        onSuccess: () => {
-            void refetchCharacters();
-        }
-    })
- 
     return (
         <>
         <div className="py-4 grid relative">
@@ -299,7 +274,7 @@ export const CampCharacterCard = ({
                     className="flex justify-between items-center w-full py-3"
                 >
                     <div className="flex items-center space-x-4">
-                    <span className="font-light leading-tight tracking-wider">{character.title}</span>
+                        <span className="font-light leading-tight tracking-wider">{character.title}</span>
                     </div>
                     {isExpanded ? <BsChevronUp /> : <BsChevronDown />}
                 </button>

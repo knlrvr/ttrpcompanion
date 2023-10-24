@@ -4,8 +4,6 @@ import { api, type RouterOutputs } from '@/utils/api'
 import Modal from 'react-modal'
 import { useSession } from 'next-auth/react'
 
-import { MdPerson } from 'react-icons/md'
-
 interface Stats {
   id?: string;
   characterId: string;
@@ -221,7 +219,6 @@ export const UserCharacterCard = ({
         }
     };
 
-
     // to delete character
     const openDelCharModal = () => {
         setDelCharModalOpen(true);
@@ -229,6 +226,8 @@ export const UserCharacterCard = ({
     const closeDelCharModal = () => {
         setDelCharModalOpen(false);
     };
+
+    // refetch logic
 
     const { data: charactersData, refetch: refetchCharacters } = api.character.getAllUser.useQuery(
         {

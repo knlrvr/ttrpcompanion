@@ -243,9 +243,7 @@ const Content: React.FC = () => {
     {
       campaignId: selectedCampaign?.id ?? "",
     },
-    {
-      enabled: sessionData?.user !== undefined,
-    }
+
   );
 
   // to delete character
