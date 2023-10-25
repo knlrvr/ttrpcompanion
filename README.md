@@ -77,5 +77,3 @@ With the rise of D&D's popularity, tools like D&DBeyond are incredibly reliable 
 <a name="acknowledgements"></a>
 ## Acknowledgements
 > A massive shout out and thanks to everyone who is testing the app, giving great feedback, and helping to make this something more than some portfolio project. 
-
-> TTRPC Logo on site created by Alex Farmer. 
