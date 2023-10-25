@@ -34,6 +34,9 @@
 > ![bugs](https://img.shields.io/badge/Bugs-grey)  
 > When a character is updated from the campaign screen, the action *is* performed, but the results of the action do not render unless you navigate away from the page, or reload. This bug *will* be removed before the next version. 
 
+![v2.0.3](https://img.shields.io/badge/version-2.0.2-f87171) ![date](https://img.shields.io/badge/Oct_24_2023-informational) ![description](https://img.shields.io/badge/Styling_Updates_&_Function_Updates-grey)
+>
+>
 
 <a name="description"></a>
 ## Description
