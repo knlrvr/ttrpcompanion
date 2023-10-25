@@ -47,7 +47,7 @@ TTRPCompanion is a gaming utility app that allows users to track their character
 As the number of users grows, I will do my best to accomodate any suggestions for this app! Feel free to reach out with any comments or suggestions for any features you'd like to see! 
 
 ![description](https://img.shields.io/badge/Upcoming_Features-grey)
-> - Profile pages
+> - Assign campaign members to populated characters
 > - In-game time tracking
 > - & more! Please stay tuned! 
 
