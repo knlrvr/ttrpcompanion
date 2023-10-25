@@ -184,19 +184,10 @@ const Content: React.FC = () => {
       enabled: sessionData?.user !== undefined,
       onSuccess: (data) => {
         setSelectedCampaign(selectedCampaign ?? data[0] ?? null);
+        void refetchCharacters();
       }
     }
   );
-
-  // const createCampaign = api.campaign.create.useMutation({
-  //   onSuccess: (data) => {
-  //     void refetchCampaigns();
-  //     setSelectedCampaign(data);
-  //   }
-  // });
-  // const handleCreateCampaign = (title: string) => {
-  //   createCampaign.mutate({ title });
-  // };
 
   // to delete campaign
   const openDelCampModal = () => {
@@ -251,7 +242,6 @@ const Content: React.FC = () => {
     {
       campaignId: selectedCampaign?.id ?? "",
     },
-
   );
 
   // to delete character

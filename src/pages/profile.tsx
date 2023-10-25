@@ -52,6 +52,8 @@ const Profile = () => {
     setShowAllChars(!showAllChars);
   };
 
+  const characterStatsArray = charactersData ?? [];
+
   return (
     <PageLayout>
       {sessionData?.user && (
@@ -76,41 +78,6 @@ const Profile = () => {
               </div>
             </div>
           </div>
-
-
-          {/* <div className="grid grid-cols-4 gap-4 pt-8">
-            <div className="col-span-2">
-              <Link href="/campaigns" className="">
-                <div className="bg-white dark:bg-[#222] text-[#222] dark:text-neutral-100 flex flex-col space-y-4 gap-2 p-4 rounded-lg bg-opacity-50 shadow-md">
-                  <div className="text-left">
-                    <span className="font-thin text-2xl">Campaigns</span>
-                    <p className="font-light text-xs">
-                      View your active campaigns
-                    </p>
-                  </div>
-                  <div className="text-4xl flex justify-end">
-                    <PiTent />
-                  </div>
-                </div>
-              </Link>
-            </div>
-
-            <div className="col-span-2">
-              <Link href="/characters" className="">
-                <div className="bg-white dark:bg-[#222] text-[#222] dark:text-neutral-100 flex flex-col space-y-4 gap-2 p-4 rounded-lg bg-opacity-50 shadow-md">
-                  <div className="text-left">
-                    <span className="font-thin text-2xl">Characters</span>
-                    <p className="font-light text-xs">
-                      View your inactive characters
-                    </p>
-                  </div>
-                  <div className="text-4xl flex justify-end">
-                    <MdOutlinePeopleAlt />
-                  </div>
-                </div>
-              </Link>
-            </div>
-          </div> */}
 
           <div className="pt-8">
             <p className="font-semibold text-lg tracking-wide">

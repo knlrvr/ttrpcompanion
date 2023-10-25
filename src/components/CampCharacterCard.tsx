@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { BsChevronDown, BsChevronUp } from 'react-icons/bs'
 import { api, type RouterOutputs } from '@/utils/api'
 import Modal from 'react-modal'
@@ -203,19 +203,23 @@ export const CampCharacterCard = ({
     const updateCharacterStats = api.character.update.useMutation({
         onSuccess: () => {
             void refetchCharacters();
+            void refetchCampaigns();
         },
     });
+
+    const { data: campaigns, refetch: refetchCampaigns } = api.campaign.getAll.useQuery(
+        undefined, // no input
+        {
+          onSuccess: () => {
+            setSelectedCampaign(selectedCampaign);
+          }
+        }
+    );
+
     const handleEditClick = () => {
         setIsEditMode(true);
         setEditedStats({ ...character.stats[0] });
     };
-
-    const { refetch: refetchCampaigns } = api.campaign.getAll.useQuery(
-        undefined,
-        {
-          enabled: sessionData?.user !== undefined,
-        }
-    );
 
     const handleUpdateClick = () => {
         if (editedStats?.id) {
@@ -241,18 +245,13 @@ export const CampCharacterCard = ({
         {
           campaignId: selectedCampaign?.id ?? '',
         },
-        {
-          enabled: selectedCampaign?.id !== undefined,
-          onSuccess: () => {
-            void refetchCampaigns();
-          }
-        }
     );
 
     // switch from camp to user
     const removeCharFromCamp = api.removeCharFromCampRouter.removeChararacterFromCampaign.useMutation({
         onSuccess: () => {
             void refetchCharacters();
+            
         }
     });
     const addCharacterToUser = api.addCharacterToUserRouter.addCharacterToUser.useMutation({
