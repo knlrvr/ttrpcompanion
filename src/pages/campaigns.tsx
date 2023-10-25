@@ -50,7 +50,7 @@ export default function Campaigns() {
 }
 
 type Campaign = RouterOutputs["campaign"]["getAll"][0];
-type Quest = RouterOutputs["questRouter"]["getAll"][0];
+// type Quest = RouterOutputs["questRouter"]["getAll"][0];
 
 type QuestType = "Select Quest Type" | "Bounty" | "Defense" | "Delivery" | "Destroy" | "Escort" | "Fetch" | "Gather" | "Investigation" | "Kill" | "Protect" | "Survival" | "Talk To";
 

@@ -9,7 +9,7 @@ import { usePathname } from 'next/navigation'
 import Link from 'next/link';
 import Image from 'next/image';
 
-import { api, type RouterOutputs } from '@/utils/api';
+import { type RouterOutputs } from '@/utils/api';
 
 import { 
     BsChevronBarLeft, 
@@ -39,7 +39,7 @@ const items = [
     { label: 'Profile', href: '/profile', icon: <MdOutlinePerson /> },
 ]
 
-type Campaign = RouterOutputs["campaign"]["getAll"][0];
+// type Campaign = RouterOutputs["campaign"]["getAll"][0];
 
 
 const Sidebar = () => {
