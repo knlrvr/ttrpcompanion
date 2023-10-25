@@ -19,7 +19,6 @@ import {
   BsEyeSlash,
   BsFilterCircle,
   BsCheckCircle,
-  BsBoxArrowLeft, 
   BsChevronRight, 
   BsDashLg,
   BsPlusLg,
@@ -189,15 +188,15 @@ const Content: React.FC = () => {
     }
   );
 
-  const createCampaign = api.campaign.create.useMutation({
-    onSuccess: (data) => {
-      void refetchCampaigns();
-      setSelectedCampaign(data);
-    }
-  });
-  const handleCreateCampaign = (title: string) => {
-    createCampaign.mutate({ title });
-  };
+  // const createCampaign = api.campaign.create.useMutation({
+  //   onSuccess: (data) => {
+  //     void refetchCampaigns();
+  //     setSelectedCampaign(data);
+  //   }
+  // });
+  // const handleCreateCampaign = (title: string) => {
+  //   createCampaign.mutate({ title });
+  // };
 
   // to delete campaign
   const openDelCampModal = () => {
@@ -297,9 +296,9 @@ const Content: React.FC = () => {
     },
   );
 
-  function isQuestSelected(questId: string, selectedQuest: Quest | null): boolean {
-    return selectedQuest ? questId === selectedQuest.id : false;
-  }
+  // function isQuestSelected(questId: string, selectedQuest: Quest | null): boolean {
+  //   return selectedQuest ? questId === selectedQuest.id : false;
+  // }
 
   const createQuest = api.questRouter.create.useMutation({
     onSuccess: () => {

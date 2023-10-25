@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
 import { useSession, signOut } from 'next-auth/react';
-import Link from 'next/link'
 
 import PageLayout from '@/components/PageLayout';
 
 import { BsBoxArrowLeft, BsChevronRight, BsDashLg } from 'react-icons/bs';
 import Image from 'next/image';
 
-import { api, type RouterOutputs } from "@/utils/api";
+import { api } from "@/utils/api";
 
 // import {
 //   PiTent
@@ -25,14 +24,14 @@ const Profile = () => {
 
   const { data: sessionData } = useSession();
 
-  const { data: campaigns, refetch: refetchCampaigns } = api.campaign.getAll.useQuery(
+  const { data: campaigns } = api.campaign.getAll.useQuery(
     undefined, // no input
     {
       enabled: sessionData?.user !== undefined,
     }
   );
 
-  const { data: charactersData, refetch: refetchCharacters } = api.character.getAllUser.useQuery(
+  const { data: charactersData } = api.character.getAllUser.useQuery(
     {
       userId: sessionData?.user.id ?? "",
     },

@@ -25,7 +25,7 @@ const AddCampaign = () => {
     const [newCampaigns, setNewCampaigns] = useState<Campaign[] | null>([]);
     const [selectedCampaign, setSelectedCampaign] = useState<Campaign | null>(null);
     
-    const { data: campaigns, refetch: refetchCampaigns } = api.campaign.getAll.useQuery(
+    const { refetch: refetchCampaigns } = api.campaign.getAll.useQuery(
       undefined, // no input
       {
         enabled: sessionData?.user !== undefined,
@@ -41,11 +41,11 @@ const AddCampaign = () => {
         void refetchCampaigns();
       }
     });
-    const handleCreateCampaign = (title: string) => {
-      createCampaign.mutate({ title });
-    };
+    // const handleCreateCampaign = (title: string) => {
+    //   createCampaign.mutate({ title });
+    // };
 
-    const [isCreateCampModalOpen, setCreateCampModalOpen] = useState<boolean>(false);
+    // const [isCreateCampModalOpen, setCreateCampModalOpen] = useState<boolean>(false);
 
   return (
     <>

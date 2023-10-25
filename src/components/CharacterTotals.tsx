@@ -3,11 +3,6 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
 import { CharacterTotalsChart } from "./CharacterTotalsChart";
 
-import { 
-    BsChevronRight, 
-    BsDashLg,
-  } from "react-icons/bs";
-
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 type CharacterStats = {
@@ -67,8 +62,6 @@ export default function CharacterTotals({ characters }: { characters: CharacterS
         natOne: 0,
         totalKo: 0,
       });
-
-    const [showAllStats, setShowAllStats] = useState(false);
 
     useEffect(() => {
       // Fetch the stats here and update the state

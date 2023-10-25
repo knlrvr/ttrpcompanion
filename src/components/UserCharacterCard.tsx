@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { BsPlusLg, BsDashLg, BsChevronUp, BsChevronDown } from 'react-icons/bs'
+import { BsChevronUp, BsChevronDown } from 'react-icons/bs'
 import { api, type RouterOutputs } from '@/utils/api'
 import Modal from 'react-modal'
 import { useSession } from 'next-auth/react'

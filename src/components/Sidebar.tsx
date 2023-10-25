@@ -54,23 +54,23 @@ const Sidebar = () => {
 
       const { data: sessionData } = useSession();
 
-      const [selectedCampaign, setSelectedCampaign] = useState<Campaign | null>(null);
-      const [newCampaigns, setNewCampaigns] = useState<Campaign[] | null>([]);
+    //   const [selectedCampaign, setSelectedCampaign] = useState<Campaign | null>(null);
+    //   const [newCampaigns, setNewCampaigns] = useState<Campaign[] | null>([]);
     
-      const { data: campaigns, refetch: refetchCampaigns } = api.campaign.getAll.useQuery(
-        undefined, // no input
-        {
-          enabled: sessionData?.user !== undefined,
-          onSuccess: (data) => {
-            setSelectedCampaign(selectedCampaign ?? data[0] ?? null);
-            setNewCampaigns(data);
-          }
-        }
-    );
+    //   const { data: campaigns, refetch: refetchCampaigns } = api.campaign.getAll.useQuery(
+    //     undefined, // no input
+    //     {
+    //       enabled: sessionData?.user !== undefined,
+    //       onSuccess: (data) => {
+    //         setSelectedCampaign(selectedCampaign ?? data[0] ?? null);
+    //         setNewCampaigns(data);
+    //       }
+    //     }
+    // );
 
-    function isCampaignSelected(campaignId: string, selectedCampaign: Campaign | null): boolean {
-        return selectedCampaign ? campaignId === selectedCampaign.id : false;
-    };
+    // function isCampaignSelected(campaignId: string, selectedCampaign: Campaign | null): boolean {
+    //     return selectedCampaign ? campaignId === selectedCampaign.id : false;
+    // };
 
     
 

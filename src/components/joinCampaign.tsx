@@ -21,7 +21,7 @@ const JoinCampaign = () => {
     const [campaignId, setCampaignId] = useState('');
 
     const { data: sessionData } = useSession();
-    const { data: campaigns, refetch: refetchCampaigns } = api.campaign.getAll.useQuery(
+    const { refetch: refetchCampaigns } = api.campaign.getAll.useQuery(
         undefined, // no input
         {
           enabled: sessionData?.user !== undefined,

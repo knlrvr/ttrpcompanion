@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { BsPlusLg, BsDashLg, BsChevronUp, BsChevronDown } from 'react-icons/bs'
+import { BsChevronUp, BsChevronDown } from 'react-icons/bs'
 
 export const CharacterEditor = ({
     onSave,

@@ -4,30 +4,30 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-type Stats = {
-    id?: string;
-    title: string;
-    characterId: string;
-    level: number;
-    charClass: string;
-    charRace: string;
-    totalSessions: number;
-    totalTime: number;
-    totalXp: number;
-    dmgDealt: number;
-    dmgTaken: number;
-    critHits: number;
-    totalKills: number;
-    spellsCast: number;
-    totalHealingOthers: number;
-    totalHealingSelf: number;
-    totalDeaths: number;
-    turnsNoDmg: number;
-    combatTime: number;
-    natTwenty: number;
-    natOne: number;
-    totalKo: number;
-}
+// type Stats = {
+//     id?: string;
+//     title: string;
+//     characterId: string;
+//     level: number;
+//     charClass: string;
+//     charRace: string;
+//     totalSessions: number;
+//     totalTime: number;
+//     totalXp: number;
+//     dmgDealt: number;
+//     dmgTaken: number;
+//     critHits: number;
+//     totalKills: number;
+//     spellsCast: number;
+//     totalHealingOthers: number;
+//     totalHealingSelf: number;
+//     totalDeaths: number;
+//     turnsNoDmg: number;
+//     combatTime: number;
+//     natTwenty: number;
+//     natOne: number;
+//     totalKo: number;
+// }
   
 // type CharacterStats = {
 //     id?: string;
