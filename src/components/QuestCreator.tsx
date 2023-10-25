@@ -69,7 +69,7 @@ const QuestCreator = ({
         className="bg-white dark:bg-[#222] dark:text-neutral-100 p-4 py-8 rounded-lg sm:ml-64"
       >
         <div className="text-center flex flex-col justify-between space-y-4 px-4">
-          <div className="flex flex-col space-y-1 pb-8">
+          <div className="flex flex-col space-y-1 pb-1">
             <span className="flex justify-start text-sm">Add New Quest &mdash;</span>
             <p className="text-xs text-neutral-500 text-left">Please fill out the details of the quest you would like to add.</p>
           </div>
