@@ -209,6 +209,14 @@ export const CampCharacterCard = ({
         setIsEditMode(true);
         setEditedStats({ ...character.stats[0] });
     };
+
+    const { refetch: refetchCampaigns } = api.campaign.getAll.useQuery(
+        undefined,
+        {
+          enabled: sessionData?.user !== undefined,
+        }
+    );
+
     const handleUpdateClick = () => {
         if (editedStats?.id) {
             void updateCharacterStats.mutate({
@@ -236,17 +244,10 @@ export const CampCharacterCard = ({
         {
           enabled: selectedCampaign?.id !== undefined,
           onSuccess: () => {
-            setSelectedCampaign(selectedCampaign)
+            void refetchCampaigns();
           }
         }
     );
-
-    // const { refetch: refetchCampaigns } = api.campaign.getAll.useQuery(
-    //     undefined, 
-    //     {
-    //         enabled: sessionData?.user !== undefined,
-    //     }
-    // );
 
     // switch from camp to user
     const removeCharFromCamp = api.removeCharFromCampRouter.removeChararacterFromCampaign.useMutation({
