@@ -35,7 +35,7 @@
 > When a character is updated from the campaign screen, the action *is* performed, but the results of the action do not render unless you navigate away from the page, or reload. This bug *will* be removed before the next version. 
 
 ![v2.0.3](https://img.shields.io/badge/version-2.0.2-f87171) ![date](https://img.shields.io/badge/Oct_24_2023-informational) ![description](https://img.shields.io/badge/Styling_Updates_&_Function_Updates-grey)
-> Minor styling adjustments, mostly related to the `profile` page and the `quests` component on the `campaigns` page. V2.0.2 Bug has successfully been removed. When saving updated character stats within a campaign, changes are immediately reflected. 
+> Minor styling adjustments, mostly related to the `profile` page and the `quests` component on the `campaigns` page. `V2.0.2 Bug` has successfully been removed. When saving updated character stats within a campaign, changes are immediately reflected. 
 
 <a name="description"></a>
 ## Description
