@@ -34,6 +34,8 @@
 > ![bugs](https://img.shields.io/badge/Bugs-grey)  
 > When a character is updated from the campaign screen, the action *is* performed, but the results of the action do not render unless you navigate away from the page, or reload. This bug *will* be removed before the next version. 
 
+![v2.0.3](https://img.shields.io/badge/version-2.0.2-f87171) ![date](https://img.shields.io/badge/Oct_24_2023-informational) ![description](https://img.shields.io/badge/Styling_Updates_&_Function_Updates-grey)
+> Minor styling adjustments, mostly related to the `profile` page and the `quests` component on the `campaigns` page. `V2.0.2 Bug` has successfully been removed. When saving updated character stats within a campaign, changes are immediately reflected. 
 
 <a name="description"></a>
 ## Description
@@ -45,7 +47,7 @@ TTRPCompanion is a gaming utility app that allows users to track their character
 As the number of users grows, I will do my best to accomodate any suggestions for this app! Feel free to reach out with any comments or suggestions for any features you'd like to see! 
 
 ![description](https://img.shields.io/badge/Upcoming_Features-grey)
-> - Profile pages
+> - Assign campaign members to populated characters
 > - In-game time tracking
 > - & more! Please stay tuned! 
 
@@ -77,5 +79,3 @@ With the rise of D&D's popularity, tools like D&DBeyond are incredibly reliable 
 <a name="acknowledgements"></a>
 ## Acknowledgements
 > A massive shout out and thanks to everyone who is testing the app, giving great feedback, and helping to make this something more than some portfolio project. 
-
-> TTRPC Logo on site created by Alex Farmer. 
