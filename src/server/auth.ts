@@ -10,12 +10,15 @@ import DiscordProvider from 'next-auth/providers/discord';
 import { env } from "@/env.mjs";
 import { prisma } from "@/server/db";
 
+import CredentialsProvider from "next-auth/providers/credentials";
+
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
  * object and keep type safety.
  *
  * @see https://next-auth.js.org/getting-started/typescript#module-augmentation
  */
+
 declare module "next-auth" {
   interface Session extends DefaultSession {
     user: DefaultSession["user"] & {
@@ -39,6 +42,8 @@ declare module "next-auth" {
 export const authOptions: NextAuthOptions = {
   callbacks: {
     session: ({ session, user }) => ({
+      // set strategy for CredentialsProvider to work properly
+      strategy: 'jwt',
       ...session,
       user: {
         ...session.user,
@@ -55,7 +60,8 @@ export const authOptions: NextAuthOptions = {
     DiscordProvider({
       clientId: env.DISCORD_CLIENT_ID,
       clientSecret: env.DISCORD_CLIENT_SECRET,
-    })
+    }),
+
     /**
      * ...add more providers here.
      *
