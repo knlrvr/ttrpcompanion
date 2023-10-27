@@ -696,7 +696,7 @@ export const CampCharacterCard = ({
                                             userId: sessionData?.user.id ?? '',
                                         })
                                         campCharRemoved();
-                                        refetchCampaigns();
+                                        void refetchCampaigns();
                                     }}
                                 > Remove </button>
                             </div>
