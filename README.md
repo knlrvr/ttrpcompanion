@@ -69,7 +69,7 @@ With the rise of D&D's popularity, tools like D&DBeyond are incredibly reliable 
 
 <a name="gallery"></a>
 ## Gallery
-> The gallery features a breakdown of navigation & functionality. You can find the gallery [here](https://github.com/knlrvr/ttrpcompanion-gallery).
+The gallery features a breakdown of navigation & functionality. You can find the gallery [here](https://github.com/knlrvr/ttrpcompanion-gallery).
 
 <a name="notes"></a>
 ## Notes
