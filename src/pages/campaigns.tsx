@@ -598,7 +598,7 @@ const Content: React.FC = () => {
         isOpen={isDelCampModalOpen}
         onRequestClose={closeDelCampModal}
         contentLabel="Confirm Delete"
-        overlayClassName="modal-overlay fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center px-8"
+        overlayClassName="modal-overlay fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center px-8 backdrop-blur-sm"
         className="bg-white dark:bg-[#222] dark:text-neutral-100 p-4 py-12 rounded-lg sm:ml-64"
       >
       <div className="text-center flex flex-col justify-between space-y-8 px-2">
@@ -630,7 +630,7 @@ const Content: React.FC = () => {
         isOpen={isChangeCampModalOpen}
         onRequestClose={closeChangeCampModal}
         contentLabel="Confirm Change"
-        overlayClassName="modal-overlay fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center px-8"
+        overlayClassName="modal-overlay fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center px-8 backdrop-blur-sm"
         className="bg-white dark:bg-[#222] dark:text-neutral-100 p-4 py-12 rounded-lg sm:ml-64"
       >
         <div className="text-center flex flex-col justify-between space-y-8 px-4">
@@ -664,7 +664,7 @@ const Content: React.FC = () => {
         isOpen={isDelQuestModalOpen}
         onRequestClose={closeDelQuestModal}
         contentLabel="Confirm Change"
-        overlayClassName="modal-overlay fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center px-8"
+        overlayClassName="modal-overlay fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center px-8 backdrop-blur-sm"
         className="bg-white dark:bg-[#222] dark:text-neutral-100 p-4 py-12 rounded-lg sm:ml-64"
       >
         <div className="text-center flex flex-col justify-between space-y-8 px-4">

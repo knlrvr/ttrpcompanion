@@ -699,7 +699,7 @@ export const UserCharacterCard = ({
             isOpen={isDelCharModalOpen}
             onRequestClose={closeDelCharModal}
             contentLabel="Confirm Delete"
-            overlayClassName="modal-overlay fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center px-8"
+            overlayClassName="modal-overlay fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center px-8 backdrop-blur-sm"
             className="bg-white dark:bg-[#333] p-8 rounded-lg sm:ml-64"
         >
             <div className="text-center flex flex-col justify-between space-y-8 px-8">
@@ -729,7 +729,7 @@ export const UserCharacterCard = ({
         isOpen={isCampaignModalOpen}
         onRequestClose={closeCampaignModal}
         contentLabel="Confirm Change"
-        overlayClassName="modal-overlay fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center px-8"
+        overlayClassName="modal-overlay fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center px-8 backdrop-blur-sm"
         className="bg-white dark:bg-[#222] dark:text-neutral-100 p-4 py-12 rounded-lg sm:ml-64"
       >
         <div className="text-center flex flex-col justify-between space-y-8 px-8">
