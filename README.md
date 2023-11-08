@@ -73,7 +73,7 @@ The gallery features a breakdown of navigation & functionality. You can find the
 
 <a name="notes"></a>
 ## Notes
-> TTRPCompanion is currently undergoing a massive redo in design & functionality. The first look into this is available in v2.0, with MUCH more to come. Stay tuned!
+> `11/08/23` TTRPCompanion is coming to mobile! There's no official release just yet, but when that occurs, the website may be inaccessible for a short while. Stay tuned!  
 
 <a name="acknowledgements"></a>
 ## Acknowledgements
