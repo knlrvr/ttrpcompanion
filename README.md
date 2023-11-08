@@ -71,11 +71,6 @@ With the rise of D&D's popularity, tools like D&DBeyond are incredibly reliable 
 ## Gallery
 The gallery features a breakdown of navigation & functionality. You can find the gallery [here](https://github.com/knlrvr/ttrpcompanion-gallery).
 
-<a name="notes"></a>
-## Notes
-> `Nov 8, 2023`  
-> TTRPCompanion is coming to mobile! There's no official release just yet, but when that occurs, the website may be inaccessible for a short while. Stay tuned!  
-
 <a name="acknowledgements"></a>
 ## Acknowledgements
 > A massive shout out and thanks to everyone who is testing the app, giving great feedback, and helping to make this something more than some portfolio project. 
