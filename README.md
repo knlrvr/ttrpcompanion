@@ -73,7 +73,8 @@ The gallery features a breakdown of navigation & functionality. You can find the
 
 <a name="notes"></a>
 ## Notes
-> `Nov 8, 2023` TTRPCompanion is coming to mobile! There's no official release just yet, but when that occurs, the website may be inaccessible for a short while. Stay tuned!  
+> `Nov 8, 2023`
+> TTRPCompanion is coming to mobile! There's no official release just yet, but when that occurs, the website may be inaccessible for a short while. Stay tuned!  
 
 <a name="acknowledgements"></a>
 ## Acknowledgements
