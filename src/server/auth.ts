@@ -7,14 +7,10 @@ import {
 } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import DiscordProvider from 'next-auth/providers/discord';
-
-import CredentialsProvider from "next-auth/providers/credentials";
-
 import { env } from "@/env.mjs";
 import { prisma } from "@/server/db";
 
-import { encode, decode } from 'next-auth/jwt';
-
+import CredentialsProvider from "next-auth/providers/credentials";
 
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
@@ -43,27 +39,18 @@ declare module "next-auth" {
  *
  * @see https://next-auth.js.org/configuration/options
  */
-
 export const authOptions: NextAuthOptions = {
-  theme: {
-    colorScheme: 'light',
+  callbacks: {
+    session: ({ session, user }) => ({
+      // set strategy for CredentialsProvider to work properly
+      strategy: 'jwt',
+      ...session,
+      user: {
+        ...session.user,
+        id: user.id,
+      },
+    }),
   },
-  // callbacks: {
-  //   session: ({ session, user }) => ({
-  //     // set strategy for CredentialsProvider to work properly
-  //     ...session,
-  //     user: {
-  //       ...session.user,
-  //       id: user.id,
-  //     },
-  //   }),
-  //   jwt: ({ token, user }) => ({
-  //     ...token,
-  //     user,
-  //   }),
-  // },
-  // jwt: { encode, decode },
-  // secret: env.NEXTAUTH_SECRET!,
   adapter: PrismaAdapter(prisma),
   providers: [
     GoogleProvider({
@@ -74,33 +61,6 @@ export const authOptions: NextAuthOptions = {
       clientId: env.DISCORD_CLIENT_ID,
       clientSecret: env.DISCORD_CLIENT_SECRET,
     }),
-
-    // demo info
-    // CredentialsProvider({
-    //   name: 'Demo Credentials',
-
-    //   credentials: {
-    //     username: { 
-    //       label: 'Demo Credentials', 
-    //       type: 'text', 
-    //       placeholder: 'demo123'
-    //     },
-    //   },
-    //   authorize: async (credentials) => {
-    //     const user = { id: 'demo123', name: 'demo123' }
-
-    //     if (!credentials) {
-    //       return null;
-    //     }
-
-    //     if (user && credentials?.username === user.name) { 
-    //       console.log('Auth success')
-    //       return user;
-    //     } else {
-    //       return null;
-    //     }
-    //   }
-    // })
 
     /**
      * ...add more providers here.
