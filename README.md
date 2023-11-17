@@ -71,10 +71,6 @@ With the rise of D&D's popularity, tools like D&DBeyond are incredibly reliable 
 ## Gallery
 The gallery features a breakdown of navigation & functionality. You can find the gallery [here](https://github.com/knlrvr/ttrpcompanion-gallery).
 
-<a name="notes"></a>
-## Notes
-> TTRPCompanion is currently undergoing a massive redo in design & functionality. The first look into this is available in v2.0, with MUCH more to come. Stay tuned!
-
 <a name="acknowledgements"></a>
 ## Acknowledgements
 > A massive shout out and thanks to everyone who is testing the app, giving great feedback, and helping to make this something more than some portfolio project. 
