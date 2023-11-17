@@ -5,7 +5,6 @@ import { signIn, useSession } from "next-auth/react";
 
 import PageLayout from "@/components/PageLayout";
 
-
 import Head from "next/head";
 
 import {
@@ -16,6 +15,9 @@ import {
   MdOutlinePeopleAlt,
   MdOutlinePerson
 } from 'react-icons/md'
+
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/server/auth";
 
 export default function Home() {
   return (
