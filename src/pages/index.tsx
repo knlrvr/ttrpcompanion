@@ -16,24 +16,6 @@ import {
   MdOutlinePerson
 } from 'react-icons/md'
 
-import { 
-  BsPeople,
-  BsClock,
-  BsSlash,
-  BsTrash, 
-  BsBarChart, 
-  BsEye, 
-  BsEyeSlash,
-  BsFilterCircle,
-  BsCheckCircle,
-  BsChevronRight, 
-  BsDashLg,
-  BsPlusLg,
-  BsExclamationCircle,
-  BsPerson,
-  BsCheck
-} from "react-icons/bs";
-
 export default function Home() {
   return (
     <>
