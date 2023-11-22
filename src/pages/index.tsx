@@ -44,7 +44,7 @@ const Content: React.FC = () => {
           <h1 className="text-sm font-light tracking-widest">TTRPCompanion</h1>
           
           <div className="">
-            <p className="text-5xl sm:text-6xl md:text-7xl font-thin mr-24">
+            <p className="text-5xl sm:text-6xl md:text-7xl font-thin sm:mr-24">
               Connecting 
               <span className="text-orange-200"> players </span>
               to their 
@@ -54,7 +54,7 @@ const Content: React.FC = () => {
           </div>
 
           <div className="mb-12">
-            <p className="font-light w-1/2 text-lg">
+            <p className="font-light sm:w-1/2 text-lg">
               TTRPCompanion is an all-in-one tracker for your TTRPG adventures. 
               Keep tabs on stats specific to the campaign, party, individual characters, and even
               the players!
