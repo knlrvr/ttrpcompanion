@@ -16,8 +16,23 @@ import {
   MdOutlinePerson
 } from 'react-icons/md'
 
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/server/auth";
+import { 
+  BsPeople,
+  BsClock,
+  BsSlash,
+  BsTrash, 
+  BsBarChart, 
+  BsEye, 
+  BsEyeSlash,
+  BsFilterCircle,
+  BsCheckCircle,
+  BsChevronRight, 
+  BsDashLg,
+  BsPlusLg,
+  BsExclamationCircle,
+  BsPerson,
+  BsCheck
+} from "react-icons/bs";
 
 export default function Home() {
   return (
@@ -41,58 +56,46 @@ const Content: React.FC = () => {
   return (
     <>
     {!sessionData?.user && (
-      <div className="min-h-screen grid grid-cols-1 sm:grid-cols-2 bg-neutral-100 p-4 overflow-hidden">
-        
-        <div className="hidden sm:block w-full h-full">
-          <div className="h-full flex flex-col justify-center items-center">
-            <span className="uppercase font-semibold tracking-widest text-2xl md:text-3xl lg:text-4xl xl:text-4xl pb-8">welcome to</span>
-            <Image
-              src="/new-logo-light.png"
-              alt="ttrpcompanion logo"
-              width="1000"
-              height="1000"
-              className="w-64 h-64"
-            />
-          </div>
+      <div className="bg-neutral-100 grid grid-cols-8 h-screen">
 
-
-        </div>
-
-        <div className="bg-white rounded-xl p-4 w-full h-full">
-          <div className="h-full flex flex-col justify-center items-center">
-
-            <div className="sm:hidden">
-              {/* <span className="flex justify-center font-bold text-[2.6rem]">TTRPCompanion</span> */}
-              <Image
-                src="/new-logo-2.png"
-                alt="ttrpcompanion logo"
-                width="1000"
-                height="1000"
-                className="rounded-2xl w-64 h-64 mb-8"
-              />
-            </div>
-
-            <p className="text-neutral-500 text-lg">
-              <span className="font-semibold text-[#222]">TTRPCompanion </span>
-              is an all-in-one tracker for your TTRPG&apos;s. Keep tabs on your adventuring
-              party, individual characters, and even the players themselves! Immerse yourself 
-              like never before. <br/><br />
-              <span className="font-semibold text-[#222] flex justify-center">Sign in now to get started!</span>
+        <div className="col-span-8 sm:col-span-5 p-4 relative flex flex-col min-h-[calc(100vh-144px)] justify-between">
+          <h1 className="text-sm font-light tracking-widest">TTRPCompanion</h1>
+          
+          <div className="">
+            <p className="text-5xl sm:text-6xl md:text-7xl font-thin mr-24">
+              Connecting 
+              <span className="text-orange-200"> players </span>
+              to their 
+              <span className="text-orange-400"> characters </span>
+              like never before.
             </p>
-
-            <div className="pt-8 flex justify-between sm:justify-evenly w-full">
-              <button 
-                onClick={() => void signIn()}
-                className="bg-red-500 rounded-xl px-8 py-2 text-neutral-100 text-sm"
-              > Sign In </button>
-              <Link href="https://github.com/knlrvr/ttrpcompanion" target="_blank"
-                className="bg-blue-900 rounded-xl px-5 py-2 text-neutral-100 text-sm"
-              > Learn More </Link>
-            </div>
           </div>
+
+          <div className="mb-12">
+            <p className="font-light w-1/2 text-lg">
+              TTRPCompanion is an all-in-one tracker for your TTRPG adventures. 
+              Keep tabs on stats specific to the campaign, party, individual characters, and even
+              the players!
+            </p>
+          </div>
+
+
+          <button className="absolute -bottom-6 right-4 sm:-right-24 sm:bottom-12 bg-[#111] hover:bg-orange-300 duration-300 text-white px-4 py-4 text-sm font-light tracking-widest shadow-2xl" 
+            onClick={() => signIn()}
+          >
+            Get Started &mdash; It&apos;s Free
+          </button>
         </div>
 
-      
+        <div className="h-36 sm:h-full col-span-8 sm:col-span-3 overflow-hidden">
+          <Image
+            src="https://images.unsplash.com/photo-1512951670161-b5c6c632b00e"
+            alt="shapes on blue"
+            width={1000}
+            height={1000}
+            className="w-full h-full object-cover object-center"
+          />
+        </div>
 
       </div>
     )}
