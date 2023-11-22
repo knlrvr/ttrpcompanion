@@ -63,7 +63,7 @@ const Content: React.FC = () => {
 
 
           <button className="absolute -bottom-6 right-4 sm:-right-24 sm:bottom-12 bg-[#111] hover:bg-orange-300 duration-300 text-white px-4 py-4 text-sm font-light tracking-widest shadow-2xl" 
-            onClick={() => signIn()}
+            onClick={() => void signIn()}
           >
             Get Started &mdash; It&apos;s Free
           </button>
