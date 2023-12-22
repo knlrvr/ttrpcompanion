@@ -16,6 +16,12 @@ import {
   MdOutlinePerson
 } from 'react-icons/md'
 
+import {
+  BsArrowRight
+} from 'react-icons/bs'
+
+import ToggleTheme from "@/components/ThemeToggle";
+
 export default function Home() {
   return (
     <>
@@ -38,47 +44,56 @@ const Content: React.FC = () => {
   return (
     <>
     {!sessionData?.user && (
-      <div className="bg-neutral-100 grid grid-cols-8 h-screen">
-
-        <div className="col-span-8 sm:col-span-5 p-4 relative flex flex-col min-h-[calc(100vh-144px)] justify-between">
-          <h1 className="text-sm font-light tracking-widest">TTRPCompanion</h1>
+      <div className="bg-neutral-100 dark:bg-[#111] dark:text-neutral-100 p-4">
+        <div className="max-w-6xl mx-auto flex flex-col justify-between min-h-[calc(100vh-40px)]">
           
-          <div className="">
-            <p className="text-5xl sm:text-6xl md:text-7xl font-thin sm:mr-24">
-              Connecting 
-              <span className="text-orange-200"> players </span>
-              to their 
-              <span className="text-orange-400"> characters </span>
-              like never before.
-            </p>
+          <div className="flex justify-between items-center">
+            <h1 className="text-sm font-light tracking-wider">TTRPCompanion</h1>
+            <ToggleTheme />
           </div>
 
-          <div className="mb-12">
-            <p className="font-light sm:w-1/2 text-lg">
-              TTRPCompanion is an all-in-one tracker for your TTRPG adventures. 
-              Keep tabs on stats specific to the campaign, party, individual characters, and even
-              the players!
+          <div className="flex flex-col items-center space-y-8 max-w-xl mx-auto">
+
+            <Link href="https://www.github.com/knlrvr/ttrpcompanion" target="_blank"
+              className="group w-fit border border-neutral-500 px-4 py-1 rounded-full flex items-center space-x-3">
+              <div className="h-2 w-2 rounded-full bg-green-500"></div>
+              <span className="text-xs text-neutral-500">View Latest Release Notes</span>
+              <BsArrowRight className="group-hover:translate-x-1 duration-300"/>
+            </Link>
+
+            <p className="text-xl md:text-3xl text-center font-light">
+              <span className="font-semibold text-4xl md:text-6xl text-transparent bg-clip-text bg-gradient-to-br from-orange-300 to-red-700 dark:from-blue-400 dark:to-red-600">TTRPCompanion &mdash;</span>
+              <br /> Connecting players to their characters like never before.
             </p>
+
+            <p className="text-center text-base md:text-lg text-neutral-500">
+              TTRPCompanion is an all-in-one tracker for your tabletop adventures. Keep tabs on stats specific to the campaign, party, individual characters, and even the players themselves! 
+            </p>
+          </div> 
+
+          <div className="flex justify-between md:justify-evenly">
+            <button onClick={() => void signIn()}
+              className="border border-[#111] dark:border-white px-4 py-1 rounded-full hover:border-blue-400 hover:text-blue-400 dark:hover:border-blue-500 duration-300 text-sm md:text-base">
+              Get Started &mdash; It&apos;s Free
+            </button>
+            <Link href="https://www.github.com/knlrvr/ttrpcompanion" target="_blank"
+              className="border border-neutral-500 text-neutral-500 px-4 py-1 rounded-full hover:border-red-400 hover:text-red-400 duration-300 text-sm md:text-base">
+              Learn More
+            </Link>
           </div>
 
+          <div className="mt-24 flex justify-between items-center">
+            <div className="flex items-center space-x-2">
+              <div className="h-1 w-1 rounded-full bg-green-500"></div>
+              <span className="text-xs text-neutral-500">Online.</span>
+            </div>
 
-          <button className="absolute -bottom-6 right-4 sm:-right-24 sm:bottom-12 bg-[#111] hover:bg-orange-300 duration-300 text-white px-4 py-4 text-sm font-light tracking-widest shadow-2xl" 
-            onClick={() => void signIn()}
-          >
-            Get Started &mdash; It&apos;s Free
-          </button>
+            <div className="flex items-center text-xs text-neutral-500">
+              <p>&copy; TTRPCompanion. All Rights Reserved.</p>
+            </div>
+          </div>
+
         </div>
-
-        <div className="h-36 sm:h-full col-span-8 sm:col-span-3 overflow-hidden">
-          <Image
-            src="https://images.unsplash.com/photo-1512951670161-b5c6c632b00e"
-            alt="shapes on blue"
-            width={1000}
-            height={1000}
-            className="w-full h-full object-cover object-center"
-          />
-        </div>
-
       </div>
     )}
 
