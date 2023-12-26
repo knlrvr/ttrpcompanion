@@ -2,6 +2,7 @@
 
 ![ttrpc-brand-2](https://github.com/knlrvr/ttrpg-char-stats-v2/assets/91632194/d567f93b-5135-47a8-a6f9-eba00e26fc58)
 
+![ttrpc-landing](https://github.com/knlrvr/ttrpcompanion/assets/91632194/72c41101-6e8b-4767-af73-9d85c0c596da)
 
 ## Table of Contents
 - [Releases](#releases)
