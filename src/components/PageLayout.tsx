@@ -34,6 +34,7 @@ export default function PageLayout({
                 <p className="text-neutral-500 text-xs"> 
                 &copy; 2023 TTRPCompanion.&nbsp;
                 <span className="hidden sm:inline-flex"> All Rights Reserved.</span>
+                <span className="font-mono ml-2">v2.0.3</span>
                 </p>
               </div>
             </main>

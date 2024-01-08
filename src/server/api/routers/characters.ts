@@ -26,6 +26,8 @@ export const updateCharacterStatsInput = z.object({
         natTwenty: z.number(),
         natOne: z.number(),
         totalKo: z.number(),
+
+        activeDays: z.number(),
     }),
 });
 
@@ -56,6 +58,7 @@ export const characterRouter = createTRPCRouter({
                 natTwenty: z.number(),
                 natOne: z.number(),
                 totalKo: z.number(),
+                activeDays: z.number(),
             })
         }),
     )
@@ -87,6 +90,7 @@ export const characterRouter = createTRPCRouter({
                         natTwenty: input.stats.natTwenty,
                         natOne: input.stats.natOne,
                         totalKo: input.stats.totalKo,
+                        activeDays: input.stats.activeDays,
                     },
                 },
             },

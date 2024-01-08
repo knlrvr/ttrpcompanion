@@ -153,4 +153,5 @@ model CharacterStats {
     natOne              Int                 @default(0)
     totalKo             Int                 @default(0)
 
+    activeDays          Int                 @default(0)
 }

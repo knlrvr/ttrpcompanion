@@ -26,6 +26,7 @@ interface Stats {
   natTwenty: number;
   natOne: number;
   totalKo: number;
+  activeDays: number;
 };
 
 type CharacterStats = {
@@ -251,12 +252,13 @@ export const CampCharacterCard = ({
     const removeCharFromCamp = api.removeCharFromCampRouter.removeChararacterFromCampaign.useMutation({
         onSuccess: () => {
             void refetchCharacters();
-            
+            void refetchCampaigns();
         }
     });
     const addCharacterToUser = api.addCharacterToUserRouter.addCharacterToUser.useMutation({
         onSuccess: () => {
             void refetchCharacters();
+            void refetchCampaigns();
         }
     })
 
@@ -558,6 +560,20 @@ export const CampCharacterCard = ({
                                             />                                                  
                                             <p className="text-xs font-light text-right dark:text-white">Nat 1&apos;s Rolled</p>
                                         </div>
+                                        <div className="border-l-4 border-[#888] rounded-r-lg p-4 flex flex-col space-y-2 items-end bg-gray-50 dark:bg-[#333] dark:bg-opacity-50">
+                                            <input
+                                                type="number"
+                                                value={editedStats.activeDays?.toString() ?? ""}
+                                                onChange={(e) =>
+                                                    setEditedStats((prevState) => ({
+                                                    ...prevState,
+                                                    activeDays: parseInt(e.target.value),
+                                                    }))
+                                                }
+                                                className="font-semibold text-lg md:text-2xl w-1/2 rounded-full px-3 text-right dark:bg-[#444] dark:text-white"
+                                            />                                                  
+                                            <p className="text-xs font-light text-right dark:text-white">In-game Days</p>
+                                        </div>
                                     </div>
                                 </div>
                                 ) : (
@@ -646,6 +662,10 @@ export const CampCharacterCard = ({
                                             <span className="font-semibold text-lg md:text-2xl">{stat.natOne}</span>
                                             <p className="text-xs font-light text-right">Nat 1&apos;s Rolled</p>
                                         </div>
+                                        <div className="border-l-4 border-[#888] rounded-r-lg p-4 flex flex-col space-y-2 items-end bg-gray-50 dark:bg-[#333] dark:bg-opacity-50">
+                                            <span className="font-semibold text-lg md:text-2xl">{stat.activeDays}</span>
+                                            <p className="text-xs font-light text-right">In-game Days</p>
+                                        </div>
                                     </div> 
                                 </div>
                                 )}
@@ -696,7 +716,6 @@ export const CampCharacterCard = ({
                                             userId: sessionData?.user.id ?? '',
                                         })
                                         campCharRemoved();
-                                        void refetchCampaigns();
                                     }}
                                 > Remove </button>
                             </div>

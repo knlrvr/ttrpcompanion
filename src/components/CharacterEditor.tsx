@@ -27,6 +27,7 @@ export const CharacterEditor = ({
             natTwenty: number;
             natOne: number,
             totalKo: number,
+            activeDays: number,
         }
     }) => void;
 }) => {
@@ -51,6 +52,7 @@ export const CharacterEditor = ({
     const [natTwenty, setNatTwenty] = useState<number>(0);
     const [natOne, setNatOne] = useState<number>(0);
     const [totalKo, setTotalKo] = useState<number>(0);
+    const [activeDays, setActiveDays] = useState<number>(0);
 
     const charClassOptions = [
         'Select Class',
@@ -452,6 +454,20 @@ export const CharacterEditor = ({
                             onChange={(e) => setNatOne(e.currentTarget.valueAsNumber)}
                         />
                     </div>
+
+                    <div className="flex flex-col space-y-2">
+                        <label htmlFor='activeDays'
+                                className="text-xs uppercase text-neutral-500"
+                            > Active Days </label> 
+                        <input 
+                            id="activeDays"
+                            type="number"
+                            placeholder="Active Days"
+                            className="rounded-full px-3 py-1 bg-gray-50 dark:bg-[#222] placeholder:text-neutral-500 text-[#222] dark:text-white"
+                            value={activeDays}
+                            onChange={(e) => setActiveDays(e.currentTarget.valueAsNumber)}
+                        />
+                    </div>
                 </div>
 
                 <button 
@@ -478,7 +494,8 @@ export const CharacterEditor = ({
                                 combatTime,
                                 natTwenty,
                                 natOne,
-                                totalKo
+                                totalKo,
+                                activeDays,
                             },
                         });
                         setTitle("");
@@ -501,6 +518,7 @@ export const CharacterEditor = ({
                         setNatTwenty(0);
                         setNatOne(0);
                         setTotalKo(0);
+                        setActiveDays(0);
                     }}
                     className="mt-8 rounded-md py-1 px-3 bg-green-500 text-white"
                 >

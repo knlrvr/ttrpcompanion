@@ -1,10 +1,19 @@
 import React, { useEffect, useState } from "react";
 
+import { api, type RouterOutputs } from "@/utils/api";
+
 import {
   BsPeople,
   BsClock,
   BsSlash
 } from 'react-icons/bs'
+
+import { 
+  PiSunHorizonLight, 
+  PiPencilSimple,
+  PiCheck
+} from "react-icons/pi";
+
 
 interface Stats {
   id?: string;
@@ -28,6 +37,7 @@ interface Stats {
   natTwenty: number;
   natOne: number;
   totalKo: number;
+  activeDays: number;
 }
 
 interface CharacterStats {
@@ -63,8 +73,13 @@ const CampaignTotals: React.FC<{ characters: CharacterStats[] }> = ({ characters
     natTwenty: 0,
     natOne: 0,
     totalKo: 0,
+    activeDays: 0,
+
     totalPlayers: 0, // Add totalPlayers property here
   });
+
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedDays, setEditedDays] = useState<number>(0);
 
   useEffect(() => {
     // Fetch the stats here and update the state
@@ -92,9 +107,11 @@ const CampaignTotals: React.FC<{ characters: CharacterStats[] }> = ({ characters
           natTwenty: 0,
           natOne: 0,
           totalKo: 0,
+          activeDays: 0,
         };
 
         let totalPlayers = 0; // Initialize the player count
+        let totalActiveDays = 0;
 
         characters.forEach((character) => {
           character.stats.forEach((characterStats) => {
@@ -106,14 +123,22 @@ const CampaignTotals: React.FC<{ characters: CharacterStats[] }> = ({ characters
             campaignStats.natOne += characterStats.natOne;
             campaignStats.totalKills += characterStats.totalKills;
             campaignStats.totalDeaths += characterStats.totalDeaths;
+            campaignStats.activeDays += characterStats.activeDays;
 
             // Increment player count for each unique characterId
             if (campaignStats.characterId !== characterStats.characterId) {
               totalPlayers++;
               campaignStats.characterId = characterStats.characterId; // Set it to the latest characterId
             }
+
+            totalActiveDays = Math.max(totalActiveDays, characterStats.activeDays);
+
           });
         });
+
+        if (totalActiveDays > 0) {
+          campaignStats.activeDays = totalActiveDays;
+        }
 
         // Set the campaign totals
         setTotalStats({
@@ -135,7 +160,7 @@ const CampaignTotals: React.FC<{ characters: CharacterStats[] }> = ({ characters
   }
 
   return (
-    <div className="py-4 grid grid-cols-3 gap-4 mt-2">
+    <div className="py-4 grid grid-cols-1 md:grid-cols-3 gap-y-8 gap-x-4 mt-2">
       <div className='flex flex-col sm:flex-row justify-start sm:items-end sm:space-x-2 p-4 pt-6 rounded-xl bg-white dark:bg-[#222] relative'>
         <span className="text-3xl md:text-6xl">{totalStats.totalSessions}</span>
         <p className="mb-1 mt-3 sm:mt-0">Total <br /> Sessions</p>
@@ -163,6 +188,14 @@ const CampaignTotals: React.FC<{ characters: CharacterStats[] }> = ({ characters
         </div>
       </div>
 
+      <div className='flex flex-col sm:flex-row justify-start sm:items-end sm:space-x-2 p-4 pt-6 rounded-xl bg-white dark:bg-[#222] relative md:col-span-3'>
+        <span className="text-3xl md:text-6xl">{totalStats.activeDays}</span>
+        <p className="mb-1 mt-3 sm:mt-0">In-game <br /> Days</p>
+
+        <div className="absolute -top-4 left-[1rem] md:-left-4 rounded-full w-8 h-8 bg-blue-300 flex justify-center items-center shadow-md">
+          <PiSunHorizonLight className="text-xl text-[#222]" />
+        </div>
+      </div>
     </div>
   );
 };

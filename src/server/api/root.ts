@@ -8,6 +8,7 @@ import { removeCharFromCampRouter } from "./routers/add";
 import { removeCharFromUserRouter } from "./routers/add";
 import { assignPlayerToCharacterRouter } from "./routers/characters";
 
+import { daysRouter } from "./routers/days";
 import { questRouter } from "./routers/quests";
 
 
@@ -25,6 +26,7 @@ export const appRouter = createTRPCRouter({
     removeCharFromCampRouter: removeCharFromCampRouter,
     removeCharFromUserRouter: removeCharFromUserRouter,
     assignPlayerToCharacterRouter: assignPlayerToCharacterRouter,
+    daysRouter: daysRouter,
     questRouter: questRouter,
 });
 

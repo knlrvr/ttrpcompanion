@@ -15,8 +15,6 @@ import Image from 'next/image'
 import { 
   BsTrash, 
   BsBarChart, 
-  BsEye, 
-  BsEyeSlash,
   BsFilterCircle,
   BsCheckCircle,
   BsChevronRight, 
@@ -25,12 +23,21 @@ import {
   BsExclamationCircle
 } from "react-icons/bs";
 
+import { 
+  PiEye,
+  PiEyeClosed,
+  PiHourglassSimple,
+  PiMinus,
+  PiPlus
+} from "react-icons/pi";
+
 import Modal from "react-modal";
 import AddCampaign from "@/components/addCampaign";
 import JoinCampaign from "@/components/joinCampaign";
 import QuestCreator from "@/components/QuestCreator";
 
 import { toast } from "react-toastify";
+import DaysCounter from "@/components/DaysCounter";
 
 Modal.setAppElement('main');
 
@@ -279,6 +286,15 @@ const Content: React.FC = () => {
     }
   );
 
+  // camp time
+  const { data: days, refetch: refetchDays } = api.daysRouter.getAll.useQuery(
+    { 
+      campaignId: selectedCampaign?.id ?? '', 
+    },
+  );
+
+
+
   // quests
   const { data: quests, refetch: refetchQuests } = api.questRouter.getAll.useQuery(
     { 
@@ -380,6 +396,7 @@ const Content: React.FC = () => {
               </div>
             )}
 
+
             <div className="pt-6 pb-4">
               <p className="text-neutral-500 uppercase text-xs">Campaign &mdash;</p>
               {characterStatsArray.length > 0 ? ( 
@@ -392,9 +409,8 @@ const Content: React.FC = () => {
               )}
             </div>
 
-
             {/* migrate to component soon */}
-            <div className="pt-6 pb-4">
+            <div className="pt-12 pb-4">
               <p className="text-neutral-500 uppercase text-xs pb-4">active quests <span>({quests?.length})</span> &mdash;</p>
               {displayedQuests?.length !== undefined && displayedQuests?.length > 0 ? (
               <div>
@@ -559,7 +575,7 @@ const Content: React.FC = () => {
                     className="text-xl"
                     onClick={() => handleShowCode()
                     }
-                  > <BsEyeSlash className="dark:text-neutral-500"/> </button>
+                  > <PiEye className="dark:text-neutral-500"/> </button>
                   <p className="text-xs dark:text-neutral-500 tracking-wide font-mono"> {selectedCampaign?.id}</p>
                 </div>
               ) : (
@@ -568,10 +584,10 @@ const Content: React.FC = () => {
                     className="text-xl dark:text-neutral-500"
                     onClick={() => handleShowCode()
                     }
-                  > <BsEye /> </button>
+                  > <PiEyeClosed /> </button>
                 </div>
               )}
-              <p>
+              <p className="pt-1">
                 Share this code with anyone that would like to join your campaign. 
                 Simply enter the code in the campaign selector in the field marked &apos;Join New Campaign&apos;.
               </p>
