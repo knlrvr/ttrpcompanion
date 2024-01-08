@@ -285,15 +285,6 @@ const Content: React.FC = () => {
     }
   );
 
-  // camp time
-  const { data: days, refetch: refetchDays } = api.daysRouter.getAll.useQuery(
-    { 
-      campaignId: selectedCampaign?.id ?? '', 
-    },
-  );
-
-
-
   // quests
   const { data: quests, refetch: refetchQuests } = api.questRouter.getAll.useQuery(
     { 
