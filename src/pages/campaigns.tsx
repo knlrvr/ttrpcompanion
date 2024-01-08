@@ -37,7 +37,6 @@ import JoinCampaign from "@/components/joinCampaign";
 import QuestCreator from "@/components/QuestCreator";
 
 import { toast } from "react-toastify";
-import DaysCounter from "@/components/DaysCounter";
 
 Modal.setAppElement('main');
 
