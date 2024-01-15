@@ -160,7 +160,7 @@ const CampaignTotals: React.FC<{ characters: CharacterStats[] }> = ({ characters
   }
 
   return (
-    <div className="py-4 grid grid-cols-1 md:grid-cols-3 gap-y-8 gap-x-4 mt-2">
+    <div className="py-4 grid grid-cols-3 md:grid-cols-3 gap-y-8 gap-x-4 mt-2">
       <div className='flex flex-col sm:flex-row justify-start sm:items-end sm:space-x-2 p-4 pt-6 rounded-xl bg-white dark:bg-[#222] relative'>
         <span className="text-3xl md:text-6xl">{totalStats.totalSessions}</span>
         <p className="mb-1 mt-3 sm:mt-0">Total <br /> Sessions</p>
@@ -188,7 +188,7 @@ const CampaignTotals: React.FC<{ characters: CharacterStats[] }> = ({ characters
         </div>
       </div>
 
-      <div className='flex flex-col sm:flex-row justify-start sm:items-end sm:space-x-2 p-4 pt-6 rounded-xl bg-white dark:bg-[#222] relative md:col-span-3'>
+      <div className='flex flex-col sm:flex-row justify-start sm:items-end sm:space-x-2 p-4 pt-6 rounded-xl bg-white dark:bg-[#222] relative col-span-3'>
         <span className="text-3xl md:text-6xl">{totalStats.activeDays}</span>
         <p className="mb-1 mt-3 sm:mt-0">In-game <br /> Days</p>
 
